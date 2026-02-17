@@ -1,0 +1,47 @@
+{
+    "beryllium": {
+        
+        "pjsheet": {
+            "aspects": {
+                "concept": "Concept",
+                "probleme": "Problème",
+                "lien": "Lien",
+                "methode": "Méthode"
+            },
+            "heritage": {
+                "affinite": "Affinité"
+            },
+            "competences": {
+                "physique": "Physique",
+                "combat": "Combat",
+                "discretion": "Discrétion",
+                "erudition": "Erudition",
+                "magie": "Magie",
+                "perception": "Perception",
+                "influence": "Influence",
+                "technique": "Technique",
+                "volonte": "Volonté"
+            }
+        },
+        "RollDifficulte": {
+            "label": "Difficulté",
+            "select": "Choix de la difficulté",
+            "mediocre": "Médiocre",
+            "correct": "Correct",
+            "moyen": "Moyen",
+            "bon": "Bon",
+            "excellent": "Excellent",
+            "legendaire": "Légendaire"
+        },
+        "RollModificateur" : "Modificateur de difficulté",
+        "rolldice":{
+            "result": {
+                "reussiteExceptionnelle": "Réussite exceptionnelle",
+                "reussite": "Réussite",
+                "reussiteJustesse": "Réussite de justesse",
+                "echec": "Echec",
+                "echecCritique": "Echec critique"
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "beryllium",
+  "title": "beryllium",
+  "description": "A human-readable description of your system.",
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": 13,
+    "verified": 13
+  },
+  "authors": [{
+    "name": "eltharin",
+    "url": "YOUR WEBSITE ADDRESS HERE",
+    "email": "YOUR EMAIL ADDRESS HERE",
+    "discord": "YOUR DISCORD USERNAME HERE"
+  }],
+  "esmodules": ["beryllium.mjs"],
+  "styles": ["styles/beryllium-styles.css"],
+  "packs": [],
+  "languages": [{
+    "lang": "fr",
+    "name": "Français",
+    "path": "lang/fr.json"
+  }],
+  "documentTypes": {
+    "Actor": {
+      "pj": {  }
+    },
+    "Item": {
+      "objet": {},
+      "arme": {},
+      "armure": {},
+      "sort": {}
+    }
+  },
+  "socket": false,
+  "grid": {
+    "distance": 10,
+    "units": "m"
+  },
+  "url": "https://your/hosted/system/repo/",
+  "manifest": "https://your/hosted/system/repo/system.json",
+  "download": "https://your/packaged/download/archive.zip"
+}

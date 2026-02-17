@@ -1,0 +1,39 @@
+import { SystemActor } from "./modules/Actor/SystemActor.mjs";
+import { ActorPjDataModel } from "./modules/Actor/ActorPjDataModel.mjs";
+import { PjSheet } from "./modules/Actor/PjSheet.mjs";
+
+import { SystemItem } from "./modules/Item/SystemItem.mjs";
+import { ItemArmeDataModel } from "./modules/Item/ItemArmeDataModel.mjs";
+import { ItemArmureDataModel } from "./modules/Item/ItemArmureDataModel.mjs";
+import { ItemSortDataModel } from "./modules/Item/ItemSortDataModel.mjs";
+
+import { DeBeryllium } from "./modules/DeBeryllium.mjs";
+import {CompetenceRoll} from "./modules/DiceRoller/Competence/CompetenceRoll.mjs";
+
+Hooks.once("init", () => {
+  console.log("beryllium | Initialisation du système beryllium");
+
+  CONFIG.Actor.documentClass = SystemActor;
+  CONFIG.Item.documentClass = SystemItem;
+
+
+  CONFIG.Actor.dataModels = {
+    pj: ActorPjDataModel
+  };
+  
+  CONFIG.Item.dataModels = {
+    arme: ItemArmeDataModel,
+    armure: ItemArmureDataModel,
+    sort: ItemSortDataModel
+  };
+
+  foundry.documents.collections.Actors.registerSheet("beryllium", PjSheet, {
+    types: ["pj"],
+    makeDefault: true,
+    label: "Feuille de Personnage Joueur"
+  });
+
+  CONFIG.Dice.rolls.push(CompetenceRoll);
+  CONFIG.Dice.terms[DeBeryllium.DENOMINATION] = DeBeryllium;
+
+});
