@@ -22,45 +22,45 @@ export class ActorPjDataModel extends foundry.abstract.TypeDataModel {
         }),
         competences: new foundry.data.fields.SchemaField({
             physique: new foundry.data.fields.SchemaField({
-                value: new foundry.data.fields.NumberField({})
+                value: new foundry.data.fields.NumberField({initial: 0})
             }),
             combat: new foundry.data.fields.SchemaField({
-                value: new foundry.data.fields.NumberField({})
+                value: new foundry.data.fields.NumberField({initial: 0})
             }),
             discretion: new foundry.data.fields.SchemaField({
-                value: new foundry.data.fields.NumberField({})
+                value: new foundry.data.fields.NumberField({initial: 0})
             }),
             erudition: new foundry.data.fields.SchemaField({
-                value: new foundry.data.fields.NumberField({})
+                value: new foundry.data.fields.NumberField({initial: 0})
             }),
             magie: new foundry.data.fields.SchemaField({
-                value: new foundry.data.fields.NumberField({})
+                value: new foundry.data.fields.NumberField({initial: 0})
             }),
             perception: new foundry.data.fields.SchemaField({
-                value: new foundry.data.fields.NumberField({})
+                value: new foundry.data.fields.NumberField({initial: 0})
             }),
             influence: new foundry.data.fields.SchemaField({
-                value: new foundry.data.fields.NumberField({})
+                value: new foundry.data.fields.NumberField({initial: 0})
             }),
             technique: new foundry.data.fields.SchemaField({
-                value: new foundry.data.fields.NumberField({})
+                value: new foundry.data.fields.NumberField({initial: 0})
             }),
             volonte: new foundry.data.fields.SchemaField({
-                value: new foundry.data.fields.NumberField({})
+                value: new foundry.data.fields.NumberField({initial: 0})
             })
         }),
         stress: new foundry.data.fields.SchemaField({
             physique: new foundry.data.fields.SchemaField({
-                value: new foundry.data.fields.NumberField({}),
-                max: new foundry.data.fields.NumberField({}),
+                value: new foundry.data.fields.NumberField({initial: 0}),
+                max: new foundry.data.fields.NumberField({initial: 0}),
             }),
             mental: new foundry.data.fields.SchemaField({
-                value: new foundry.data.fields.NumberField({}),
-                max: new foundry.data.fields.NumberField({}),
+                value: new foundry.data.fields.NumberField({initial: 0}),
+                max: new foundry.data.fields.NumberField({initial: 0}),
             }),
             magie: new foundry.data.fields.SchemaField({
-                value: new foundry.data.fields.NumberField({}),
-                max: new foundry.data.fields.NumberField({}),
+                value: new foundry.data.fields.NumberField({initial: 0}),
+                max: new foundry.data.fields.NumberField({initial: 0}),
             }),
         })
     };
