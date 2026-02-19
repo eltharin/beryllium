@@ -86,20 +86,10 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
    _prepareSubmitData(event, form, formData, updateData) { 
     // formData contient toutes les valeurs du formulaire 
     // // Tu peux les modifier avant le submit 
-
-    console.log(formData)
-    console.log(this.document.img)
-    console.log(this.document.src)
     
-/*
-    formData.set("system.stress.physique.value", 2);
-    formData.set("system.stress.mental.value", 2);
-    formData.set("system.stress.magie.value", 2);
- */
-    
-    formData.set("system.stress.physique.max", Math.floor(formData.get("system.competences.physique.value")/2));
-    formData.set("system.stress.mental.max", Math.floor(formData.get("system.competences.volonte.value")/2));
-    formData.set("system.stress.magie.max", Math.floor(formData.get("system.competences.magie.value")/2));
+    formData.set("system.stress.physique.max", this.getNbCase(Math.floor(formData.get("system.competences.physique.value")), this.document.system.stress.physique.forcemax ?? -1));
+    formData.set("system.stress.mental.max", this.getNbCase(Math.floor(formData.get("system.competences.volonte.value")), this.document.system.stress.mental.forcemax ?? -1));
+    formData.set("system.stress.magie.max", this.getNbCase(Math.floor(formData.get("system.competences.magie.value")), this.document.system.stress.magie.forcemax ?? -1));
 
     let data  = super._prepareSubmitData(event, form, formData, updateData);
 
@@ -107,6 +97,20 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
 
 
     return data ; 
+  }
+
+  getNbCase(value, forcemax) {
+    if(forcemax != -1){
+      return forcemax;
+    }
+    else if(value >= 4) {
+      return 4;
+    }
+    else if(value >= 2) {
+      return 3;
+    }
+     
+    return 1;
   }
 
 

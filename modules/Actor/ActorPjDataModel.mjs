@@ -53,14 +53,17 @@ export class ActorPjDataModel extends foundry.abstract.TypeDataModel {
             physique: new foundry.data.fields.SchemaField({
                 value: new foundry.data.fields.NumberField({initial: 0}),
                 max: new foundry.data.fields.NumberField({initial: 0}),
+                forcemax: new foundry.data.fields.NumberField({initial: -1}),
             }),
             mental: new foundry.data.fields.SchemaField({
                 value: new foundry.data.fields.NumberField({initial: 0}),
                 max: new foundry.data.fields.NumberField({initial: 0}),
+                forcemax: new foundry.data.fields.NumberField({initial: -1}),
             }),
             magie: new foundry.data.fields.SchemaField({
                 value: new foundry.data.fields.NumberField({initial: 0}),
                 max: new foundry.data.fields.NumberField({initial: 0}),
+                forcemax: new foundry.data.fields.NumberField({initial: -1}),
             }),
         })
     };
