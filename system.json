@@ -37,7 +37,10 @@
     "distance": 10,
     "units": "m"
   },
-  "url": "https://your/hosted/system/repo/",
-  "manifest": "https://your/hosted/system/repo/system.json",
-  "download": "https://your/packaged/download/archive.zip"
+  "url": "https://github.com/eltharin/beryllium/",
+  "bugs": "https://github.com/eltharin/fberyllium/issues",
+  "readme": "https://github.com/eltharin/beryllium/blob/main/README.md",
+  "license": "https://mit-license.org/",
+  "manifest": "https://raw.githubusercontent.com/eltharin/beryllium/refs/heads/master/system.json",
+  "download": "https://github.com/eltharin/beryllium/archive/refs/tags/V0.0.1.zip"
 }

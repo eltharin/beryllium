@@ -1,0 +1,24 @@
+<div class="sheet beryllium pj-sheet">
+    <div class="sidebar">
+        {{> "systems/beryllium/templates/actor/pj/sidebar.hbs" }}
+    </div>
+    <div class="content">
+        <div class="top">{{ toto }}
+            {{> "systems/beryllium/templates/actor/pj/topbar.hbs" }}
+        </div>
+        <div class="main">
+            <nav class="sheet-tabs tabs" aria-roledescription="Navigation dans l’onglet des feuilles de personnages" data-application-part="tabs">
+                <a data-action="tab" data-group="primary" data-tab="aspects" class="active">
+                    <span>MYSYS.tab.aspects</span>
+                </a>
+                <a data-action="tab" data-group="primary" data-tab="heritage">
+                    <span>MYSYS.tab.heritage</span>
+                </a>
+            </nav>
+            <div class="pages">
+            {{> "systems/beryllium/templates/actor/pj/aspects.hbs" }}
+            {{> "systems/beryllium/templates/actor/pj/heritage.hbs" }}
+            </div>
+        </div>
+    </div>
+</div>

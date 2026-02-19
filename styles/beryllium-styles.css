@@ -1,3 +1,80 @@
 .pj-sheet-cat{
     border: 1px solid lightgrey;
 }
+
+.pj-sheet {
+    display:flex;
+}
+
+.pj-sheet > .sidebar {
+    width: 200px;
+    flex-grow:0;
+    flex-shrink:0;
+    margin-right: 5px;
+}
+
+.pj-sheet > .content {
+    flex-grow:1;
+}
+
+
+.pj-sheet-competences{
+    display:flex;
+}
+
+.pj-sheet-competences > .competence {
+    max-width: 100px;
+    margin: 5px;
+    border: 1px solid lightgrey;
+}
+
+.pj-sheet-competences > .competence > label {
+    display:block;
+    text-align: center;
+    font-size: 1em;
+}
+
+.pj-sheet .stress .controls{
+    display:flex;
+    gap: 5px;
+}
+
+.pj-sheet .stress .stress-physique .controls{
+    background-color: brown;
+}
+
+.pj-sheet .stress .stress-physique .values svg.active{
+    fill: brown;
+}
+
+.pj-sheet .stress .stress-mental .controls{
+    background-color: blueviolet;
+}
+.pj-sheet .stress .stress-mental .values svg.active{
+    fill: blueviolet;
+}
+
+
+.pj-sheet .stress .stress-magie .controls{
+    background-color: darkolivegreen;
+}
+.pj-sheet .stress .stress-magie .values svg.active{
+    fill: darkolivegreen;
+}
+
+
+
+.pj-sheet .stress .controls > label{
+    flex-grow:1;
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 1.6em;
+}
+.pj-sheet .stress .controls > span{
+    flex-grow:0;
+    flex-shrink: 0;
+    width:28px;
+}
+.pj-sheet .stress .controls > span > button{
+    width:100%;
+}

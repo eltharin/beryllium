@@ -5,14 +5,10 @@ export class CompetenceRoll extends Roll{
     static CHAT_TEMPLATE = "systems/beryllium/templates/dice/competence-roll-result.hbs";
 
     constructor(formula="", data={}, options={}) {
-        console.error(data, options)
         super(formula, data, options);
-
-
     }
 
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
-        console.log("toto 1")
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
         ret.result = game.i18n.format("beryllium.rolldice.result." + this.getResult());
         ret.totalText = this.total + " + " + (this.options?.modificateurs?.modificateur || 0) + " + " + (this.options?.actorCompetence.value || 0);
@@ -24,10 +20,6 @@ export class CompetenceRoll extends Roll{
 
     getResult()
     {
-        console.log("toto 2", this.totalValue, this.seuil)
-        console.log(this.total);
-        console.error(this.options);
-
         const resValue = this.getTotalValue() - this.getSeuil();
 
         if(resValue >= 3) return "reussiteExceptionnelle";
@@ -38,7 +30,6 @@ export class CompetenceRoll extends Roll{
     }
 
     static fromData(data) {
-        console.error(data);
         return super.fromData(data);
     }
 

@@ -21,6 +21,11 @@
                 "influence": "Influence",
                 "technique": "Technique",
                 "volonte": "Volonté"
+            },
+            "stress": {
+                "physique": "Physique",
+                "mental": "Mental",
+                "magie": "Magie"
             }
         },
         "RollDifficulte": {
