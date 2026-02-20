@@ -1,6 +1,6 @@
 <div class="sheet beryllium pj-sheet">
     <div class="sidebar">
-        {{> "systems/beryllium/templates/actor/pj/parts/sidebar.hbs" }}
+        {{> "systems/beryllium/templates/actor/pj/parts/sidebarpnj.hbs" }}
     </div>
     <div class="content">
         <div class="top">
@@ -11,20 +11,11 @@
                 <a data-action="tab" data-group="primary" data-tab="aspects">
                     <span>{{localize "beryllium.pjsheet.tabs.aspects"}}</span>
                 </a>
-                <a data-action="tab" data-group="primary" data-tab="heritage">
-                    <span>{{localize "beryllium.pjsheet.tabs.heritage"}}</span>
-                </a>
-                <a data-action="tab" data-group="primary" data-tab="magie">
-                    <span>{{localize "beryllium.pjsheet.tabs.magie"}}</span>
-                </a>
                 <a data-action="tab" data-group="primary" data-tab="prouesses">
                     <span>{{localize "beryllium.pjsheet.tabs.prouesses"}}</span>
                 </a>
-                <a data-action="tab" data-group="primary" data-tab="consequences">
-                    <span>{{localize "beryllium.pjsheet.tabs.consequences"}}</span>
-                </a>
-                <a data-action="tab" data-group="primary" data-tab="resistance">
-                    <span>{{localize "beryllium.pjsheet.tabs.resistance"}}</span>
+                <a data-action="tab" data-group="primary" data-tab="magie">
+                    <span>{{localize "beryllium.pjsheet.tabs.magie"}}</span>
                 </a>
                 <a data-action="tab" data-group="primary" data-tab="equipements">
                     <span>{{localize "beryllium.pjsheet.tabs.equipements"}}</span>
@@ -32,16 +23,17 @@
                 <a data-action="tab" data-group="primary" data-tab="notes">
                     <span>{{localize "beryllium.pjsheet.tabs.notes"}}</span>
                 </a>
+                <a data-action="tab" data-group="primary" data-tab="max">
+                    <span>{{localize "beryllium.pjsheet.tabs.max"}}</span>
+                </a>
             </nav>
             <div class="pages">
             {{> "systems/beryllium/templates/actor/pj/parts/aspects.hbs" }}
-            {{> "systems/beryllium/templates/actor/pj/parts/heritage.hbs" }}
-            {{> "systems/beryllium/templates/actor/pj/parts/magie.hbs" }}
             {{> "systems/beryllium/templates/actor/pj/parts/prouesses.hbs" }}
-            {{> "systems/beryllium/templates/actor/pj/parts/consequences.hbs" }}
-            {{> "systems/beryllium/templates/actor/pj/parts/resistance.hbs" }}
+            {{> "systems/beryllium/templates/actor/pj/parts/magie.hbs" }}
             {{> "systems/beryllium/templates/actor/pj/parts/equipements.hbs" }}
             {{> "systems/beryllium/templates/actor/pj/parts/notes.hbs" }}
+            {{> "systems/beryllium/templates/actor/pj/parts/max.hbs" }}
             </div>
         </div>
     </div>

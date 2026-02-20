@@ -53,26 +53,3 @@
     </div>
     {{/each}}
 </div>
-<div class="cases-container oubli">
-    <div class="controls">
-        <span><button data-action="addRemoveOubli" data-sens="-">-</button></span>
-        <label>{{localize "beryllium.pjsheet.oubli.label"}}{{system.oubli.value}}</label>
-        <span><button data-action="addRemoveOubli" data-sens="+">+</button></span>
-    </div>
-    <div class="values">
-        {{#times oubli.valcheck}}
-            <span>
-                <svg  class="active" width="24" height="24" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1664 416v960q0 119-84.5 203.5T1376 1664H416q-119 0-203.5-84.5T128 1376V416q0-119 84.5-203.5T416 128h960q119 0 203.5 84.5T1664 416z"/>
-                </svg>
-            </span>
-        {{/times}}
-        {{#times oubli.valnoncheck }}
-            <span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect width="18" height="18" x="3" y="3" rx="2" />
-                </svg>
-            </span>
-        {{/times}}
-    </div>
-</div>

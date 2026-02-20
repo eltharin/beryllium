@@ -12,10 +12,12 @@
                 "aspects": "Aspects",
                 "heritage": "Héritage",
                 "prouesses": "Prouesses",
+                "magie": "Magie",
                 "consequences": "Conséquences",
                 "resistance": "Résistance",
                 "equipements": "Equipements",
-                "notes": "Notes"
+                "notes": "Notes",
+                "max": "Max"
             },
             "aspects": {
                 "concept": "Concept",
@@ -24,7 +26,12 @@
                 "methode": "Méthode"
             },
             "heritage": {
-                "affinite": "Affinité"
+                "affinite": "Affinité",
+                "incomp": "Incomp????",
+                "privilege": "Privilège",
+                "faiblesse": "Faiblesse",
+                "tradition": "Tradition",
+                "specialisation": "Spécialisation"
             },
             "competences": {
                 "physique": "Physique",
@@ -58,6 +65,15 @@
                 "legere": "Légère",
                 "modere": "Modérée",
                 "grave": "Grave"
+            },
+            "magie": {
+                "affinite": {
+                    "label": "Affinité",
+                    "select": "Choix de l'affinité"
+                },
+                "oppose": {
+                    "label" : "Opposé"
+                }
             }
         },
         "RollDifficulte": {

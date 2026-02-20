@@ -1,0 +1,23 @@
+<section
+  class='tab {{tab.cssClass}}'
+  data-group='primary'
+  data-tab='magie'
+>
+  <div class="pj-sheet-cat magie">
+    <div class="cols">
+      <div>
+          <label>{{localize "beryllium.pjsheet.magie.affinite.label"}}</label>
+          <select name="system.magie.affinite">
+              <option value="">{{localize "beryllium.pjsheet.magie.affinite.select"}}</option>
+              {{#each listes.magies.list as |mag| }}
+                  <option value="{{mag.id}}" {{#if (eq mag.id ../system.magie.affinite) }}selected{{/if}}>{{mag.name}}</option>
+              {{/each}}
+          </select>
+      </div>
+      <div>
+          <label>{{localize "beryllium.pjsheet.magie.oppose.label"}}</label>
+          <div class="fakeField">{{ system.magie.oppose.name }}</div>
+      </div>
+    </div>
+  </div>
+</section>

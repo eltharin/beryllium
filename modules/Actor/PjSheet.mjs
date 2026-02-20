@@ -1,5 +1,6 @@
 import {DiceRoller} from "../DiceRoller/DiceRoller.mjs";
 import {Cultures} from "../Cultures.mjs";
+import {Magies} from "../Magies.mjs";
 
 
 export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin(
@@ -9,15 +10,17 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     form: { 
       template: "systems/beryllium/templates/actor/pj/pj-sheet.hbs",
       templates: [
-        'systems/beryllium/templates/actor/pj/topbar.hbs',
-        'systems/beryllium/templates/actor/pj/sidebar.hbs',
-        'systems/beryllium/templates/actor/pj/aspects.hbs',
-        'systems/beryllium/templates/actor/pj/heritage.hbs',
-        'systems/beryllium/templates/actor/pj/prouesses.hbs',
-        'systems/beryllium/templates/actor/pj/consequences.hbs',
-        'systems/beryllium/templates/actor/pj/resistance.hbs',
-        'systems/beryllium/templates/actor/pj/equipements.hbs',
-        'systems/beryllium/templates/actor/pj/notes.hbs',
+        'systems/beryllium/templates/actor/pj/parts/topbar.hbs',
+        'systems/beryllium/templates/actor/pj/parts/sidebar.hbs',
+        'systems/beryllium/templates/actor/pj/parts/aspects.hbs',
+        'systems/beryllium/templates/actor/pj/parts/magie.hbs',
+        'systems/beryllium/templates/actor/pj/parts/heritage.hbs',
+        'systems/beryllium/templates/actor/pj/parts/prouesses.hbs',
+        'systems/beryllium/templates/actor/pj/parts/consequences.hbs',
+        'systems/beryllium/templates/actor/pj/parts/resistance.hbs',
+        'systems/beryllium/templates/actor/pj/parts/equipements.hbs',
+        'systems/beryllium/templates/actor/pj/parts/notes.hbs',
+        'systems/beryllium/templates/actor/pj/parts/max.hbs',
       ] 
     },
   };
@@ -32,6 +35,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
       addRemoveSegment: PjSheet._onAddRemoveSegment,
       addRemoveStress: PjSheet._onAddRemoveStress,
       addRemoveOubli: PjSheet._onAddRemoveOubli,
+      showArtwork: PjSheet.#showArtwork,
       //deleteItem: PjSheet.deleteDroppedItem,
       //configurePrototypeToken: (any, event) => {console.log(any, event);},
       //configureToken: (any) => {console.log(any);},
@@ -45,6 +49,12 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     window: {
       resizable: true,
       controls: [
+       /* {
+          action: "showArtwork",
+          icon: "fa-solid fa-lock",
+          label: "beryllium.pjsheet.action.showArtwork",
+          ownership: "OWNER",
+        },*/
         {
           action: "verouillage",
           icon: "fa-solid fa-lock",
@@ -62,6 +72,15 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
       ]
     },
     dragDrop: [{ dragSelector: ".item", dropSelector: null }]
+  }
+
+  static #showArtwork(event, target) {
+    console.log(target)
+    new foundry.applications.apps.ImagePopout({
+      src: target.getAttribute("src"),
+      uuid: this.actor.uuid,
+      window: { title: this.actor.name }
+    }).render({ force: true });
   }
 
   static #canVerouillage() {
@@ -107,12 +126,18 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     context.flags = this.actor.flags     // or this.document for ApplicationV2
 
     //-- culture ------------------------------------------------
+    context.listes = {};
 
     context.culture = {
-      list: Cultures.list(context.system.culture),
+      list: Cultures.list(),
+    }
+    context.listes.magies = {
+      list: Magies.list(),
     }
 
-    console.log(context.culture)
+    console.log(context.listes.magies)
+
+    
 
     //-- stress ------------------------------------------------
     context.stress = {
@@ -120,11 +145,13 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
       valnoncheck : this.actor.system.nbCasesStressTotal - context.system.stress.value,
     }
 
-    context.oubli = {
-      valcheck : context.system.oubli.value,
-      valnoncheck : this.actor.system.nbCasesOubliTotal - context.system.oubli.value,
+    if(context.system.oubli !== undefined)
+    {
+      context.oubli = {
+        valcheck : context.system.oubli.value,
+        valnoncheck : this.actor.system.nbCasesOubliTotal - context.system.oubli.value,
+      }
     }
-
 
 
     //-- fletrine ------------------------------------------------
@@ -133,15 +160,17 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     let restValue = context.system.magie.fletrine.value;
 
     context.system.magie.fletrine.niveaux.forEach((niv,key) => {
+      if(niv.max > 0)
+      {
+        let valUtil = Math.min(restValue, niv.max);
+        restValue = restValue - valUtil;
 
-      let valUtil = Math.min(restValue, niv.max);
-      restValue = restValue - valUtil;
-
-      context.fletrine[key] = {
-        label : game.i18n.format("beryllium.label.niv") + (key+1),
-        nbCheck: valUtil,
-        nbNoncheck : niv.max - valUtil,
-        isMax: niv.max == valUtil
+        context.fletrine[key] = {
+          label : game.i18n.format("beryllium.label.niv") + (key+1),
+          nbCheck: valUtil,
+          nbNoncheck : niv.max - valUtil,
+          isMax: niv.max == valUtil
+        }
       }
     });
 
@@ -157,7 +186,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
 
     this._manageTab();
   }
-
+/*
   _onUpdate(changed, options, userId) {
     console.log(changed, options, userId);
     super._onUpdate(changed, options, userId);
@@ -167,7 +196,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     let data = super._onChangeForm(formConfig, event)
     console.log(data, formConfig, event.currentTarget);
     return data;
-  }
+  }*/
 
   _activateSkillRolls() {
     this.element.querySelectorAll('.pj-sheet .pj-sheet-competences .competence label').forEach(label => {

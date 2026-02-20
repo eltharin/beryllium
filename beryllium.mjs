@@ -1,6 +1,8 @@
 import { SystemActor } from "./modules/Actor/SystemActor.mjs";
 import { ActorPjDataModel } from "./modules/Actor/ActorPjDataModel.mjs";
+import { ActorPnjDataModel } from "./modules/Actor/ActorPnjDataModel.mjs";
 import { PjSheet } from "./modules/Actor/PjSheet.mjs";
+import { PnjSheet } from "./modules/Actor/PnjSheet.mjs";
 
 import { SystemItem } from "./modules/Item/SystemItem.mjs";
 import { ItemArmeDataModel } from "./modules/Item/ItemArmeDataModel.mjs";
@@ -18,7 +20,8 @@ Hooks.once("init", () => {
 
 
   CONFIG.Actor.dataModels = {
-    pj: ActorPjDataModel
+    pj: ActorPjDataModel,
+    pnj: ActorPnjDataModel,
   };
   
   CONFIG.Item.dataModels = {
@@ -29,6 +32,11 @@ Hooks.once("init", () => {
 
   foundry.documents.collections.Actors.registerSheet("beryllium", PjSheet, {
     types: ["pj"],
+    makeDefault: true,
+    label: "Feuille de Personnage Joueur"
+  });
+  foundry.documents.collections.Actors.registerSheet("beryllium", PnjSheet, {
+    types: ["pnj"],
     makeDefault: true,
     label: "Feuille de Personnage Joueur"
   });
