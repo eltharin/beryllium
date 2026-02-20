@@ -3,21 +3,41 @@
         {{> "systems/beryllium/templates/actor/pj/sidebar.hbs" }}
     </div>
     <div class="content">
-        <div class="top">{{ toto }}
+        <div class="top">
             {{> "systems/beryllium/templates/actor/pj/topbar.hbs" }}
         </div>
         <div class="main">
-            <nav class="sheet-tabs tabs" aria-roledescription="Navigation dans l’onglet des feuilles de personnages" data-application-part="tabs">
-                <a data-action="tab" data-group="primary" data-tab="aspects" class="active">
-                    <span>MYSYS.tab.aspects</span>
+            <nav class="sheet-tabs tabs" data-application-part="tabs">
+                <a data-action="tab" data-group="primary" data-tab="aspects">
+                    <span>{{localize "beryllium.pjsheet.tabs.aspects"}}</span>
                 </a>
                 <a data-action="tab" data-group="primary" data-tab="heritage">
-                    <span>MYSYS.tab.heritage</span>
+                    <span>{{localize "beryllium.pjsheet.tabs.heritage"}}</span>
+                </a>
+                <a data-action="tab" data-group="primary" data-tab="prouesses">
+                    <span>{{localize "beryllium.pjsheet.tabs.prouesses"}}</span>
+                </a>
+                <a data-action="tab" data-group="primary" data-tab="consequences">
+                    <span>{{localize "beryllium.pjsheet.tabs.consequences"}}</span>
+                </a>
+                <a data-action="tab" data-group="primary" data-tab="resistance">
+                    <span>{{localize "beryllium.pjsheet.tabs.resistance"}}</span>
+                </a>
+                <a data-action="tab" data-group="primary" data-tab="equipements">
+                    <span>{{localize "beryllium.pjsheet.tabs.equipements"}}</span>
+                </a>
+                <a data-action="tab" data-group="primary" data-tab="notes">
+                    <span>{{localize "beryllium.pjsheet.tabs.notes"}}</span>
                 </a>
             </nav>
             <div class="pages">
             {{> "systems/beryllium/templates/actor/pj/aspects.hbs" }}
             {{> "systems/beryllium/templates/actor/pj/heritage.hbs" }}
+            {{> "systems/beryllium/templates/actor/pj/prouesses.hbs" }}
+            {{> "systems/beryllium/templates/actor/pj/consequences.hbs" }}
+            {{> "systems/beryllium/templates/actor/pj/resistance.hbs" }}
+            {{> "systems/beryllium/templates/actor/pj/equipements.hbs" }}
+            {{> "systems/beryllium/templates/actor/pj/notes.hbs" }}
             </div>
         </div>
     </div>

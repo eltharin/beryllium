@@ -1,0 +1,47 @@
+<section class='tab {{tab.cssClass}}' data-group='primary' data-tab='consequences'>
+  <div class="pj-sheet-cat consequences">
+    consequences
+    <div class="line">
+      <label>{{localize "beryllium.pjsheet.consequences.legere"}}</label><span>-2</span>
+
+      {{#times system.consequences.legere.max }}
+      <input type="text" name="system.consequences.legere.values.{{totoindex}}"
+        value="{{ lookup system.consequences.legere.values totoindex }}" class="pj-sheet-input" placeholder="" />
+      {{/times}}
+    </div>
+        
+    <div class="line">
+      <label>{{localize "beryllium.pjsheet.consequences.modere"}}</label><span>-2</span>
+
+      {{#times system.consequences.modere.max }}
+      <input type="text" name="system.consequences.modere.values.{{totoindex}}"
+        value="{{ lookup system.consequences.modere.values totoindex }}" class="pj-sheet-input" placeholder="" />
+      {{/times}}
+    </div>
+
+    <div class="line">
+      <label>{{localize "beryllium.pjsheet.consequences.grave"}}</label><span>-2</span>
+
+      {{#times system.consequences.grave.max }}
+      <input type="text" name="system.consequences.grave.values.{{totoindex}}"
+        value="{{ lookup system.consequences.grave.values totoindex }}" class="pj-sheet-input" placeholder="" />
+      {{/times}}
+    </div>
+
+  <div class="line">
+    <label>legere</label>
+    <input type="text" name="system.consequences.legere.max" value="{{system.consequences.legere.max}}" class="pj-sheet-input" placeholder=""/>
+  </div>
+  <div class="line">
+    <label>modere</label>
+    <input type="text" name="system.consequences.modere.max" value="{{system.consequences.modere.max}}" class="pj-sheet-input" placeholder=""/>
+  </div>
+  <div class="line">
+    <label>grave</label>
+    <input type="text" name="system.consequences.grave.max" value="{{system.consequences.grave.max}}" class="pj-sheet-input" placeholder=""/>
+  </div>
+
+
+
+  </div>
+</section>

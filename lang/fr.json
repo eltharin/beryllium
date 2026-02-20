@@ -1,7 +1,18 @@
 {
     "beryllium": {
-        
+        "label": {
+            "niv": "Niv"
+        },
         "pjsheet": {
+            "tabs": {
+                "aspects": "Aspects",
+                "heritage": "Héritage",
+                "prouesses": "Prouesses",
+                "consequences": "Conséquences",
+                "resistance": "Résistance",
+                "equipements": "Equipements",
+                "notes": "Notes"
+            },
             "aspects": {
                 "concept": "Concept",
                 "probleme": "Problème",
@@ -23,9 +34,13 @@
                 "volonte": "Volonté"
             },
             "stress": {
+                "label" : "Stress",
                 "physique": "Physique",
                 "mental": "Mental",
                 "magie": "Magie"
+            },
+            "fletrine": {
+                "label" : "Fletrine"
             }
         },
         "RollDifficulte": {

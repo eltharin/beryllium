@@ -41,7 +41,7 @@
     "distance": 10,
     "units": "m"
   },
-  "initiative": "4db + max(@competences.combat.value, @competences.perception.value, @competences.magie.value)",
+  "initiative": "4db + @competences.perception.value",
   "url": "https://github.com/eltharin/beryllium/",
   "bugs": "https://github.com/eltharin/fberyllium/issues",
   "readme": "https://github.com/eltharin/beryllium/blob/main/README.md",

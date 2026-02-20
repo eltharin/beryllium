@@ -34,47 +34,57 @@
     font-size: 1em;
 }
 
-.pj-sheet .stress .controls{
-    display:flex;
-    gap: 5px;
+.pj-sheet .sidebar .cases-container{
+    margin-top: 1em;
 }
 
-.pj-sheet .stress .stress-physique .controls{
+.pj-sheet .sidebar .cases-container .controls{
+    display:flex;
+    gap: 5px;
+    margin-bottom: 0.2em;
+}
+
+.pj-sheet  .cases-container.stress .controls{
     background-color: brown;
 }
 
-.pj-sheet .stress .stress-physique .values svg.active{
+.pj-sheet  .cases-container.stress .values svg.active{
     fill: brown;
 }
 
-.pj-sheet .stress .stress-mental .controls{
-    background-color: blueviolet;
-}
-.pj-sheet .stress .stress-mental .values svg.active{
-    fill: blueviolet;
-}
 
-
-.pj-sheet .stress .stress-magie .controls{
+.pj-sheet  .cases-container.fletrine .controls{
     background-color: darkolivegreen;
 }
-.pj-sheet .stress .stress-magie .values svg.active{
+.pj-sheet  .cases-container.fletrine .values svg.active{
     fill: darkolivegreen;
+}
+.pj-sheet  .cases-container.fletrine .values label.fletrine_niveau_max{
+    background-color: darkolivegreen;
+}
+
+.pj-sheet  .cases-container.fletrine .values{
+    display:flex;
+    height:20px;
+    margin-bottom:5px;
+}
+.pj-sheet  .cases-container.fletrine .values label{
+    width: 30px;
+    margin-right:5px;
 }
 
 
-
-.pj-sheet .stress .controls > label{
+.pj-sheet .sidebar  .cases-container .controls > label{
     flex-grow:1;
     text-align: center;
     font-size: 1.2em;
     line-height: 1.6em;
 }
-.pj-sheet .stress .controls > span{
+.pj-sheet .sidebar  .cases-container .controls > span{
     flex-grow:0;
     flex-shrink: 0;
     width:28px;
 }
-.pj-sheet .stress .controls > span > button{
+.pj-sheet .sidebar  .cases-container .controls > span > button{
     width:100%;
 }

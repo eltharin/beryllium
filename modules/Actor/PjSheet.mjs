@@ -12,6 +12,11 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
         'systems/beryllium/templates/actor/pj/sidebar.hbs',
         'systems/beryllium/templates/actor/pj/aspects.hbs',
         'systems/beryllium/templates/actor/pj/heritage.hbs',
+        'systems/beryllium/templates/actor/pj/prouesses.hbs',
+        'systems/beryllium/templates/actor/pj/consequences.hbs',
+        'systems/beryllium/templates/actor/pj/resistance.hbs',
+        'systems/beryllium/templates/actor/pj/equipements.hbs',
+        'systems/beryllium/templates/actor/pj/notes.hbs',
       ] 
     },
   };
@@ -23,77 +28,44 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
       submitOnChange: true
     },
     actions: {
+      addRemoveSegment: PjSheet._onAddRemoveSegment,
+      addRemoveStress: PjSheet._onAddRemoveStress,
       //deleteItem: PjSheet.deleteDroppedItem,
       //configurePrototypeToken: (any, event) => {console.log(any, event);},
       //configureToken: (any) => {console.log(any);},
       //showPortraitArtwork: (any, event) => {console.log(any, event);},
       //showTokenArtwork: (any, event) => {console.log(any, event);},
-      totoeditImage: (any, event) => {console.log(any, event);},
     },
     position: {
       width: 950,
       height: 800,
     },
     window: {
-      resizable: true
+      resizable: true,
+      controls: [        {
+          action: "verouillage",
+          icon: "fa-solid fa-backward",
+          label: "DND5E.TRANSFORM.Action.Restore",
+          ownership: "OWNER",
+          visible: this.#canVerouillage
+        }]
     },
     dragDrop: [{ dragSelector: ".item", dropSelector: null }]
   }
 
-  static async #onEditImage(event, target) {
-    const attr = target.dataset.edit;
-    const current = foundry.utils.getProperty(this.document._source, attr);
-    const defaultArtwork = this.document.constructor.getDefaultArtwork?.(this.document._source) ?? {};
-    const defaultImage = foundry.utils.getProperty(defaultArtwork, attr);
-    console.log("coucuo");
-    const fp = new CONFIG.ux.FilePicker({
-      current,
-      type: target.dataset.type,
-      redirectToRoot: defaultImage ? [defaultImage] : [],
-      callback: path => {
-        console.log(path);
-
-        const isVideo = foundry.helpers.media.VideoHelper.hasVideoExtension(path);
-        if ( ((target instanceof HTMLVideoElement) && isVideo) || ((target instanceof HTMLImageElement) && !isVideo) ) {
-          target.src = path;
-          console.log(path);
-        } else {
-          const repl = document.createElement(isVideo ? "video" : "img");
-          Object.assign(repl.dataset, target.dataset);
-          if ( isVideo ) Object.assign(repl, {
-            autoplay: true, muted: true, disablePictureInPicture: true, loop: true, playsInline: true
-          });
-          repl.src = path;
-          console.log(target);
-          console.log(repl);
-          target.replaceWith(repl);
-        }
-        this._onEditPortrait(attr, path);
-         console.log("coucou", attr, path);
-      },
-      position: {
-        top: this.position.top + 40,
-        left: this.position.left + 10
-      }
-    });
-    await fp.browse();
+  static #canVerouillage() {
+    return this.isEditable;// && this.actor.isPolymorphed;
+  }
+  
+  verouillage() {
+    console.log("verouillage");
   }
 
-  static async deleteDroppedItem(event, target) {
-
-  }
-
-   _prepareSubmitData(event, form, formData, updateData) { 
-    // formData contient toutes les valeurs du formulaire 
-    // // Tu peux les modifier avant le submit 
-    
-    formData.set("system.stress.physique.max", this.getNbCase(Math.floor(formData.get("system.competences.physique.value")), this.document.system.stress.physique.forcemax ?? -1));
-    formData.set("system.stress.mental.max", this.getNbCase(Math.floor(formData.get("system.competences.volonte.value")), this.document.system.stress.mental.forcemax ?? -1));
-    formData.set("system.stress.magie.max", this.getNbCase(Math.floor(formData.get("system.competences.magie.value")), this.document.system.stress.magie.forcemax ?? -1));
+  _prepareSubmitData(event, form, formData, updateData) { 
 
     let data  = super._prepareSubmitData(event, form, formData, updateData);
 
-    console.log(event, form, formData, updateData);
+    //console.log(event, form, formData, updateData);
 
 
     return data ; 
@@ -110,71 +82,55 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
       return 3;
     }
      
-    return 1;
+    return 2;
   }
-
-
+  
   async _prepareContext(options) {
     console.log("_prepareContext");
     console.log(options);
 
     const context = await super._prepareContext(options)
-
-    console.log(context.toto ?? null);
-    console.log(options.toto ?? null);
-    console.log(this.document.toto ?? null);
-    context.toto = context.toto ? (context.toto+1) : 1;
-    this.document.toto = this.document.toto ? (this.document.toto+1) : 1;
-
-    options.toto = options.toto ? (options.toto+1) : 1;
+    context.tabs = this._prepareTabs("primary");
 
     context.system = this.actor.system  // Note: this.actor for ActorSheetV2
     context.flags = this.actor.flags     // or this.document for ApplicationV2
 
-    context.stressmax = {
-      physique: Math.floor(context.system.competences.physique.value/2),
-      mental: Math.floor(context.system.competences.volonte.value/2),
-      magie: Math.floor(context.system.competences.magie.value/2),
-    }
 
     context.stress = {
-      physique: {
-        valcheck: context.system.stress.physique.value,
-        valnoncheck: context.system.stress.physique.max - context.system.stress.physique.value,
-      },
-      mental: {
-        valcheck: context.system.stress.mental.value,
-        valnoncheck: context.system.stress.mental.max - context.system.stress.mental.value,
-      },
-      magie: {
-        valcheck: context.system.stress.magie.value,
-        valnoncheck: context.system.stress.magie.max - context.system.stress.magie.value,
-      }
+      valcheck : context.system.stress.value,
+      valnoncheck : this.actor.system.nbCasesStressTotal - context.system.stress.value,
     }
-    //context.tabs = this._prepareTabs("primary");
 
+    console.log(context.stress);
+
+    context.fletrine = {};
+
+    let restValue = context.system.magie.fletrine.value;
+
+    context.system.magie.fletrine.niveaux.forEach((niv,key) => {
+
+      let valUtil = Math.min(restValue, niv.max);
+      restValue = restValue - valUtil;
+
+      context.fletrine[key] = {
+        label : game.i18n.format("beryllium.label.niv") + (key+1),
+        nbCheck: valUtil,
+        nbNoncheck : niv.max - valUtil,
+        isMax: niv.max == valUtil
+      }
+    });
+
+
+
+    
     return context
   }
 
-  async _preparePartContext(partId, context) {
-    
-    console.log(" _preparePartContext", partId);
-
-  switch (partId) {
-    case 'aptitudes':
-    case 'traits':
-      context.tab = context.tabs[partId];
-      break;
-    default:
-  }
-  return context;
-}
-
   _onRender(context, options) {
     super._onRender(context, options);
-
     this._activateSkillRolls();
-    this._activateStressButton();
+
+    this._manageTab();
   }
 
   _onUpdate(changed, options, userId) {
@@ -202,35 +158,39 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     });
   }
 
-  _activateStressButton() {
-    this.element.querySelectorAll('.pj-sheet .stress .updateStress').forEach(label => {
-      label.style.cursor = 'pointer';
-      label.addEventListener('click', async (event) => {
-        event.preventDefault();
-        console.log(event.target);
-        
-        let submitData = {};
+  _manageTab() {
+    const selectedTab = this.tabGroups.primary || "aspects";
 
-        if(event.target.dataset.steesssens == "+"){
-          if(this.document.system.stress[event.target.dataset.stress].value >= this.document.system.stress[event.target.dataset.stress].max)
-          {
-            return;
-          }
-        }
-        else {
-          if(this.document.system.stress[event.target.dataset.stress].value <= 0)
-          {
-            return;
-          }
-        }
-        submitData["system.stress." + event.target.dataset.stress + ".value"] = this.document.system.stress[event.target.dataset.stress].value + (1 * (event.target.dataset.steesssens == "+" ? 1 : -1));
-        
-        
-        
-        this.document.update(submitData, { 
-          render: true 
-        });
-      });
+    this.element.querySelectorAll('.pj-sheet .tab').forEach(tab => {
+      if(tab.dataset.tab == selectedTab){
+        tab.classList.add("active");
+      }
+      else {
+        tab.classList.remove("active");
+      }
+    });
+
+    this.element.querySelectorAll('.pj-sheet .sheet-tabs > a').forEach(tab => {
+      if(tab.dataset.tab == selectedTab){
+        tab.classList.add("active");
+      }
+      else {
+        tab.classList.remove("active");
+      }
     });
   }
+
+
+  static async _onAddRemoveSegment(event, target) {
+    event.preventDefault()
+    console.log(event, target, this.actor, target.dataset.sens)
+    await this.actor.update({"system.magie.fletrine.value" : this.actor.system.magie.fletrine.value + (target.dataset.sens == "+" ? 1 : -1)})
+  }
+
+  static async _onAddRemoveStress(event, target) {
+    event.preventDefault()
+    console.log(event, target, this.actor, target.dataset.sens)
+    await this.actor.update({"system.stress.value" : this.actor.system.stress.value + (target.dataset.sens == "+" ? 1 : -1)})
+  }
+  
 }
