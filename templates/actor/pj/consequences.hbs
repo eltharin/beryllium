@@ -5,26 +5,26 @@
       <label>{{localize "beryllium.pjsheet.consequences.legere"}}</label><span>-2</span>
 
       {{#times system.consequences.legere.max }}
-      <input type="text" name="system.consequences.legere.values.{{totoindex}}"
-        value="{{ lookup system.consequences.legere.values totoindex }}" class="pj-sheet-input" placeholder="" />
+      <input type="text" name="system.consequences.legere.values.{{index}}"
+        value="{{ lookup system.consequences.legere.values index }}" class="pj-sheet-input" placeholder="" />
       {{/times}}
     </div>
         
     <div class="line">
-      <label>{{localize "beryllium.pjsheet.consequences.modere"}}</label><span>-2</span>
+      <label>{{localize "beryllium.pjsheet.consequences.modere"}}</label><span>-4</span>
 
       {{#times system.consequences.modere.max }}
-      <input type="text" name="system.consequences.modere.values.{{totoindex}}"
-        value="{{ lookup system.consequences.modere.values totoindex }}" class="pj-sheet-input" placeholder="" />
+      <input type="text" name="system.consequences.modere.values.{{index}}"
+        value="{{ lookup system.consequences.modere.values index }}" class="pj-sheet-input" placeholder="" />
       {{/times}}
     </div>
 
     <div class="line">
-      <label>{{localize "beryllium.pjsheet.consequences.grave"}}</label><span>-2</span>
+      <label>{{localize "beryllium.pjsheet.consequences.grave"}}</label><span>-6</span>
 
       {{#times system.consequences.grave.max }}
-      <input type="text" name="system.consequences.grave.values.{{totoindex}}"
-        value="{{ lookup system.consequences.grave.values totoindex }}" class="pj-sheet-input" placeholder="" />
+      <input type="text" name="system.consequences.grave.values.{{index}}"
+        value="{{ lookup system.consequences.grave.values index }}" class="pj-sheet-input" placeholder="" />
       {{/times}}
     </div>
 

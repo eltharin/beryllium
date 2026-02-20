@@ -1,4 +1,5 @@
 import {DiceRoller} from "../DiceRoller/DiceRoller.mjs";
+import {Cultures} from "../Cultures.mjs";
 
 
 export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin(
@@ -30,6 +31,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     actions: {
       addRemoveSegment: PjSheet._onAddRemoveSegment,
       addRemoveStress: PjSheet._onAddRemoveStress,
+      addRemoveOubli: PjSheet._onAddRemoveOubli,
       //deleteItem: PjSheet.deleteDroppedItem,
       //configurePrototypeToken: (any, event) => {console.log(any, event);},
       //configureToken: (any) => {console.log(any);},
@@ -42,19 +44,28 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     },
     window: {
       resizable: true,
-      controls: [        {
+      controls: [
+        {
           action: "verouillage",
-          icon: "fa-solid fa-backward",
-          label: "DND5E.TRANSFORM.Action.Restore",
+          icon: "fa-solid fa-lock",
+          label: "beryllium.pjsheet.action.lock",
           ownership: "OWNER",
           visible: this.#canVerouillage
-        }]
+        },
+        {
+          action: "deverouillage",
+          icon: "fa-solid fa-unlock",
+          label: "beryllium.pjsheet.action.unlock",
+          ownership: "OWNER",
+          visible: this.#canVerouillage
+        }
+      ]
     },
     dragDrop: [{ dragSelector: ".item", dropSelector: null }]
   }
 
   static #canVerouillage() {
-    return this.isEditable;// && this.actor.isPolymorphed;
+    return false && this.isEditable;// && this.actor.isPolymorphed;
   }
   
   verouillage() {
@@ -65,7 +76,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
 
     let data  = super._prepareSubmitData(event, form, formData, updateData);
 
-    //console.log(event, form, formData, updateData);
+    console.log(event, form, formData, updateData);
 
 
     return data ; 
@@ -88,21 +99,35 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
   async _prepareContext(options) {
     console.log("_prepareContext");
     console.log(options);
-
+    
     const context = await super._prepareContext(options)
     context.tabs = this._prepareTabs("primary");
 
     context.system = this.actor.system  // Note: this.actor for ActorSheetV2
     context.flags = this.actor.flags     // or this.document for ApplicationV2
 
+    //-- culture ------------------------------------------------
 
+    context.culture = {
+      list: Cultures.list(context.system.culture),
+    }
+
+    console.log(context.culture)
+
+    //-- stress ------------------------------------------------
     context.stress = {
       valcheck : context.system.stress.value,
       valnoncheck : this.actor.system.nbCasesStressTotal - context.system.stress.value,
     }
 
-    console.log(context.stress);
+    context.oubli = {
+      valcheck : context.system.oubli.value,
+      valnoncheck : this.actor.system.nbCasesOubliTotal - context.system.oubli.value,
+    }
 
+
+
+    //-- fletrine ------------------------------------------------
     context.fletrine = {};
 
     let restValue = context.system.magie.fletrine.value;
@@ -183,14 +208,17 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
 
   static async _onAddRemoveSegment(event, target) {
     event.preventDefault()
-    console.log(event, target, this.actor, target.dataset.sens)
     await this.actor.update({"system.magie.fletrine.value" : this.actor.system.magie.fletrine.value + (target.dataset.sens == "+" ? 1 : -1)})
   }
 
   static async _onAddRemoveStress(event, target) {
     event.preventDefault()
-    console.log(event, target, this.actor, target.dataset.sens)
     await this.actor.update({"system.stress.value" : this.actor.system.stress.value + (target.dataset.sens == "+" ? 1 : -1)})
+  }
+
+  static async _onAddRemoveOubli(event, target) {
+    event.preventDefault()
+    await this.actor.update({"system.oubli.value" : this.actor.system.oubli.value + (target.dataset.sens == "+" ? 1 : -1)})
   }
   
 }

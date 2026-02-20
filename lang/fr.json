@@ -4,6 +4,10 @@
             "niv": "Niv"
         },
         "pjsheet": {
+            "action": {
+                "lock" : "Verrouiller la fiche",
+                "unlock" : "Déverrouiller la fiche"
+            },
             "tabs": {
                 "aspects": "Aspects",
                 "heritage": "Héritage",
@@ -41,6 +45,19 @@
             },
             "fletrine": {
                 "label" : "Fletrine"
+            },
+            "oubli": {
+                "label" : "Oubli"
+            },
+            "nom": "Nom",
+            "culture": {
+                "label" : "Culture",
+                "select" : "Choisissez une culture"
+            },
+            "consequences": {
+                "legere": "Légère",
+                "modere": "Modérée",
+                "grave": "Grave"
             }
         },
         "RollDifficulte": {

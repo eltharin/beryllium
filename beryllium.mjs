@@ -41,6 +41,6 @@ Hooks.once("init", () => {
 Handlebars.registerHelper('times', function(n, block) {
     var accum = '';
     for(var i = 0; i < n; ++i)
-        accum += block.fn({...this, totoindex: i});
+        accum += block.fn({...this, index: i});
     return accum;
 });

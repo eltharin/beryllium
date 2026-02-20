@@ -53,6 +53,10 @@ export class ActorPjDataModel extends foundry.abstract.TypeDataModel {
                 value : new foundry.data.fields.NumberField({initial: 0, min:0}),
                 forceMax : new foundry.data.fields.NumberField({initial: -1}),
             }),
+            oubli: new foundry.data.fields.SchemaField({
+                value : new foundry.data.fields.NumberField({initial: 0, min:0}),
+                forceMax : new foundry.data.fields.NumberField({initial: -1}),
+            }),
             consequences: new foundry.data.fields.SchemaField({
                 legere: new foundry.data.fields.SchemaField({
                     max: new foundry.data.fields.NumberField({initial: 1}),
@@ -93,10 +97,23 @@ export class ActorPjDataModel extends foundry.abstract.TypeDataModel {
     
     prepareDerivedData() {
         this.nbCasesStressTotal = 3 + Math.max(this.competences?.physique?.value , this.competences?.magie?.value , this.competences?.magie?.value);
+        this.nbCasesOubliTotal = 3 + this.competences?.volonte?.value;
 
         
 
     }
     
+    validate(options)
+    {
+        console.log(options);
+        console.log(this._source.magie.fletrine.value);
 
+        if(this._source.magie.fletrine.value >= 12)
+        {
+            return false;
+        }
+        else{
+        return true;
+        }
+    }
 }

@@ -63,6 +63,17 @@
     background-color: darkolivegreen;
 }
 
+
+.pj-sheet  .cases-container.oubli .controls{
+    background-color: cadetblue;
+}
+.pj-sheet  .cases-container.oubli .values svg.active{
+    fill: cadetblue;
+}
+.pj-sheet  .cases-container.oubli .values label.fletrine_niveau_max{
+    background-color: cadetblue;
+}
+
 .pj-sheet  .cases-container.fletrine .values{
     display:flex;
     height:20px;
@@ -87,4 +98,13 @@
 }
 .pj-sheet .sidebar  .cases-container .controls > span > button{
     width:100%;
+}
+
+.pj-sheet .infosperso {
+    display:flex;
+    gap: 10px;
+    margin-bottom : 15px;
+}
+.pj-sheet .infosperso > *{
+    flex: 1 1 0; 
 }
