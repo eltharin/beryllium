@@ -9,24 +9,22 @@
         <input type="text" name="system.heritage.affinite" value="{{system.heritage.affinite}}" class="pj-sheet-input" placeholder=""/>
     </div>
     <div class="heritage">
-        <label>{{localize "beryllium.pjsheet.heritage.incomp"}}</label>
-        <input type="text" name="system.heritage.incomp" value="{{system.heritage.incomp}}" class="pj-sheet-input" placeholder=""/>
-    </div>
-    <div class="heritage">
         <label>{{localize "beryllium.pjsheet.heritage.privilege"}}</label>
-        <input type="text" name="system.heritage.privilege" value="{{system.heritage.privilege}}" class="pj-sheet-input" placeholder=""/>
+        {{#each system.cultureobj.privileges as |privilege|}}
+        <div class="fakeField">{{ privilege}}</div>
+        {{/each }}
     </div>
     <div class="heritage">
         <label>{{localize "beryllium.pjsheet.heritage.faiblesse"}}</label>
-        <input type="text" name="system.heritage.faiblesse" value="{{system.heritage.faiblesse}}" class="pj-sheet-input" placeholder=""/>
-    </div>
-    <div class="heritage">
-        <label>{{localize "beryllium.pjsheet.heritage.tradition"}}</label>
-        <input type="text" name="system.heritage.tradition" value="{{system.heritage.tradition}}" class="pj-sheet-input" placeholder=""/>
+        {{#each system.cultureobj.faiblesses as |faiblesse|}}
+        <div class="fakeField">{{ faiblesse}}</div>
+        {{/each }}
     </div>
     <div class="heritage">
         <label>{{localize "beryllium.pjsheet.heritage.specialisation"}}</label>
-        <input type="text" name="system.heritage.specialisation" value="{{system.heritage.specialisation}}" class="pj-sheet-input" placeholder=""/>
+        {{#each system.cultureobj.specialisations as |specialisation|}}
+        <div class="fakeField">{{ specialisation}}</div>
+        {{/each }}
     </div>
   </div>
 </section>

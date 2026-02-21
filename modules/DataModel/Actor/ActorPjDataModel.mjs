@@ -10,11 +10,6 @@ export class ActorPjDataModel extends BaseActorDataModel {
             
             heritage: new foundry.data.fields.SchemaField({
                 affinite: new foundry.data.fields.StringField({}),
-                incomp: new foundry.data.fields.StringField({}),
-                privilege: new foundry.data.fields.StringField({}),
-                faiblesse: new foundry.data.fields.StringField({}),
-                tradition: new foundry.data.fields.StringField({}),
-                specialisation: new foundry.data.fields.StringField({}),
             }),
             oubli: new foundry.data.fields.SchemaField({
                 value : new foundry.data.fields.NumberField({initial: 0, min:0}),
@@ -25,6 +20,6 @@ export class ActorPjDataModel extends BaseActorDataModel {
     }
 
     _prepareDerivedData() {
-        this.nbCasesOubliTotal = 3 + this.competences?.volonte?.value;
+        this.nbCasesOubliTotal = (this.oubli.forceMax >= 0 ? this.oubli.forceMax : 3 + this.competences?.volonte?.value);
     }
 }

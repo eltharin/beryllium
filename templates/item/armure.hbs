@@ -1,0 +1,42 @@
+<div class="sheet beryllium item-sheet">
+    <div class="multicol">
+        <div class="image">
+            <img data-action="editImage" data-edit="img" src="{{document.img}}" alt="Photo de {{document.name}}" />
+        </div>
+        <div>
+            <div >
+                <label>{{localize "beryllium.itemsheet.common.nom"}}</label>
+                <input type="text" name="name" value="{{document.name}}"/>
+            </div>
+
+            <div>
+                <label>{{localize "beryllium.itemsheet.common.prix"}}</label>
+                <div class="multicol">
+                    <label>{{localize "beryllium.bourse.couronne.label"}}</label>
+                    <input type="text" name="system.prix.couronne" value="{{document.system.prix.couronne}}"/>
+
+                    <label>{{localize "beryllium.bourse.eclat.label"}}</label>
+                    <input type="text" name="system.prix.eclat" value="{{document.system.prix.eclat}}"/>
+
+                    <label>{{localize "beryllium.bourse.fragment.label"}}</label>
+                    <input type="text" name="system.prix.fragment" value="{{document.system.prix.fragment}}"/>
+                </div>
+            </div>
+            
+            <div >
+                <label>{{localize "beryllium.itemsheet.armure.type"}}</label>
+                <input type="text" name="system.type" value="{{document.system.type}}"/>
+            </div>
+            
+            <div >
+                <label>{{localize "beryllium.itemsheet.armure.reduction"}}</label>
+                <input type="number" name="system.reduction" value="{{document.system.reduction}}"/>
+            </div>
+            
+            <div >
+                <label>{{localize "beryllium.itemsheet.armure.inconvenient"}}</label>
+                <input type="text" name="system.inconvenient" value="{{document.system.inconvenient}}"/>
+            </div>
+        </div>
+    </div>
+</div>

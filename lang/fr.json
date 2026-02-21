@@ -1,7 +1,40 @@
 {
+    "TYPES": {
+        "Actor": {
+        "pj": "Joueur",
+        "pnj": "Personnage Non-Joueur"
+        },
+        "Item": {
+        "arme": "Arme",
+        "armure": "Armure",
+        "sort": "Sort",
+        "objet": "Objet"
+        }
+    },
     "beryllium": {
         "label": {
             "niv": "Niv"
+        },
+        "libelle": {
+            "sortdefaut": {
+                "mineur" : "Sort mineur",
+                "majeur" : "Sort majeur",
+                "intermediaire" : "Sort intermédiaire"
+            }
+        },
+        "bourse":{
+            "couronne": {
+                "label": "C",
+                "nom": "Couronne"
+            },
+            "eclat": {
+                "label": "E",
+                "nom": "Eclat"
+            },
+            "fragment": {
+                "label": "F",
+                "nom": "Fragment"
+            }
         },
         "pjsheet": {
             "action": {
@@ -14,7 +47,7 @@
                 "prouesses": "Prouesses",
                 "magie": "Magie",
                 "consequences": "Conséquences",
-                "resistance": "Résistance",
+                "combat": "Combat",
                 "equipements": "Equipements",
                 "notes": "Notes",
                 "max": "Max"
@@ -56,6 +89,9 @@
             "oubli": {
                 "label" : "Oubli"
             },
+            "echo": {
+                "label" : "Echo"
+            },
             "nom": "Nom",
             "culture": {
                 "label" : "Culture",
@@ -67,6 +103,10 @@
                 "grave": "Grave"
             },
             "magie": {
+                "sort": {
+                    "listLabel" : "Liste des sorts",
+                    "ajout" : "Ajouter un nouveau sort"
+                },
                 "affinite": {
                     "label": "Affinité",
                     "select": "Choix de l'affinité"
@@ -74,6 +114,54 @@
                 "oppose": {
                     "label" : "Opposé"
                 }
+            },
+            "notes": {
+                "titre" : "Notes"
+            },
+            "prouesses": {
+                "label" : "Prouesse n°{num}",
+                "effet" : "Effet"
+            },
+            "bourse": {
+                "creerdepense": "Creer une dépense / gain"
+            },
+            "combat": {
+                "arme": {
+                    "label": "Liste des armes",
+                    "ajout": "Ajouter une arme"
+                },
+                "armure": {
+                    "label": "Liste des armures",
+                    "ajout": "Ajouter une armure"
+                }
+            },
+            "objet": {
+                "titre": "Liste d'équipement",
+                "ajout": "Ajouter un objet"
+            }
+        },
+        "itemsheet": {
+            "common" : {
+                "nom" : "Nom",
+                "prix": "Prix indicatif moyen"
+            },
+            "arme": {
+                "categorie": "Catégorie",
+                "degat": "Dégat",
+                "portee": "Portée",
+                "special": "Spécial"
+            },
+            "armure": {
+                "type": "Type",
+                "reduction": "Reduction",
+                "inconvenient": "Inconvenient"
+            },
+            "sort": {
+                "level": "Niveau",
+                "effet": "Effet"
+            },
+            "objet": {
+
             }
         },
         "RollDifficulte": {

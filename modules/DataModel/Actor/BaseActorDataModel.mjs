@@ -1,10 +1,16 @@
-import {Magies} from "../Magies.mjs";
-
+import {Magies} from "../../Magies.mjs";
 
 export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
     static defineSchema() {
     // All Actors have resources.
         return { 
+            bourse: new foundry.data.fields.SchemaField({ 
+                couronne: new foundry.data.fields.NumberField({initial: 0, min:0}),
+                eclat: new foundry.data.fields.NumberField({initial: 0, min:0}),
+                fragment: new foundry.data.fields.NumberField({initial: 0, min:0,
+                    validate: value => value <20, validationError: `must be equal to `
+                })
+            }),
             aspects: new foundry.data.fields.SchemaField({ 
                 concept: new foundry.data.fields.StringField({}),
                 probleme: new foundry.data.fields.StringField({}),
@@ -41,6 +47,10 @@ export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
                 })
             }),
             stress: new foundry.data.fields.SchemaField({
+                value : new foundry.data.fields.NumberField({initial: 0, min:0, max: 6, validate: v => {console.log(v, this.aspects); return v<=5;}}),
+                forceMax : new foundry.data.fields.NumberField({initial: -1}),
+            }),
+            echo: new foundry.data.fields.SchemaField({
                 value : new foundry.data.fields.NumberField({initial: 0, min:0}),
                 forceMax : new foundry.data.fields.NumberField({initial: -1}),
             }),
@@ -49,7 +59,7 @@ export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
                 tradition: new foundry.data.fields.StringField({}),
                 seuiltolerence: new foundry.data.fields.NumberField({initial: 0, min:0}),
                 fletrine: new foundry.data.fields.SchemaField({
-                    value: new foundry.data.fields.NumberField({initial: 0, min:0}),
+                    value: new foundry.data.fields.NumberField({initial: 0, min:0, validate: this.validateFletrine}),
                     niveaux: new foundry.data.fields.ArrayField(
                         new foundry.data.fields.SchemaField({
                             max : new foundry.data.fields.NumberField({})
@@ -77,12 +87,15 @@ export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
                     ),
                 }),
             }),
-            prouesses: new foundry.data.fields.ArrayField(
-                new foundry.data.fields.SchemaField({
-                    nom: new foundry.data.fields.StringField({}),
-                    effet: new foundry.data.fields.StringField({}),
-                })
-            ),
+            prouesses: new foundry.data.fields.SchemaField({
+                max: new foundry.data.fields.NumberField({initial: 3}),
+                values : new foundry.data.fields.ArrayField(
+                    new foundry.data.fields.SchemaField({
+                        nom: new foundry.data.fields.StringField({}),
+                        effet: new foundry.data.fields.StringField({}),
+                    })
+                ),
+            }),
         };
     }
 
@@ -90,7 +103,8 @@ export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
     prepareDerivedData() {
         
         this.nbCasesStressTotal = (this.stress.forceMax >= 0 ? this.stress.forceMax : 3 + Math.max(this.competences?.physique?.value , this.competences?.magie?.value , this.competences?.magie?.value));
-        
+        this.nbCasesEchoTotal = (this.echo.forceMax >= 0 ? this.echo.forceMax : 5);
+
         this.magie.affiniteobj = Magies.get(this.magie.affinite);
         this.magie.oppose = this.magie.affiniteobj != null ? Magies.get(this.magie.affiniteobj.oppose) : null;
 
@@ -101,17 +115,42 @@ export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
 
     }
     
-    validate(options)
+   /* validate(options)
     {
-        console.log(options);
+        //console.error(options);
         console.log(this._source.magie.fletrine.value);
+        let messages = [];
 
-        if(this._source.magie.fletrine.value >= 12)
+        if(this._source.magie.fletrine.value >= 20)
         {
-            return false;
+            console.log("va fuck")*/
+           /* throw new foundry.data.validation.DataModelValidationError(new foundry.data.validation.DataModelValidationFailure({
+                    invalidValue: "stress.value",
+                    message: "non la pas envie",
+                    unresolved: true
+            }));*/
+/*
+                  messages.push("va fuck ta mere");
+                  //  return new DataModelValidationFailure({invalidValue: value, message: err.message, unresolved: true});;
         }
         else{
         return true;
         }
     }
+
+    validateFletrine(value, options) {
+        console.log(value, options)
+        return false;
+    }
+
+    async _preCreate(data, options, user) {
+        console.log(data, options, user);
+    }
+
+    async _preUpdate(changes, options, user) {
+        console.log(changes, options, user);
+        console.log(this.stress.value)
+        console.log(this._source.stress.value)
+        //return false;
+    }*/
 }

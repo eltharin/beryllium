@@ -1,0 +1,49 @@
+<section
+  class='tab {{tab.cssClass}}'
+  data-group='primary'
+  data-tab='combat'
+>
+  <div class="pj-sheet-cat combat">
+
+
+  <div class="inventory-section">
+    <h3>{{localize "beryllium.pjsheet.combat.arme.label"}}</h3>
+      <div class="arme create" data-action="addItem" data-type="arme">
+        <a><i class="fas fa-plus"></i> {{localize "beryllium.pjsheet.combat.arme.ajout"}}</a>
+      </div>
+
+      <div class="arme-list"> 
+      {{#each armes as |arme|}}
+          <div class="item flexrow" data-item-id="{{arme._id}}">
+            <div >{{arme.name}}</div>
+            <div class="controls">
+              <a data-action="editItem" data-type="arme" data-itemId="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.edit"}}"><i class="fas fa-edit"></i></a>
+              <a data-action="deleteItem" data-type="arme" data-itemId="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.delete"}}"><i class="fas fa-trash"></i></a>
+            </div>
+          </div>
+      {{/each}}
+    </div>  
+  </div>
+
+  
+  <div class="inventory-section">
+    <h3>{{localize "beryllium.pjsheet.combat.armure.label"}}</h3>
+      <div class="armure create" data-action="addItem" data-type="armure">
+        <a><i class="fas fa-plus"></i> {{localize "beryllium.pjsheet.combat.armure.ajout"}}</a>
+      </div>
+
+      <div class="armure-list"> 
+      {{#each armures as |armure|}}
+          <div class="item flexrow" data-item-id="{{armure._id}}">
+            <div >{{armure.name}}</div>
+            <div class="controls">
+              <a data-action="editItem" data-type="armure" data-itemId="{{armure._id}}" title="{{localize "beryllium.pjsheet.combat.armure.edit"}}"><i class="fas fa-edit"></i></a>
+              <a data-action="deleteItem" data-type="armure" data-itemId="{{armure._id}}" title="{{localize "beryllium.pjsheet.combat.armure.delete"}}"><i class="fas fa-trash"></i></a>
+            </div>
+          </div>
+      {{/each}}
+    </div>  
+  </div>
+
+  </div>
+</section>

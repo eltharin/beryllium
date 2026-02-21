@@ -1,0 +1,23 @@
+<div class="sheet beryllium item-sheet">
+    <div class="multicol">
+        <div class="image">
+            <img data-action="editImage" data-edit="img" src="{{document.img}}" alt="Photo de {{document.name}}" />
+        </div>
+        <div>
+            <div >
+                <label>{{localize "beryllium.itemsheet.common.nom"}}</label>
+                <input type="text" name="name" value="{{document.name}}"/>
+            </div>
+            
+            <div >
+                <label>{{localize "beryllium.itemsheet.sort.level"}}</label>
+                <input type="number" name="system.level" value="{{document.system.level}}"/>
+            </div>
+            
+            <div >
+                <label>{{localize "beryllium.itemsheet.sort.effet"}}</label>
+                <input type="text" name="system.effet" value="{{document.system.effet}}"/>
+            </div>
+        </div>
+    </div>
+</div>

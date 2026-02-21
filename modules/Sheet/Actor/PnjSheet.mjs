@@ -12,7 +12,7 @@ export class PnjSheet extends PjSheet{
         'systems/beryllium/templates/actor/pj/parts/heritage.hbs',
         'systems/beryllium/templates/actor/pj/parts/prouesses.hbs',
         'systems/beryllium/templates/actor/pj/parts/consequences.hbs',
-        'systems/beryllium/templates/actor/pj/parts/resistance.hbs',
+        'systems/beryllium/templates/actor/pj/parts/combat.hbs',
         'systems/beryllium/templates/actor/pj/parts/equipements.hbs',
         'systems/beryllium/templates/actor/pj/parts/notes.hbs',
         'systems/beryllium/templates/actor/pj/parts/max.hbs',

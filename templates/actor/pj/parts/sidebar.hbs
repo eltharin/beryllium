@@ -2,11 +2,25 @@
     <img data-action="editImage" data-edit="img" src="{{document.img}}" alt="Photo de {{document.name}}" />
 </div>
 
+<div class="argent">
+    <a data-action="repos" title="{{localize "beryllium.pjsheet.repos.buttontitle"}}"><i class="fas fa-tents"></i></a>
+</div>
+<div class="argent">
+    <a data-action="depense" title="{{localize "beryllium.pjsheet.bourse.creerdepense"}}"><i class="fas fa-coins"></i></a>
+        <label>{{localize "beryllium.bourse.couronne.label"}}</label>
+        <input type="text" name="system.bourse.couronne" value="{{system.bourse.couronne}}" class="pj-sheet-input" placeholder=""/>
+
+        <label>{{localize "beryllium.bourse.eclat.label"}}</label>
+        <input type="text" name="system.bourse.eclat" value="{{system.bourse.eclat}}" class="pj-sheet-input" placeholder=""/>
+        <label>{{localize "beryllium.bourse.fragment.label"}}</label>
+        <input type="text" name="system.bourse.fragment" value="{{system.bourse.fragment}}" class="pj-sheet-input" placeholder=""/>
+</div>
+
 <div class="cases-container stress">
     <div class="controls">
-        <span><button data-action="addRemoveStress" data-sens="-">-</button></span>
+        <span><button data-action="addRemove" data-item="stress" data-sens="-">-</button></span>
         <label>{{localize "beryllium.pjsheet.stress.label"}}</label>
-        <span><button data-action="addRemoveStress" data-sens="+">+</button></span>
+        <span><button data-action="addRemove" data-item="stress" data-sens="+">+</button></span>
     </div>
     <div class="values">
         {{#times stress.valcheck}}
@@ -27,9 +41,9 @@
 </div>
 <div class="cases-container fletrine">
     <div class="controls">
-        <span><button data-action="addRemoveSegment" data-sens="-">-</button></span>
+        <span><button data-action="addRemove" data-item="magie.fletrine" data-sens="-">-</button></span>
         <label>{{localize "beryllium.pjsheet.fletrine.label"}}</label>
-        <span><button data-action="addRemoveSegment" data-sens="+">+</button></span>
+        <span><button data-action="addRemove" data-item="magie.fletrine" data-sens="+">+</button></span>
     </div>
     {{#each fletrine as |flet|}}
     <div class="values">
@@ -55,9 +69,9 @@
 </div>
 <div class="cases-container oubli">
     <div class="controls">
-        <span><button data-action="addRemoveOubli" data-sens="-">-</button></span>
+        <span><button data-action="addRemove" data-item="oubli" data-sens="-">-</button></span>
         <label>{{localize "beryllium.pjsheet.oubli.label"}}</label>
-        <span><button data-action="addRemoveOubli" data-sens="+">+</button></span>
+        <span><button data-action="addRemove" data-item="oubli" data-sens="+">+</button></span>
     </div>
     <div class="values">
         {{#times oubli.valcheck}}
@@ -68,6 +82,29 @@
             </span>
         {{/times}}
         {{#times oubli.valnoncheck }}
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="18" x="3" y="3" rx="2" />
+                </svg>
+            </span>
+        {{/times}}
+    </div>
+</div>
+<div class="cases-container echo">
+    <div class="controls">
+        <span><button data-action="addRemove" data-item="echo" data-sens="-">-</button></span>
+        <label>{{localize "beryllium.pjsheet.echo.label"}}</label>
+        <span><button data-action="addRemove" data-item="echo" data-sens="+">+</button></span>
+    </div>
+    <div class="values">
+        {{#times echo.valcheck}}
+            <span>
+                <svg  class="active" width="24" height="24" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1664 416v960q0 119-84.5 203.5T1376 1664H416q-119 0-203.5-84.5T128 1376V416q0-119 84.5-203.5T416 128h960q119 0 203.5 84.5T1664 416z"/>
+                </svg>
+            </span>
+        {{/times}}
+        {{#times echo.valnoncheck }}
             <span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect width="18" height="18" x="3" y="3" rx="2" />

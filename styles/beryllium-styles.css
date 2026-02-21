@@ -1,9 +1,19 @@
+.beryllium .multicol {
+    display:flex;
+    gap: 5px;
+}
+
+.beryllium .multicol > *{
+    flex : 1 1 0;
+}
+
 .pj-sheet-cat{
-    border: 1px solid lightgrey;
+
 }
 
 .pj-sheet {
     display:flex;
+    height:100%;
 }
 
 .pj-sheet > .sidebar {
@@ -15,6 +25,20 @@
 
 .pj-sheet > .content {
     flex-grow:1;
+    display: flex;
+    flex-direction: column;
+}
+
+.pj-sheet > .content > .main {
+    display:flex;
+    flex-direction: column;
+    min-height: 0;
+    flex:1 1 auto;
+}
+
+.pj-sheet > .content > .main > .pages{
+    overflow: auto;
+    height:100%;
 }
 
 
@@ -70,9 +94,16 @@
 .pj-sheet  .cases-container.oubli .values svg.active{
     fill: cadetblue;
 }
-.pj-sheet  .cases-container.oubli .values label.fletrine_niveau_max{
-    background-color: cadetblue;
+
+
+.pj-sheet  .cases-container.echo .controls{
+    background-color: mediumpurple;
 }
+.pj-sheet  .cases-container.echo .values svg.active{
+    fill: mediumpurple;
+}
+
+
 
 .pj-sheet  .cases-container.fletrine .values{
     display:flex;
@@ -140,4 +171,27 @@
       --input-border-color: transparent;
       --input-text-color: var(--color-light-3);
       --input-focus-outline-color: var(--color-cool-3);
+}
+
+
+.pj-sheet  textarea{
+    width:100%;
+}
+
+.prouesse  {
+    margin-bottom: 20px;
+}
+
+.pj-sheet .sidebar .argent{
+    display:flex;
+    align-items: center;
+    gap:5px;
+}
+.pj-sheet .sidebar .argent label{
+    margin-left:5px;
+}
+
+.item-sheet > .multicol > .image {
+    flex: 0 0 auto;
+    max-width: 200px;
 }

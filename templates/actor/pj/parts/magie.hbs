@@ -4,7 +4,7 @@
   data-tab='magie'
 >
   <div class="pj-sheet-cat magie">
-    <div class="cols">
+    <div class="multicol">
       <div>
           <label>{{localize "beryllium.pjsheet.magie.affinite.label"}}</label>
           <select name="system.magie.affinite">
@@ -20,4 +20,33 @@
       </div>
     </div>
   </div>
+
+  <div class="inventory-section">
+    <h3>{{localize "beryllium.pjsheet.magie.sort.listLabel"}}</h3>
+    <div class="sorts-list">
+      {{#each sorts.default as |sort|}}
+          <div class="item flexrow" data-item-id="{{sort._id}}">
+            <div data-action="lanceSort">{{sort.name}}</div>
+            <div class="controls">
+            </div>
+          </div>
+      {{/each}}
+      </div>
+      <div class="sort create" data-action="addItem" data-type="sort">
+        <a><i class="fas fa-plus"></i> {{localize "beryllium.pjsheet.magie.sort.ajout"}}</a>
+      </div>
+
+      <div class="sorts-list"> 
+      {{#each sorts.custom as |sort|}}
+          <div class="item flexrow" data-item-id="{{sort._id}}">
+            <div data-action="lanceSort"><a>{{sort.name}}</a></div>
+            <div class="controls">
+              <a data-action="editItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.magie.sort.edit"}}"><i class="fas fa-edit"></i></a>
+              <a data-action="deleteItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.magie.sort.delete"}}"><i class="fas fa-trash"></i></a>
+            </div>
+          </div>
+      {{/each}}
+    </div>  
+  </div>
+
 </section>

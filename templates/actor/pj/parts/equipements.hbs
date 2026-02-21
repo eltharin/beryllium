@@ -4,6 +4,23 @@
   data-tab='equipements'
 >
   <div class="pj-sheet-cat equipements">
-equipements
+  <div class="inventory-section">
+    <h3>{{localize "beryllium.pjsheet.objet.titre"}}</h3>
+      <div class="objet create" data-action="addItem" data-type="objet">
+        <a><i class="fas fa-plus"></i> {{localize "beryllium.pjsheet.objet.ajout"}}</a>
+      </div>
+
+      <div class="objet-list"> 
+      {{#each items as |armure|}}
+          <div class="item flexrow" data-item-id="{{armure._id}}">
+            <div >{{armure.name}}</div>
+            <div class="controls">
+              <a data-action="editItem" data-type="item" data-itemId="{{armure._id}}" title="{{localize "beryllium.pjsheet.combat.armure.edit"}}"><i class="fas fa-edit"></i></a>
+              <a data-action="deleteItem" data-type="item" data-itemId="{{armure._id}}" title="{{localize "beryllium.pjsheet.combat.armure.delete"}}"><i class="fas fa-trash"></i></a>
+            </div>
+          </div>
+      {{/each}}
+    </div>  
+  </div>
   </div>
 </section>

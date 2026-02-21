@@ -1,0 +1,51 @@
+<div class="sheet beryllium item-sheet">
+    <div class="multicol">
+        <div class="image">
+            <img data-action="editImage" data-edit="img" src="{{document.img}}" alt="Photo de {{document.name}}" />
+        </div>
+        <div>
+            <div >
+                <label>{{localize "beryllium.itemsheet.common.nom"}}</label>
+                <input type="text" name="name" value="{{document.name}}"/>
+            </div>
+
+            <div>
+                <label>{{localize "beryllium.itemsheet.common.prix"}}</label>
+                <div class="multicol">
+                    <label>{{localize "beryllium.bourse.couronne.label"}}</label>
+                    <input type="text" name="system.prix.couronne" value="{{document.system.prix.couronne}}"/>
+
+                    <label>{{localize "beryllium.bourse.eclat.label"}}</label>
+                    <input type="text" name="system.prix.eclat" value="{{document.system.prix.eclat}}"/>
+
+                    <label>{{localize "beryllium.bourse.fragment.label"}}</label>
+                    <input type="text" name="system.prix.fragment" value="{{document.system.prix.fragment}}"/>
+                </div>
+            </div>
+            
+            <div >
+                <label>{{localize "beryllium.itemsheet.arme.categorie"}}</label>
+                <input type="text" name="system.categorie" value="{{document.system.categorie}}"/>
+            </div>
+            
+            <div >
+                <label>{{localize "beryllium.itemsheet.arme.degat"}}</label>
+                <input type="number" name="system.degat" value="{{document.system.degat}}"/>
+            </div>
+            
+            <div >
+                <label>{{localize "beryllium.itemsheet.arme.portee"}}</label>
+                <input type="text" name="system.portee" value="{{document.system.portee}}"/>
+            </div>
+            
+            <div >
+                <label>{{localize "beryllium.itemsheet.arme.special"}}</label>
+                <input type="text" name="system.special" value="{{document.system.special}}"/>
+            </div>
+
+            <svg width="50" height="50" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"> <path d="M4 20h40v6h4v6h-8l-4 10H22l-4-10H4z" fill="#000"/> </svg>
+
+            
+        </div>
+    </div>
+</div>

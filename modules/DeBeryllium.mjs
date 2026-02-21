@@ -3,6 +3,9 @@
 export class DeBeryllium extends foundry.dice.terms.Die {
     static DENOMINATION = "b";
 
+    static MODIFIERS = {
+        d: "dissonance",
+    }
     constructor(termData) {
         termData.faces = 12;
         super(termData);
@@ -10,7 +13,7 @@ export class DeBeryllium extends foundry.dice.terms.Die {
 
     async roll({ minimize=false, maximize=false, ...options}={}) {
 
-        const roll = {result: undefined, active: true, r: undefined};
+        const roll = {result: undefined, active: true, dissonance: false};
 
         roll.result = await this._roll(options);
         if ( roll.result === undefined ) {
@@ -32,15 +35,27 @@ export class DeBeryllium extends foundry.dice.terms.Die {
 
     getResultLabel(diceTerm) {
 
-        switch(diceTerm.result) {
-            case 1: return "-";
-            case 2: return "-";
-            case 3: return "-";
-
-            case 10: return "+";
-            case 11: return "+";
-            case 12: return "+";
+        let val = " ";
+        if(diceTerm.result <= 3)
+        {
+            val = "-";
         }
-        return " ";
+        else if(diceTerm.result >= 10)
+        {
+            val = "+";
+        }
+        console.log(diceTerm)
+        if(diceTerm.dissonance)
+        {
+            val += "d"
+        }
+        return val;
+    }
+
+    async dissonance(modifier) {
+        console.log("dissonance", modifier, this.results)
+        this.results.forEach(element => {
+            element.dissonance = true;
+        });
     }
 }

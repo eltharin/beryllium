@@ -4,6 +4,19 @@
   data-tab='prouesses'
 >
   <div class="pj-sheet-cat prouesses">
-prouesses
+    {{#times system.prouesses.max }}
+      <div class="prouesse " data-prouesse="{{index}}">
+        {{#with (lookup system.prouesses.values index) as |prouesse|}}
+          <div class="line">
+            <label>{{localize "beryllium.pjsheet.prouesses.label" num=../index1 }}</label>
+            <input type="text" name="system.prouesses.values.{{../index}}.nom" value="{{prouesse.nom}}" class="pj-sheet-input" placeholder=""/>  
+          </div>
+          <div class="line">
+            <label>{{localize "beryllium.pjsheet.prouesses.effet"}}</label>
+            <textarea name="system.prouesses.values.{{../index}}.effet" rows="2" class="pj-sheet-input" placeholder="">{{prouesse.effet}}</textarea>
+          </div>
+        {{/with}}
+      </div>
+    {{/times}}
   </div>
 </section>

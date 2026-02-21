@@ -23,8 +23,8 @@
                 <a data-action="tab" data-group="primary" data-tab="consequences">
                     <span>{{localize "beryllium.pjsheet.tabs.consequences"}}</span>
                 </a>
-                <a data-action="tab" data-group="primary" data-tab="resistance">
-                    <span>{{localize "beryllium.pjsheet.tabs.resistance"}}</span>
+                <a data-action="tab" data-group="primary" data-tab="combat">
+                    <span>{{localize "beryllium.pjsheet.tabs.combat"}}</span>
                 </a>
                 <a data-action="tab" data-group="primary" data-tab="equipements">
                     <span>{{localize "beryllium.pjsheet.tabs.equipements"}}</span>
@@ -32,6 +32,11 @@
                 <a data-action="tab" data-group="primary" data-tab="notes">
                     <span>{{localize "beryllium.pjsheet.tabs.notes"}}</span>
                 </a>
+                {{#if isGm}}
+                <a data-action="tab" data-group="primary" data-tab="max">
+                    <span>{{localize "beryllium.pjsheet.tabs.max"}}</span>
+                </a>
+                {{/if}}
             </nav>
             <div class="pages">
             {{> "systems/beryllium/templates/actor/pj/parts/aspects.hbs" }}
@@ -39,9 +44,12 @@
             {{> "systems/beryllium/templates/actor/pj/parts/magie.hbs" }}
             {{> "systems/beryllium/templates/actor/pj/parts/prouesses.hbs" }}
             {{> "systems/beryllium/templates/actor/pj/parts/consequences.hbs" }}
-            {{> "systems/beryllium/templates/actor/pj/parts/resistance.hbs" }}
+            {{> "systems/beryllium/templates/actor/pj/parts/combat.hbs" }}
             {{> "systems/beryllium/templates/actor/pj/parts/equipements.hbs" }}
             {{> "systems/beryllium/templates/actor/pj/parts/notes.hbs" }}
+            {{#if isGm}}
+                {{> "systems/beryllium/templates/actor/pj/parts/max.hbs" }}
+            {{/if}}
             </div>
         </div>
     </div>
