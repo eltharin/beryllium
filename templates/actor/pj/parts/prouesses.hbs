@@ -6,16 +6,27 @@
   <div class="pj-sheet-cat prouesses">
     {{#times system.prouesses.max }}
       <div class="prouesse " data-prouesse="{{index}}">
-        {{#with (lookup system.prouesses.values index) as |prouesse|}}
+        {{#if (lookup system.prouesses.values index)}}
+          {{#with (lookup system.prouesses.values index) as |prouesse|}}
+            <div class="line">
+              <label>{{localize "beryllium.pjsheet.prouesses.label" num=../index1 }}</label>
+              <input type="text" name="system.prouesses.values.{{../index}}.nom" value="{{prouesse.nom}}" class="pj-sheet-input" placeholder=""/>  
+            </div>
+            <div class="line">
+              <label>{{localize "beryllium.pjsheet.prouesses.effet"}}</label>
+              <textarea name="system.prouesses.values.{{../index}}.effet" rows="2" class="pj-sheet-input" placeholder="">{{prouesse.effet}}</textarea>
+            </div>
+          {{/with}}
+        {{else}}
           <div class="line">
-            <label>{{localize "beryllium.pjsheet.prouesses.label" num=../index1 }}</label>
-            <input type="text" name="system.prouesses.values.{{../index}}.nom" value="{{prouesse.nom}}" class="pj-sheet-input" placeholder=""/>  
+            <label>{{localize "beryllium.pjsheet.prouesses.label" num=index1 }}</label>
+            <input type="text" name="system.prouesses.values.{{index}}.nom" value="" class="pj-sheet-input" placeholder=""/>  
           </div>
           <div class="line">
             <label>{{localize "beryllium.pjsheet.prouesses.effet"}}</label>
-            <textarea name="system.prouesses.values.{{../index}}.effet" rows="2" class="pj-sheet-input" placeholder="">{{prouesse.effet}}</textarea>
+            <textarea name="system.prouesses.values.{{index}}.effet" rows="2" class="pj-sheet-input" placeholder=""></textarea>
           </div>
-        {{/with}}
+        {{/if}}
       </div>
     {{/times}}
   </div>

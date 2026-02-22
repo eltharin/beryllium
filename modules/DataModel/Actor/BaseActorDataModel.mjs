@@ -1,6 +1,7 @@
+import {SystemDataModel} from "../SystemDataModel.mjs";
 import {Magies} from "../../Magies.mjs";
 
-export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
+export class BaseActorDataModel extends SystemDataModel {
     static defineSchema() {
     // All Actors have resources.
         return { 
@@ -47,7 +48,7 @@ export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
                 })
             }),
             stress: new foundry.data.fields.SchemaField({
-                value : new foundry.data.fields.NumberField({initial: 0, min:0, max: 6, validate: v => {console.log(v, this.aspects); return v<=5;}}),
+                value : new foundry.data.fields.NumberField({initial: 0, min:0}),
                 forceMax : new foundry.data.fields.NumberField({initial: -1}),
             }),
             echo: new foundry.data.fields.SchemaField({
@@ -59,7 +60,7 @@ export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
                 tradition: new foundry.data.fields.StringField({}),
                 seuiltolerence: new foundry.data.fields.NumberField({initial: 0, min:0}),
                 fletrine: new foundry.data.fields.SchemaField({
-                    value: new foundry.data.fields.NumberField({initial: 0, min:0, validate: this.validateFletrine}),
+                    value: new foundry.data.fields.NumberField({initial: 0, min:0}),
                     niveaux: new foundry.data.fields.ArrayField(
                         new foundry.data.fields.SchemaField({
                             max : new foundry.data.fields.NumberField({})
@@ -99,11 +100,16 @@ export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
         };
     }
 
+    static preSaveFunctions = [
+        "verifMaxStress",
+        "verifMaxEcho",
+        "verifFletrineEcho",
+    ];
     
     prepareDerivedData() {
         
-        this.nbCasesStressTotal = (this.stress.forceMax >= 0 ? this.stress.forceMax : 3 + Math.max(this.competences?.physique?.value , this.competences?.magie?.value , this.competences?.magie?.value));
-        this.nbCasesEchoTotal = (this.echo.forceMax >= 0 ? this.echo.forceMax : 5);
+        this.nbCasesStressTotal = this._getNbCasesStressTotal(this);
+        this.nbCasesEchoTotal = this._getNbCasesEchoTotal(this);
 
         this.magie.affiniteobj = Magies.get(this.magie.affinite);
         this.magie.oppose = this.magie.affiniteobj != null ? Magies.get(this.magie.affiniteobj.oppose) : null;
@@ -111,46 +117,36 @@ export class BaseActorDataModel extends foundry.abstract.TypeDataModel {
         this._prepareDerivedData();
     }
 
+    _getNbCasesStressTotal(elem) {
+        return (elem.stress.forceMax >= 0 ? elem.stress.forceMax : 3 + Math.max(elem.competences?.physique?.value , elem.competences?.magie?.value , elem.competences?.magie?.value));
+    }
+
+    _getNbCasesEchoTotal(elem) {
+        return (elem.echo.forceMax >= 0 ? elem.echo.forceMax : 5);
+    }
+
     _prepareDerivedData() {
 
     }
     
-   /* validate(options)
-    {
-        //console.error(options);
-        console.log(this._source.magie.fletrine.value);
-        let messages = [];
+    //-- fonctions de vérification preCreate et preUpdate
 
-        if(this._source.magie.fletrine.value >= 20)
-        {
-            console.log("va fuck")*/
-           /* throw new foundry.data.validation.DataModelValidationError(new foundry.data.validation.DataModelValidationFailure({
-                    invalidValue: "stress.value",
-                    message: "non la pas envie",
-                    unresolved: true
-            }));*/
-/*
-                  messages.push("va fuck ta mere");
-                  //  return new DataModelValidationFailure({invalidValue: value, message: err.message, unresolved: true});;
-        }
-        else{
-        return true;
+    verifMaxStress(changes, clone){
+        if(foundry.utils.getProperty(clone, "stress.value") > this._getNbCasesStressTotal(clone)) {
+            foundry.utils.setProperty(changes, "system.stress.value", this._getNbCasesStressTotal(clone));
         }
     }
-
-    validateFletrine(value, options) {
-        console.log(value, options)
-        return false;
+    
+    verifMaxEcho(changes, clone){
+        if(foundry.utils.getProperty(clone, "echo.value") > this._getNbCasesEchoTotal(clone)) {
+            foundry.utils.setProperty(changes, "system.echo.value", this._getNbCasesEchoTotal(clone));
+        }
     }
-
-    async _preCreate(data, options, user) {
-        console.log(data, options, user);
+    
+    verifFletrineEcho(changes, clone){
+        const max = clone.magie.fletrine.niveaux.reduce((tot, val) => tot + val.max,0);
+        if(foundry.utils.getProperty(clone, "magie.fletrine.value") > max) {
+            foundry.utils.setProperty(changes, "system.magie.fletrine.value", max);
+        }
     }
-
-    async _preUpdate(changes, options, user) {
-        console.log(changes, options, user);
-        console.log(this.stress.value)
-        console.log(this._source.stress.value)
-        //return false;
-    }*/
 }

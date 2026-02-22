@@ -119,11 +119,8 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
   }
   
   async _prepareContext(options) {
-    console.log("_prepareContext");
-    console.log(options);
     
     const context = await super._prepareContext(options)
-
 
     context.isGm = game.user.isGM;
     
@@ -141,8 +138,6 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     context.listes.magies = {
       list: Magies.list(),
     }
-
-    console.log(context.listes.magies)
 
     
 
@@ -186,8 +181,6 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
       }
     });
 
-    console.log(this.document.items)
-
     context.items = this.document.items.filter(i => i.type === "objet");
     context.armes = this.document.items.filter(i => i.type === "arme");
     context.armures = this.document.items.filter(i => i.type === "armure");
@@ -197,7 +190,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     };
     context.sorts.default.sort((a,b) => a.system.level > b.system.level ? 1 : -1);
     context.sorts.custom.sort((a,b) => a.system.level > b.system.level ? 1 : -1);
-console.log(context.sorts);
+
     context.system.cultureobj = Cultures.get(context.system.culture);
 
     return context

@@ -19,7 +19,23 @@ export class ActorPjDataModel extends BaseActorDataModel {
         };
     }
 
+    static preSaveFunctions = [
+        ...super.preSaveFunctions,
+        "verifMaxOubli",
+    ];
+
     _prepareDerivedData() {
-        this.nbCasesOubliTotal = (this.oubli.forceMax >= 0 ? this.oubli.forceMax : 3 + this.competences?.volonte?.value);
+        this.nbCasesOubliTotal = this._getNbCasesOubliTotal(this);
+    }    
+
+    _getNbCasesOubliTotal(elem) {
+        return (elem.oubli.forceMax >= 0 ? elem.oubli.forceMax : 3 + elem.competences?.volonte?.value);
+    }
+    
+    verifMaxOubli(changes, clone){
+        //-- oubli
+        if(foundry.utils.getProperty(clone, "oubli.value") > this._getNbCasesOubliTotal(clone)) {
+            foundry.utils.setProperty(changes, "system.oubli.value", this._getNbCasesOubliTotal(clone));
+        }
     }
 }
