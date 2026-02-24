@@ -56,7 +56,6 @@ export class BaseActorDataModel extends SystemDataModel {
             magie: new foundry.data.fields.SchemaField({
                 affinite: new foundry.data.fields.StringField({}),
                 tradition: new foundry.data.fields.StringField({}),
-                seuiltolerence: new foundry.data.fields.NumberField({initial: 0, min:0}),
                 fletrine: new foundry.data.fields.SchemaField({
                     value: new foundry.data.fields.NumberField({initial: 0, min:0}),
                     bonus : new foundry.data.fields.NumberField({initial: 0}),
@@ -112,6 +111,12 @@ export class BaseActorDataModel extends SystemDataModel {
 
         this.magie.affiniteobj = Magies.get(this.magie.affinite);
         this.magie.oppose = this.magie.affiniteobj != null ? Magies.get(this.magie.affiniteobj.oppose) : null;
+        
+        let totalFletrine = 0;
+        this.magie.fletrine.niveaux.forEach((v,k) => {
+            totalFletrine += v.max;
+            this.magie.fletrine.niveaux[k].maxmax = totalFletrine;
+        });
 
         this.bourse = Helpers.Argent.convertAtoB(this.argent);
 

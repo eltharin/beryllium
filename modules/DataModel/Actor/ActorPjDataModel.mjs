@@ -28,6 +28,8 @@ export class ActorPjDataModel extends BaseActorDataModel {
     _prepareDerivedData() {
         this.nbCasesOubliTotal = this._getNbCasesOubliTotal(this);
         this.magie.seuil = this.competences.magie.value + Cultures.get(this.culture)?.modificateurMagie;
+        this.magie.isResonnance = this.magie.fletrine.value > this.magie.fletrine.niveaux[0].max;
+        this.magie.isDissonnance = (this.magie.fletrine.niveaux.filter(e => e.maxmax < this.magie.fletrine.value).length+1) >= this.magie.seuil ;
     }    
 
     _getNbCasesOubliTotal(elem) {

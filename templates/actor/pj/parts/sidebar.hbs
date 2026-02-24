@@ -40,11 +40,17 @@
     </div>
 </div>
 <div class="cases-container fletrine">
+    <div class="etats">
+        <label class="resonnance {{#if system.magie.isResonnance}}active{{/if}}">{{localize "beryllium.pjsheet.magie.resonnance"}}</label>
+        <label class="dissonnance {{#if system.magie.isDissonnance}}active{{/if}}">{{localize "beryllium.pjsheet.magie.dissonnance"}}</label>
+    </div>
+
     <div class="controls">
         <span><button data-action="addRemove" data-item="magie.fletrine" data-sens="-">-</button></span>
         <label>{{localize "beryllium.pjsheet.fletrine.label"}}</label>
         <span><button data-action="addRemove" data-item="magie.fletrine" data-sens="+">+</button></span>
     </div>
+
     {{#each fletrine as |flet|}}
     <div class="values">
         <label class="{{#if flet.isMax}}fletrine_niveau_max{{/if}}">{{flet.label}}</label>

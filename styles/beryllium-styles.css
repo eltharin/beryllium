@@ -115,6 +115,21 @@
     margin-right:5px;
 }
 
+.pj-sheet  .cases-container.fletrine .etats {
+    display: flex;
+    gap : 10px;
+    margin-bottom:5px;
+}
+
+.pj-sheet  .cases-container.fletrine .etats > label{
+    flex : 1 1 0;
+    padding : 5px;
+    border: 1px solid darkolivegreen;
+    border-radius: 5px;
+}
+.pj-sheet  .cases-container.fletrine .etats > label.active{
+    background-color:darkolivegreen;
+}
 
 .pj-sheet .sidebar  .cases-container .controls > label{
     flex-grow:1;

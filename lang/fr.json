@@ -122,7 +122,9 @@
                 },
                 "seuil": {
                     "label" : "Seuil"
-                }
+                },
+                "resonnance": "Résonnance",
+                "dissonnance": "Dissonnance"
             },
             "notes": {
                 "titre" : "Notes"
