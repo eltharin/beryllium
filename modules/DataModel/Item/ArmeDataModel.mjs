@@ -9,6 +9,7 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
 
   static defineSchema() {
     return {
+      isDefault : new foundry.data.fields.BooleanField({initial: false}),
       prixmoyen: new foundry.data.fields.NumberField({initial: 0, min:0}),
       categorie: new foundry.data.fields.StringField({}),
       degat: new foundry.data.fields.NumberField({initial: 0}),

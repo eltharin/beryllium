@@ -8,14 +8,25 @@
 
   <div class="inventory-section">
     <h3>{{localize "beryllium.pjsheet.combat.arme.label"}}</h3>
+
+    <div class="sorts-list">
+      {{#each armes.default as |arme|}}
+          <div class="item flexrow" data-item-id="{{arme._id}}">
+            <div data-action="attaque" data-competence="combat">{{arme.name}}</div>
+            <div class="controls">
+            </div>
+          </div>
+      {{/each}}
+      </div>
+
       <div class="arme create" data-action="addItem" data-type="arme">
         <a><i class="fas fa-plus"></i> {{localize "beryllium.pjsheet.combat.arme.ajout"}}</a>
       </div>
 
       <div class="arme-list"> 
-      {{#each armes as |arme|}}
+      {{#each armes.custom as |arme|}}
           <div class="item flexrow" data-item-id="{{arme._id}}">
-            <div >{{arme.name}}</div>
+            <div data-action="attaque" data-competence="combat">{{arme.name}}</div>
             <div class="controls">
               <a data-action="editItem" data-type="arme" data-itemId="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.edit"}}"><i class="fas fa-edit"></i></a>
               <a data-action="deleteItem" data-type="arme" data-itemId="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.delete"}}"><i class="fas fa-trash"></i></a>

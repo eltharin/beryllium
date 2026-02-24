@@ -52,9 +52,7 @@ export class Magies{
     };
 
     static get(magieId) {
-        console.log(magieId, this.magies[magieId])
-        if(this.magies[magieId] !== undefined)
-        {
+        if(this.magies[magieId] !== undefined) {
             return new this.magies[magieId];
         }
         return null;

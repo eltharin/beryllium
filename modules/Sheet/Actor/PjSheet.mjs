@@ -174,7 +174,10 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     });
 
     context.items = this.document.items.filter(i => i.type === "objet");
-    context.armes = this.document.items.filter(i => i.type === "arme");
+    context.armes = {
+      default : this.document.items.filter(i => i.type === "arme" && i.system.isDefault == true),
+      custom : this.document.items.filter(i => i.type === "arme" && i.system.isDefault == false),
+    }
     context.armures = this.document.items.filter(i => i.type === "armure");
     context.sorts = {
       default : this.document.items.filter(i => i.type === "sort" && i.system.isDefault == true),
@@ -191,6 +194,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
   checkDefaultItems(context)
   {
     const defaultSorts = this.document.items.filter(i => i.type === "sort" && i.system.isDefault == true)
+    const defaultArme = this.document.items.filter(i => i.type === "arme" && i.system.isDefault == true)
 
     let sortToAdd = [];
     if(defaultSorts.filter(i => i.system.level == 1).length == 0)
@@ -204,6 +208,11 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     if(defaultSorts.filter(i => i.system.level == 3).length == 0)
     {
       sortToAdd.push({type: "sort", name: game.i18n.format("beryllium.libelle.sortdefaut.majeur"), system: {level: 3, isDefault: true}});
+    }
+    
+    if(defaultArme.length == 0)
+    {
+      this.actor.createEmbeddedDocuments("Item", [{type: "arme", name: game.i18n.format("beryllium.libelle.armedefaut.poing"), system: {isDefault: true}}]);
     }
 
     if(sortToAdd.length > 0)

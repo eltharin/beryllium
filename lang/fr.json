@@ -20,6 +20,9 @@
                 "mineur" : "Sort mineur",
                 "majeur" : "Sort majeur",
                 "intermediaire" : "Sort intermédiaire"
+            },
+            "armedefaut": {
+                "poing" : "Attaque à main nues"
             }
         },
         "bourse":{
