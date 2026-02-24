@@ -44,6 +44,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
       repos: this._onRepos,
       depense: this._onDepense,
       attaque: this._onAttaque,
+      deInterference: this._onDeInterference,
       //deleteItem: PjSheet.deleteDroppedItem,
       //configurePrototypeToken: (any, event) => {console.log(any, event);},
       //configureToken: (any) => {console.log(any);},
@@ -331,7 +332,6 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     {
       const update = {};
       update["system." + target.dataset.item + ".value"] = foundry.utils.getProperty(this.actor.system, target.dataset.item).value + (target.dataset.sens == "+" ? 1 : -1);
-      console.log("update")
       await this.actor.update(update)
     }
   }
@@ -460,5 +460,9 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     });
   }
 
-  
+  static async _onDeInterference(event, target) {
+    return DiceRoller.interferenceRoll({
+      actor: this.document,
+    }); 
+  } 
 }

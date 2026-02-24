@@ -1,0 +1,15 @@
+<form id="bonus-roll-form">
+
+    <div class="">
+
+        <div class="flexrow-beryllium roll-difficulty-selector">
+            <label>{{localize 'beryllium.roll.interference.select'}}</label>
+            <select name="difficulte">
+                {{#each options.difficulte as |difficulte|}}
+                    <option class="difficulte" value="{{difficulte.value}}" {{#if difficulte.isDefault}}selected{{/if}}>{{localize (concat "beryllium.roll.interference.difficulte." @key ".libelle") }}</option>
+                {{/each}}
+            </select>
+        </div>
+
+    </div>
+</form>

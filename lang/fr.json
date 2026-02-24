@@ -178,7 +178,27 @@
         "roll": {
             "common": {
                 "total": "Total",
-                "resultat": "Résultat"
+                "totalVal": "Total : {val}",
+                "resultat": "Résultat",
+                "rolldice": "Lancer de dé",
+                "difficulte": {
+                    "label": "Difficulté : {val}"
+                }
+            },
+            "interference": {
+                "select": "Choisissez la difficulté",
+                "difficulte": {
+                    "standard": {"libelle" : "Standard"},
+                    "eleve":    {"libelle" : "Elevé"},
+                    "extreme":  {"libelle" : "Extreme"}
+                },
+                "dialog": {
+                    "button": "Test d'interférence"
+                },
+                "result":{
+                    "surcharge": "Surcharge",
+                    "reussite": "Réussite"
+                }
             }
         },
         "RollDifficulte": {

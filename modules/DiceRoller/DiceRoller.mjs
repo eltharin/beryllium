@@ -5,6 +5,9 @@ import {CompetenceRoll} from "./Competence/CompetenceRoll.mjs";
 import {AttaqueRollDialog} from "./Attaque/AttaqueRollDialog.mjs";
 import {AttaqueRoll} from "./Attaque/AttaqueRoll.mjs";
 
+import {InterferenceRollDialog} from "./Interference/InterferenceRollDialog.mjs";
+import {InterferenceRoll} from "./Interference/InterferenceRoll.mjs";
+
 import {DefenseRollDialog} from "./Defense/DefenseRollDialog.mjs";
 import {DefenseChoixTokenDialog} from "./Defense/DefenseChoixTokenDialog.mjs";
 import {DefenseRoll} from "./Defense/DefenseRoll.mjs";
@@ -109,4 +112,15 @@ export class DiceRoller {
             speaker: ChatMessage.getSpeaker({ alias: token.actor.name + " ( " + game.user.name + " )"}),
         });
     }
+
+    static async interferenceRoll(options){
+        const {actor} = options;
+
+        const modificateurs = await InterferenceRollDialog.create();
+        const myRoll = new InterferenceRoll("1di",{}, {
+            modificateurs: modificateurs
+        });
+
+        myRoll.toMessage({});
+    }    
 }

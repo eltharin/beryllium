@@ -21,6 +21,7 @@ import { DeInterference } from "./modules/Dice/DeInterference.mjs";
 import {CompetenceRoll} from "./modules/DiceRoller/Competence/CompetenceRoll.mjs";
 import {AttaqueRoll} from "./modules/DiceRoller/Attaque/AttaqueRoll.mjs";
 import {DefenseRoll} from "./modules/DiceRoller/Defense/DefenseRoll.mjs";
+import {InterferenceRoll} from "./modules/DiceRoller/Interference/InterferenceRoll.mjs";
 
 import { MessageActionResolver } from "./modules/ChatMessage/MessageActionResolver.mjs";
 
@@ -57,7 +58,7 @@ Hooks.once("init", () => {
   foundry.documents.collections.Items.registerSheet("beryllium", ArmureSheet, {
     types: ["armure"],
     makeDefault: true,
-    label: "Feuille d'armure'"
+    label: "Feuille d'armure"
   });
   foundry.documents.collections.Items.registerSheet("beryllium", SortSheet, {
     types: ["sort"],
@@ -73,6 +74,7 @@ Hooks.once("init", () => {
   CONFIG.Dice.rolls.push(CompetenceRoll);
   CONFIG.Dice.rolls.push(AttaqueRoll);
   CONFIG.Dice.rolls.push(DefenseRoll);
+  CONFIG.Dice.rolls.push(InterferenceRoll);
 
   CONFIG.Dice.terms[DeBeryllium.DENOMINATION] = DeBeryllium;
   CONFIG.Dice.terms[DeInterference.DENOMINATION] = DeInterference;

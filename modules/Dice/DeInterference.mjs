@@ -47,7 +47,7 @@ export class DeInterference extends foundry.dice.terms.Die {
             return 3;
         }
 
-        return 0;
+        return 4;
     }
 
     getResultLabel(diceTerm) {
@@ -55,6 +55,10 @@ export class DeInterference extends foundry.dice.terms.Die {
         let val = " ";
         if(diceTerm.result <= 3)
         {
+             /*const img = document.createElement("img"); 
+             img.src = "system/beryllium/assets/pics/face1.webp"; 
+            img.width = 40; 
+            img.height = 40; */
             val = "systems/beryllium/assets/pics/face1.webp";
         }
         else if(diceTerm.result <= 6)
