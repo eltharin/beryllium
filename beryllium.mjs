@@ -15,7 +15,9 @@ import { ArmureSheet } from "./modules/Sheet/Item/ArmureSheet.mjs";
 import { SortSheet } from "./modules/Sheet/Item/SortSheet.mjs";
 import { ObjetSheet } from "./modules/Sheet/Item/ObjetSheet.mjs";
 
-import { DeBeryllium } from "./modules/DeBeryllium.mjs";
+import { DeBeryllium } from "./modules/Dice/DeBeryllium.mjs";
+import { DeInterference } from "./modules/Dice/DeInterference.mjs";
+
 import {CompetenceRoll} from "./modules/DiceRoller/Competence/CompetenceRoll.mjs";
 
 Hooks.once("init", () => {
@@ -66,7 +68,8 @@ Hooks.once("init", () => {
 
   CONFIG.Dice.rolls.push(CompetenceRoll);
   CONFIG.Dice.terms[DeBeryllium.DENOMINATION] = DeBeryllium;
-
+  CONFIG.Dice.terms[DeInterference.DENOMINATION] = DeInterference;
+  //CONFIG.ChatMessage.documentClass = AttaqueMessage;
 });
 
 Handlebars.registerHelper('times', function(n, block) {
