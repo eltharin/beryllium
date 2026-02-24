@@ -1,0 +1,15 @@
+<div class="dice-roll" data-action="expandRoll">
+    <div class="dice-result">
+        <div class="dice-formula">{{localize "beryllium.attaquedefense.attaque.carac"}} {{competenceLabel}}</div>
+        {{{tooltip}}}
+        <div class="dice-formula">{{localize "beryllium.roll.common.total"}} : {{total}}</div>
+        <h4 class="dice-total">{{localize "beryllium.roll.common.total"}} : {{totalText}} = {{totalValue}}</h4>
+        <h4>{{localize "beryllium.attaquedefense.attaque.cibles"}}</h4>
+        {{#each targets as |target|}}
+        {{target.name}} : {{#if (eq target.result null)}}{{localize "beryllium.attaquedefense.attaque.resultat.attente"}}{{else}}{{target.result}}{{/if}}</br>
+        {{/each}}
+        {{#if canDefendre}}
+            <button data-action="defense">{{localize "beryllium.attaquedefense.attaque.defendrebtn"}}</button>
+        {{/if}}
+    </div>
+</div>

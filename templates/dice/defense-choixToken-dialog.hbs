@@ -1,0 +1,14 @@
+<form id="bonus-roll-form">
+
+    <div class="">
+
+        <div class="flexrow-beryllium roll-threshold">
+            <label>{{localize 'beryllium.attaquedefense.defense.choixtoken'}}</label>
+            <select name="token">
+                {{#each tokens as |token|}}
+                <option value="{{token.id}}">{{token.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+</form>

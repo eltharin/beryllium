@@ -1,0 +1,24 @@
+<div class="dice-roll" data-action="expandRoll">
+    <div class="dice-result">
+        <div class="dice-formula">{{localize "beryllium.attaquedefense.defense.carac"}} {{ competenceLabel }}</div>
+        {{{tooltip}}}
+        <div class="dice-formula">{{localize "beryllium.roll.common.total"}} : {{total}}</div>
+        <h4 class="dice-total">{{localize "beryllium.roll.common.total"}} : {{totalText}} = {{totalValue}}</h4>
+        <div class="dice-formula">{{localize "beryllium.roll.common.resultat"}} : {{oppose}} - {{totalValue}} = {{degats}}</div>
+        {{#if (gt degats  0)}}
+        <h5>{{localize "beryllium.attaquedefense.defense.echec"}}</h5>
+        <h4 class="dice-total">{{localize "beryllium.attaquedefense.defense.perteStress" ptStress=degats }}</h4>
+        {{#if canAffect}}
+            <button data-action="affectDegat">{{localize "beryllium.attaquedefense.defense.affectDegat"}}</button>
+        {{/if}}
+        
+        {{#if canUpdateAttaque}}
+            <button data-action="majAttaque">{{localize "beryllium.attaquedefense.defense.majAttaque"}}</button>
+        {{/if}}  
+        
+        <button data-action="reset">Reset</button>
+        {{else}}
+        <h4 class="dice-total">{{localize "beryllium.attaquedefense.defense.reussite"}}</h4>
+        {{/if}}
+    </div>
+</div>

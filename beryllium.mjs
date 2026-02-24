@@ -19,6 +19,10 @@ import { DeBeryllium } from "./modules/Dice/DeBeryllium.mjs";
 import { DeInterference } from "./modules/Dice/DeInterference.mjs";
 
 import {CompetenceRoll} from "./modules/DiceRoller/Competence/CompetenceRoll.mjs";
+import {AttaqueRoll} from "./modules/DiceRoller/Attaque/AttaqueRoll.mjs";
+import {DefenseRoll} from "./modules/DiceRoller/Defense/DefenseRoll.mjs";
+
+import { MessageActionResolver } from "./modules/ChatMessage/MessageActionResolver.mjs";
 
 Hooks.once("init", () => {
   console.log("beryllium | Initialisation du système beryllium");
@@ -67,10 +71,26 @@ Hooks.once("init", () => {
   });
 
   CONFIG.Dice.rolls.push(CompetenceRoll);
+  CONFIG.Dice.rolls.push(AttaqueRoll);
+  CONFIG.Dice.rolls.push(DefenseRoll);
+
   CONFIG.Dice.terms[DeBeryllium.DENOMINATION] = DeBeryllium;
   CONFIG.Dice.terms[DeInterference.DENOMINATION] = DeInterference;
   //CONFIG.ChatMessage.documentClass = AttaqueMessage;
 });
+
+Hooks.on("renderChatMessageHTML", (message, html, data) => {
+  html.querySelectorAll(".dice-roll button[data-action]").forEach(btn => {
+    btn.addEventListener("click", event => {
+        console.log(event, message, data)
+        const action = event.currentTarget.dataset.action;
+
+        MessageActionResolver.executeAction(action, event, message, data);
+    });
+  });
+});
+
+
 
 Handlebars.registerHelper('times', function(n, block) {
     var accum = '';

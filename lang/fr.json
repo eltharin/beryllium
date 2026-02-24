@@ -167,6 +167,12 @@
 
             }
         },
+        "roll": {
+            "common": {
+                "total": "Total",
+                "resultat": "Résultat"
+            }
+        },
         "RollDifficulte": {
             "label": "Difficulté",
             "select": "Choix de la difficulté",
@@ -185,6 +191,27 @@
                 "reussiteJustesse": "Réussite de justesse",
                 "echec": "Echec",
                 "echecCritique": "Echec critique"
+            }
+        },
+        "attaquedefense": {
+            "attaque": {
+                "caracatt": "Caractéristique de défense",
+                "carac": "Attaque avec ",
+                "defendrebtn": "Se Défendre",
+                "cibles": "Cibles",
+                "resultat": {
+                    "attente": "En attente..."
+                }
+            },
+            "defense": {
+                "choixtoken": "Choisissez le Token à défendre",
+                "caracdef": "Caractéristique de défense",
+                "echec": "Il te défonce",
+                "perteStress": "Tu perds {ptStress} pts de Stress",
+                "reussite": "Meme pas mal",
+                "carac": "Défense avec ",
+                "affectDegat" : "Affecter les dégats",
+                "majAttaque" : "MAJ Attaque"
             }
         }
     }

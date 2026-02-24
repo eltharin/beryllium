@@ -1,0 +1,19 @@
+<form id="bonus-roll-form">
+
+    <div class="">
+
+        <div class="flexrow-beryllium roll-threshold">
+            <label>{{localize "beryllium.attaquedefense.defense.caracdef"}}</label>
+            <select name="competence">
+                {{#each competences as |comp|}}
+                    <option value="{{@key}}">{{comp}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="flexrow-beryllium roll-threshold">
+            <label>{{localize 'beryllium.RollModificateur'}}</label>
+            <input type="number" name="modificateur" value="0" step="1" />
+        </div>
+    </div>
+</form>

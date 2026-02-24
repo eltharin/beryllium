@@ -1,12 +1,18 @@
 
 
 
-export class CompetenceRollDialog {
+export class AttaqueRollDialog {
     static async create(options = {}) {
 
-        console.log(options);
+        console.log(Object.keys(options.competences).reduce(function(result, key) {
+                result[key] = options.competences[key].value;
+                return result
+            }, {}));
 
         let data = {
+            isMagie: options.isMagie,
+            competences: {
+            },
             options: {
                 difficulteDefaut: 4,
                 difficulte: {
@@ -38,14 +44,24 @@ export class CompetenceRollDialog {
             }
         };
 
-        const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/competence-roll-dialog.hbs", data);
+        if(options.isMagie) {
+            data.competences = {magie: "Magie (" + options.competences["magie"].value + ")"};
+        } else {
+            data.competences = {
+                combat:   "Combat (" + options.competences["combat"].value + ")",
+                physique: "Physique (" + options.competences["physique"].value + ")",
+                discretion: "Discrétion (" + options.competences["discretion"].value + ")",
+            };
+        }
+
+        const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/attaque-roll-dialog.hbs", data);
 
         return new Promise((resolve) => {
             const dialog = foundry.applications.api.DialogV2.input({
                 content: html,
                 window: {title: "lancer de dé"},
                 ok: {
-                    label: "Make Choice",
+                    label: "Attaquer",
                     default: true,
                     icon: "fa-solid fa-floppy-disk",
                     //callback: (event, button, dialog) => (console.log(event, button, dialog))
