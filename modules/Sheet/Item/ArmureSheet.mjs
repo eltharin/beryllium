@@ -1,4 +1,4 @@
-
+import * as Helpers from "../../Helper/_helpers.mjs";
 
 export class ArmureSheet extends foundry.applications.api.HandlebarsApplicationMixin(
   foundry.applications.sheets.ItemSheetV2
@@ -28,5 +28,15 @@ export class ArmureSheet extends foundry.applications.api.HandlebarsApplicationM
 
       ]
     },
+  }
+
+  _prepareSubmitData(event, form, formData, updateData) { 
+
+    let data  = super._prepareSubmitData(event, form, formData, updateData);
+    const submitData = foundry.utils.expandObject(formData.object);
+
+    foundry.utils.setProperty(data, "system.prixmoyen", Helpers.Argent.convertBtoA(submitData.system.prix));
+
+    return data ; 
   }
 }

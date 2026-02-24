@@ -1,17 +1,13 @@
 import {SystemDataModel} from "../SystemDataModel.mjs";
-import {Magies} from "../../Magies.mjs";
+import {Magies} from "../../Objet/Magies.mjs";
+import * as Helpers from "../../Helper/_helpers.mjs";
 
 export class BaseActorDataModel extends SystemDataModel {
     static defineSchema() {
     // All Actors have resources.
         return { 
-            bourse: new foundry.data.fields.SchemaField({ 
-                couronne: new foundry.data.fields.NumberField({initial: 0, min:0}),
-                eclat: new foundry.data.fields.NumberField({initial: 0, min:0}),
-                fragment: new foundry.data.fields.NumberField({initial: 0, min:0,
-                    validate: value => value <20, validationError: `must be equal to `
-                })
-            }),
+            argent: new foundry.data.fields.NumberField({initial: 0, min:0}),
+            notes: new foundry.data.fields.StringField({}),
             aspects: new foundry.data.fields.SchemaField({ 
                 concept: new foundry.data.fields.StringField({}),
                 probleme: new foundry.data.fields.StringField({}),
@@ -50,10 +46,12 @@ export class BaseActorDataModel extends SystemDataModel {
             stress: new foundry.data.fields.SchemaField({
                 value : new foundry.data.fields.NumberField({initial: 0, min:0}),
                 forceMax : new foundry.data.fields.NumberField({initial: -1}),
+                bonus : new foundry.data.fields.NumberField({initial: 0}),
             }),
             echo: new foundry.data.fields.SchemaField({
                 value : new foundry.data.fields.NumberField({initial: 0, min:0}),
                 forceMax : new foundry.data.fields.NumberField({initial: -1}),
+                bonus : new foundry.data.fields.NumberField({initial: 0}),
             }),
             magie: new foundry.data.fields.SchemaField({
                 affinite: new foundry.data.fields.StringField({}),
@@ -61,6 +59,7 @@ export class BaseActorDataModel extends SystemDataModel {
                 seuiltolerence: new foundry.data.fields.NumberField({initial: 0, min:0}),
                 fletrine: new foundry.data.fields.SchemaField({
                     value: new foundry.data.fields.NumberField({initial: 0, min:0}),
+                    bonus : new foundry.data.fields.NumberField({initial: 0}),
                     niveaux: new foundry.data.fields.ArrayField(
                         new foundry.data.fields.SchemaField({
                             max : new foundry.data.fields.NumberField({})
@@ -105,7 +104,7 @@ export class BaseActorDataModel extends SystemDataModel {
         "verifMaxEcho",
         "verifFletrineEcho",
     ];
-    
+
     prepareDerivedData() {
         
         this.nbCasesStressTotal = this._getNbCasesStressTotal(this);
@@ -114,15 +113,17 @@ export class BaseActorDataModel extends SystemDataModel {
         this.magie.affiniteobj = Magies.get(this.magie.affinite);
         this.magie.oppose = this.magie.affiniteobj != null ? Magies.get(this.magie.affiniteobj.oppose) : null;
 
+        this.bourse = Helpers.Argent.convertAtoB(this.argent);
+
         this._prepareDerivedData();
     }
 
     _getNbCasesStressTotal(elem) {
-        return (elem.stress.forceMax >= 0 ? elem.stress.forceMax : 3 + Math.max(elem.competences?.physique?.value , elem.competences?.magie?.value , elem.competences?.magie?.value));
+        return (elem.stress.forceMax >= 0 ? elem.stress.forceMax : 3 + elem.stress.bonus + Math.max(elem.competences?.physique?.value , elem.competences?.magie?.value , elem.competences?.magie?.value));
     }
 
     _getNbCasesEchoTotal(elem) {
-        return (elem.echo.forceMax >= 0 ? elem.echo.forceMax : 5);
+        return (elem.echo.forceMax >= 0 ? elem.echo.forceMax : 5 + elem.echo.bonus);
     }
 
     _prepareDerivedData() {

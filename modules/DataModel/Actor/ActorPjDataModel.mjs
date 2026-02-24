@@ -14,6 +14,7 @@ export class ActorPjDataModel extends BaseActorDataModel {
             oubli: new foundry.data.fields.SchemaField({
                 value : new foundry.data.fields.NumberField({initial: 0, min:0}),
                 forceMax : new foundry.data.fields.NumberField({initial: -1}),
+                bonus : new foundry.data.fields.NumberField({initial: 0}),
             }),
 
         };
@@ -29,7 +30,7 @@ export class ActorPjDataModel extends BaseActorDataModel {
     }    
 
     _getNbCasesOubliTotal(elem) {
-        return (elem.oubli.forceMax >= 0 ? elem.oubli.forceMax : 3 + elem.competences?.volonte?.value);
+        return (elem.oubli.forceMax >= 0 ? elem.oubli.forceMax : 3 + elem.oubli.bonus + elem.competences?.volonte?.value);
     }
     
     verifMaxOubli(changes, clone){

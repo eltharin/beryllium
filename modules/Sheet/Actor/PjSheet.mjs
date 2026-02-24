@@ -1,6 +1,7 @@
 import {DiceRoller} from "../../DiceRoller/DiceRoller.mjs";
-import {Cultures} from "../../Cultures.mjs";
-import {Magies} from "../../Magies.mjs";
+import {Cultures} from "../../Objet/Cultures.mjs";
+import {Magies} from "../../Objet/Magies.mjs";
+import * as Helpers from "../../Helper/_helpers.mjs";
 
 
 export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin(
@@ -32,14 +33,17 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
       submitOnChange: true
     },
     actions: {
-      addRemove: PjSheet._onAddRemove,
-      showArtwork: PjSheet.#showArtwork,
+      
+      skillRoll: this._onSkillRoll,
+      addRemove: this._onAddRemove,
+      showArtwork: this.#showArtwork,
       addItem: this._onAddItem,
       editItem: this._onEditItem,
       deleteItem: this._onDeleteItem,
       lanceSort: this._onLanceSort,
       repos: this._onRepos,
       depense: this._onDepense,
+      attaque: this._onAttaque,
       //deleteItem: PjSheet.deleteDroppedItem,
       //configurePrototypeToken: (any, event) => {console.log(any, event);},
       //configureToken: (any) => {console.log(any);},
@@ -97,32 +101,20 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
   _prepareSubmitData(event, form, formData, updateData) { 
 
     let data  = super._prepareSubmitData(event, form, formData, updateData);
+    const submitData = foundry.utils.expandObject(formData.object);
 
-    console.log(event, form, formData, updateData);
-
+    foundry.utils.setProperty(data, "system.argent", Helpers.Argent.convertBtoA(submitData.system.bourse));
 
     return data ; 
   }
 
-  getNbCase(value, forcemax) {
-    if(forcemax != -1){
-      return forcemax;
-    }
-    else if(value >= 4) {
-      return 4;
-    }
-    else if(value >= 2) {
-      return 3;
-    }
-     
-    return 2;
-  }
   
   async _prepareContext(options) {
     
     const context = await super._prepareContext(options)
 
     context.isGm = game.user.isGM;
+    context.isPJ = this.constructor.name == "PjSheet";
     
     context.tabs = this._prepareTabs("primary");
 
@@ -228,7 +220,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
       this.checkDefaultItems(context);
     }
     super._onRender(context, options);
-    this._activateSkillRolls();
+    //this._activateSkillRolls();
 
     this._manageTab();
   }
@@ -243,18 +235,32 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     console.log(data, formConfig, event.currentTarget);
     return data;
   }*/
-
+/*
   _activateSkillRolls() {
     this.element.querySelectorAll('.pj-sheet .pj-sheet-competences .competence label').forEach(label => {
       label.style.cursor = 'pointer';
       label.addEventListener('click', async (event) => {
-        event.preventDefault();
-        // Lancer les dés
-        return await DiceRoller.competenceRoll({
-          actorName: this.document.name,
-          competence: event.target.closest('div').dataset.competence
-        });
+
       });
+    });
+  }*/
+
+  static async _onAttaque(event, target){
+    event.preventDefault();
+    // Lancer les dés
+    return DiceRoller.attaqueRoll({
+      actor: this.document,
+      competence: target.dataset.competence,
+      //target: game.target
+    }); 
+  }
+  
+  static async _onSkillRoll(event, target){
+    event.preventDefault();
+    // Lancer les dés
+    return DiceRoller.competenceRoll({
+      actor: this.document,
+      competence: target.dataset.competence
     });
   }
 

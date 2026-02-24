@@ -1,4 +1,4 @@
-
+import * as Helpers from "../../Helper/_helpers.mjs";
 
 
 export class ArmeDataModel extends foundry.abstract.TypeDataModel {
@@ -9,15 +9,15 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
 
   static defineSchema() {
     return {
-      prix: new foundry.data.fields.SchemaField({ 
-        couronne: new foundry.data.fields.NumberField({initial: 0, min:0}),
-        eclat: new foundry.data.fields.NumberField({initial: 0, min:0}),
-        fragment: new foundry.data.fields.NumberField({initial: 0, min:0})
-      }),
+      prixmoyen: new foundry.data.fields.NumberField({initial: 0, min:0}),
       categorie: new foundry.data.fields.StringField({}),
       degat: new foundry.data.fields.NumberField({initial: 0}),
       portee: new foundry.data.fields.StringField({}),
       special: new foundry.data.fields.StringField({}),
     };
+  }
+
+  prepareDerivedData() {
+      this.prix = Helpers.Argent.convertAtoB(this.prixmoyen);
   }
 }

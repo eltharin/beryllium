@@ -6,7 +6,7 @@ export class PnjSheet extends PjSheet{
       template: "systems/beryllium/templates/actor/pj/pnj-sheet.hbs",
       templates: [
         'systems/beryllium/templates/actor/pj/parts/topbar.hbs',
-        'systems/beryllium/templates/actor/pj/parts/sidebarpnj.hbs',
+        'systems/beryllium/templates/actor/pj/parts/sidebar.hbs',
         'systems/beryllium/templates/actor/pj/parts/aspects.hbs',
         'systems/beryllium/templates/actor/pj/parts/magie.hbs',
         'systems/beryllium/templates/actor/pj/parts/heritage.hbs',
