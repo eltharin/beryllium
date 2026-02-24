@@ -1,5 +1,5 @@
 import {BaseActorDataModel} from './BaseActorDataModel.mjs';
-
+import {Cultures} from "../../Objet/Cultures.mjs";
 
 export class ActorPjDataModel extends BaseActorDataModel {
     static defineSchema() {
@@ -27,6 +27,7 @@ export class ActorPjDataModel extends BaseActorDataModel {
 
     _prepareDerivedData() {
         this.nbCasesOubliTotal = this._getNbCasesOubliTotal(this);
+        this.magie.seuil = this.competences.magie.value + Cultures.get(this.culture)?.modificateurMagie;
     }    
 
     _getNbCasesOubliTotal(elem) {

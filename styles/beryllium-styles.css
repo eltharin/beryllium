@@ -195,3 +195,33 @@
     flex: 0 0 auto;
     max-width: 200px;
 }
+
+.pj-sheet .inventory-section {
+    margin-top: 2em;
+}
+
+.pj-sheet .inventory-section .create {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    text-align: right;
+}
+
+.pj-sheet .inventory-section .create > span{
+    border: 1px solid lightgray;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+
+
+.pj-sheet .inventory-section .controls {
+    flex: 0 0 50px;
+}
+
+.pj-sheet .clickable {
+    cursor: pointer;
+}
+
+.pj-sheet .clickable:hover {
+    background-color: #888;
+}

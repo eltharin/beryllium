@@ -21,25 +21,38 @@
     </div>
   </div>
 
+  <div class="pj-sheet-cat magie">
+    <div class="multicol">
+      <div>
+          <label>{{localize "beryllium.pjsheet.magie.tradition.label"}}</label>
+          <input type="text" name="system.magie.tradition" value="{{system.magie.tradition}}" class="pj-sheet-input" placeholder=""/>
+      </div>
+      <div>
+          <label>{{localize "beryllium.pjsheet.magie.seuil.label"}}</label>
+          <div class="fakeField">{{ system.magie.seuil }}</div>
+      </div>
+    </div>
+  </div>
+
   <div class="inventory-section">
     <h3>{{localize "beryllium.pjsheet.magie.sort.listLabel"}}</h3>
     <div class="sorts-list">
       {{#each sorts.default as |sort|}}
           <div class="item flexrow" data-item-id="{{sort._id}}">
-            <div data-action="attaque" data-competence="magie">{{sort.name}}</div>
-            <div class="controls">
-            </div>
+            <div class="clickable" data-action="attaque" data-competence="magie">{{sort.name}}</div>
+            <div class="controls"> </div>
           </div>
       {{/each}}
       </div>
+
       <div class="sort create" data-action="addItem" data-type="sort">
-        <a><i class="fas fa-plus"></i> {{localize "beryllium.pjsheet.magie.sort.ajout"}}</a>
+        <span><a><i class="fas fa-plus"></i> {{localize "beryllium.pjsheet.magie.sort.ajout"}}</a></span>
       </div>
 
       <div class="sorts-list"> 
       {{#each sorts.custom as |sort|}}
           <div class="item flexrow" data-item-id="{{sort._id}}">
-            <div data-action="attaque" data-competence="magie"><a>{{sort.name}}</a></div>
+            <div class="clickable" data-action="attaque" data-competence="magie"><a>{{sort.name}}</a></div>
             <div class="controls">
               <a data-action="editItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.magie.sort.edit"}}"><i class="fas fa-edit"></i></a>
               <a data-action="deleteItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.magie.sort.delete"}}"><i class="fas fa-trash"></i></a>

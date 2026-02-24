@@ -55,15 +55,15 @@ export class DeInterference extends foundry.dice.terms.Die {
         let val = " ";
         if(diceTerm.result <= 3)
         {
-            val = "1";
+            val = "systems/beryllium/assets/pics/face1.webp";
         }
         else if(diceTerm.result <= 6)
         {
-            val = "2";
+            val = "systems/beryllium/assets/pics/face2.webp";
         }
         else if(diceTerm.result <= 9)
         {
-            val = "3";
+            val = "systems/beryllium/assets/pics/face3.webp";
         }
         return val;
     }
