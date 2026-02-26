@@ -10,6 +10,12 @@ export class ActorPjDataModel extends BaseActorDataModel {
             
             heritage: new foundry.data.fields.SchemaField({
                 affinite: new foundry.data.fields.StringField({}),
+                utilisationPrivilege: new foundry.data.fields.ArrayField(
+                    new foundry.data.fields.SchemaField({
+                        value: new foundry.data.fields.NumberField({initial: 0, min:0}),
+                        max: new foundry.data.fields.NumberField({initial: 1, min:1}),
+                    })
+                )
             }),
             oubli: new foundry.data.fields.SchemaField({
                 value : new foundry.data.fields.NumberField({initial: 0, min:0}),
@@ -28,8 +34,25 @@ export class ActorPjDataModel extends BaseActorDataModel {
     _prepareDerivedData() {
         this.nbCasesOubliTotal = this._getNbCasesOubliTotal(this);
         this.magie.seuil = this.competences.magie.value + Cultures.get(this.culture)?.modificateurMagie;
-        this.magie.isResonnance = this.magie.fletrine.value > this.magie.fletrine.niveaux[0].max;
+        this.magie.isResonnance = this.magie.fletrine.value >= this.magie.fletrine.niveaux[0].max;
         this.magie.isDissonnance = (this.magie.fletrine.niveaux.filter(e => e.maxmax < this.magie.fletrine.value).length+1) >= this.magie.seuil ;
+        
+        this.cultureobj = Cultures.get(this.culture);
+
+        if(this.heritage.utilisationPrivilege == undefined)
+        {
+            this.heritage.utilisationPrivilege = [];
+        }
+
+        if(this.cultureobj != undefined) {
+            this.cultureobj.privileges.forEach((v, k) => {
+            if(this.heritage.utilisationPrivilege[k] == undefined)
+            {
+                this.heritage.utilisationPrivilege[k] = {value:0, max:1};
+            }
+            });
+        }
+
     }    
 
     _getNbCasesOubliTotal(elem) {

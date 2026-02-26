@@ -11,20 +11,21 @@
     <div class="heritage">
         <label>{{localize "beryllium.pjsheet.heritage.privilege"}}</label>
         {{#each system.cultureobj.privileges as |privilege|}}
-        <div class="fakeField">{{ privilege}}</div>
+        <div class="fakeField"><span class="title">{{ privilege.titre }}</span><span class="legend"> - ({{ privilege.description }})</span></div>
         {{/each }}
     </div>
     <div class="heritage">
         <label>{{localize "beryllium.pjsheet.heritage.faiblesse"}}</label>
         {{#each system.cultureobj.faiblesses as |faiblesse|}}
-        <div class="fakeField">{{ faiblesse}}</div>
+        <div class="fakeField"><span class="title">{{ faiblesse.description }}</span></div>
         {{/each }}
     </div>
     <div class="heritage">
         <label>{{localize "beryllium.pjsheet.heritage.specialisation"}}</label>
         {{#each system.cultureobj.specialisations as |specialisation|}}
-        <div class="fakeField">{{ specialisation}}</div>
+        <div class="fakeField"><span class="title">{{ specialisation.titre }}</span><span class="legend"> - ({{ specialisation.base }} : {{ specialisation.bonus }})</span></div>
         {{/each }}
     </div>
+
   </div>
 </section>

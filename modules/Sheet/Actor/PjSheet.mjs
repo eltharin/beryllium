@@ -169,7 +169,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
           label : game.i18n.format("beryllium.label.niv") + (key+1),
           nbCheck: valUtil,
           nbNoncheck : niv.max - valUtil,
-          isMax: niv.max == valUtil
+          isMax: context.system.magie.fletrine.value >= (context.system.magie.fletrine.niveaux[key-1]?.maxmax || 0)
         }
       }
     });
@@ -441,9 +441,9 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
   }
 
   static async _onDepense(event, target) {
-    const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dialog/depense.hbs");
-    const dialog = foundry.applications.api.DialogV2.input({
-      content: html,
+
+    const dialog = await foundry.applications.api.DialogV2.input({
+      content: await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dialog/depense.hbs"),
       window: {title: "Dépense"},
       ok: {
           label: "Claque ta tune",

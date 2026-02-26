@@ -2,7 +2,7 @@
   "id": "beryllium",
   "title": "beryllium",
   "description": "A human-readable description of your system.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "compatibility": {
     "minimum": 13,
     "verified": 13
@@ -47,6 +47,6 @@
   "bugs": "https://github.com/eltharin/fberyllium/issues",
   "readme": "https://github.com/eltharin/beryllium/blob/main/README.md",
   "license": "https://mit-license.org/",
-  "manifest": "https://raw.githubusercontent.com/eltharin/beryllium/refs/heads/master/system.json",
-  "download": "https://github.com/eltharin/beryllium/archive/refs/tags/V0.1.0.zip"
+  "manifest": "https://raw.githubusercontent.com/eltharin/beryllium/releases/latest/download/system.json",
+  "download": "https://github.com/eltharin/beryllium/archive/refs/tags/V0.1.1.zip"
 }
