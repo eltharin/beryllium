@@ -3,28 +3,59 @@
   data-group='primary'
   data-tab='heritage'
 >
-  <div class="pj-sheet-cat heritage">
-    <div class="heritage">
-        <label>{{localize "beryllium.pjsheet.heritage.affinite"}}</label>
-        <input type="text" name="system.heritage.affinite" value="{{system.heritage.affinite}}" class="pj-sheet-input" placeholder=""/>
+  <div class="pj-sheet-cat fields-container heritage">
+
+    <div class="field">
+        <label>{{localize "beryllium.pjsheet.culture.label"}}</label>
+        <div><!---
+          -->{{#fieldOrInput "system.culture" class="pj-sheet-input" value=system.cultureobj.name }}
+          <select name="system.culture">
+              <option value="">{{localize "beryllium.pjsheet.culture.select"}}</option>
+              {{#each ../culture.list as |cult| }}
+                  <option value="{{cult.id}}" {{#if (eq cult.id ../../system.culture) }}selected{{/if}}>{{cult.name}}</option>
+              {{/each}}
+          </select>
+          {{/fieldOrInput}}<!---
+        --></div>
     </div>
-    <div class="heritage">
+
+
+    <div class="field heritage">
+        <label>{{localize "beryllium.pjsheet.heritage.aspect"}}</label>
+        <div>{{ fieldOrInput "system.aspects.aspect" class="pj-sheet-input" }}</div>
+    </div>
+    <div class="field heritage">
         <label>{{localize "beryllium.pjsheet.heritage.privilege"}}</label>
-        {{#each system.cultureobj.privileges as |privilege|}}
-        <div class="fakeField"><span class="title">{{ privilege.titre }}</span><span class="legend"> - ({{ privilege.description }})</span></div>
-        {{/each }}
+        
+        <div>
+          {{#each system.cultureobj.privileges as |privilege|}}
+            <div class="notfield">
+              <div class="title">{{ privilege.titre }}</div>
+              <div class="legend">{{ privilege.description }}</div>
+            </div>
+          {{/each }}
+        </div>
     </div>
-    <div class="heritage">
+    <div class="field heritage">
         <label>{{localize "beryllium.pjsheet.heritage.faiblesse"}}</label>
-        {{#each system.cultureobj.faiblesses as |faiblesse|}}
-        <div class="fakeField"><span class="title">{{ faiblesse.description }}</span></div>
-        {{/each }}
+        <div>
+          {{#each system.cultureobj.faiblesses as |faiblesse|}}
+            <div class="notfield">
+              <span class="title">{{ faiblesse.description }}</span>
+            </div>
+          {{/each }}
+        </div>
     </div>
-    <div class="heritage">
+    <div class="field heritage">
         <label>{{localize "beryllium.pjsheet.heritage.specialisation"}}</label>
-        {{#each system.cultureobj.specialisations as |specialisation|}}
-        <div class="fakeField"><span class="title">{{ specialisation.titre }}</span><span class="legend"> - ({{ specialisation.base }} : {{ specialisation.bonus }})</span></div>
-        {{/each }}
+        <div>
+          {{#each system.cultureobj.specialisations as |specialisation|}}
+            <div class="notfield">
+              <div class="title">{{ specialisation.titre }}</div>
+              <div class="legend">{{ specialisation.base }} : {{ specialisation.bonus }}</div>
+            </div>
+          {{/each }}
+        </div>
     </div>
 
   </div>

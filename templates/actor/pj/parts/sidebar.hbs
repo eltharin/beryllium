@@ -2,9 +2,13 @@
     <img data-action="editImage" data-edit="img" src="{{document.img}}" alt="Photo de {{document.name}}" />
 </div>
 
+<div class="field nom">
+    <label>{{localize "beryllium.pjsheet.nom"}}</label>
+    <div>{{ fieldOrInput "document.name" class="pj-sheet-input" }}</div>
+</div>
+
 <div class="argent">
-    <a data-action="repos" title="{{localize "beryllium.pjsheet.repos.buttontitle"}}"><i class="fas fa-tents"></i></a>
-    <a data-action="deInterference" title="{{localize "beryllium.pjsheet.interference.roll"}}"><i class="fas fa-gear"></i></a>
+
 </div>
 <div class="argent">
     <a data-action="depense" title="{{localize "beryllium.pjsheet.bourse.creerdepense"}}"><i class="fas fa-coins"></i></a>

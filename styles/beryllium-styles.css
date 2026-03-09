@@ -29,6 +29,61 @@
     flex-direction: column;
 }
 
+.pj-sheet > .content > .top{
+    display:flex;
+}
+
+.pj-sheet > .content > .top > *{
+    flex : 0 0 40%;
+}
+
+/******              TOP BAR                       *****/
+.pj-sheet > .content > .top > .pj-sheet-competences{
+    font-family: "IM Fell English SC", serif;
+    font-size: 16px;
+    display:flex;
+
+    width: 33%;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 0 50%;
+}
+
+.pj-sheet > .content > .top > .pj-sheet-competences > .competence {
+    margin: 5px;
+    border: 1px solid lightgrey;
+    text-align: center;
+    flex: 1 0 18%;
+    flex-wrap: nowrap;
+}
+
+.pj-sheet > .content > .top > .pj-sheet-competences > .competence > label {
+    display:block;
+    text-align: center;
+    font-size: 1em;
+    flex: 1 0 33%;
+}
+
+.pj-sheet > .content > .top > .pj-sheet-competences > .competence > div{
+    flex: 0 0 50px;
+    font-size: 1.2em;
+}
+
+.pj-sheet > .content > .top > .pj-sheet-competences > .competence.action{
+    display:flex;
+    justify-content: space-between;
+}
+
+.pj-sheet > .content > .top > .pj-sheet-competences > .competence.action > div{
+    flex-shrink: 1;
+}
+/******        END   TOP BAR                       *****/
+
+
+
+
+/******                MAIN                        *****/
+
 .pj-sheet > .content > .main {
     display:flex;
     flex-direction: column;
@@ -42,21 +97,8 @@
 }
 
 
-.pj-sheet-competences{
-    display:flex;
-}
 
-.pj-sheet-competences > .competence {
-    max-width: 100px;
-    margin: 5px;
-    border: 1px solid lightgrey;
-}
 
-.pj-sheet-competences > .competence > label {
-    display:block;
-    text-align: center;
-    font-size: 1em;
-}
 
 .pj-sheet .sidebar .cases-container{
     margin-top: 1em;
@@ -148,6 +190,7 @@
 
 .pj-sheet .infosperso {
     display:flex;
+    flex-direction:column;
     gap: 10px;
     margin-bottom : 15px;
 }
@@ -163,29 +206,6 @@
 
 .pj-sheet .pj-sheet-cat .cols > *{
     flex : 1 1 0;
-}
-
-.fakeField{
-    width: 100%;
-    height: var(--input-height);
-    line-height: var(--input-height);
-    padding: 0 0.5rem;
-    background: var(--input-background-color);
-    border: 1px solid var(--input-border-color);
-    border-radius: 4px;
-    box-shadow: var(--input-box-shadow);
-    outline: 1px solid transparent;
-    font-family: inherit;
-    font-size: inherit;
-    color: var(--input-text-color);
-    user-select: text;
-    transition: outline-color 0.5s;
-    cursor: var(--cursor-text);
-
-      --input-background-color: var(--color-cool-4);
-      --input-border-color: transparent;
-      --input-text-color: var(--color-light-3);
-      --input-focus-outline-color: var(--color-cool-3);
 }
 
 
@@ -239,4 +259,89 @@
 
 .pj-sheet .clickable:hover {
     background-color: #888;
+}
+
+
+
+
+/* latin */
+@font-face {
+  font-family: 'IM Fell English SC';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/imfellenglishsc/v16/a8IENpD3CDX-4zrWfr1VY879qFF05pZ7PIIP.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin */
+@font-face {
+  font-family: 'UnifrakturCook';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/unifrakturcook/v25/IurA6Yli8YOdcoky-0PTTdkm56n05Xwy1oM.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+.pj-sheet .field{
+    flex-wrap: wrap;
+    flex: 1 0 100px;
+    display:flex;
+    margin-top:15px;
+}
+
+
+.pj-sheet .field > label{
+    flex: 0 0 150px;
+    align-content: center;
+}
+
+
+.pj-sheet .field > div{
+    flex: 1 0 100px;
+    align-content: center;
+    color: var(--color-light-3);
+    display: inline-block;
+}
+
+
+.pj-sheet .field-value{
+    padding:1px 9px;
+    color: var(--color-light-3);
+    height: var(--input-height);
+    line-height: var(--input-height);
+    --display:inline-block;
+}
+
+
+
+.pj-sheet .pj-sheet-cat.fields-container.magie .multicol-fields{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+
+.pj-sheet .pj-sheet-cat.fields-container.magie .multicol-fields > *  {
+    min-width:300px;
+    flex-basis:300px;
+}
+
+
+.pj-sheet .notfield  {
+    padding: 1px 9px;
+}
+
+.pj-sheet .notfield .title  {
+    color: var(--color-light-3);
+}
+
+.pj-sheet .notfield .legend {
+    color: var(--color-light-2);
+    font-size: 14px;
+}
+
+/***********    CHAMPS SPECIFS         **********/
+.pj-sheet > .sidebar > .field.nom > label {
+    flex-basis: 40px;
 }

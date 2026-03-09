@@ -6,6 +6,7 @@ export class BaseActorDataModel extends SystemDataModel {
     static defineSchema() {
     // All Actors have resources.
         return { 
+            isLocked: new foundry.data.fields.BooleanField({initial: false}),
             argent: new foundry.data.fields.NumberField({initial: 0, min:0}),
             notes: new foundry.data.fields.StringField({}),
             aspects: new foundry.data.fields.SchemaField({ 

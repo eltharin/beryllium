@@ -9,7 +9,7 @@ export class ActorPjDataModel extends BaseActorDataModel {
             culture: new foundry.data.fields.StringField({}),
             
             heritage: new foundry.data.fields.SchemaField({
-                affinite: new foundry.data.fields.StringField({}),
+                aspect: new foundry.data.fields.StringField({}),
                 utilisationPrivilege: new foundry.data.fields.ArrayField(
                     new foundry.data.fields.SchemaField({
                         value: new foundry.data.fields.NumberField({initial: 0, min:0}),

@@ -45,6 +45,8 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
       depense: this._onDepense,
       attaque: this._onAttaque,
       deInterference: this._onDeInterference,
+      verouillage: this.verouillage,
+      deverouillage: this.deverouillage,
       //deleteItem: PjSheet.deleteDroppedItem,
       //configurePrototypeToken: (any, event) => {console.log(any, event);},
       //configureToken: (any) => {console.log(any);},
@@ -76,7 +78,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
           icon: "fa-solid fa-unlock",
           label: "beryllium.pjsheet.action.unlock",
           ownership: "OWNER",
-          visible: this.#canVerouillage
+          visible: this.#canDeverouillage
         }
       ]
     },
@@ -92,11 +94,22 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
   }
 
   static #canVerouillage() {
-    return false && this.isEditable;// && this.actor.isPolymorphed;
+    return this.isEditable && !this.actor.system.isLocked;
   }
   
-  verouillage() {
+  static #canDeverouillage() {
+    return this.isEditable && this.actor.system.isLocked;
+  }
+  
+  static verouillage() {
     console.log("verouillage");
+    //update["system." + target.dataset.item + ".value"] = foundry.utils.getProperty(this.actor.system, target.dataset.item).value + (target.dataset.sens == "+" ? 1 : -1);
+    this.actor.update({"system.isLocked":true});
+  }
+  
+  static deverouillage() {
+    console.log("deverouillage");
+    this.actor.update({"system.isLocked":false});
   }
 
   _prepareSubmitData(event, form, formData, updateData) { 
@@ -113,6 +126,8 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
   async _prepareContext(options) {
     
     const context = await super._prepareContext(options)
+
+    context.isVerrou = this.actor.system.isLocked;
 
     context.isGm = game.user.isGM;
     context.isPJ = this.constructor.name == "PjSheet";
@@ -187,7 +202,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     context.sorts.default.sort((a,b) => a.system.level > b.system.level ? 1 : -1);
     context.sorts.custom.sort((a,b) => a.system.level > b.system.level ? 1 : -1);
 
-    context.system.cultureobj = Cultures.get(context.system.culture);
+
 
     return context
   }
@@ -234,26 +249,6 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
 
     this._manageTab();
   }
-/*
-  _onUpdate(changed, options, userId) {
-    console.log(changed, options, userId);
-    super._onUpdate(changed, options, userId);
-  }
-
-  _onChangeForm(formConfig, event) {
-    let data = super._onChangeForm(formConfig, event)
-    console.log(data, formConfig, event.currentTarget);
-    return data;
-  }*/
-/*
-  _activateSkillRolls() {
-    this.element.querySelectorAll('.pj-sheet .pj-sheet-competences .competence label').forEach(label => {
-      label.style.cursor = 'pointer';
-      label.addEventListener('click', async (event) => {
-
-      });
-    });
-  }*/
 
   static async _onAttaque(event, target){
     event.preventDefault();
@@ -313,17 +308,6 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
 
         }
     }
-    /*
-    
-    // Handle different data types
-    switch (data.type) {
-      case "Item":
-        return this._onDropItem(event, data);
-      case "Actor":
-        return this._onDropActor(event, data);
-      case "Folder":
-        return this._onDropFolder(event, data);
-    }*/
   }
 
   static async _onAddRemove(event, target) {
@@ -335,11 +319,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
       await this.actor.update(update)
     }
   }
-
-  static async _onLanceSort(event, target) {
-    console.log("lance sort",event, target);
-  }
-
+  
   static async _onAddItem(event, target) {
     console.log(event, target)
     event.preventDefault();
@@ -422,6 +402,7 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
 
   static async _onRepos(event, target) {
     const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dialog/repos.hbs");
+
     const dialog = foundry.applications.api.DialogV2.input({
       content: html,
       window: {title: "Repos"},

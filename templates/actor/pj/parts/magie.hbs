@@ -3,33 +3,38 @@
   data-group='primary'
   data-tab='magie'
 >
-  <div class="pj-sheet-cat magie">
-    <div class="multicol">
-      <div>
+  <div class="pj-sheet-cat fields-container magie">
+    <div class="multicol-fields">
+      <div class="field">
           <label>{{localize "beryllium.pjsheet.magie.affinite.label"}}</label>
-          <select name="system.magie.affinite">
-              <option value="">{{localize "beryllium.pjsheet.magie.affinite.select"}}</option>
-              {{#each listes.magies.list as |mag| }}
-                  <option value="{{mag.id}}" {{#if (eq mag.id ../system.magie.affinite) }}selected{{/if}}>{{mag.name}}</option>
-              {{/each}}
-          </select>
+          <div>
+            {{#fieldOrInput "system.magie.affinite" class="pj-sheet-input" value=system.magie.affiniteobj.name }}
+              <select name="system.magie.affinite">
+                  <option value="">{{localize "beryllium.pjsheet.magie.affinite.select"}}</option>
+                  {{#each ../listes.magies.list as |mag| }}
+                      <option value="{{mag.id}}" {{#if (eq mag.id ../../system.magie.affinite) }}selected{{/if}}>{{mag.name}}</option>
+                  {{/each}}
+              </select>
+            {{/fieldOrInput}}
+          </div>
       </div>
-      <div>
-          <label>{{localize "beryllium.pjsheet.magie.oppose.label"}}</label>
-          <div class="fakeField">{{ system.magie.oppose.name }}</div>
-      </div>
-    </div>
-  </div>
 
-  <div class="pj-sheet-cat magie">
-    <div class="multicol">
-      <div>
-          <label>{{localize "beryllium.pjsheet.magie.tradition.label"}}</label>
-          <input type="text" name="system.magie.tradition" value="{{system.magie.tradition}}" class="pj-sheet-input" placeholder=""/>
+      <div class="field">
+          <label>{{localize "beryllium.pjsheet.magie.oppose.label"}}</label>
+          <div><span class="field-value">{{ system.magie.oppose.name }}</span></div>
       </div>
-      <div>
+    
+  
+
+  
+    
+      <div class="field">
+          <label>{{localize "beryllium.pjsheet.magie.tradition.label"}}</label>
+          <div>{{ fieldOrInput "system.aspects.tradition" class="pj-sheet-input" }}</div>
+      </div>
+      <div class="field">
           <label>{{localize "beryllium.pjsheet.magie.seuil.label"}}</label>
-          <div class="fakeField">{{ system.magie.seuil }}</div>
+          <div><span class="field-value">{{ system.magie.seuil }}</span></div>
       </div>
     </div>
   </div>
