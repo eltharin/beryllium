@@ -24,13 +24,23 @@
         <label>{{localize "beryllium.pjsheet.heritage.aspect"}}</label>
         <div>{{ fieldOrInput "system.aspects.aspect" class="pj-sheet-input" }}</div>
     </div>
-    <div class="field heritage">
+    <div class="field heritage privilege">
         <label>{{localize "beryllium.pjsheet.heritage.privilege"}}</label>
         
         <div>
           {{#each system.cultureobj.privileges as |privilege|}}
             <div class="notfield">
-              <div class="title">{{ privilege.titre }}</div>
+              <div class="title">{{ privilege.titre }}
+                {{#with (lookup ../system.heritage.utilisationPrivilege @key) as |util| }}
+                  <span class="util clickable" 
+                  {{#if ../../isVerrou}}
+                    title="{{localize "beryllium.pjsheet.heritage.useprivilege.use"}}" data-action="usePrivilege"
+                  {{else}}
+                    title="{{localize "beryllium.pjsheet.heritage.useprivilege.manage"}}" data-action="managePrivilege"
+                  {{/if}}
+                   data-privilegeid="{{@key}}"> ({{localize "beryllium.pjsheet.heritage.useprivilege.label"}}{{ util.value }}/{{ util.max }})</span>
+                {{/with }}
+              </div>
               <div class="legend">{{ privilege.description }}</div>
             </div>
           {{/each }}

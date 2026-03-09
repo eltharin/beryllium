@@ -47,6 +47,8 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
       deInterference: this._onDeInterference,
       verouillage: this.verouillage,
       deverouillage: this.deverouillage,
+      usePrivilege: this._onUsePrivilege,
+      managePrivilege: this._onManagePrivilege,
       //deleteItem: PjSheet.deleteDroppedItem,
       //configurePrototypeToken: (any, event) => {console.log(any, event);},
       //configureToken: (any) => {console.log(any);},
@@ -445,5 +447,41 @@ export class PjSheet extends foundry.applications.api.HandlebarsApplicationMixin
     return DiceRoller.interferenceRoll({
       actor: this.document,
     }); 
+  } 
+
+  static async _onUsePrivilege(event, target) {
+    console.log("use privilege", event, target, target.dataset.privilegeid, this.actor.system.heritage.utilisationPrivilege);
+    
+    let uses = this.actor.system.heritage.utilisationPrivilege;
+
+    if(uses[target.dataset.privilegeid].value >= uses[target.dataset.privilegeid].max) {
+      ui.notifications.error(game.i18n.format("beryllium.messages.usePrivilege.error"));
+      return;
+    }
+
+    uses[target.dataset.privilegeid].value = uses[target.dataset.privilegeid].value + 1;
+    const update = {};
+    update["system.heritage.utilisationPrivilege"] = uses;
+    await this.actor.update(update)
+  } 
+
+  static async _onManagePrivilege(event, target) {
+    let uses = this.actor.system.heritage.utilisationPrivilege;
+
+    const dialog = await foundry.applications.api.DialogV2.input({
+      content: await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dialog/changeUsePrivilege.hbs", {use: uses[target.dataset.privilegeid]}),
+      window: {title: game.i18n.format("beryllium.messages.managePrivilege.dialog.title")},
+      ok: {
+          label: game.i18n.format("beryllium.messages.managePrivilege.dialog.oklabel"),
+          default: true,
+          icon: "fa-solid fa-save",
+      },
+      submit: result => {
+        uses[target.dataset.privilegeid].value = result.newNbUtils;
+        const update = {};
+        update["system.heritage.utilisationPrivilege"] = uses;
+        this.actor.update(update)
+      }
+    });
   } 
 }

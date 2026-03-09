@@ -65,6 +65,11 @@
                 "aspect": "Aspect",
                 "incomp": "Incomp????",
                 "privilege": "Privilège",
+                "useprivilege": {
+                    "label" : "utilisé: ",
+                    "use" : "Utiliser ce privilège",
+                    "manage" : "Modifier le nombre d'utilisation de ce privilège"
+                },
                 "faiblesse": "Faiblesse",
                 "tradition": "Tradition",
                 "specialisation": "Spécialisation"
@@ -240,6 +245,19 @@
                 "carac": "Défense avec ",
                 "affectDegat" : "Affecter les dégats",
                 "majAttaque" : "MAJ Attaque"
+            }
+        },
+        "messages": {
+            "cantupdate" : "Toi pas modifier",
+            "cantdelete" : "Toi pas suppr",
+            "usePrivilege" : {
+                "error" : "Vous ne pouvez plus utiliser ce privilège"
+            },
+            "managePrivilege": {
+                "dialog": {
+                    "title": "Modification du nombre d'utilisations",
+                    "oklabel" : "Valider"
+                }
             }
         }
     }
