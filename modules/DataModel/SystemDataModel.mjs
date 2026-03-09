@@ -6,6 +6,7 @@ export class SystemDataModel extends foundry.abstract.TypeDataModel {
     ];
 
     async _preUpdate(changes, options, user) {
+        const allowed = await super._preUpdate(changes, options, user);
         let clone = foundry.utils.duplicate(this); 
         foundry.utils.mergeObject(clone, changes.system, { insertKeys: true, insertValues: true }); 
 

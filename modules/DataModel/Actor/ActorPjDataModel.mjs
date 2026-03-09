@@ -55,6 +55,11 @@ export class ActorPjDataModel extends BaseActorDataModel {
 
     }    
 
+    async _preCreate(data, options, user) {
+        await super._preCreate(data, options, user);
+        this.parent.prototypeToken.updateSource({actorLink: true});
+    }
+
     _getNbCasesOubliTotal(elem) {
         return (elem.oubli.forceMax >= 0 ? elem.oubli.forceMax : 3 + elem.oubli.bonus + elem.competences?.volonte?.value);
     }
