@@ -5,16 +5,20 @@
 >
   <div class="pj-sheet-cat prouesses">
     {{#times system.prouesses.max }}
-      <div class="prouesse " data-prouesse="{{index}}">
+      <div class="prouesse" data-prouesse="{{index}}">
         {{#with (lookup system.prouesses.values index) as |prouesse|}}
-          <div class="line">
+          <div class="field">
             <label>{{localize "beryllium.pjsheet.prouesses.label" num=../index1 }}</label>
-            <div>{{ fieldOrInput (concat "system.prouesses.values." ../index ".nom") value="{{prouesse.nom}}" class="pj-sheet-input" }}</div>
+            <div>{{ fieldOrInput (concat "system.prouesses.values." ../index ".nom") value=prouesse.nom class="pj-sheet-input" }}</div>
             
           </div>
-          <div class="line">
+          <div class="field">
             <label>{{localize "beryllium.pjsheet.prouesses.effet"}}</label>
-            <div><textarea name="system.prouesses.values.{{../index}}.effet" rows="2" class="pj-sheet-input" placeholder="">{{prouesse.effet}}</textarea></div>
+            <div>
+              {{#fieldOrInput (concat "system.prouesses.values." ../index ".effet") value=prouesse.effet class="pj-sheet-input" }}
+                <textarea name="system.prouesses.values.{{../index}}.effet" rows="2" class="pj-sheet-input" placeholder="">{{prouesse.effet}}</textarea>
+              {{/fieldOrInput}}
+            </div>
           </div>
         {{/with}}
       </div>
