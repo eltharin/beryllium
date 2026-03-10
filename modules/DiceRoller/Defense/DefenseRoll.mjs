@@ -15,19 +15,23 @@ export class DefenseRoll extends Roll{
         {
             this.options.isAttaqueUpdated = false;
         }
-        
+
+        console.log(game.messages.get(this.options.attaque.id));
+        const msgAtt = game.messages.get(this.options.attaque.id);      
     }
 
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
 
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
         ret.result = game.i18n.format("beryllium.rolldice.result." + this.getResult());
-        ret.totalText = this.total + " + " + (this.options?.modificateurs?.modificateur || 0) + " + " + (this.options?.actorCompetence.value || 0);
+        ret.totalText = (this.options?.actorCompetence?.value || 0) + " + " + (this.options?.modificateurs?.modificateur || 0) + " + " + this.total;
         ret.totalValue = this.getTotalValue();
         ret.seuil = this.getSeuil();
         ret.oppose = this.options?.attaque.result;
         
+        ret.hit = this.getHit();
         ret.degats = this.getDegats();
+        ret.degatsFormula = this.getDegatsFormula();
         
         ret.competenceLabel = this.options.competence;
 
@@ -35,6 +39,8 @@ export class DefenseRoll extends Roll{
         
         ret.canAffect = game.scenes.get(this.options.scene)?.tokens.get(this.options.token).actor.testUserPermission(game.user, "OWNER") && !this.options.isAffected;
         ret.canUpdateAttaque = game.messages.get(this.options.attaque.id).testUserPermission(game.user, "update") && !this.options.isAttaqueUpdated;
+
+        ret.isGm = game.user.isGM;
 
         console.log(this.options)
         console.log(this)
@@ -44,13 +50,12 @@ export class DefenseRoll extends Roll{
 
     getResult()
     {
-        const resValue = this.getTotalValue() - this.getSeuil();
+        return this.options?.attaque.result - this.getTotalValue();
+    }
 
-        if(resValue >= 3) return "reussiteExceptionnelle";
-        else if(resValue > 0) return "reussite";
-        else if(resValue == 0) return "reussiteJustesse";
-        else if(resValue >= -2) return "echec";
-        else return "echecCritique";
+    getHit()
+    {
+        return this.getResult() > 0
     }
 
     static fromData(data) {
@@ -58,7 +63,7 @@ export class DefenseRoll extends Roll{
     }
 
     getTotalValue() {
-        return this.total + (this.options?.modificateurs?.modificateur || 0) + (this.options?.actorCompetence.value || 0);
+        return (this.options?.actorCompetence?.value || 0) + (this.options?.modificateurs?.modificateur || 0) + this.total;
     }
 
     getSeuil() {
@@ -66,7 +71,16 @@ export class DefenseRoll extends Roll{
     }
 
     getDegats() {
-        return Math.max(0, this.options?.attaque.result - this.getTotalValue());
+        if(!this.getHit())
+        {
+            return 0;
+        }
+
+        return Math.max(1, this.options.attaque.degats - this.getTotalValue() + this.options.attaque.degats - this.options.defense.degats );
+    }
+
+    getDegatsFormula() {
+        return `${this.options?.attaque.result} - ${this.getTotalValue()} + ${this.options.attaque.degats} - ${this.options.defense.degats} = ${this.getDegats()}`;
     }
 
     setAffected(message)

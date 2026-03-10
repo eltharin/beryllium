@@ -4,7 +4,7 @@
 
         <div class="flexrow-beryllium roll-threshold">
             <label>{{localize "beryllium.attaquedefense.defense.caracdef"}}</label>
-            <select name="competence">
+            <select name="competence" class="changeCompetence">
                 {{#each competences as |comp|}}
                     <option value="{{@key}}">{{comp}}</option>
                 {{/each}}
@@ -12,8 +12,71 @@
         </div>
 
         <div class="flexrow-beryllium roll-threshold">
+            <table>   
+                <thead>
+                    <tr class="head">
+                        <td>
+                        </td>
+                        <td>
+                            <label>{{ localize "beryllium.attaquedefense.defense.dialog.armuretitle" }}</label>
+                        </td>
+                        <td>
+                            <span class="">{{ localize "beryllium.attaquedefense.defense.dialog.bonusDefense" }}</span>
+                        </td>
+                        <td>
+                            <span class="">{{ localize "beryllium.attaquedefense.defense.dialog.redutionArmure" }}</span>
+                        </td>
+                    </tr>
+                </thead> 
+                <tbody>
+                {{#each armures as |armure|}}
+                <tr class="armure">
+                    <td>
+                        <input id="{{armure._id}}" type="checkbox" class="changeArmure" name="armure" value="{{armure._id}}" checked="checked"
+                            data-reddeg_combat="{{armure.system.reductionDegat.combat}}"
+                            data-reddeg_physique="{{armure.system.reductionDegat.physique}}"
+                            data-reddeg_magie="{{armure.system.reductionDegat.magie}}"
+                            data-reddeg_volonte="{{armure.system.reductionDegat.volonte}}"
+                            data-bondef_combat="{{armure.system.bonusDefense.combat}}"
+                            data-bondef_physique="{{armure.system.bonusDefense.physique}}"
+                            data-bondef_magie="{{armure.system.bonusDefense.magie}}"
+                            data-bondef_volonte="{{armure.system.bonusDefense.volonte}}"
+                        />
+                    </td>
+                    <td>
+                        <label for="{{armure._id}}">{{armure.name}}</label>
+                    </td>
+                    <td>
+                        <span class="bonusDefense">X</span>
+                    </td>
+                    <td>
+                        <span class="reductionDegat">X</span>
+                    </td>
+                </tr>
+                {{/each}}
+                </tbody>
+                <tfoot>
+                <tr class="total">
+                    <td>
+                    </td>
+                    <td>
+                        <label>{{ localize "beryllium.attaquedefense.defense.dialog.total" }}</label>
+                    </td>
+                    <td>
+                        <span class="totalBonusDefense">X</span>
+                    </td>
+                    <td>
+                        <span class="totalReductionDegat">X</span>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="flexrow-beryllium roll-threshold">
             <label>{{localize 'beryllium.RollModificateur'}}</label>
             <input type="number" name="modificateur" value="0" step="1" />
         </div>
+        <input type="hidden" name="reductionDegat" class="inputtotalReductionDegat" value="0">
     </div>
 </form>

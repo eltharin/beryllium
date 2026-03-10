@@ -254,6 +254,12 @@
             "defense": {
                 "choixtoken": "Choisissez le Token à défendre",
                 "caracdef": "Caractéristique de défense",
+                "dialog": {
+                    "armuretitle": "Armure",
+                    "bonusDefense": "Bon. Def.",
+                    "redutionArmure": "Red. Deg.",
+                    "total": "Total"
+                },
                 "echec": "Il te défonce",
                 "perteStress": "Tu perds {ptStress} pts de Stress",
                 "reussite": "Meme pas mal",

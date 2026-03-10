@@ -37,14 +37,11 @@ export class MessageActionResolver {
         }
 
         const avaiableTargets = msgAtt.rolls[0].getAvaiableTokenTarget(game.user);
-
-        console.log(msgAtt.rolls[0]);
-        console.log(avaiableTargets);
         
         let token = null;
 
         if(avaiableTargets.length > 1) {
-            const choixToken = await DefenseChoixTokenDialog.create({scene: scene, avaiableTargets: avaiableTargets});
+            const choixToken = await DiceRollerHelper.DefenseChoixTokenDialog.create({scene: scene, avaiableTargets: avaiableTargets});
             token = avaiableTargets.filter(t => t.id == choixToken.token)[0];
         }
         else {
@@ -56,27 +53,29 @@ export class MessageActionResolver {
             return;
         }        
         
-
         const modificateurs = await DiceRollerHelper.DefenseRollDialog.create({attaque: msgAtt.rolls[0], token: token});
-        
-        
-        //const token = scene.tokens.get(modificateurs.actor);
-    
-        const myRoll = new DiceRollerHelper.DefenseRoll("4db",{}, {
-            attaque: {
-                id: msgAtt.id,
-                result: msgAtt.rolls[0].getTotalValue(),
-            }, 
-            competence: modificateurs.competence, 
-            token: token.id,
-            scene: scene.id,
-            actorCompetence: token.actor.system.competences[modificateurs.competence], 
-            modificateurs: modificateurs, 
-        });
+        if (modificateurs != null) //-- si l'utilisateur n'a pas annulé
+        {
+            const myRoll = new DiceRollerHelper.DefenseRoll("4db",{}, {
+                attaque: {
+                    id: msgAtt.id,
+                    result: msgAtt.rolls[0].getTotalValue(),
+                    degats: msgAtt.rolls[0].options.item.degats,
+                },
+                defense: {
+                    degats: modificateurs.reductionDegat,
+                },
+                competence: modificateurs.competence, 
+                token: token.id,
+                scene: scene.id,
+                actorCompetence: token.actor.system.competences[modificateurs.competence], 
+                modificateurs: modificateurs, 
+            });
 
-        myRoll.toMessage({
-            speaker: ChatMessage.getSpeaker({ alias: token.actor.name + " ( " + game.user.name + " )"}),
-        });
+            myRoll.toMessage({
+                speaker: ChatMessage.getSpeaker({ alias: token.actor.name + " ( " + game.user.name + " )"}),
+            });
+        }
     }
 
     static _onAffectDegat(event, message, data) {

@@ -257,7 +257,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
 
   static async _onAttaque(event, target){
     event.preventDefault();
-    console.log(event, target)
     
     const actor = this.document;
     const competence = target.dataset.competence;
@@ -274,14 +273,18 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     
     const myRoll = new DiceRollerHelper.AttaqueRoll("4db",{}, {
         competence: competence,
-        item: itemObj,
-        itemType: type,
+        item: {
+          id: itemObj.id,
+          name: itemObj.name,
+          type: type,
+          degats: itemObj.system.degat,
+        },
         actorCompetence: actor.system.competences[modificateurs.competence], 
         modificateurs: modificateurs, 
         from: actor,
         scene: game.scenes.current.id,
         targets: [...game.user.targets].reduce(function(r, t) {
-            r[t.id] = { id: t.document.id, actorId: t.document.actorId, name:t.document.name, result: null};
+            r[t.id] = { id: t.document.id, actorId: t.document.actorId, name:t.document.delta.name || t.document.name, result: null};
             return r;
         }, {}),
     });
@@ -527,14 +530,13 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     });
   } 
 
-    static async _onEquipeArmure(event, target) {
-        console.log("equipe")
-        this.actor.items.get(target.dataset.itemid).update({"system.isEquipe": true});
-    } 
+  static async _onEquipeArmure(event, target) {
+    this.actor.items.get(target.dataset.itemid).update({"system.isEquipe": true});
+  } 
 
-    static async _onDesequipeArmure(event, target) {
-        console.log("desequipe")
-        this.actor.items.get(target.dataset.itemid).update({"system.isEquipe": false});
-    } 
+  static async _onDesequipeArmure(event, target) {
+    this.actor.items.get(target.dataset.itemid).update({"system.isEquipe": false});
+  } 
+  
   
 }

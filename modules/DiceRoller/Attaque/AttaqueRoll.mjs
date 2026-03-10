@@ -21,7 +21,6 @@ export class AttaqueRoll extends Roll{
         ret.competenceLabel = this.options.competence;
         
         ret.item = this.options.item;
-        ret.itemType = this.options.itemType;
 
         ret.canDefendre = this.canDefendre(game.user);
         return ret;

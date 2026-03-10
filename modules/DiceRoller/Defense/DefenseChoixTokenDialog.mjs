@@ -4,8 +4,13 @@
 export class DefenseChoixTokenDialog {
     static async create(options = {}) {
 
+
+        console.log(options.avaiableTargets)
         let data = {
-            tokens : options.avaiableTargets
+            tokens : options.avaiableTargets.map(t => {return {
+                id: t.id,
+                name: t.delta.name || t.name
+            };})
         };
 
         const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/defense-choixToken-dialog.hbs", data);
