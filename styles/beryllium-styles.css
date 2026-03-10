@@ -33,6 +33,7 @@
 }
 
 .pj-sheet > .sidebar {
+    overflow-y: auto;
     width: 200px;
     flex-grow:0;
     flex-shrink:0;
