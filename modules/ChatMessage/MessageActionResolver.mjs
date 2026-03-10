@@ -1,5 +1,5 @@
-import {DiceRoller} from "../DiceRoller/DiceRoller.mjs";
 
+import * as DiceRollerHelper from "../DiceRoller/_helpers.mjs";
 
 export class MessageActionResolver {
     static actions = {
@@ -19,8 +19,64 @@ export class MessageActionResolver {
         }
     }
 
-    static _onDefense(event, message, data) {
-        DiceRoller.defenseRoll({attaque: message.id});
+    static async _onDefense(event, message, data) {
+        const attaque = message.id;
+        
+        const msgAtt = game.messages.get(attaque);
+        if(msgAtt == null)
+        {
+            throw new Error ("le message n'existe pas");
+            return;
+        }
+
+        const scene = game.scenes.get(msgAtt.rolls[0].options.scene);
+        if(msgAtt == null)
+        {
+            throw new Error ("la scene n'existe pas");
+            return;
+        }
+
+        const avaiableTargets = msgAtt.rolls[0].getAvaiableTokenTarget(game.user);
+
+        console.log(msgAtt.rolls[0]);
+        console.log(avaiableTargets);
+        
+        let token = null;
+
+        if(avaiableTargets.length > 1) {
+            const choixToken = await DefenseChoixTokenDialog.create({scene: scene, avaiableTargets: avaiableTargets});
+            token = avaiableTargets.filter(t => t.id == choixToken.token)[0];
+        }
+        else {
+            token = avaiableTargets[0];
+        }
+
+        if(token == null){
+            ui.notifications.error(`Actor with name ${token.actor} not found.`);
+            return;
+        }        
+        
+
+        const modificateurs = await DiceRollerHelper.DefenseRollDialog.create({attaque: msgAtt.rolls[0], token: token});
+        
+        
+        //const token = scene.tokens.get(modificateurs.actor);
+    
+        const myRoll = new DiceRollerHelper.DefenseRoll("4db",{}, {
+            attaque: {
+                id: msgAtt.id,
+                result: msgAtt.rolls[0].getTotalValue(),
+            }, 
+            competence: modificateurs.competence, 
+            token: token.id,
+            scene: scene.id,
+            actorCompetence: token.actor.system.competences[modificateurs.competence], 
+            modificateurs: modificateurs, 
+        });
+
+        myRoll.toMessage({
+            speaker: ChatMessage.getSpeaker({ alias: token.actor.name + " ( " + game.user.name + " )"}),
+        });
     }
 
     static _onAffectDegat(event, message, data) {

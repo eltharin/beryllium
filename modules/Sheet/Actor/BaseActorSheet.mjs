@@ -1,7 +1,9 @@
-import {DiceRoller} from "../../DiceRoller/DiceRoller.mjs";
 import {Cultures} from "../../Objet/Cultures.mjs";
 import {Magies} from "../../Objet/Magies.mjs";
 import * as Helpers from "../../Helper/_helpers.mjs";
+
+import * as DiceRollerHelper from "../../DiceRoller/_helpers.mjs";
+
 
 
 export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicationMixin(
@@ -256,23 +258,55 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   static async _onAttaque(event, target){
     event.preventDefault();
     console.log(event, target)
-    // Lancer les dés
-    return DiceRoller.attaqueRoll({
-      actor: this.document,
-      competence: target.dataset.competence,
-      item: target.dataset.itemid,
-      type: target.dataset.competence == "magie" ? "magie" : "arme",
-      //target: game.target
-    }); 
+    
+    const actor = this.document;
+    const competence = target.dataset.competence;
+    const item = target.dataset.itemid;
+    const type = target.dataset.competence == "magie" ? "magie" : "arme";
+
+    if([...game.user.targets].length == 0) {
+        return ui.notifications.error(`Il n'y a pas de cible sélectionnée.`);
+    }
+
+    const itemObj = actor.items.get(item);
+    const modificateurs = await DiceRollerHelper.AttaqueRollDialog.create({isMagie: (competence == "magie"), competences: actor.system.competences, item: itemObj, type: type});
+    console.log(modificateurs)
+    
+    const myRoll = new DiceRollerHelper.AttaqueRoll("4db",{}, {
+        competence: competence,
+        item: itemObj,
+        itemType: type,
+        actorCompetence: actor.system.competences[modificateurs.competence], 
+        modificateurs: modificateurs, 
+        from: actor,
+        scene: game.scenes.current.id,
+        targets: [...game.user.targets].reduce(function(r, t) {
+            r[t.id] = { id: t.document.id, actorId: t.document.actorId, name:t.document.name, result: null};
+            return r;
+        }, {}),
+    });
+
+    myRoll.toMessage({
+        speaker: ChatMessage.getSpeaker({ alias: actor.name + " ( " + game.user.name + " )"}),
+    });
   }
   
   static async _onSkillRoll(event, target){
     event.preventDefault();
-    // Lancer les dés
-    return DiceRoller.competenceRoll({
-      actor: this.document,
-      competence: target.dataset.competence
+
+    const actor = this.document;
+    const competence =  target.dataset.competence;
+
+    const modificateurs = await DiceRollerHelper.CompetenceRollDialog.create();
+    console.log(actor, competence, actor.system,actor.system.competences[competence])
+    const myRoll = new DiceRollerHelper.CompetenceRoll("4db",{}, {
+        competence: competence, 
+        actorCompetence: actor.system.competences[competence], 
+        modificateurs: modificateurs
     });
+
+    myRoll.toMessage({});
+
   }
 
   _manageTab() {
@@ -448,9 +482,13 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   }
 
   static async _onDeInterference(event, target) {
-    return DiceRoller.interferenceRoll({
-      actor: this.document,
-    }); 
+    const modificateurs = await DiceRollerHelper.InterferenceRollDialog.create();
+    const myRoll = new DiceRollerHelper.InterferenceRoll("1di",{}, {
+      modificateurs: modificateurs
+    });
+
+    myRoll.toMessage({});
+
   } 
 
   static async _onUsePrivilege(event, target) {
