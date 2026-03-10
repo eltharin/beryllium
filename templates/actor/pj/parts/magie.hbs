@@ -44,7 +44,7 @@
     <div class="sorts-list">
       {{#each sorts.default as |sort|}}
           <div class="item flexrow" data-item-id="{{sort._id}}">
-            <div class="clickable" data-action="attaque" data-competence="magie">{{sort.name}}</div>
+            <div class="clickable" data-action="attaque" data-competence="magie" data-itemid="{{sort._id}}">{{sort.name}}</div>
             <div class="controls"> </div>
           </div>
       {{/each}}
@@ -57,7 +57,7 @@
       <div class="sorts-list"> 
       {{#each sorts.custom as |sort|}}
           <div class="item flexrow" data-item-id="{{sort._id}}">
-            <div class="clickable" data-action="attaque" data-competence="magie"><a>{{sort.name}}</a></div>
+            <div class="clickable" data-action="attaque" data-competence="magie" data-itemid="{{sort._id}}"><a>{{sort.name}}</a></div>
             <div class="controls">
               <a data-action="editItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.magie.sort.edit"}}"><i class="fas fa-edit"></i></a>
               <a data-action="deleteItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.magie.sort.delete"}}"><i class="fas fa-trash"></i></a>

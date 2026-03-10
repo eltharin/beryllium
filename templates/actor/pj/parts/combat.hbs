@@ -12,7 +12,7 @@
       <div class="sorts-list">
         {{#each armes.default as |arme|}}
             <div class="item flexrow" data-item-id="{{arme._id}}">
-              <div class="clickable" data-action="attaque" data-competence="combat">{{arme.name}}</div>
+              <div class="clickable" data-action="attaque" data-competence="combat" data-itemid="{{arme._id}}">{{arme.name}}</div>
               <div class="controls">
               </div>
             </div>
@@ -26,7 +26,7 @@
         <div class="arme-list"> 
         {{#each armes.custom as |arme|}}
             <div class="item flexrow" data-item-id="{{arme._id}}">
-              <div class="clickable" data-action="attaque" data-competence="combat">{{arme.name}}</div>
+              <div class="clickable" data-action="attaque" data-competence="combat" data-itemid="{{arme._id}}">{{arme.name}}</div>
               <div class="controls">
                 <a data-action="editItem" data-type="arme" data-itemId="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.edit"}}"><i class="fas fa-edit"></i></a>
                 <a data-action="deleteItem" data-type="arme" data-itemId="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.delete"}}"><i class="fas fa-trash"></i></a>
@@ -48,8 +48,13 @@
             <div class="item flexrow" data-item-id="{{armure._id}}">
               <div >{{armure.name}}</div>
               <div class="controls">
-                <a data-action="editItem" data-type="armure" data-itemId="{{armure._id}}" title="{{localize "beryllium.pjsheet.combat.armure.edit"}}"><i class="fas fa-edit"></i></a>
-                <a data-action="deleteItem" data-type="armure" data-itemId="{{armure._id}}" title="{{localize "beryllium.pjsheet.combat.armure.delete"}}"><i class="fas fa-trash"></i></a>
+                {{#if armure.system.isEquipe}}
+                <a data-action="desequipeArmure" data-type="armure" data-itemid="{{armure._id}}" title="{{localize "beryllium.pjsheet.combat.armure.desequipe"}}"><i class="fas fa-minus"></i></a>
+                {{else}}
+                <a data-action="equipeArmure" data-type="armure" data-itemid="{{armure._id}}" title="{{localize "beryllium.pjsheet.combat.armure.equipe"}}"><i class="fas fa-plus"></i></a>
+                {{/if}}
+                <a data-action="editItem" data-type="armure" data-itemid="{{armure._id}}" title="{{localize "beryllium.pjsheet.combat.armure.edit"}}"><i class="fas fa-edit"></i></a>
+                <a data-action="deleteItem" data-type="armure" data-itemid="{{armure._id}}" title="{{localize "beryllium.pjsheet.combat.armure.delete"}}"><i class="fas fa-trash"></i></a>
               </div>
             </div>
         {{/each}}

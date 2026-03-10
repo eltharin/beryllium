@@ -1,8 +1,7 @@
 import * as Helpers from "../../Helper/_helpers.mjs";
+import { BaseItemSheet } from "./BaseItemSheet.mjs";
 
-export class ArmureSheet extends foundry.applications.api.HandlebarsApplicationMixin(
-  foundry.applications.sheets.ItemSheetV2
-) {
+export class ArmureSheet extends BaseItemSheet {
   static PARTS = {
     form: { 
       template: "systems/beryllium/templates/item/armure.hbs",

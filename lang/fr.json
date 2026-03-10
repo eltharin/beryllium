@@ -169,8 +169,23 @@
             },
             "armure": {
                 "type": "Type",
+                "isequipe": "Equipé ?",
                 "reduction": "Reduction",
-                "inconvenient": "Inconvenient"
+                "inconvenient": "Inconvenient",
+                "equipe": "Equiper l'armure",
+                "desequipe": "Enlever l'armure",
+                "reductionDegat": {
+                    "combat": "Reduction de dégats (combat)",
+                    "physique": "Reduction de dégats (physique)",
+                    "magie": "Reduction de dégats (magie)",
+                    "volonte": "Reduction de dégats (volonte)"
+                },
+                "bonusDefense": {
+                    "combat": "Bonus de défense (combat)",
+                    "physique": "Bonus de défense (physique)",
+                    "magie": "Bonus de défense (magie)",
+                    "volonte": "Bonus de défense (volonte)"
+                }
             },
             "sort": {
                 "level": "Niveau",

@@ -1,6 +1,9 @@
 <div class="dice-roll" data-action="expandRoll">
     <div class="dice-result">
-        <div class="dice-formula">{{localize "beryllium.attaquedefense.attaque.carac"}} {{competenceLabel}}</div>
+        <div class="dice-formula">
+            <div>{{localize "beryllium.attaquedefense.attaque.carac"}} {{localize (concat "beryllium.pjsheet.competences." competenceLabel)}}</div>
+            <div >{{itemType}} {{item.name}}{{#if (eq itemType "arme")}} (+{{item.system.degat}}){{/if}}</div>
+        </div>
         {{{tooltip}}}
         <div class="dice-formula">{{localize "beryllium.roll.common.total"}} : {{total}}</div>
         <h4 class="dice-total">{{localize "beryllium.roll.common.total"}} : {{totalText}} = {{totalValue}}</h4>

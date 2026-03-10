@@ -28,16 +28,19 @@ export class DiceRoller {
     }
     
     static async attaqueRoll(options){
-        const {actor, competence} = options;
+        const {actor, competence, item, type} = options;
         if([...game.user.targets].length == 0) {
             return ui.notifications.error(`Il n'y a pas de cible sélectionnée.`);
         }
 
-        const modificateurs = await AttaqueRollDialog.create({isMagie: (competence == "magie"), competences: actor.system.competences});
+        const itemObj = actor.items.get(item);
+        const modificateurs = await AttaqueRollDialog.create({isMagie: (competence == "magie"), competences: actor.system.competences, item: itemObj, type: type});
         console.log(modificateurs)
         
         const myRoll = new AttaqueRoll("4db",{}, {
-            competence: competence, 
+            competence: competence,
+            item: itemObj,
+            itemType: type,
             actorCompetence: actor.system.competences[modificateurs.competence], 
             modificateurs: modificateurs, 
             from: actor,

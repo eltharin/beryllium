@@ -1,7 +1,7 @@
 import * as Helpers from "../../Helper/_helpers.mjs";
+import {SystemDataModel} from "../SystemDataModel.mjs";
 
-
-export class ArmureDataModel extends foundry.abstract.TypeDataModel {
+export class ArmureDataModel extends SystemDataModel {
   constructor(data, options) {
     super(data, options);
     options.parent.img = "systems/beryllium/assets/pics/armure.svg"
@@ -12,18 +12,34 @@ export class ArmureDataModel extends foundry.abstract.TypeDataModel {
       isEquipe: new foundry.data.fields.BooleanField({initial: false}),
       prixmoyen: new foundry.data.fields.NumberField({initial: 0, min:0}),
       type: new foundry.data.fields.StringField({}),
-      reduction: new foundry.data.fields.StringField({}), // TODO: remove in next major version
-      reductionDegat: new foundry.data.fields.NumberField({}),
-      bonusDefense: new foundry.data.fields.NumberField({initial: 0}),
+      reductionDegat: new foundry.data.fields.SchemaField({ 
+        combat   : new foundry.data.fields.NumberField({initial: 0}),
+        physique : new foundry.data.fields.NumberField({initial: 0}),
+        magie    : new foundry.data.fields.NumberField({initial: 0}),
+        volonte  : new foundry.data.fields.NumberField({initial: 0}),
+      }),
+      bonusDefense: new foundry.data.fields.SchemaField({ 
+        combat   : new foundry.data.fields.NumberField({initial: 0}),
+        physique : new foundry.data.fields.NumberField({initial: 0}),
+        magie    : new foundry.data.fields.NumberField({initial: 0}),
+        volonte  : new foundry.data.fields.NumberField({initial: 0}),
+      }),
       inconvenient: new foundry.data.fields.StringField({}),
     };
   }
 
+  static preSaveFunctions = [
+      "updateIsEquipe",
+  ];
+
   prepareDerivedData() {
       this.prix = Helpers.Argent.convertAtoB(this.prixmoyen);
-      if(this.reductionDegat == undefined && this.reduction != undefined) // TODO: remove in next major version
-      {
-        this.reductionDegat = this.reduction;
-      }
+  }
+
+  updateIsEquipe(changes, clone){
+    console.log(changes);
+    if(foundry.utils.getProperty(clone, "isEquipe") == 1) {
+        foundry.utils.setProperty(changes, "system.isEquipe", true);
+    }
   }
 }

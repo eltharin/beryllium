@@ -12,13 +12,16 @@ export class AttaqueRoll extends Roll{
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
         ret.result = game.i18n.format("beryllium.rolldice.result." + this.getResult());
-        ret.totalText = this.total + " + " + (this.options?.modificateurs?.modificateur || 0) + " + " + (this.options?.actorCompetence.value || 0);
+        ret.totalText = (this.options?.actorCompetence.value || 0) + " + " + (this.options?.modificateurs?.modificateur || 0) + " + " + this.total;
         ret.totalValue = this.getTotalValue();
         ret.seuil = this.getSeuil();
 
         ret.scene = this.options.scene;
         ret.targets = this.options.targets;
         ret.competenceLabel = this.options.competence;
+        
+        ret.item = this.options.item;
+        ret.itemType = this.options.itemType;
 
         ret.canDefendre = this.canDefendre(game.user);
         return ret;

@@ -1,6 +1,6 @@
-import { PjSheet } from "./PjSheet.mjs";
+import { BaseActorSheet } from "./BaseActorSheet.mjs";
 
-export class PnjSheet extends PjSheet{
+export class PnjSheet extends BaseActorSheet{
   static PARTS = {
     form: { 
       template: "systems/beryllium/templates/actor/pj/pnj-sheet.hbs",
