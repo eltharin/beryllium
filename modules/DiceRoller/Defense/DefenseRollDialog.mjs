@@ -3,9 +3,6 @@
 
 export class DefenseRollDialog {
     static async create(options = {}) {
-console.log(options)
-console.log(options.token.actor.system.competences)
-console.log(options.token.actor)
 
         let data = {
             competences: {
@@ -14,7 +11,7 @@ console.log(options.token.actor)
                 discretion: "Volonté (" + options.token.actor.system.competences["volonte"].value + ")",
                 magie: "Magie (" + options.token.actor.system.competences["magie"].value + ")",
             },
-            armures: options.token.actor.items.filter(i => (i.type === "armure" && i.system.isEquipe == true))         
+            armures: options.token.actor.items.filter(i => (i.type === "armure" && i.system.isEquipe == true))
         };
 
         console.log(data)
@@ -24,14 +21,14 @@ console.log(options.token.actor)
         return await foundry.applications.api.DialogV2.input({
             content: html,
             render: event => {
-                this.calculTotal(event.target);
+                this.calculTotal(event.target, options.attaque.options.competence);
 
                 event.target.element.querySelector("form .changeCompetence").addEventListener("change", ev2 => {
-                    this.calculTotal(event.target);
+                    this.calculTotal(event.target, options.attaque.options.competence);
                 }, {passive: true});
                 
                 event.target.element.querySelectorAll("form .changeArmure").forEach(e => e.addEventListener("change", ev2 => {
-                    this.calculTotal(event.target);
+                    this.calculTotal(event.target, options.attaque.options.competence);
                 }, {passive: true}));
             },
             window: {title: "lancer de dé"},
@@ -44,15 +41,14 @@ console.log(options.token.actor)
         });
     }
 
-    static calculTotal(form)
+    static calculTotal(form, competenceAttaque)
     {
-        console.log(form);
         let totalReductionDegat = 0;
         let totalBonusDefense = 0;
         
         form.element.querySelectorAll(".armure").forEach(armure => {
             const checkbox = armure.querySelector("input[type=checkbox]");
-            const reductionDegat = Number(checkbox.dataset["reddeg_" + form.element.querySelector("form .changeCompetence").value] || 0);
+            const reductionDegat = Number(checkbox.dataset["reddeg_" + competenceAttaque] || 0);
             const bonusDefense   = Number(checkbox.dataset["bondef_" + form.element.querySelector("form .changeCompetence").value] || 0);
 
             if(checkbox.checked)
@@ -70,7 +66,5 @@ console.log(options.token.actor)
         form.element.querySelector('.totalBonusDefense').textContent = totalBonusDefense;
             
         form.element.querySelector('.inputtotalReductionDegat').value = totalReductionDegat;
-
-        console.log(totalReductionDegat, totalBonusDefense)
     }
 }
