@@ -34,54 +34,40 @@
                 <input type="text" name="system.type" value="{{document.system.type}}"/>
             </div>
 
-            <div>
-                <div >
-                    <label>{{localize "beryllium.itemsheet.armure.reductionDegat.combat"}}</label>
-                    <input type="number" name="system.reductionDegat.combat" value="{{document.system.reductionDegat.combat}}"/>
-                </div>
-                            
-                <div >
-                    <label>{{localize "beryllium.itemsheet.armure.reductionDegat.physique"}}</label>
-                    <input type="number" name="system.reductionDegat.physique" value="{{document.system.reductionDegat.physique}}"/>
-                </div>
-                            
-                <div >
-                    <label>{{localize "beryllium.itemsheet.armure.reductionDegat.magie"}}</label>
-                    <input type="number" name="system.reductionDegat.magie" value="{{document.system.reductionDegat.magie}}"/>
-                </div>
-                            
-                <div >
-                    <label>{{localize "beryllium.itemsheet.armure.reductionDegat.volonte"}}</label>
-                    <input type="number" name="system.reductionDegat.volonte" value="{{document.system.reductionDegat.volonte}}"/>
-                </div>
-            </div>
-
-            <div>
-                <div >
-                    <label>{{localize "beryllium.itemsheet.armure.bonusDefense.combat"}}</label>
-                    <input type="number" name="system.bonusDefense.combat" value="{{document.system.bonusDefense.combat}}"/>
-                </div>
-
-                <div >
-                    <label>{{localize "beryllium.itemsheet.armure.bonusDefense.physique"}}</label>
-                    <input type="number" name="system.bonusDefense.physique" value="{{document.system.bonusDefense.physique}}"/>
-                </div>
-
-                <div >
-                    <label>{{localize "beryllium.itemsheet.armure.bonusDefense.magie"}}</label>
-                    <input type="number" name="system.bonusDefense.magie" value="{{document.system.bonusDefense.magie}}"/>
-                </div>
-
-                <div >
-                    <label>{{localize "beryllium.itemsheet.armure.bonusDefense.volonte"}}</label>
-                    <input type="number" name="system.bonusDefense.volonte" value="{{document.system.bonusDefense.volonte}}"/>
-                </div>
-            </div>       
-
             <div >
                 <label>{{localize "beryllium.itemsheet.armure.inconvenient"}}</label>
                 <input type="text" name="system.inconvenient" value="{{document.system.inconvenient}}"/>
             </div>
+
+            <table class="norow">
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td>{{localize "beryllium.itemsheet.armure.bonusDefense"}}</td>
+                        <td>{{localize "beryllium.itemsheet.armure.reductionDegat"}}</td>
+                        </tr>
+                    <tr>
+                        <th>{{localize "beryllium.pjsheet.competences.combat"}}</th>
+                        <td>{{ fieldOrInput "system.bonusDefense.combat" type="number" class="pj-sheet-input" }}</td>
+                        <td>{{ fieldOrInput "system.reductionDegat.combat" type="number" class="pj-sheet-input" }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{localize "beryllium.pjsheet.competences.physique"}}</th>
+                        <td>{{ fieldOrInput "system.bonusDefense.physique" type="number" class="pj-sheet-input" }}</td>
+                        <td>{{ fieldOrInput "system.reductionDegat.physique" type="number" class="pj-sheet-input" }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{localize "beryllium.pjsheet.competences.magie"}}</th>
+                        <td>{{ fieldOrInput "system.bonusDefense.magie" type="number" class="pj-sheet-input" }}</td>
+                        <td>{{ fieldOrInput "system.reductionDegat.magie" type="number" class="pj-sheet-input" }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{localize "beryllium.pjsheet.competences.volonte"}}</th>
+                        <td>{{ fieldOrInput "system.bonusDefense.volonte" type="number" class="pj-sheet-input" }}</td>
+                        <td>{{ fieldOrInput "system.reductionDegat.volonte" type="number" class="pj-sheet-input" }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

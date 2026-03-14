@@ -354,3 +354,8 @@
 .field.heritage.privilege > div > .notfield {
     margin-bottom: 10px;
 }
+
+ table.norow tbody tr:nth-child(2n) {
+    background: var(--table-row-color-odd);
+ }
+
