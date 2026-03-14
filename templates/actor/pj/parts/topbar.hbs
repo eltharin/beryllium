@@ -1,4 +1,28 @@
 
+<div>
+    <div class="field nom">
+        <label>{{localize "beryllium.pjsheet.nom"}}</label>
+        <div>{{ fieldOrInput "document.name" class="pj-sheet-input" }}</div>
+    </div>
+
+    <div class="field nom">
+        <label>{{localize "beryllium.pjsheet.xp"}}</label>
+        <div>{{ fieldOrInput "system.xp" class="pj-sheet-input" }}</div>
+    </div>
+
+    <div class="field action">
+        <div>
+            {{#if isVerrou }}
+                <a data-action="deverouillage" title="{{localize "beryllium.pjsheet.action.unlock"}}"><i class="fas fa-lock"></i></a>
+            {{else}}
+                <a data-action="verouillage" title="{{localize "beryllium.pjsheet.action.lock"}}"><i class="fas fa-unlock"></i></a>
+            {{/if}}
+        </div>
+        <div><a data-action="repos" title="{{localize "beryllium.pjsheet.buttontitle.repos"}}"><i class="fas fa-tents"></i></a></div>
+        <div><a data-action="deInterference" title="{{localize "beryllium.pjsheet.buttontitle.interference"}}"><i class="fas fa-gear"></i></a></div>
+    </div>
+</div>
+
 <div class="pj-sheet-competences fields-container">
     <div class="field competence">
         <label class="clickable" data-action="skillRoll" data-competence="physique">{{localize "beryllium.pjsheet.competences.physique"}}</label>
@@ -38,15 +62,7 @@
     </div>
 
     
-<div class="action field competence">
-    <div>
-        {{#if isVerrou }}
-            <a data-action="deverouillage" title="{{localize "beryllium.pjsheet.repos.buttontitle"}}"><i class="fas fa-unlock"></i></a>
-        {{else}}
-            <a data-action="verouillage" title="{{localize "beryllium.pjsheet.repos.buttontitle"}}"><i class="fas fa-lock"></i></a>
-        {{/if}}
-    </div>
-    <div><a data-action="repos" title="{{localize "beryllium.pjsheet.repos.buttontitle"}}"><i class="fas fa-tents"></i></a></div>
-    <div><a data-action="deInterference" title="{{localize "beryllium.pjsheet.interference.roll"}}"><i class="fas fa-gear"></i></a></div>
-</div>
+
+
+
 </div>

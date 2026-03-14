@@ -70,7 +70,7 @@
     margin: 5px;
     border: 1px solid lightgrey;
     text-align: center;
-    flex: 1 0 18%;
+    flex: 1 0 30%;
     flex-wrap: nowrap;
 }
 
@@ -86,13 +86,13 @@
     font-size: 1.2em;
 }
 
-.pj-sheet > .content > .top > .pj-sheet-competences > .competence.action{
+.pj-sheet > .content > .top .action{
     display:flex;
     justify-content: space-between;
 }
 
-.pj-sheet > .content > .top > .pj-sheet-competences > .competence.action > div{
-    flex-shrink: 1;
+.pj-sheet > .content > .top .action > div{
+    flex: 1 1 40px;
 }
 /******        END   TOP BAR                       *****/
 

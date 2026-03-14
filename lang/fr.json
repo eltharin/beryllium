@@ -101,6 +101,7 @@
                 "label" : "Echo"
             },
             "nom": "Nom",
+            "xp": "XP",
             "culture": {
                 "label" : "Culture",
                 "select" : "Choisissez une culture"
@@ -154,6 +155,10 @@
             "objet": {
                 "titre": "Liste d'équipement",
                 "ajout": "Ajouter un objet"
+            },
+            "buttontitle": {
+                "interference" : "Lancer un jet d'interférence",
+                "repos": "Se reposer"
             }
         },
         "itemsheet": {

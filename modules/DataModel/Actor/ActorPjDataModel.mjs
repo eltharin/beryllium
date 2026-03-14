@@ -6,8 +6,9 @@ export class ActorPjDataModel extends BaseActorDataModel {
     // All Actors have resources.
         return {
             ...super.defineSchema(),
-            culture: new foundry.data.fields.StringField({}),
+            xp: new foundry.data.fields.NumberField({initial: 0, min:0}),
             
+            culture: new foundry.data.fields.StringField({}),
             heritage: new foundry.data.fields.SchemaField({
                 aspect: new foundry.data.fields.StringField({}),
                 utilisationPrivilege: new foundry.data.fields.ArrayField(
