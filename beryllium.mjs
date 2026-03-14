@@ -21,6 +21,8 @@ import { ObjetSheet } from "./modules/Sheet/Item/ObjetSheet.mjs";
 import { DeBeryllium } from "./modules/Dice/DeBeryllium.mjs";
 import { DeInterference } from "./modules/Dice/DeInterference.mjs";
 
+import {registerFunctions as registerHandleBarFunctions} from "./modules/Handlebars.mjs"
+
 
 Hooks.once("init", () => {
   console.log("beryllium | Initialisation du système beryllium");
@@ -75,33 +77,8 @@ Hooks.once("init", () => {
   CONFIG.Dice.terms[DeInterference.DENOMINATION] = DeInterference;
   //CONFIG.ChatMessage.documentClass = AttaqueMessage;
 
+  registerHandleBarFunctions();
+
   DiceRollerHelper.fct.registerMessageEventListener();
 });
 
-
-Handlebars.registerHelper('times', function(n, block) {
-    var accum = '';
-    for(var i = 0; i < n; ++i)
-        accum += block.fn({...this, index: i, index1: (i+1)});
-    return accum;
-});
-
-
-Handlebars.registerHelper('fieldOrInput', function(name, options) {
-    if(typeof name == "object")
-    {
-      name = name.string;
-    }
-
-    const value = options.hash.value ?? (foundry.utils.getProperty(options.data.root,name)??"") ;
-    
-    if(options.data.root.isVerrou) {
-      return new Handlebars.SafeString('<span class="field-value">' + value + '</span>');
-    } else { 
-      if(options.hasOwnProperty("fn"))
-      {
-        return options.fn();  
-      }
-      return  new Handlebars.SafeString('<input type="' + (options.hash.type??"text") + '" name="' + name + '" value="' + value + '" class="'+(options.hash.class??"")+'" placeholder="'+(options.hash.placeholder??"")+'"/>');
-    }    
-});
