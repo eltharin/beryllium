@@ -129,8 +129,9 @@
                 "seuil": {
                     "label" : "Seuil"
                 },
-                "resonnance": "Résonnance",
-                "dissonnance": "Dissonnance"
+                "resonnance": "Rés.",
+                "dissonnance": "Diss.",
+                "surchauffe": "Sur."
             },
             "notes": {
                 "titre" : "Notes"
@@ -179,18 +180,8 @@
                 "inconvenient": "Inconvenient",
                 "equipe": "Equiper l'armure",
                 "desequipe": "Enlever l'armure",
-                "reductionDegat": {
-                    "combat": "Reduction de dégats (combat)",
-                    "physique": "Reduction de dégats (physique)",
-                    "magie": "Reduction de dégats (magie)",
-                    "volonte": "Reduction de dégats (volonte)"
-                },
-                "bonusDefense": {
-                    "combat": "Bonus de défense (combat)",
-                    "physique": "Bonus de défense (physique)",
-                    "magie": "Bonus de défense (magie)",
-                    "volonte": "Bonus de défense (volonte)"
-                }
+                "reductionDegat": "Reduction de dégats",
+                "bonusDefense": "Bonus de défense"
             },
             "sort": {
                 "level": "Niveau",
@@ -284,6 +275,16 @@
                     "title": "Modification du nombre d'utilisations",
                     "oklabel" : "Valider"
                 }
+            },
+            "surchauffe": {
+                "entree": "{actor} entre en surchauffe",
+                "result": {
+                    "reussite": "Pas de surchauffe",
+                    "echec": "Surchauffe"
+                }
+            },
+            "privilege": {
+                "utilisation": "{actor} utilise le privilège : {privilege}"
             }
         }
     }

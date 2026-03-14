@@ -3,12 +3,6 @@
 
 export class AttaqueRollDialog {
     static async create(options = {}) {
-
-        console.log(Object.keys(options.competences).reduce(function(result, key) {
-                result[key] = options.competences[key].value;
-                return result
-            }, {}));
-
         let data = {
             isMagie: options.isMagie,
             competences: {

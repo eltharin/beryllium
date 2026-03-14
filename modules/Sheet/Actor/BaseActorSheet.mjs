@@ -4,8 +4,6 @@ import * as Helpers from "../../Helper/_helpers.mjs";
 
 import * as DiceRollerHelper from "../../DiceRoller/_helpers.mjs";
 
-
-
 export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicationMixin(
   foundry.applications.sheets.ActorSheetV2
 ) {
@@ -301,11 +299,15 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     const competence =  target.dataset.competence;
 
     const modificateurs = await DiceRollerHelper.CompetenceRollDialog.create();
-    console.log(actor, competence, actor.system,actor.system.competences[competence])
+
     const myRoll = new DiceRollerHelper.CompetenceRoll("4db",{}, {
         competence: competence, 
         actorCompetence: actor.system.competences[competence], 
-        modificateurs: modificateurs
+        modificateurs: modificateurs,
+        actor: {
+          competence: actor.system.competences[competence],
+          obj: actor,
+        }
     });
 
     myRoll.toMessage({});
@@ -508,6 +510,12 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     const update = {};
     update["system.heritage.utilisationPrivilege"] = uses;
     await this.actor.update(update)
+
+    ChatMessage.create({
+      user: game.user.id,
+      speaker: ChatMessage.getSpeaker({ alias: this.actor.name }),
+      content: game.i18n.format("beryllium.messages.privilege.utilisation", {actor: this.actor.name, privilege: Cultures.get(this.actor.system.culture).privileges[target.dataset.privilegeid].titre}),
+    });
   } 
 
   static async _onManagePrivilege(event, target) {

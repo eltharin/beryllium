@@ -57,6 +57,7 @@ export class BaseActorDataModel extends SystemDataModel {
             magie: new foundry.data.fields.SchemaField({
                 affinite: new foundry.data.fields.StringField({}),
                 tradition: new foundry.data.fields.StringField({}),
+                isSurchauffe: new foundry.data.fields.BooleanField({initial: false}),
                 fletrine: new foundry.data.fields.SchemaField({
                     value: new foundry.data.fields.NumberField({initial: 0, min:0}),
                     bonus : new foundry.data.fields.NumberField({initial: 0}),

@@ -1,11 +1,20 @@
 
+import * as DiceRollerHelper from "../_helpers.mjs";
 
-
-export class CompetenceRoll extends Roll{
+export class CompetenceRoll extends DiceRollerHelper.BaseRoll{
     static CHAT_TEMPLATE = "systems/beryllium/templates/dice/competence-roll-result.hbs";
 
     constructor(formula="", data={}, options={}) {
         super(formula, data, options);
+        
+        if(this.options.actorMagie == undefined) {
+            this.options.actorMagie = {
+                actor : this.options.actor.obj,
+                isDissonnance : this.options.actor.obj.system.magie.isDissonnance,
+                isSurchauffe : this.options.actor.obj.system.magie.isSurchauffe,
+            }
+            
+        }
     }
 
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
@@ -16,6 +25,16 @@ export class CompetenceRoll extends Roll{
         ret.seuil = this.getSeuil();
         ret.competenceLabel = this.options.competence;
         return ret;
+    }
+
+    isCompetenceMagie()
+    {
+        return this.options.competence == "magie";
+    }
+
+    getActor()
+    {
+        return this.options.actorMagie;
     }
 
     getResult()

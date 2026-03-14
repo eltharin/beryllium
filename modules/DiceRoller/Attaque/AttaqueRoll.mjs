@@ -1,12 +1,18 @@
+import * as DiceRollerHelper from "../_helpers.mjs";
 
-
-
-export class AttaqueRoll extends Roll{
+export class AttaqueRoll extends DiceRollerHelper.BaseRoll{
     static CHAT_TEMPLATE = "systems/beryllium/templates/dice/attaque-roll-result.hbs";
 
     constructor(formula="", data={}, options={}) {
         super(formula, data, options);
-        
+    
+        if(this.options.actorMagie == undefined) {
+            this.options.actorMagie = {
+                actor : this.options.from,
+                isDissonnance : this.options.from.system.magie.isDissonnance,
+                isSurchauffe : this.options.from.system.magie.isSurchauffe,
+            }
+        }
     }
 
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
@@ -24,6 +30,16 @@ export class AttaqueRoll extends Roll{
 
         ret.canDefendre = this.canDefendre(game.user);
         return ret;
+    }
+
+    isCompetenceMagie()
+    {
+        return this.options.competence == "magie";
+    }
+
+    getActor()
+    {
+        return this.options.actorMagie;
     }
 
     getResult()

@@ -67,6 +67,7 @@ export class MessageActionResolver {
                 },
                 competence: modificateurs.competence, 
                 token: token.id,
+                actor: token.actor,
                 scene: scene.id,
                 actorCompetence: token.actor.system.competences[modificateurs.competence], 
                 modificateurs: modificateurs, 

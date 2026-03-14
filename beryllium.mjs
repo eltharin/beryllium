@@ -4,6 +4,9 @@ import { ActorPnjDataModel } from "./modules/DataModel/Actor/ActorPnjDataModel.m
 import { PjSheet } from "./modules/Sheet/Actor/PjSheet.mjs";
 import { PnjSheet } from "./modules/Sheet/Actor/PnjSheet.mjs";
 
+
+import * as DiceRollerHelper from "./modules/DiceRoller/_helpers.mjs";
+
 //import { SystemItem } from "./modules/Item/SystemItem.mjs";
 import { ArmeDataModel } from "./modules/DataModel/Item/ArmeDataModel.mjs";
 import { ArmureDataModel } from "./modules/DataModel/Item/ArmureDataModel.mjs";
@@ -75,6 +78,7 @@ Hooks.once("init", () => {
   CONFIG.Dice.rolls.push(AttaqueRoll);
   CONFIG.Dice.rolls.push(DefenseRoll);
   CONFIG.Dice.rolls.push(InterferenceRoll);
+  CONFIG.Dice.rolls.push(DiceRollerHelper.SurchauffeRoll);
 
   CONFIG.Dice.terms[DeBeryllium.DENOMINATION] = DeBeryllium;
   CONFIG.Dice.terms[DeInterference.DENOMINATION] = DeInterference;

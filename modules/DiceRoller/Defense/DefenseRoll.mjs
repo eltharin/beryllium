@@ -1,12 +1,12 @@
 
+import * as DiceRollerHelper from "../_helpers.mjs";
 
-
-export class DefenseRoll extends Roll{
+export class DefenseRoll extends DiceRollerHelper.BaseRoll{
     static CHAT_TEMPLATE = "systems/beryllium/templates/dice/defense-roll-result.hbs";
 
     constructor(formula="", data={}, options={}) {
         super(formula, data, options);
-        console.log(data, data.constructor.name, options);
+
         if(this.options.isAffected == undefined)
         {
             this.options.isAffected = false;
@@ -16,8 +16,26 @@ export class DefenseRoll extends Roll{
             this.options.isAttaqueUpdated = false;
         }
 
-        console.log(game.messages.get(this.options.attaque.id));
-        const msgAtt = game.messages.get(this.options.attaque.id);      
+        const msgAtt = game.messages.get(this.options.attaque.id);    
+        
+        if(this.options.actorMagie == undefined) {
+            this.options.actorMagie = {
+                actor : this.options.actor,
+                isDissonnance : this.options.actor.system.magie.isDissonnance,
+                isSurchauffe : this.options.actor.system.magie.isSurchauffe,
+            }
+            
+        }  
+    }
+
+    isCompetenceMagie()
+    {
+        return this.options.competence == "magie";
+    }
+
+    getActor()
+    {
+        return this.options.actorMagie;
     }
 
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
