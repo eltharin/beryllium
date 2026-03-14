@@ -52,12 +52,11 @@ export class ActorPjDataModel extends BaseActorDataModel {
             }
             });
         }
-
     }    
 
     async _preCreate(data, options, user) {
         await super._preCreate(data, options, user);
-        this.parent.prototypeToken.updateSource({actorLink: true});
+        this.parent.prototypeToken.updateSource({actorLink: true, "sight.enabled": true});
     }
 
     _getNbCasesOubliTotal(elem) {
