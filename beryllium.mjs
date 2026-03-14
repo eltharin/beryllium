@@ -29,6 +29,7 @@ Hooks.once("init", () => {
 
   CONFIG.Actor.dataModels = {
     pj: ActorPjDataModel,
+    pnjmajeur: ActorPnjDataModel,
     pnj: ActorPnjDataModel,
   };
   
@@ -43,6 +44,11 @@ Hooks.once("init", () => {
     types: ["pj"],
     makeDefault: true,
     label: "Feuille de Personnage Joueur"
+  });
+  foundry.documents.collections.Actors.registerSheet("beryllium", PnjSheet, {
+    types: ["pnjmajeur"],
+    makeDefault: true,
+    label: "Feuille de Personnage Non Joueur Majeur"
   });
   foundry.documents.collections.Actors.registerSheet("beryllium", PnjSheet, {
     types: ["pnj"],
