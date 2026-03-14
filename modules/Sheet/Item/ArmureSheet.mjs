@@ -29,6 +29,14 @@ export class ArmureSheet extends BaseItemSheet {
     },
   }
 
+  async _prepareContext(options) {
+    
+    const context = await super._prepareContext(options)
+    context.isVerrou = !this.document.testUserPermission(game.user, "canUpdate");
+
+    return context
+  }
+
   _prepareSubmitData(event, form, formData, updateData) { 
 
     let data  = super._prepareSubmitData(event, form, formData, updateData);
