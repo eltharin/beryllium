@@ -104,15 +104,14 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     return this.isEditable && this.actor.system.isLocked;
   }
   
-  static verouillage() {
-    console.log("verouillage");
-    //update["system." + target.dataset.item + ".value"] = foundry.utils.getProperty(this.actor.system, target.dataset.item).value + (target.dataset.sens == "+" ? 1 : -1);
-    this.actor.update({"system.isLocked":true});
+  static async verouillage() {
+    await this.actor.update({"system.isLocked":true});
+    this._updateFrame({window: {}});
   }
   
-  static deverouillage() {
-    console.log("deverouillage");
-    this.actor.update({"system.isLocked":false});
+  static async deverouillage() {
+    await this.actor.update({"system.isLocked":false});
+    this._updateFrame({window: {}});
   }
 
   _prepareSubmitData(event, form, formData, updateData) { 
