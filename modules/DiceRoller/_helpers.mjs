@@ -1,5 +1,6 @@
 
 export {BaseRoll} from "./BaseRoll.mjs"
+export * as fct from "./Functions.mjs"
 
 export {InterferenceRollDialog} from "./Interference/InterferenceRollDialog.mjs";
 export {InterferenceRoll} from "./Interference/InterferenceRoll.mjs";
