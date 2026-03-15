@@ -1,7 +1,5 @@
 import * as system  from "../_helpers.mjs";
 
-import * as DiceRollerHelper from "./_helpers.mjs";
-
 export class BaseRoll extends Roll {
     isCompetenceMagie()
     {
@@ -22,7 +20,7 @@ export class BaseRoll extends Roll {
 
         if(this instanceof BaseRoll && this.isCompetenceMagie()) {
             if(this.getActor().isSurchauffe) {
-                const myRoll = new DiceRollerHelper.SurchauffeRoll("1d12",{}, {});
+                const myRoll = new system.DiceRoller.SurchauffeRoll("1d12",{}, {});
                 myRoll.toMessage({
                     async: true, 
                     flavor: "Surchauffe",

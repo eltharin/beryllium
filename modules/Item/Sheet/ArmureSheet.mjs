@@ -1,11 +1,11 @@
-import * as Helpers from "../../Helper/_helpers.mjs";
+import * as system  from "../../_helpers.mjs";
 
-export class ArmeSheet extends foundry.applications.api.HandlebarsApplicationMixin(
-  foundry.applications.sheets.ItemSheetV2
-) {
+import { BaseItemSheet } from "./BaseItemSheet.mjs";
+
+export class ArmureSheet extends BaseItemSheet {
   static PARTS = {
     form: { 
-      template: "systems/beryllium/templates/item/arme.hbs",
+      template: "systems/beryllium/templates/item/armure.hbs",
     },
   };
 
@@ -28,6 +28,14 @@ export class ArmeSheet extends foundry.applications.api.HandlebarsApplicationMix
 
       ]
     },
+  }
+
+  async _prepareContext(options) {
+    
+    const context = await super._prepareContext(options)
+    context.isVerrou = !this.document.testUserPermission(game.user, "canUpdate");
+
+    return context
   }
 
   _prepareSubmitData(event, form, formData, updateData) { 

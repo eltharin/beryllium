@@ -1,7 +1,8 @@
-import * as Helpers from "../../Helper/_helpers.mjs";
+import * as system from "../../_helpers.mjs";
 
 
-export class ArmeDataModel extends foundry.abstract.TypeDataModel {
+
+export class ArmeDataModel extends system.Common.SystemDataModel {
   constructor(data, options) {
     super(data, options);
     options.parent.img = "systems/beryllium/assets/pics/arme.svg"
@@ -19,6 +20,6 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
   }
 
   prepareDerivedData() {
-      this.prix = Helpers.Argent.convertAtoB(this.prixmoyen);
+      this.prix = system.Helper.Argent.convertAtoB(this.prixmoyen);
   }
 }

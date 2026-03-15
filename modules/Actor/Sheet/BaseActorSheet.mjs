@@ -1,8 +1,5 @@
-import {Cultures} from "../../Objet/Cultures.mjs";
-import {Magies} from "../../Objet/Magies.mjs";
-import * as Helpers from "../../Helper/_helpers.mjs";
+import * as system  from "../../_helpers.mjs";
 
-import * as DiceRollerHelper from "../../DiceRoller/_helpers.mjs";
 
 export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicationMixin(
   foundry.applications.sheets.ActorSheetV2
@@ -119,7 +116,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     let data  = super._prepareSubmitData(event, form, formData, updateData);
     const submitData = foundry.utils.expandObject(formData.object);
 
-    foundry.utils.setProperty(data, "system.argent", Helpers.Argent.convertBtoA(submitData.system.bourse));
+    foundry.utils.setProperty(data, "system.argent", system.Helper.Argent.convertBtoA(submitData.system.bourse));
 
     return data ; 
   }
@@ -143,10 +140,10 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     context.listes = {};
 
     context.culture = {
-      list: Cultures.list(),
+      list: system.Objet.Cultures.list(),
     }
     context.listes.magies = {
-      list: Magies.list(),
+      list: system.Objet.Magies.list(),
     }
 
     
@@ -265,10 +262,10 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     }
 
     const itemObj = actor.items.get(item);
-    const modificateurs = await DiceRollerHelper.AttaqueRollDialog.create({isMagie: (competence == "magie"), competences: actor.system.competences, item: itemObj, type: type});
+    const modificateurs = await system.DiceRoller.AttaqueRollDialog.create({isMagie: (competence == "magie"), competences: actor.system.competences, item: itemObj, type: type});
     console.log(modificateurs)
     
-    const myRoll = new DiceRollerHelper.AttaqueRoll("4db",{}, {
+    const myRoll = new system.DiceRoller.AttaqueRoll("4db",{}, {
         competence: competence,
         item: {
           id: itemObj.id,
@@ -297,9 +294,9 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     const actor = this.document;
     const competence =  target.dataset.competence;
 
-    const modificateurs = await DiceRollerHelper.CompetenceRollDialog.create();
+    const modificateurs = await system.DiceRoller.CompetenceRollDialog.create();
 
-    const myRoll = new DiceRollerHelper.CompetenceRoll("4db",{}, {
+    const myRoll = new system.DiceRoller.CompetenceRoll("4db",{}, {
         competence: competence, 
         actorCompetence: actor.system.competences[competence], 
         modificateurs: modificateurs,
@@ -488,8 +485,8 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   }
 
   static async _onDeInterference(event, target) {
-    const modificateurs = await DiceRollerHelper.InterferenceRollDialog.create();
-    const myRoll = new DiceRollerHelper.InterferenceRoll("1di",{}, {
+    const modificateurs = await system.DiceRoller.InterferenceRollDialog.create();
+    const myRoll = new system.DiceRoller.InterferenceRoll("1di",{}, {
       modificateurs: modificateurs
     });
 
@@ -517,7 +514,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     ChatMessage.create({
       user: game.user.id,
       speaker: ChatMessage.getSpeaker({ alias: this.actor.name }),
-      content: game.i18n.format("beryllium.messages.privilege.utilisation", {actor: this.actor.name, privilege: Cultures.get(this.actor.system.culture).privileges[target.dataset.privilegeid].titre}),
+      content: game.i18n.format("beryllium.messages.privilege.utilisation", {actor: this.actor.name, privilege: system.Objet.Cultures.get(this.actor.system.culture).privileges[target.dataset.privilegeid].titre}),
     });
   } 
 

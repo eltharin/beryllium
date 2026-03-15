@@ -1,7 +1,7 @@
 
-import * as DiceRollerHelper from "../_helpers.mjs";
+import * as system  from "../../_helpers.mjs";
 
-export class DefenseRoll extends DiceRollerHelper.BaseRoll{
+export class DefenseRoll extends system.DiceRoller.BaseRoll{
     static CHAT_TEMPLATE = "systems/beryllium/templates/dice/defense-roll-result.hbs";
 
     constructor(formula="", data={}, options={}) {

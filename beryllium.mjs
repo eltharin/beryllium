@@ -1,22 +1,20 @@
-//import { SystemActor } from "./modules/Actor/SystemActor.mjs";
-import { ActorPjDataModel } from "./modules/DataModel/Actor/ActorPjDataModel.mjs";
-import { ActorPnjDataModel } from "./modules/DataModel/Actor/ActorPnjDataModel.mjs";
-import { PjSheet } from "./modules/Sheet/Actor/PjSheet.mjs";
-import { PnjSheet } from "./modules/Sheet/Actor/PnjSheet.mjs";
+import * as system from "./modules/_helpers.mjs";
 
+import { PjSheet } from "./modules/Actor/Sheet/PjSheet.mjs";
+import { PnjSheet } from "./modules/Actor/Sheet/PnjSheet.mjs";
 
-import * as DiceRollerHelper from "./modules/DiceRoller/_helpers.mjs";
+import { ActorPjDataModel } from "./modules/Actor/DataModel/ActorPjDataModel.mjs";
+import { ActorPnjDataModel } from "./modules/Actor/DataModel/ActorPnjDataModel.mjs";
 
-//import { SystemItem } from "./modules/Item/SystemItem.mjs";
-import { ArmeDataModel } from "./modules/DataModel/Item/ArmeDataModel.mjs";
-import { ArmureDataModel } from "./modules/DataModel/Item/ArmureDataModel.mjs";
-import { SortDataModel } from "./modules/DataModel/Item/SortDataModel.mjs";
-import { ObjetDataModel } from "./modules/DataModel/Item/ObjetDataModel.mjs";
+import { ArmeSheet } from "./modules/Item/Sheet/ArmeSheet.mjs";
+import { ArmureSheet } from "./modules/Item/Sheet/ArmureSheet.mjs";
+import { SortSheet } from "./modules/Item/Sheet/SortSheet.mjs";
+import { ObjetSheet } from "./modules/Item/Sheet/ObjetSheet.mjs";
 
-import { ArmeSheet } from "./modules/Sheet/Item/ArmeSheet.mjs";
-import { ArmureSheet } from "./modules/Sheet/Item/ArmureSheet.mjs";
-import { SortSheet } from "./modules/Sheet/Item/SortSheet.mjs";
-import { ObjetSheet } from "./modules/Sheet/Item/ObjetSheet.mjs";
+import { ArmeDataModel } from "./modules/Item/DataModel/ArmeDataModel.mjs";
+import { ArmureDataModel } from "./modules/Item/DataModel/ArmureDataModel.mjs";
+import { SortDataModel } from "./modules/Item/DataModel/SortDataModel.mjs";
+import { ObjetDataModel } from "./modules/Item/DataModel/ObjetDataModel.mjs";
 
 import { DeBeryllium } from "./modules/Dice/DeBeryllium.mjs";
 import { DeInterference } from "./modules/Dice/DeInterference.mjs";
@@ -76,7 +74,7 @@ Hooks.once("init", () => {
     label: "Feuille d'objet"
   });
 
-  DiceRollerHelper.fct.registerDiceRolls();
+  system.DiceRoller.fct.registerDiceRolls();
 
 
   CONFIG.Dice.terms[DeBeryllium.DENOMINATION] = DeBeryllium;
@@ -85,6 +83,6 @@ Hooks.once("init", () => {
 
   registerHandleBarFunctions();
 
-  DiceRollerHelper.fct.registerMessageEventListener();
+  system.DiceRoller.fct.registerMessageEventListener();
 });
 

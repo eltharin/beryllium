@@ -1,7 +1,6 @@
-import {BaseActorDataModel} from './BaseActorDataModel.mjs';
-import {Cultures} from "../../Objet/Cultures.mjs";
+import * as system from "../../_helpers.mjs";
 
-export class ActorPjDataModel extends BaseActorDataModel {
+export class ActorPjDataModel extends system.Actor.BaseActorDataModel {
     static defineSchema() {
     // All Actors have resources.
         return {
@@ -35,7 +34,7 @@ export class ActorPjDataModel extends BaseActorDataModel {
     _prepareDerivedData() {
         this.nbCasesOubliTotal = this._getNbCasesOubliTotal(this);
         
-        this.cultureobj = Cultures.get(this.culture);
+        this.cultureobj = system.Objet.Cultures.get(this.culture);
 
         if(this.heritage.utilisationPrivilege == undefined)
         {

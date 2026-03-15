@@ -1,5 +1,4 @@
 import * as system  from "../_helpers.mjs";
-import * as DiceRollerHelper from "../DiceRoller/_helpers.mjs";
 
 export class MessageActionResolver {
     static actions = {
@@ -46,7 +45,7 @@ export class MessageActionResolver {
         let token = null;
 
         if(avaiableTargets.length > 1) {
-            const choixToken = await DiceRollerHelper.DefenseChoixTokenDialog.create({scene: scene, avaiableTargets: avaiableTargets});
+            const choixToken = await system.DiceRoller.DefenseChoixTokenDialog.create({scene: scene, avaiableTargets: avaiableTargets});
             token = avaiableTargets.filter(t => t.id == choixToken.token)[0];
         }
         else {
@@ -58,10 +57,10 @@ export class MessageActionResolver {
             return;
         }        
         
-        const modificateurs = await DiceRollerHelper.DefenseRollDialog.create({attaque: msgAtt.rolls[0], token: token});
+        const modificateurs = await system.DiceRoller.DefenseRollDialog.create({attaque: msgAtt.rolls[0], token: token});
         if (modificateurs != null) //-- si l'utilisateur n'a pas annulé
         {
-            const myRoll = new DiceRollerHelper.DefenseRoll("4db",{}, {
+            const myRoll = new system.DiceRoller.DefenseRoll("4db",{}, {
                 attaque: {
                     id: msgAtt.id,
                     result: msgAtt.rolls[0].getTotalValue(),

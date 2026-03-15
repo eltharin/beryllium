@@ -1,15 +1,14 @@
 import * as system  from "../_helpers.mjs";
 
-import * as DiceRollerHelper from "./_helpers.mjs";
 import { MessageActionResolver } from "../ChatMessage/MessageActionResolver.mjs";
 
 export function registerDiceRolls() {
-    CONFIG.Dice.rolls.push(DiceRollerHelper.CompetenceRoll);
-    CONFIG.Dice.rolls.push(DiceRollerHelper.AttaqueRoll);
-    CONFIG.Dice.rolls.push(DiceRollerHelper.DefenseRoll);
-    CONFIG.Dice.rolls.push(DiceRollerHelper.InterferenceRoll);
-    CONFIG.Dice.rolls.push(DiceRollerHelper.SurchauffeRoll);
-    CONFIG.Dice.rolls.push(DiceRollerHelper.SortieSurchauffeRoll);
+    CONFIG.Dice.rolls.push(system.DiceRoller.CompetenceRoll);
+    CONFIG.Dice.rolls.push(system.DiceRoller.AttaqueRoll);
+    CONFIG.Dice.rolls.push(system.DiceRoller.DefenseRoll);
+    CONFIG.Dice.rolls.push(system.DiceRoller.InterferenceRoll);
+    CONFIG.Dice.rolls.push(system.DiceRoller.SurchauffeRoll);
+    CONFIG.Dice.rolls.push(system.DiceRoller.SortieSurchauffeRoll);
 }
 
 export function registerMessageEventListener() {

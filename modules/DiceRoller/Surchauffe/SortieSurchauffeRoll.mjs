@@ -1,7 +1,7 @@
 
-import * as DiceRollerHelper from "../_helpers.mjs";
+import * as system  from "../../_helpers.mjs";
 
-export class SortieSurchauffeRoll extends DiceRollerHelper.BaseRoll{
+export class SortieSurchauffeRoll extends system.DiceRoller.BaseRoll{
     static CHAT_TEMPLATE = "systems/beryllium/templates/dice/sortieSurchauffe-roll-result.hbs";
 
     constructor(formula="", data={}, options={}) {

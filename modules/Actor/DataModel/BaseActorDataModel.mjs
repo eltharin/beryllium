@@ -1,9 +1,7 @@
-import {SystemDataModel} from "../SystemDataModel.mjs";
-import {Magies} from "../../Objet/Magies.mjs";
-import * as Helpers from "../../Helper/_helpers.mjs";
+import * as system from "../../_helpers.mjs";
 
-import {Cultures} from "../../Objet/Cultures.mjs";
-export class BaseActorDataModel extends SystemDataModel {
+
+export class BaseActorDataModel extends system.Common.SystemDataModel {
     static defineSchema() {
     // All Actors have resources.
         return { 
@@ -112,8 +110,8 @@ export class BaseActorDataModel extends SystemDataModel {
         this.nbCasesStressTotal = this._getNbCasesStressTotal(this);
         this.nbCasesEchoTotal = this._getNbCasesEchoTotal(this);
 
-        this.magie.affiniteobj = Magies.get(this.magie.affinite);
-        this.magie.oppose = this.magie.affiniteobj != null ? Magies.get(this.magie.affiniteobj.oppose) : null;
+        this.magie.affiniteobj = system.Objet.Magies.get(this.magie.affinite);
+        this.magie.oppose = this.magie.affiniteobj != null ? system.Objet.Magies.get(this.magie.affiniteobj.oppose) : null;
         
         let totalFletrine = 0;
         this.magie.fletrine.niveaux.forEach((v,k) => {
@@ -121,13 +119,13 @@ export class BaseActorDataModel extends SystemDataModel {
             this.magie.fletrine.niveaux[k].maxmax = totalFletrine;
         });
 
-        this.magie.seuil = this.competences.magie.value + (Cultures.get(this.culture)?.modificateurMagie || 0);
+        this.magie.seuil = this.competences.magie.value + (system.Objet.Cultures.get(this.culture)?.modificateurMagie || 0);
         this.magie.isResonnance = this.magie.fletrine.value >= this.magie.fletrine.niveaux[0].max;
         this.magie.isDissonnance = (this.magie.fletrine.niveaux.filter(e => e.maxmax < this.magie.fletrine.value).length+1) >= this.magie.seuil ;
         
         console.log(this.magie.seuil, (this.magie.fletrine.niveaux.filter(e => e.maxmax < this.magie.fletrine.value).length+1) )
 
-        this.bourse = Helpers.Argent.convertAtoB(this.argent);
+        this.bourse = system.Helper.Argent.convertAtoB(this.argent);
 
         this._prepareDerivedData();
     }

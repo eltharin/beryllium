@@ -1,10 +1,11 @@
-import * as Helpers from "../../Helper/_helpers.mjs";
-import { BaseItemSheet } from "./BaseItemSheet.mjs";
+import * as system  from "../../_helpers.mjs";
 
-export class ArmureSheet extends BaseItemSheet {
+export class ObjetSheet extends foundry.applications.api.HandlebarsApplicationMixin(
+  foundry.applications.sheets.ItemSheetV2
+) {
   static PARTS = {
     form: { 
-      template: "systems/beryllium/templates/item/armure.hbs",
+      template: "systems/beryllium/templates/item/objet.hbs",
     },
   };
 
@@ -29,20 +30,12 @@ export class ArmureSheet extends BaseItemSheet {
     },
   }
 
-  async _prepareContext(options) {
-    
-    const context = await super._prepareContext(options)
-    context.isVerrou = !this.document.testUserPermission(game.user, "canUpdate");
-
-    return context
-  }
-
   _prepareSubmitData(event, form, formData, updateData) { 
 
     let data  = super._prepareSubmitData(event, form, formData, updateData);
     const submitData = foundry.utils.expandObject(formData.object);
 
-    foundry.utils.setProperty(data, "system.prixmoyen", Helpers.Argent.convertBtoA(submitData.system.prix));
+    foundry.utils.setProperty(data, "system.prixmoyen", system.Helper.Argent.convertBtoA(submitData.system.prix));
 
     return data ; 
   }

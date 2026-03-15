@@ -1,11 +1,12 @@
-import * as Helpers from "../../Helper/_helpers.mjs";
+import * as system  from "../../_helpers.mjs";
 
-export class ObjetSheet extends foundry.applications.api.HandlebarsApplicationMixin(
+
+export class ArmeSheet extends foundry.applications.api.HandlebarsApplicationMixin(
   foundry.applications.sheets.ItemSheetV2
 ) {
   static PARTS = {
     form: { 
-      template: "systems/beryllium/templates/item/objet.hbs",
+      template: "systems/beryllium/templates/item/arme.hbs",
     },
   };
 
@@ -35,7 +36,7 @@ export class ObjetSheet extends foundry.applications.api.HandlebarsApplicationMi
     let data  = super._prepareSubmitData(event, form, formData, updateData);
     const submitData = foundry.utils.expandObject(formData.object);
 
-    foundry.utils.setProperty(data, "system.prixmoyen", Helpers.Argent.convertBtoA(submitData.system.prix));
+    foundry.utils.setProperty(data, "system.prixmoyen", system.Helper.Argent.convertBtoA(submitData.system.prix));
 
     return data ; 
   }

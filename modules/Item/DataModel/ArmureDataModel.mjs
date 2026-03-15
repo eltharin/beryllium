@@ -1,7 +1,6 @@
-import * as Helpers from "../../Helper/_helpers.mjs";
-import {SystemDataModel} from "../SystemDataModel.mjs";
+import * as system from "../../_helpers.mjs";
 
-export class ArmureDataModel extends SystemDataModel {
+export class ArmureDataModel extends system.Common.SystemDataModel {
   constructor(data, options) {
     super(data, options);
     options.parent.img = "systems/beryllium/assets/pics/armure.svg"
@@ -33,7 +32,7 @@ export class ArmureDataModel extends SystemDataModel {
   ];
 
   prepareDerivedData() {
-      this.prix = Helpers.Argent.convertAtoB(this.prixmoyen);
+      this.prix = system.Helper.Argent.convertAtoB(this.prixmoyen);
   }
 
   updateIsEquipe(changes, clone){
