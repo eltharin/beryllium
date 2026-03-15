@@ -1,5 +1,6 @@
+import * as system  from "../_helpers.mjs";
+
 import * as DiceRollerHelper from "./_helpers.mjs";
-import {Surchauffe} from "../Helper/Surchauffe.mjs";
 
 export class BaseRoll extends Roll {
     isCompetenceMagie()
@@ -28,7 +29,7 @@ export class BaseRoll extends Roll {
                     speaker: ChatMessage.getSpeaker({ alias: this.getActor().actor.name + " ( " + game.user.name + " )"}),
                 });
             } else if (this.getActor().isDissonnance) {
-                Surchauffe.enterSurchauffe(this.getActor().actor);
+                system.Actor.fct.enterSurchauffe(this.getActor().actor);
             }
         }
 
