@@ -2,6 +2,7 @@ import {SystemDataModel} from "../SystemDataModel.mjs";
 import {Magies} from "../../Objet/Magies.mjs";
 import * as Helpers from "../../Helper/_helpers.mjs";
 
+import {Cultures} from "../../Objet/Cultures.mjs";
 export class BaseActorDataModel extends SystemDataModel {
     static defineSchema() {
     // All Actors have resources.
@@ -119,6 +120,12 @@ export class BaseActorDataModel extends SystemDataModel {
             totalFletrine += v.max;
             this.magie.fletrine.niveaux[k].maxmax = totalFletrine;
         });
+
+        this.magie.seuil = this.competences.magie.value + (Cultures.get(this.culture)?.modificateurMagie || 0);
+        this.magie.isResonnance = this.magie.fletrine.value >= this.magie.fletrine.niveaux[0].max;
+        this.magie.isDissonnance = (this.magie.fletrine.niveaux.filter(e => e.maxmax < this.magie.fletrine.value).length+1) >= this.magie.seuil ;
+        
+        console.log(this.magie.seuil, (this.magie.fletrine.niveaux.filter(e => e.maxmax < this.magie.fletrine.value).length+1) )
 
         this.bourse = Helpers.Argent.convertAtoB(this.argent);
 
