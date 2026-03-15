@@ -39,7 +39,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       addItem: this._onAddItem,
       editItem: this._onEditItem,
       deleteItem: this._onDeleteItem,
-      lanceSort: this._onLanceSort,
       repos: this._onRepos,
       depense: this._onDepense,
       attaque: this._onAttaque,
@@ -50,6 +49,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       managePrivilege: this._onManagePrivilege,
       equipeArmure: this._onEquipeArmure,
       desequipeArmure: this._onDesequipeArmure,
+      sortieSurchauffe: this._onSortieSurchauffe,
       //deleteItem: PjSheet.deleteDroppedItem,
       //configurePrototypeToken: (any, event) => {console.log(any, event);},
       //configureToken: (any) => {console.log(any);},
@@ -309,7 +309,9 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
         }
     });
 
-    myRoll.toMessage({});
+    myRoll.toMessage({
+      speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
+    });
 
   }
 
@@ -491,7 +493,9 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       modificateurs: modificateurs
     });
 
-    myRoll.toMessage({});
+    myRoll.toMessage({
+      speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
+    });
 
   } 
 
@@ -544,6 +548,21 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   static async _onDesequipeArmure(event, target) {
     this.actor.items.get(target.dataset.itemid).update({"system.isEquipe": false});
   } 
-  
+
+  static async _onSortieSurchauffe(event, target) {
+    //this.actor.update({"system.magie.isSurchauffe": !this.actor.system.magie.isSurchauffe});
+    const competence = "volonte";
+    console.log(this.document, this.document.uuid)
+    const myRoll = new DiceRollerHelper.SortieSurchauffeRoll("4db",{}, {
+      actor: this.actor,
+      competence: competence,
+      competenceValue: this.document.system.competences[competence].value,
+      seuil: 2,
+    });
+
+    await myRoll.toMessage({
+      speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
+    });    
+  }   
   
 }

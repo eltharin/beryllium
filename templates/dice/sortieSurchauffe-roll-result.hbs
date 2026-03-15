@@ -6,6 +6,11 @@
         <h4 class="dice-total">total : {{totalText}} = {{totalValue}}</h4>
         
         <div class="dice-formula">{{localize "beryllium.RollDifficulte.label"}} : {{seuil}}</div>
-        <h4 class="dice-total">{{result}}</h4>
+        {{# if resultat }}
+        <h4 class="dice-total">{{localize "beryllium.rolldice.result.reussite" }}</h4>
+        <button data-action="sortieSurchauffe">{{localize "beryllium.rolldice.result.reussite" }}</button>
+        {{else}}
+        <h4 class="dice-total">{{localize "beryllium.rolldice.result.echec" }}</h4>
+        {{/if}}
     </div>
 </div>

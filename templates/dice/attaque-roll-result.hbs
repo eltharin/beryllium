@@ -2,7 +2,7 @@
     <div class="dice-result">
         <div class="dice-formula">
             <div>{{localize "beryllium.attaquedefense.attaque.carac"}} {{localize (concat "beryllium.pjsheet.competences." competenceLabel)}}</div>
-            <div >{{item.type}} {{item.name}}{{#if (eq item.type "arme")}} (+{{item.degats}}){{/if}}</div>
+            <div >{{localize (concat "beryllium.attaquedefense.attaque.item." item.type) item=item.name}}{{#if (eq item.type "arme")}} (+{{item.degats}}){{/if}}</div>
         </div>
         {{{tooltip}}}
         <div class="dice-formula">{{localize "beryllium.roll.common.total"}} : {{total}}</div>

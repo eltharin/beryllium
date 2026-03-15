@@ -11,6 +11,7 @@ export class InterferenceRoll extends Roll{
 
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
+        ret.title = game.i18n.format("beryllium.roll.title.interference");
         ret.result = this.getResult();
 
         ret.totalValue = this.getTotalValue();

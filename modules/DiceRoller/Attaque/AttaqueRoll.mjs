@@ -18,7 +18,7 @@ export class AttaqueRoll extends DiceRollerHelper.BaseRoll{
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
         ret.result = game.i18n.format("beryllium.rolldice.result." + this.getResult());
-        ret.totalText = (this.options?.actorCompetence.value || 0) + " + " + (this.options?.modificateurs?.modificateur || 0) + " + " + this.total;
+        ret.totalText = this.getTotalText();
         ret.totalValue = this.getTotalValue();
         ret.seuil = this.getSeuil();
 
@@ -53,12 +53,13 @@ export class AttaqueRoll extends DiceRollerHelper.BaseRoll{
         else return "echecCritique";
     }
 
-    static fromData(data) {
-        return super.fromData(data);
-    }
+    getTotalParts()
+    {
+        return [
+            this.options?.actorCompetence?.value,
+            this.options?.modificateurs?.modificateur,
 
-    getTotalValue() {
-        return this.total + (this.options?.modificateurs?.modificateur || 0) + (this.options?.actorCompetence.value || 0);
+        ]
     }
 
     getSeuil() {

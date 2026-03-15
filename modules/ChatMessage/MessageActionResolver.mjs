@@ -1,4 +1,4 @@
-
+import * as system  from "../_helpers.mjs";
 import * as DiceRollerHelper from "../DiceRoller/_helpers.mjs";
 
 export class MessageActionResolver {
@@ -9,13 +9,18 @@ export class MessageActionResolver {
             reset: this._onReset,
     }
 
+    static register(key, fct) {
+        MessageActionResolver.actions[key] = fct;
+        //foundry.applications.sidebar.tabs.ChatLog.DEFAULT_OPTIONS.actions[key] = fct;
+    }
+
     static executeAction(action, event, message, data) {
         
         let act = this.actions[action];
         if(act != null) {
             act(event, message, data)
         } else {
-            ui.notifications.error(`action ${action} non trouvée.`);
+            
         }
     }
 

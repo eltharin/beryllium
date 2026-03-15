@@ -38,12 +38,27 @@ export class DefenseRoll extends DiceRollerHelper.BaseRoll{
         return this.options.actorMagie;
     }
 
+    getTotalParts()
+    {
+        return [
+            this.options?.actorCompetence?.value,
+            this.options?.modificateurs?.modificateur,
+
+        ]
+    }
+
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
 
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
         ret.result = game.i18n.format("beryllium.rolldice.result." + this.getResult());
-        ret.totalText = (this.options?.actorCompetence?.value || 0) + " + " + (this.options?.modificateurs?.modificateur || 0) + " + " + this.total;
+        /*ret.totalText = (this.options?.actorCompetence?.value || 0) + " + " + (this.options?.modificateurs?.modificateur || 0) + " + " + this.total;
         ret.totalValue = this.getTotalValue();
+        */
+        ret.totalText = this.getTotalText();
+        ret.totalValue = this.getTotalValue();
+
+        console.log(ret.totalText, ret.totalValue)
+
         ret.seuil = this.getSeuil();
         ret.oppose = this.options?.attaque.result;
         
@@ -60,8 +75,6 @@ export class DefenseRoll extends DiceRollerHelper.BaseRoll{
 
         ret.isGm = game.user.isGM;
 
-        console.log(this.options)
-        console.log(this)
 
         return ret;
     }
@@ -80,12 +93,18 @@ export class DefenseRoll extends DiceRollerHelper.BaseRoll{
         return super.fromData(data);
     }
 
-    getTotalValue() {
-        return (this.options?.actorCompetence?.value || 0) + (this.options?.modificateurs?.modificateur || 0) + this.total;
-    }
-
     getSeuil() {
         return (this.options?.modificateurs?.difficulte || 0);
+    }
+
+    getDegatComposantes()
+    {
+        return [
+            this.options?.attaque.result,
+            [this.getTotalValue(), "-"],
+            this.options.attaque.degats,
+            [this.options.defense.degats, "-"]
+        ];
     }
 
     getDegats() {
@@ -94,11 +113,11 @@ export class DefenseRoll extends DiceRollerHelper.BaseRoll{
             return 0;
         }
 
-        return Math.max(1, this.options.attaque.degats - this.getTotalValue() + this.options.attaque.degats - this.options.defense.degats );
+        return Math.max(1, this.getCalculValue(this.convertTotal(this.getDegatComposantes())));
     }
 
     getDegatsFormula() {
-        return `${this.options?.attaque.result} - ${this.getTotalValue()} + ${this.options.attaque.degats} - ${this.options.defense.degats} = ${this.getDegats()}`;
+        return this.getCalculText(this.convertTotal(this.getDegatComposantes()));
     }
 
     setAffected(message)

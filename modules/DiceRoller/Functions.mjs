@@ -1,3 +1,5 @@
+import * as system  from "../_helpers.mjs";
+
 import * as DiceRollerHelper from "./_helpers.mjs";
 import { MessageActionResolver } from "../ChatMessage/MessageActionResolver.mjs";
 
@@ -7,6 +9,7 @@ export function registerDiceRolls() {
     CONFIG.Dice.rolls.push(DiceRollerHelper.DefenseRoll);
     CONFIG.Dice.rolls.push(DiceRollerHelper.InterferenceRoll);
     CONFIG.Dice.rolls.push(DiceRollerHelper.SurchauffeRoll);
+    CONFIG.Dice.rolls.push(DiceRollerHelper.SortieSurchauffeRoll);
 }
 
 export function registerMessageEventListener() {
@@ -19,4 +22,6 @@ export function registerMessageEventListener() {
             });
         });
     });
+
+    MessageActionResolver.register("sortieSurchauffe", system.Actor.fct.sortieSurchauffe);
 }

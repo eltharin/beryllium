@@ -12,6 +12,12 @@ export class SurchauffeRoll extends Roll{
         return super.fromData(data);
     }
 
+    async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
+        let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
+        ret.title = game.i18n.format("beryllium.roll.title.carac", {carac: this.options.competence});
+        return ret;
+    }
+
     getResult()
     {
         return this.total <= 6 ? "reussite" : "echec";

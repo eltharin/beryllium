@@ -15,4 +15,5 @@ export {DefenseChoixTokenDialog} from "./Defense/DefenseChoixTokenDialog.mjs";
 export {DefenseRoll} from "./Defense/DefenseRoll.mjs";
 
 export {SurchauffeRoll} from "./Surchauffe/SurchauffeRoll.mjs";
+export {SortieSurchauffeRoll} from "./Surchauffe/SortieSurchauffeRoll.mjs";
 

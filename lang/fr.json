@@ -201,6 +201,11 @@
                     "label": "Difficulté : {val}"
                 }
             },
+            "title": {
+                "carac": "Jet de caractéristique : {carac}",
+                "sortieSurchauffe": "Jet de sortie de surchauffe",
+                "interference": "Jet de test d'interférence"
+            },
             "interference": {
                 "select": "Choisissez la difficulté",
                 "difficulte": {
@@ -245,6 +250,10 @@
                 "cibles": "Cibles",
                 "resultat": {
                     "attente": "En attente..."
+                },
+                "item": {
+                    "arme": "Attaque avec l'arme : {item}",
+                    "magie": "Attaque avec le sort : {item}"
                 }
             },
             "defense": {
@@ -278,6 +287,7 @@
             },
             "surchauffe": {
                 "entree": "{actor} entre en surchauffe",
+                "sortie": "{actor} sort de la surchauffe",
                 "result": {
                     "reussite": "Pas de surchauffe",
                     "echec": "Surchauffe"
