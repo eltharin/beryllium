@@ -291,7 +291,8 @@
                 "result": {
                     "reussite": "Pas de surchauffe",
                     "echec": "Surchauffe"
-                }
+                },
+                "valideSortie": "Supprimer la surchauffe"
             },
             "privilege": {
                 "utilisation": "{actor} utilise le privilège : {privilege}"

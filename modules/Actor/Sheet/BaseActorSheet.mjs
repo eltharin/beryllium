@@ -549,7 +549,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   static async _onSortieSurchauffe(event, target) {
     //this.actor.update({"system.magie.isSurchauffe": !this.actor.system.magie.isSurchauffe});
     const competence = "volonte";
-    const myRoll = new DiceRollerHelper.SortieSurchauffeRoll("4db",{}, {
+    const myRoll = new system.DiceRoller.SortieSurchauffeRoll("4db",{}, {
       actor: this.actor.uuid,
       competence: competence,
       competenceValue: this.document.system.competences[competence].value,
