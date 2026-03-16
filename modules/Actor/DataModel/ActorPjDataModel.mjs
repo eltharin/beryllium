@@ -29,6 +29,7 @@ export class ActorPjDataModel extends system.Actor.BaseActorDataModel {
     static preSaveFunctions = [
         ...super.preSaveFunctions,
         "verifMaxOubli",
+        "checkDissonance",
     ];
 
     _prepareDerivedData() {
@@ -54,6 +55,13 @@ export class ActorPjDataModel extends system.Actor.BaseActorDataModel {
     async _preCreate(data, options, user) {
         await super._preCreate(data, options, user);
         this.parent.prototypeToken.updateSource({actorLink: true, "sight.enabled": true});
+    }
+
+    checkDissonance(changes, clone) 
+    {
+        if(this.magie.isSurchauffe && this.magie.isDissonnance && !clone.magie.isDissonnance){
+            foundry.utils.setProperty(changes, "system.magie.isSurchauffe", false);
+        }      
     }
 
     _getNbCasesOubliTotal(elem) {
