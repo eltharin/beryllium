@@ -15,8 +15,8 @@ export class BaseRoll extends Roll {
         return super.fromData(data);
     }
 
-    async evaluate(options) {
-        const ret = await super.evaluate(options);
+    async toMessage(messageData = {}, options = {}) {
+        const msg = await super.toMessage(messageData, options);
 
         if(this instanceof BaseRoll && this.isCompetenceMagie()) {
             if(this.getActor().isSurchauffe) {
@@ -31,9 +31,7 @@ export class BaseRoll extends Roll {
             }
         }
 
-
-
-        return ret;
+        return msg;
     }
 
     getTotalParts()
