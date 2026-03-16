@@ -11,8 +11,6 @@ export async function enterSurchauffe(actor) {
 
 export async function sortieSurchauffe(event, message, target)
 {
-    //console.log(event, message, target)
-    //console.log(message.rolls[0], message.rolls[0].options.actor)
     const actor =  await fromUuid(message.rolls[0].options.actor);
     
     actor.update({"system.magie.isSurchauffe": false});

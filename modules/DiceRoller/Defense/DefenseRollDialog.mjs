@@ -14,8 +14,6 @@ export class DefenseRollDialog {
             armures: options.token.actor.items.filter(i => (i.type === "armure" && i.system.isEquipe == true))
         };
 
-        console.log(data)
-
         const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/defense-roll-dialog.hbs", data);
 
         return await foundry.applications.api.DialogV2.input({
@@ -36,7 +34,6 @@ export class DefenseRollDialog {
                 label: "Défendre",
                 default: true,
                 icon: "fa-solid fa-floppy-disk",
-                //callback: (event, button, dialog) => (console.log(event, button, dialog))
             }
         });
     }

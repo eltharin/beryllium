@@ -3,9 +3,6 @@
 
 export class CompetenceRollDialog {
     static async create(options = {}) {
-
-        console.log(options);
-
         let data = {
             options: {
                 difficulteDefaut: 4,
@@ -48,7 +45,6 @@ export class CompetenceRollDialog {
                     label: "Make Choice",
                     default: true,
                     icon: "fa-solid fa-floppy-disk",
-                    //callback: (event, button, dialog) => (console.log(event, button, dialog))
                 },
                 submit: result => {
                     resolve(result);

@@ -68,7 +68,6 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
 
     getAvaiableTokenTarget()
     {
-        console.log(this.options.targets);
         return game.scenes.get(this.options.scene).tokens
                 .filter(t => (t.id in this.options.targets && this.options.targets[t.id].result == null))
                 .filter(t => t.actor.testUserPermission(game.user, "OWNER"))
@@ -76,7 +75,6 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
     }
 
     canDefendre(user){
-        console.log()
         return this.getAvaiableTokenTarget(user).length > 0;
     }
 }

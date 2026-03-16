@@ -3,9 +3,6 @@
 
 export class DefenseChoixTokenDialog {
     static async create(options = {}) {
-
-
-        console.log(options.avaiableTargets)
         let data = {
             tokens : options.avaiableTargets.map(t => {return {
                 id: t.id,
@@ -23,7 +20,6 @@ export class DefenseChoixTokenDialog {
                     label: "Défendre",
                     default: true,
                     icon: "fa-solid fa-floppy-disk",
-                    //callback: (event, button, dialog) => (console.log(event, button, dialog))
                 },
                 submit: result => {
                     resolve(result);

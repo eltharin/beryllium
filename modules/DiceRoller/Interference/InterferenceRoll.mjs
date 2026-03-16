@@ -6,7 +6,6 @@ export class InterferenceRoll extends Roll{
 
     constructor(formula="", data={}, options={}) {
         super(formula, data, options);
-        console.log(options)
     }
 
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {

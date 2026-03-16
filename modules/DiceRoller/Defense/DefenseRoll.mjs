@@ -57,8 +57,6 @@ export class DefenseRoll extends system.DiceRoller.BaseRoll{
         ret.totalText = this.getTotalText();
         ret.totalValue = this.getTotalValue();
 
-        console.log(ret.totalText, ret.totalValue)
-
         ret.seuil = this.getSeuil();
         ret.oppose = this.options?.attaque.result;
         

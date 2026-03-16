@@ -58,7 +58,6 @@ export class AttaqueRollDialog {
                     label: "Attaquer",
                     default: true,
                     icon: "fa-solid fa-floppy-disk",
-                    //callback: (event, button, dialog) => (console.log(event, button, dialog))
                 },
                 submit: result => {
                     resolve(result);

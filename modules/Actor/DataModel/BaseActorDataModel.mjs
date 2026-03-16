@@ -122,9 +122,7 @@ export class BaseActorDataModel extends system.Common.SystemDataModel {
         this.magie.seuil = this.competences.magie.value + (system.Objet.Cultures.get(this.culture)?.modificateurMagie || 0);
         this.magie.isResonnance = this.magie.fletrine.value >= this.magie.fletrine.niveaux[0].max;
         this.magie.isDissonnance = (this.magie.fletrine.niveaux.filter(e => e.maxmax < this.magie.fletrine.value).length+1) >= this.magie.seuil ;
-        
-        console.log(this.magie.seuil, (this.magie.fletrine.niveaux.filter(e => e.maxmax < this.magie.fletrine.value).length+1) )
-
+    
         this.bourse = system.Common.Argent.convertAtoB(this.argent);
 
         this._prepareDerivedData();

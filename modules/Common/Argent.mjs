@@ -11,7 +11,6 @@ export class Argent {
     }
 
     static convertBtoA(obj) {
-        console.log(obj)
         return Number(obj.fragment) + (10 * Number(obj.eclat)) + (100 * Number(obj.couronne));
     }
 }

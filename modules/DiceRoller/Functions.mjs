@@ -15,7 +15,6 @@ export function registerMessageEventListener() {
     Hooks.on("renderChatMessageHTML", (message, html, data) => {
         html.querySelectorAll(".dice-roll button[data-action]").forEach(btn => {
             btn.addEventListener("click", event => {
-                console.log(event, message, data)
                 const action = event.currentTarget.dataset.action;
                 MessageActionResolver.executeAction(action, event, message, data);
             });

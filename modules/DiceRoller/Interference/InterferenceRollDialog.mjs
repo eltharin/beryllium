@@ -34,7 +34,6 @@ export class InterferenceRollDialog {
                     label: game.i18n.format("beryllium.roll.interference.dialog.button"),
                     default: true,
                     icon: "fa-solid fa-floppy-disk",
-                    //callback: (event, button, dialog) => (console.log(event, button, dialog))
                 },
                 submit: result => {
                     resolve(result);

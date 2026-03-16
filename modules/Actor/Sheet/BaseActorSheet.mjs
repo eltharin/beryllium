@@ -47,11 +47,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       equipeArmure: this._onEquipeArmure,
       desequipeArmure: this._onDesequipeArmure,
       sortieSurchauffe: this._onSortieSurchauffe,
-      //deleteItem: PjSheet.deleteDroppedItem,
-      //configurePrototypeToken: (any, event) => {console.log(any, event);},
-      //configureToken: (any) => {console.log(any);},
-      //showPortraitArtwork: (any, event) => {console.log(any, event);},
-      //showTokenArtwork: (any, event) => {console.log(any, event);},
     },
     position: {
       width: 950,
@@ -60,12 +55,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     window: {
       resizable: true,
       controls: [
-       /* {
-          action: "showArtwork",
-          icon: "fa-solid fa-lock",
-          label: "beryllium.pjsheet.action.showArtwork",
-          ownership: "OWNER",
-        },*/
         {
           action: "verouillage",
           icon: "fa-solid fa-lock",
@@ -85,7 +74,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   }
 
   static #showArtwork(event, target) {
-    console.log(target)
     new foundry.applications.apps.ImagePopout({
       src: target.getAttribute("src"),
       uuid: this.actor.uuid,
@@ -263,7 +251,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
 
     const itemObj = actor.items.get(item);
     const modificateurs = await system.DiceRoller.AttaqueRollDialog.create({isMagie: (competence == "magie"), competences: actor.system.competences, item: itemObj, type: type});
-    console.log(modificateurs)
     
     const myRoll = new system.DiceRoller.AttaqueRoll("4db",{}, {
         competence: competence,
@@ -338,7 +325,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
 
   async _onDrop(event) {
     const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-    console.log(event, data);
 
     switch(data.type)
     {
@@ -364,7 +350,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   }
   
   static async _onAddItem(event, target) {
-    console.log(event, target)
     event.preventDefault();
     const type = target.dataset.type;
     
@@ -409,7 +394,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   }
   
   static async _onDeleteItem(event, target) {
-    console.log(event)
     event.preventDefault();
     const item = this.document.items.get(target.dataset.itemid);
 
@@ -497,8 +481,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   } 
 
   static async _onUsePrivilege(event, target) {
-    console.log("use privilege", event, target, target.dataset.privilegeid, this.actor.system.heritage.utilisationPrivilege);
-    
     let uses = this.actor.system.heritage.utilisationPrivilege;
 
     if(uses[target.dataset.privilegeid].value >= uses[target.dataset.privilegeid].max) {

@@ -36,7 +36,6 @@ export class ArmureDataModel extends system.Common.SystemDataModel {
   }
 
   updateIsEquipe(changes, clone){
-    console.log(changes);
     if(foundry.utils.getProperty(clone, "isEquipe") == 1) {
         foundry.utils.setProperty(changes, "system.isEquipe", true);
     }
