@@ -125,7 +125,7 @@ export class BaseActorDataModel extends system.Common.SystemDataModel {
         
         console.log(this.magie.seuil, (this.magie.fletrine.niveaux.filter(e => e.maxmax < this.magie.fletrine.value).length+1) )
 
-        this.bourse = system.Helper.Argent.convertAtoB(this.argent);
+        this.bourse = system.Common.Argent.convertAtoB(this.argent);
 
         this._prepareDerivedData();
     }

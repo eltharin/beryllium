@@ -116,7 +116,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     let data  = super._prepareSubmitData(event, form, formData, updateData);
     const submitData = foundry.utils.expandObject(formData.object);
 
-    foundry.utils.setProperty(data, "system.argent", system.Helper.Argent.convertBtoA(submitData.system.bourse));
+    foundry.utils.setProperty(data, "system.argent", system.Common.Argent.convertBtoA(submitData.system.bourse));
 
     return data ; 
   }

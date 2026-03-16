@@ -36,7 +36,7 @@ export class ArmeSheet extends foundry.applications.api.HandlebarsApplicationMix
     let data  = super._prepareSubmitData(event, form, formData, updateData);
     const submitData = foundry.utils.expandObject(formData.object);
 
-    foundry.utils.setProperty(data, "system.prixmoyen", system.Helper.Argent.convertBtoA(submitData.system.prix));
+    foundry.utils.setProperty(data, "system.prixmoyen", system.Common.Argent.convertBtoA(submitData.system.prix));
 
     return data ; 
   }

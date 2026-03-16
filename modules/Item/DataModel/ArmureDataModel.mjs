@@ -32,7 +32,7 @@ export class ArmureDataModel extends system.Common.SystemDataModel {
   ];
 
   prepareDerivedData() {
-      this.prix = system.Helper.Argent.convertAtoB(this.prixmoyen);
+      this.prix = system.Common.Argent.convertAtoB(this.prixmoyen);
   }
 
   updateIsEquipe(changes, clone){

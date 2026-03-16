@@ -20,6 +20,6 @@ export class ArmeDataModel extends system.Common.SystemDataModel {
   }
 
   prepareDerivedData() {
-      this.prix = system.Helper.Argent.convertAtoB(this.prixmoyen);
+      this.prix = system.Common.Argent.convertAtoB(this.prixmoyen);
   }
 }
