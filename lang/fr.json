@@ -12,6 +12,17 @@
         }
     },
     "beryllium": {
+        "competences": {
+            "physique": "Physique",
+            "combat": "Combat",
+            "discretion": "Discrétion",
+            "erudition": "Erudition",
+            "magie": "Magie",
+            "perception": "Perception",
+            "influence": "Influence",
+            "technique": "Technique",
+            "volonte": "Volonté"
+        },
         "label": {
             "niv": "Niv"
         },
@@ -220,6 +231,33 @@
                     "surcharge": "Surcharge",
                     "reussite": "Réussite"
                 }
+            },
+            "oubli": {
+                "title" : "Jet de resistance à l'oubli",
+                "choixcarac": "Choix de la compétence secondaire",
+                "difficulte": {
+                    "n02": {"libelle" : "Fragments culturels mineurs (1-2)"},
+                    "n04": {"libelle" : "Connaissances générales (3-4)"},
+                    "n06": {"libelle" : "Histoire ancienne non-sensible (5-6)"},
+                    "n08": {"libelle" : "Technologies avancées, secrets de factions (7-8)"},
+                    "n10": {"libelle" : "Secrets directement liés à Vaartas (9-10)"}
+                },
+                "dialog": {
+                    "button": "Test de résistance à l'oubli"
+                },
+                "gainFragment" : "Gain de fragment temporaire",
+                "result": {
+                    "illumination": "Illumination",
+                    "claire": "Compréhension claire",
+                    "partielle": "Compréhension partielle",
+                    "cout": "Succès avec coût",
+                    "rejet": "Rejet violent"
+                },
+                "action": {
+                    "illumination": "Gain de fragment de mémoire temp.",
+                    "cout": "Perte de 1 fragment de mémoire",
+                    "rejet": "Perte de 2 fragments de mémoire"
+                }
             }
         },
         "RollDifficulte": {
@@ -296,6 +334,11 @@
             },
             "privilege": {
                 "utilisation": "{actor} utilise le privilège : {privilege}"
+            },
+            "oubli": {
+                "errorVide": "Vous n'avez plus de fragments de resistance à l'oubli",
+                "gain": "{actor} gagne un fragment de mémoire temporaire",
+                "perte": "{actor} perd {nbPoint} fragment(s) de mémoire"
             }
         }
     }

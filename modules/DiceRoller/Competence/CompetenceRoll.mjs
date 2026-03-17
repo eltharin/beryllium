@@ -2,7 +2,7 @@
 import * as system  from "../../_helpers.mjs";
 
 export class CompetenceRoll extends system.DiceRoller.BaseRoll{
-    static CHAT_TEMPLATE = "systems/beryllium/templates/dice/competence-roll-result.hbs";
+    static CHAT_TEMPLATE = "systems/beryllium/templates/dice/roll-result.hbs";
 
     constructor(formula="", data={}, options={}) {
         super(formula, data, options);
@@ -24,6 +24,7 @@ export class CompetenceRoll extends system.DiceRoller.BaseRoll{
         ret.totalText = this.getTotalText();
         ret.totalValue = this.getTotalValue();
         ret.seuil = this.getSeuil();
+        ret.actions = null;
         return ret;
     }
 

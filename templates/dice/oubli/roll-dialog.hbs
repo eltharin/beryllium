@@ -1,0 +1,24 @@
+<form id="bonus-roll-form">
+
+    <div class="">
+
+        <div class="flexrow-beryllium roll-threshold">
+            <label>{{localize "beryllium.roll.oubli.choixcarac"}}</label>
+            <select name="competence" class="changeCompetence">
+                {{#each options.competences as |comp|}}
+                    <option value="{{@key}}">{{localize (concat "beryllium.competences." comp)}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="flexrow-beryllium roll-difficulty-selector">
+            <label>{{localize 'beryllium.roll.interference.select'}}</label>
+            <select name="difficulte">
+                {{#each options.difficulte as |difficulte|}}
+                    <option class="difficulte" value="{{difficulte.value}}" {{#if difficulte.isDefault}}selected{{/if}}>{{localize (concat "beryllium.roll.oubli.difficulte." @key ".libelle") }}</option>
+                {{/each}}
+            </select>
+        </div>
+
+    </div>
+</form>

@@ -35,7 +35,7 @@ export class CompetenceRollDialog {
             }
         };
 
-        const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/competence-roll-dialog.hbs", data);
+        const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/competence/roll-dialog.hbs", data);
 
         return new Promise((resolve) => {
             const dialog = foundry.applications.api.DialogV2.input({

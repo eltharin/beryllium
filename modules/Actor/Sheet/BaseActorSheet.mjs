@@ -46,7 +46,8 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       managePrivilege: this._onManagePrivilege,
       equipeArmure: this._onEquipeArmure,
       desequipeArmure: this._onDesequipeArmure,
-      sortieSurchauffe: this._onSortieSurchauffe,
+      jetSortieSurchauffe: this._onJetSortieSurchauffe,
+      deOubli: this._onDeOubli,
     },
     position: {
       width: 950,
@@ -528,11 +529,12 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     this.actor.items.get(target.dataset.itemid).update({"system.isEquipe": false});
   } 
 
-  static async _onSortieSurchauffe(event, target) {
-    //this.actor.update({"system.magie.isSurchauffe": !this.actor.system.magie.isSurchauffe});
+  static async _onJetSortieSurchauffe(event, target) {
     const competence = "volonte";
     const myRoll = new system.DiceRoller.SortieSurchauffeRoll("4db",{}, {
-      actor: this.actor.uuid,
+      actor: {
+        uuid: this.actor.uuid,
+      },
       competence: competence,
       competenceValue: this.document.system.competences[competence].value,
       seuil: 2,
@@ -542,5 +544,30 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
     });    
   }   
-  
+
+
+  static async _onDeOubli(event, target) {
+    if(this.actor.system.oubli.value <= 0) {
+      ui.notifications.error(game.i18n.format("beryllium.messages.oubli.errorVide"));
+      return;
+    }
+
+    const modificateurs = await system.DiceRoller.OubliRollDialog.create();
+    console.log(modificateurs)
+    const actor = this.document;
+    const myRoll = new system.DiceRoller.OubliRoll("4db",{}, {
+      seuil: modificateurs.difficulte,
+      actor: {
+        competencepri: actor.system.competences["volonte"],
+        competencesec: actor.system.competences[modificateurs.competence],
+        obj: actor,
+        uuid: actor.uuid,
+      }
+    });
+
+    myRoll.toMessage({
+      speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
+    });
+  }  
+   
 }

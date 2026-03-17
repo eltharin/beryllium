@@ -48,7 +48,7 @@ export class AttaqueRollDialog {
             };
         }
 
-        const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/attaque-roll-dialog.hbs", data);
+        const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/attaque/roll-dialog.hbs", data);
 
         return new Promise((resolve) => {
             const dialog = foundry.applications.api.DialogV2.input({

@@ -10,7 +10,7 @@ export class DefenseChoixTokenDialog {
             };})
         };
 
-        const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/defense-choixToken-dialog.hbs", data);
+        const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/defense/choixToken-dialog.hbs", data);
 
         return new Promise((resolve) => {
             const dialog = foundry.applications.api.DialogV2.input({

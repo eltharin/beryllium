@@ -1,7 +1,7 @@
 import * as system  from "../../_helpers.mjs";
 
 export class AttaqueRoll extends system.DiceRoller.BaseRoll{
-    static CHAT_TEMPLATE = "systems/beryllium/templates/dice/attaque-roll-result.hbs";
+    static CHAT_TEMPLATE = "systems/beryllium/templates/dice/attaque/roll-result.hbs";
 
     constructor(formula="", data={}, options={}) {
         super(formula, data, options);

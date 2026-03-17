@@ -9,6 +9,7 @@ export function registerDiceRolls() {
     CONFIG.Dice.rolls.push(system.DiceRoller.InterferenceRoll);
     CONFIG.Dice.rolls.push(system.DiceRoller.SurchauffeRoll);
     CONFIG.Dice.rolls.push(system.DiceRoller.SortieSurchauffeRoll);
+    CONFIG.Dice.rolls.push(system.DiceRoller.OubliRoll);
 }
 
 export function registerMessageEventListener() {
@@ -22,4 +23,6 @@ export function registerMessageEventListener() {
     });
 
     MessageActionResolver.register("sortieSurchauffe", system.Actor.fct.sortieSurchauffe);
+    MessageActionResolver.register("perteOubli", system.Actor.fct.perteOubli);
+    MessageActionResolver.register("gainFragment", system.Actor.fct.gainFragment);
 }
