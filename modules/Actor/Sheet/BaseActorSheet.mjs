@@ -361,17 +361,11 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     };
     
     // Créer l'item sans render automatique
-    const created = await this.document.createEmbeddedDocuments("Item", [itemData], { render: false });
+    const created = await this.document.createEmbeddedDocuments("Item", [itemData], { render: true });
     if (created && created[0]) {
-      // Forcer le re-render de la fiche d'acteur pour afficher le nouvel item
-      this.render(false);
-      
-      // Attendre que le render soit terminé avant d'ouvrir la feuille de l'item
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
-      // Ouvrir la feuille du nouvel item
       created[0].sheet.render(true, { force: true });
     }
+    
     return created;
   }
   
