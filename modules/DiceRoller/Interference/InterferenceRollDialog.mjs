@@ -26,19 +26,14 @@ export class InterferenceRollDialog {
 
         const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/interference/roll-dialog.hbs", data);
 
-        return new Promise((resolve) => {
-            const dialog = foundry.applications.api.DialogV2.input({
-                content: html,
-                window: {title: game.i18n.format("beryllium.roll.common.rolldice")},
-                ok: {
-                    label: game.i18n.format("beryllium.roll.interference.dialog.button"),
-                    default: true,
-                    icon: "fa-solid fa-floppy-disk",
-                },
-                submit: result => {
-                    resolve(result);
-                }
-            });
+        return await foundry.applications.api.DialogV2.input({
+            content: html,
+            window: {title: game.i18n.format("beryllium.roll.common.rolldice")},
+            ok: {
+                label: game.i18n.format("beryllium.roll.interference.dialog.button"),
+                default: true,
+                icon: "fa-solid fa-floppy-disk",
+            }
         });
     }
 }
