@@ -125,6 +125,15 @@ export class BaseActorDataModel extends system.Common.SystemDataModel {
     
         this.bourse = system.Common.Argent.convertAtoB(this.argent);
 
+        for(let i = 0; i < this.prouesses.max; i++) {
+            if(! (i in this.prouesses.values))
+            {
+                this.prouesses.values[i] = this.prouesses.values[i] || {nom: "", effet: ""};
+            }
+        }
+
+        console.log(this.prouesses);
+
         this._prepareDerivedData();
     }
 
