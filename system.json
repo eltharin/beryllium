@@ -1,17 +1,17 @@
 {
   "id": "beryllium",
   "title": "beryllium",
-  "description": "A human-readable description of your system.",
-  "version": "0.1.7",
+  "description": "Beryllium system.",
+  "version": "#{VERSION}#",
   "compatibility": {
     "minimum": 13,
     "verified": 13
   },
   "authors": [{
     "name": "eltharin",
-    "url": "YOUR WEBSITE ADDRESS HERE",
-    "email": "YOUR EMAIL ADDRESS HERE",
-    "discord": "YOUR DISCORD USERNAME HERE"
+    "url": "https://www.eltharin.fr",
+    "email": "eltharin@eltharin.fr",
+    "discord": "eltharin"
   }],
   "esmodules": ["beryllium.mjs"],
   "styles": ["styles/beryllium-styles.css"],
@@ -44,10 +44,10 @@
     "units": "m"
   },
   "initiative": "4db + @competences.perception.value",
-  "url": "https://github.com/eltharin/beryllium/",
-  "bugs": "https://github.com/eltharin/fberyllium/issues",
-  "readme": "https://github.com/eltharin/beryllium/blob/main/README.md",
+  "url": "#{URL}#",
+  "bugs": "#{URL}#/issues",
+  "readme": "#{URL}#/blob/main/README.md",
   "license": "https://mit-license.org/",
-  "manifest": "https://github.com/eltharin/beryllium/releases/latest/download/system.json",
-  "download": "https://github.com/eltharin/beryllium/archive/refs/tags/V0.1.7.zip"
+  "manifest": "#{MANIFEST}#",
+  "download": "#{DOWNLOAD}#"
 }
