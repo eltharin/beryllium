@@ -46,6 +46,7 @@ export class MessageActionResolver {
 
         if(avaiableTargets.length > 1) {
             const choixToken = await system.DiceRoller.DefenseChoixTokenDialog.create({scene: scene, avaiableTargets: avaiableTargets});
+            if (choixToken == null) { return; }
             token = avaiableTargets.filter(t => t.id == choixToken.token)[0];
         }
         else {

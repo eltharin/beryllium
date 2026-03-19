@@ -252,6 +252,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
 
     const itemObj = actor.items.get(item);
     const modificateurs = await system.DiceRoller.AttaqueRollDialog.create({isMagie: (competence == "magie"), competences: actor.system.competences, item: itemObj, type: type});
+    if (modificateurs == null) { return; }
     
     const myRoll = new system.DiceRoller.AttaqueRoll("4db",{}, {
         competence: competence,
@@ -283,6 +284,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     const competence =  target.dataset.competence;
 
     const modificateurs = await system.DiceRoller.CompetenceRollDialog.create();
+    if (modificateurs == null) { return; }
 
     const myRoll = new system.DiceRoller.CompetenceRoll("4db",{}, {
         competence: competence, 
@@ -465,7 +467,9 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
 
   static async _onDeInterference(event, target) {
     const modificateurs = await system.DiceRoller.InterferenceRollDialog.create();
-    const myRoll = new system.DiceRoller.InterferenceRoll("1di",{}, {
+    if (modificateurs == null) { return; }
+
+    const myRoll = new system.DiceRoller.InterferenceRoll("1d12>9",{}, {
       modificateurs: modificateurs
     });
 
@@ -547,7 +551,8 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     }
 
     const modificateurs = await system.DiceRoller.OubliRollDialog.create();
-    console.log(modificateurs)
+    if (modificateurs == null) { return; }
+
     const actor = this.document;
     const myRoll = new system.DiceRoller.OubliRoll("4db",{}, {
       seuil: modificateurs.difficulte,
