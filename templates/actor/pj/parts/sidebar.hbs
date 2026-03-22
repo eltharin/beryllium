@@ -26,6 +26,7 @@
         {{/times}}
     </div>
 </div>
+{{#if (gt system.competences.magie.value 0) }}
 <div class="cases-container fletrine">
     <div class="etats">
         <label class="resonnance {{#if system.magie.isResonnance}}active{{/if}}">{{localize "beryllium.pjsheet.magie.resonnance"}}</label>
@@ -61,7 +62,7 @@
     </div>
     {{/each}}
 </div>
-
+{{/if}}
 <div class="cases-container oubli">
     <div class="controls">
         <span><button data-action="addRemove" data-item="oubli" data-sens="-">-</button></span>
