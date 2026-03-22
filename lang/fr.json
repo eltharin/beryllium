@@ -170,6 +170,13 @@
                 "armure": {
                     "label": "Liste des armures",
                     "ajout": "Ajouter une armure"
+                },
+                "sort": {
+                    "titre": "Nom du sort",
+                    "portee": "Portée",
+                    "niveau": "Niveau",
+                    "voireffet": "Effet",
+                    "actions": "Actions"
                 }
             },
             "objet": {

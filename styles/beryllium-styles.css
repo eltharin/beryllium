@@ -382,10 +382,10 @@
     align-items: center;
 }
 
-.pj-sheet .pj-sheet-cat.combat .arme .armespecial {
+.pj-sheet .item.toggleable {
     display:none;
 }
-.pj-sheet .pj-sheet-cat.combat .arme .armespecial.visible {
+.pj-sheet .item.toggleable.visible {
     display:initial;
 }
 

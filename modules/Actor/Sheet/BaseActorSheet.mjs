@@ -591,11 +591,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   }
 
   static async _onToggleSpecial(event, target) {
-    console.log(event, target, target.dataset);
-
-    console.log(this.element.querySelector(".armespecial[data-itemid='" + target.closest(".item").dataset.itemid + "']"));
-
-    this.element.querySelector(".armespecial[data-itemid='" + target.closest(".item").dataset.itemid + "']").classList.toggle("visible");
+    this.element.querySelector(".toggleable[data-itemid='" + target.closest(".item").dataset.itemid + "']").classList.toggle("visible");
   }
   
 }
