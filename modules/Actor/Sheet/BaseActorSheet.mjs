@@ -48,6 +48,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       desequipeArmure: this._onDesequipeArmure,
       jetSortieSurchauffe: this._onJetSortieSurchauffe,
       deOubli: this._onDeOubli,
+      utilisationProuesse: this._onUtilisationProuesse,
     },
     position: {
       width: 950,
@@ -569,4 +570,22 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     });
   }  
    
+  static async _onUtilisationProuesse(event, target) {
+    if(this.actor.system.echo.value <= 0) {
+      ui.notifications.error(game.i18n.format("beryllium.messages.echo.errorVide"));
+      return;
+    }
+
+    const prouesse = this.actor.system.prouesses.values[target.dataset.prouesseid];
+    
+    if(prouesse.isActif) {
+      await this.actor.update({"system.echo.value" : this.actor.system.echo.value - 1});
+    }    
+
+    ChatMessage.create({
+      user: game.user.id,
+      speaker: ChatMessage.getSpeaker({ alias: this.actor.name }),
+      content: game.i18n.format("beryllium.messages.echo.utilisationProuesse", {actor: this.actor.name, prouesse: prouesse.nom}),
+    });
+  }
 }

@@ -149,7 +149,10 @@
             },
             "prouesses": {
                 "label" : "Prouesse n°{num}",
-                "effet" : "Effet"
+                "effet" : "Effet",
+                "isactif" : "Actif ? ",
+                "actif" : "Actif",
+                "passif" : "Passif"
             },
             "bourse": {
                 "creerdepense": "Creer une dépense / gain"
@@ -339,6 +342,10 @@
                 "errorVide": "Vous n'avez plus de fragments de resistance à l'oubli",
                 "gain": "{actor} gagne un fragment de mémoire temporaire",
                 "perte": "{actor} perd {nbPoint} fragment(s) de mémoire"
+            },
+            "echo": {
+                "errorVide": "Vous n'avez plus de points d'echo.",
+                "utilisationProuesse": "{actor} utilise la prouesse : {prouesse}"
             }
         }
     }

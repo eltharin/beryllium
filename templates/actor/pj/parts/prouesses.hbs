@@ -8,9 +8,15 @@
       <div class="prouesse" data-prouesse="{{index}}">
         {{#with (lookup system.prouesses.values index) as |prouesse|}}
           <div class="field">
-            <label>{{localize "beryllium.pjsheet.prouesses.label" num=../index1 }}</label>
+            <label data-action="utilisationProuesse" data-prouesseId="{{../index}}">{{localize "beryllium.pjsheet.prouesses.label" num=../index1 }}</label>
             <div>{{ fieldOrInput (concat "system.prouesses.values." ../index ".nom") value=prouesse.nom class="pj-sheet-input" }}</div>
-            
+          
+            <div class="prouesse_actif_div">
+              {{#fieldOrInput (concat "system.prouesses.values." ../index ".isActif") value=(ternary  prouesse.isActif  (localize "beryllium.pjsheet.prouesses.actif") (localize "beryllium.pjsheet.prouesses.passif")) class="pj-sheet-input" }}
+                <label>{{localize "beryllium.pjsheet.prouesses.isactif" }}</label>
+                <input type="checkbox" name="system.prouesses.values.{{../../index}}.isActif" {{#if prouesse.isActif }}checked="checked"{{/if}}/>
+              {{/fieldOrInput}}
+            </div>
           </div>
           <div class="field">
             <label>{{localize "beryllium.pjsheet.prouesses.effet"}}</label>

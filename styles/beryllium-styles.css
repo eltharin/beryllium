@@ -310,6 +310,9 @@
     display: inline-block;
 }
 
+.pj-sheet .field > div ~  label {
+    margin-left : 20px;
+}
 
 .pj-sheet .field-value{
     padding:1px 9px;
@@ -363,3 +366,7 @@
     background: var(--table-row-color-odd);
  }
 
+.pj-sheet .field > .prouesse_actif_div {
+    width : 150px;
+    flex : 0 0 150px;
+}

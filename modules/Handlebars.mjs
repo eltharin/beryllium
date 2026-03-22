@@ -27,4 +27,12 @@ export function registerFunctions() {
         return  new Handlebars.SafeString('<input type="' + (options.hash.type??"text") + '" name="' + name + '" value="' + value + '" class="'+(options.hash.class??"")+'" placeholder="'+(options.hash.placeholder??"")+'"/>');
         }    
     });
+
+    Handlebars.registerHelper('ternary', function(condition, trueValue, falseValue) {
+        if (condition) {
+            return trueValue;
+        } else {
+            return falseValue;
+        }
+    });
 }

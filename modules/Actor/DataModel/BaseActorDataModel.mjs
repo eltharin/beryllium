@@ -93,6 +93,7 @@ export class BaseActorDataModel extends system.Common.SystemDataModel {
                     new foundry.data.fields.SchemaField({
                         nom: new foundry.data.fields.StringField({}),
                         effet: new foundry.data.fields.StringField({}),
+                        isActif: new foundry.data.fields.BooleanField({ initial: true}),
                     })
                 ),
             }),
