@@ -347,6 +347,24 @@
                 "errorVide": "Vous n'avez plus de points d'echo.",
                 "utilisationProuesse": "{actor} utilise la prouesse : {prouesse}"
             }
+        },
+        "repos":{
+            "court": {
+                "titre": "Repos Court",
+                "message": "{actor} se repose et récupère : {recupStress} pts de stress, {recupFletrine} pts de fletrine, {recupOubli} pts d'oubli et {recupEcho} pts d'echo."
+            },
+            "long": {
+                "titre": "Repos Long",
+                "message": "{actor} se repose et récupère : {recupStress} pts de stress, {recupFletrine} pts de fletrine, {recupOubli} pts d'oubli et {recupEcho} pts d'echo."
+            },
+            "session": {
+                "titre": "Fin de session",
+                "message": "{actor} fait un repos fin de session."
+            },
+            "scenario": {
+                "titre": "Fin de Scénario",
+                "message": "{actor} se repose et récupère : {recupStress} pts de stress, {recupFletrine} pts de fletrine, {recupOubli} pts d'oubli et {recupEcho} pts d'echo."
+            }
         }
     }
 }

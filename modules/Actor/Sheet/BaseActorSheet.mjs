@@ -428,26 +428,109 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   static async _onRepos(event, target) {
     const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dialog/repos.hbs");
 
-    const dialog = foundry.applications.api.DialogV2.input({
+    const dialog = await foundry.applications.api.DialogV2.input({
       content: html,
+      position: {
+       width: 550,
+       height: 600,
+      },
       window: {title: "Repos"},
       ok: {
           label: "Ron Pchi",
           default: true,
           icon: "fa-solid fa-floppy-disk",
-      },
-      submit: result => {
-        ChatMessage.create({
-          user: game.user.id,
-          speaker: ChatMessage.getSpeaker({ alias: this.actor.name }),
-          content: "veut faire dodo... mais il ne se passe rien car ce connard de dev n'a pas fait la fonctionnalité encore.",
-        });
       }
     });
+
+    console.log(dialog);
+    if(!dialog) { return;}
+    ui.notifications.info(dialog.typeRepos);
+
+    let modifs = {
+      messageTitre: "",
+      messages: {},
+      updates: {},
+    };
+
+    if(dialog.typeRepos == "combat") {
+      modifs = this.repos_combat(this.document, modifs);
+    } else if(dialog.typeRepos == "court") {
+      modifs = this.repos_court(this.document, modifs);
+    } else if(dialog.typeRepos == "long") {
+      modifs = this.repos_long(this.document, modifs);
+    } else if(dialog.typeRepos == "scenario") {
+      modifs = this.repos_scenario(this.document, modifs);
+    }
+
+    if(modifs.messageTitre !== "")  {
+
+      console.log(modifs);
+      this.document.update(modifs.updates);
+
+      ChatMessage.create({
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ alias: this.document.name }),
+        content: "<h3>" + modifs.messageTitre + "</h3>" + Object.values(modifs.messages).map(e => "<div>" + e + "</div>").join(""),
+      });
+    }
+  }
+
+  repos_court(actor, modifs) {
+    modifs = this.repos_combat(actor, modifs);
+
+    modifs.messageTitre = game.i18n.format("beryllium.messages.repos.combat.message", {actor: actor.name});
+
+    modifs.updates["system.stress.value"] = 0;
+    modifs.messages["stress"] = game.i18n.format("beryllium.messages.repos.elements.stress", {actor: actor.name});
+
+    modifs.updates["system.consequences.legere.values"] = [];
+    modifs.messages["consequencelegere"] = game.i18n.format("beryllium.messages.repos.elements.consequenceslegeres", {actor: actor.name});
+    
+    modifs.updates["system.magie.fletrine.value"] = actor.system.magie.fletrine.value - 1;
+    modifs.messages["fletrine"] = game.i18n.format("beryllium.messages.repos.elements.fletrine", {actor: actor.name, nb: 1});
+    console.log(modifs);
+    return modifs;
+  }
+
+  repos_long(actor, modifs) {
+    modifs = this.repos_court(actor, modifs);
+    modifs.messageTitre = game.i18n.format("beryllium.messages.repos.court.message", {actor: actor.name});
+
+    modifs.updates["system.consequences.modere.values"] = [];
+    modifs.messages["consequencesmodere"] = game.i18n.format("beryllium.messages.repos.elements.consequencesmodere", {actor: actor.name});
+
+    modifs.updates["system.magie.fletrine.value"] = actor.system.magie.fletrine.value - 5;
+    modifs.messages["fletrine"] = game.i18n.format("beryllium.messages.repos.elements.fletrine", {actor: actor.name, nb: 5});
+      
+    return modifs;
+  }
+
+  repos_session(actor, modifs) {
+    modifs = this.repos_long(actor, modifs);
+    /*modifs.messageTitre = game.i18n.format("beryllium.messages.repos.court.message", {actor: actor.name});
+
+    modifs.updates["system.consequences.modere.values"] = [];
+    modifs.messages["consequencesmodere"] = game.i18n.format("beryllium.messages.repos.elements.consequencesmodere", {actor: actor.name});
+
+    modifs.updates["system.magie.fletrine.value"] = actor.system.magie.fletrine.value - 5;
+    modifs.messages["fletrine"] = game.i18n.format("beryllium.messages.repos.elements.fletrine", {actor: actor.name, nb: 5});
+      */
+    return modifs;
+  }
+
+  repos_scenario(actor, modifs) {
+    modifs = this.repos_long(actor, modifs);
+    /*modifs.updates["system.stress.value"] = 0;
+    modifs.updates["system.consequences.legeres.value"] = [],
+    modifs.updates["system.magie.fletrine.value"] = actor.system.magie.fletrine.value - 1,
+      
+    modifs.messages.push(game.i18n.format("beryllium.messages.repos.combat", {actor: actor.name}));
+    */
+    return modifs;
   }
 
   static async _onDepense(event, target) {
-
+    console.log(this, this.constructor.name);
     const dialog = await foundry.applications.api.DialogV2.input({
       content: await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dialog/depense.hbs"),
       window: {title: "Dépense"},
