@@ -9,34 +9,73 @@
     <div class="inventory-section">
       <h2>{{localize "beryllium.pjsheet.combat.arme.label"}}</h2>
 
-      <div class="sorts-list">
-        {{#each armes.default as |arme|}}
-            <div class="item flexrow" data-item-id="{{arme._id}}">
-              <div class="clickable" data-action="attaque" data-competence="combat" data-itemid="{{arme._id}}">{{arme.name}}</div>
+      <div class="arme create" data-action="addItem" data-type="arme">
+        <span><a><i class="fas fa-plus"></i> {{localize "beryllium.pjsheet.combat.arme.ajout"}}</a></span>
+      </div>
+
+
+      {{#each (array "default" "custom") as |type| }}
+        {{#if (eq type "default")}}
+          <div class="arme titres">
+            <div class="item flexrow" >
+              <div class="" >{{ localize "beryllium.pjsheet.combat.arme.titre" }}</div>
+              <div class="infos flexrow">
+                <div>
+                    {{ localize "beryllium.pjsheet.combat.arme.portee" }}
+                </div>
+                <div>
+                    {{ localize "beryllium.pjsheet.combat.arme.degat" }}
+                </div>
+                <div class="controls">
+                  {{ localize "beryllium.pjsheet.combat.arme.voirspecial" }}
+                </div>
+              </div>
               <div class="controls">
+                {{ localize "beryllium.pjsheet.combat.arme.actions" }}
               </div>
             </div>
-        {{/each}}
-        </div>
+          </div>
+        {{/if}}
 
-        <div class="arme create" data-action="addItem" data-type="arme">
-          <span><a><i class="fas fa-plus"></i> {{localize "beryllium.pjsheet.combat.arme.ajout"}}</a></span>
-        </div>
 
-        <div class="arme-list"> 
-        {{#each armes.custom as |arme|}}
-            <div class="item flexrow" data-item-id="{{arme._id}}">
+        <div class="arme">
+          {{#each (lookup ../armes type) as |arme|}}
+            <div class="item flexrow" data-itemid="{{arme._id}}">
               <div class="clickable" data-action="attaque" data-competence="combat" data-itemid="{{arme._id}}">{{arme.name}}</div>
+              <div class="infos flexrow">
+                <div>
+                    {{arme.system.portee}}
+                </div>
+                <div>
+                    {{arme.system.degat}}
+                </div>
+                <div class="controls">
+                  {{#if arme.system.special}}
+                    <a data-action="toggleSpecial" title="{{localize "beryllium.pjsheet.combat.arme.delete"}}"><i class="fas fa-trash"></i></a>
+                  {{/if}}
+                </div>
+              </div>
               <div class="controls">
-                <a data-action="editItem" data-type="arme" data-itemId="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.edit"}}"><i class="fas fa-edit"></i></a>
-                <a data-action="deleteItem" data-type="arme" data-itemId="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.delete"}}"><i class="fas fa-trash"></i></a>
+                {{#if (eq type "default")}}
+                  <a data-action="editItem" data-type="arme" data-itemId="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.edit"}}"><i class="fas fa-edit"></i></a>
+                {{else}}
+                  <a data-action="editItem" data-type="arme" data-itemid="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.edit"}}"><i class="fas fa-edit"></i></a>
+                  <a data-action="deleteItem" data-type="arme" data-itemid="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.delete"}}"><i class="fas fa-trash"></i></a>
+                {{/if}}
               </div>
             </div>
-        {{/each}}
-      </div>  
+            {{#if arme.system.special}}
+              <div class="item armespecial flexrow" data-itemid="{{arme._id}}">
+                <div class="infos">
+                  {{arme.system.special}}
+                </div>
+              </div>
+            {{/if}}
+          {{/each}}
+        </div>  
+      {{/each}}
     </div>
 
-    
     <div class="inventory-section">
       <h2>{{localize "beryllium.pjsheet.combat.armure.label"}}</h2>
         <div class="armure create" data-action="addItem" data-type="armure">

@@ -35,4 +35,8 @@ export function registerFunctions() {
             return falseValue;
         }
     });
+
+    Handlebars.registerHelper("array", function(args) {
+        return ["default", "custom"];
+    });
 }

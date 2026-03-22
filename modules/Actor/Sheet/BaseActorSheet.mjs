@@ -49,6 +49,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       jetSortieSurchauffe: this._onJetSortieSurchauffe,
       deOubli: this._onDeOubli,
       utilisationProuesse: this._onUtilisationProuesse,
+      toggleSpecial: this._onToggleSpecial,
     },
     position: {
       width: 950,
@@ -588,4 +589,13 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       content: game.i18n.format("beryllium.messages.echo.utilisationProuesse", {actor: this.actor.name, prouesse: prouesse.nom}),
     });
   }
+
+  static async _onToggleSpecial(event, target) {
+    console.log(event, target, target.dataset);
+
+    console.log(this.element.querySelector(".armespecial[data-itemid='" + target.closest(".item").dataset.itemid + "']"));
+
+    this.element.querySelector(".armespecial[data-itemid='" + target.closest(".item").dataset.itemid + "']").classList.toggle("visible");
+  }
+  
 }

@@ -370,3 +370,22 @@
     width : 150px;
     flex : 0 0 150px;
 }
+
+.pj-sheet .pj-sheet-cat.combat .arme.titres {
+    margin-bottom: 10px;
+}
+
+.pj-sheet .pj-sheet-cat.combat .arme .infos {
+    flex: 0 1 250px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pj-sheet .pj-sheet-cat.combat .arme .armespecial {
+    display:none;
+}
+.pj-sheet .pj-sheet-cat.combat .arme .armespecial.visible {
+    display:initial;
+}
+

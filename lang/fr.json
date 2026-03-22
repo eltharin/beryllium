@@ -160,7 +160,12 @@
             "combat": {
                 "arme": {
                     "label": "Liste des armes",
-                    "ajout": "Ajouter une arme"
+                    "ajout": "Ajouter une arme",
+                    "titre": "Nom de l'arme",
+                    "portee": "Portée",
+                    "degat": "Dégat",
+                    "voirspecial": "Spécial",
+                    "actions": "Actions"
                 },
                 "armure": {
                     "label": "Liste des armures",
