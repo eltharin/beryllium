@@ -50,6 +50,8 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       deOubli: this._onDeOubli,
       utilisationProuesse: this._onUtilisationProuesse,
       toggleSpecial: this._onToggleSpecial,
+      addAspect: this._onAddAspect,
+      deleteAspect: this._onDeleteAspect,
     },
     position: {
       width: 950,
@@ -593,5 +595,14 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   static async _onToggleSpecial(event, target) {
     this.element.querySelector(".toggleable[data-itemid='" + target.closest(".item").dataset.itemid + "']").classList.toggle("visible");
   }
-  
+
+  static async _onAddAspect(event, target) {
+    await this.actor.update({"system.aspects.temporaires" : [...this.actor.system.aspects.temporaires, {nom:""}]});
+  }
+
+  static async _onDeleteAspect(event, target) {
+    let aspects = this.actor.system.aspects.temporaires;
+    aspects.splice(target.dataset.itemid, 1);
+    await this.actor.update({"system.aspects.temporaires" : aspects});
+  }
 }

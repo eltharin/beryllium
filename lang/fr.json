@@ -70,7 +70,11 @@
                 "concept": "Concept",
                 "probleme": "Problème",
                 "lien": "Lien",
-                "methode": "Méthode"
+                "methode": "Méthode",
+                "temporaires": {
+                    "label" : "Aspects temporaires",
+                    "ajout" : "Ajouter un aspect temporaire"
+                }
             },
             "heritage": {
                 "aspect": "Aspect",
