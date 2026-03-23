@@ -487,7 +487,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     
     modifs.updates["system.magie.fletrine.value"] = actor.system.magie.fletrine.value - 1;
     modifs.messages["a2fletrine"] = game.i18n.format("beryllium.messages.repos.elements.fletrine", {nb: Math.min(1, actor.system.magie.fletrine.value)});
-    console.log(modifs);
     return modifs;
   }
 
@@ -497,8 +496,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
 
     modifs.updates["system.consequences.modere.values"] = [];
     modifs.messages["z2consequencesmoderes"] = game.i18n.format("beryllium.messages.repos.elements.consequencesmoderes");
-
-    console.log(actor.system.oubli.value, actor.system.nbCasesOubliTotal)
 
     modifs.updates["system.oubli.value"] =  actor.system.oubli.value +1;
     modifs.messages["a3oubli"] = game.i18n.format("beryllium.messages.repos.elements.oubli", { nb: actor.system.oubli.value >= actor.system.nbCasesOubliTotal ? 0 : 1});
@@ -541,7 +538,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   }
 
   static async _onDepense(event, target) {
-    console.log(this, this.constructor.name);
     const dialog = await foundry.applications.api.DialogV2.input({
       content: await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dialog/depense.hbs"),
       window: {title: "Dépense"},
