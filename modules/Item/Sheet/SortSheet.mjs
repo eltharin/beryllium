@@ -1,8 +1,8 @@
 
 
-export class SortSheet extends foundry.applications.api.HandlebarsApplicationMixin(
-  foundry.applications.sheets.ItemSheetV2
-) {
+import { BaseItemSheet } from "./BaseItemSheet.mjs";
+
+export class SortSheet extends BaseItemSheet {
   static PARTS = {
     form: { 
       template: "systems/beryllium/templates/item/sort.hbs",
@@ -19,8 +19,8 @@ export class SortSheet extends foundry.applications.api.HandlebarsApplicationMix
 
     },
     position: {
-      width: 950,
-      height: 800,
+      width: 770,
+      height: 300,
     },
     window: {
       resizable: true,
@@ -28,5 +28,13 @@ export class SortSheet extends foundry.applications.api.HandlebarsApplicationMix
 
       ]
     },
+  }
+
+  async _prepareContext(options) {
+    
+    const context = await super._prepareContext(options)
+    context.isVerrou = !this.document.testUserPermission(game.user, "canUpdate") || this.document.system.isDefault;
+
+    return context
   }
 }

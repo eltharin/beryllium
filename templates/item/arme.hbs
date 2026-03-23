@@ -6,46 +6,42 @@
         <div>
             <div >
                 <label>{{localize "beryllium.itemsheet.common.nom"}}</label>
-                <input type="text" name="name" value="{{document.name}}"/>
+                <div>{{ fieldOrInput "name" class="pj-sheet-input" value=document.name }}</div>
             </div>
 
             <div>
                 <label>{{localize "beryllium.itemsheet.common.prix"}}</label>
                 <div class="multicol">
                     <label>{{localize "beryllium.bourse.couronne.label"}}</label>
-                    <input type="text" name="system.prix.couronne" value="{{document.system.prix.couronne}}"/>
+                    <div>{{ fieldOrInput "system.prix.couronne" type="number" class="pj-sheet-input" }}</div>
 
                     <label>{{localize "beryllium.bourse.eclat.label"}}</label>
-                    <input type="text" name="system.prix.eclat" value="{{document.system.prix.eclat}}"/>
+                    <div>{{ fieldOrInput "system.prix.eclat" type="number" class="pj-sheet-input" }}</div>
 
                     <label>{{localize "beryllium.bourse.fragment.label"}}</label>
-                    <input type="text" name="system.prix.fragment" value="{{document.system.prix.fragment}}"/>
+                    <div>{{ fieldOrInput "system.prix.fragment" type="number" class="pj-sheet-input" }}</div>
                 </div>
             </div>
             
-            <div >
+            <div class="field">
                 <label>{{localize "beryllium.itemsheet.arme.categorie"}}</label>
-                <input type="text" name="system.categorie" value="{{document.system.categorie}}"/>
+                <div>{{ fieldOrInput "system.categorie" class="pj-sheet-input" }}</div>
             </div>
-            
-            <div >
+                 
+            <div class="field">
                 <label>{{localize "beryllium.itemsheet.arme.degat"}}</label>
-                <input type="number" name="system.degat" value="{{document.system.degat}}"/>
+                <div>{{ fieldOrInput "system.degat" class="pj-sheet-input" }}</div>
             </div>
             
-            <div >
+            <div class="field">
                 <label>{{localize "beryllium.itemsheet.arme.portee"}}</label>
-                <input type="text" name="system.portee" value="{{document.system.portee}}"/>
+                <div>{{ fieldOrInput "system.portee" class="pj-sheet-input" }}</div>
             </div>
             
-            <div >
+            <div class="field">
                 <label>{{localize "beryllium.itemsheet.arme.special"}}</label>
-                <input type="text" name="system.special" value="{{document.system.special}}"/>
+                <div>{{ fieldOrInput "system.special" class="pj-sheet-input" }}</div>
             </div>
-
-            <svg width="50" height="50" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"> <path d="M4 20h40v6h4v6h-8l-4 10H22l-4-10H4z" fill="#000"/> </svg>
-
-            
         </div>
     </div>
 </div>

@@ -19,8 +19,8 @@ export class ArmureSheet extends BaseItemSheet {
 
     },
     position: {
-      width: 950,
-      height: 800,
+      width: 770,
+      height: 550,
     },
     window: {
       resizable: true,

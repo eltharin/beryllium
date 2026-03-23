@@ -8,6 +8,7 @@ export class ObjetDataModel extends system.Common.SystemDataModel {
   static defineSchema() {
     return {
       prixmoyen: new foundry.data.fields.NumberField({initial: 0, min:0}),
+      notes: new foundry.data.fields.StringField({}),
     };
   }
 

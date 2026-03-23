@@ -1,9 +1,9 @@
 import * as system  from "../../_helpers.mjs";
 
+import { BaseItemSheet } from "./BaseItemSheet.mjs";
 
-export class ArmeSheet extends foundry.applications.api.HandlebarsApplicationMixin(
-  foundry.applications.sheets.ItemSheetV2
-) {
+
+export class ArmeSheet extends BaseItemSheet {
   static PARTS = {
     form: { 
       template: "systems/beryllium/templates/item/arme.hbs",
@@ -20,8 +20,8 @@ export class ArmeSheet extends foundry.applications.api.HandlebarsApplicationMix
 
     },
     position: {
-      width: 950,
-      height: 800,
+      width: 770,
+      height: 400,
     },
     window: {
       resizable: true,
@@ -29,6 +29,14 @@ export class ArmeSheet extends foundry.applications.api.HandlebarsApplicationMix
 
       ]
     },
+  }
+
+  async _prepareContext(options) {
+    
+    const context = await super._prepareContext(options)
+    context.isVerrou = !this.document.testUserPermission(game.user, "canUpdate") || this.document.system.isDefault;
+
+    return context
   }
 
   _prepareSubmitData(event, form, formData, updateData) { 

@@ -79,16 +79,14 @@
               </div>
               <div class="controls">
                 {{#if sort.system.effet}}
-                  <a data-action="toggleSpecial" title="{{localize "beryllium.pjsheet.combat.magie.effet"}}"><i class="fas fa-trash"></i></a>
+                  <a data-action="toggleSpecial" title="{{localize "beryllium.pjsheet.combat.magie.effet"}}"><i class="fas fa-eye"></i></a>
                 {{/if}}
               </div>
             </div>
             <div class="controls">
-              {{#if (eq type "default")}}
-                <a data-action="editItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.combat.sort.edit"}}"><i class="fas fa-edit"></i></a>
-              {{else}}
               <a data-action="editItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.magie.sort.edit"}}"><i class="fas fa-edit"></i></a>
-              <a data-action="deleteItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.magie.sort.delete"}}"><i class="fas fa-trash"></i></a>
+              {{#if (eq type "custom")}}
+                <a data-action="deleteItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.magie.sort.delete"}}"><i class="fas fa-trash"></i></a>
               {{/if}}
             </div>
           </div>

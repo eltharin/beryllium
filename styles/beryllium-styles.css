@@ -232,7 +232,7 @@
 }
 
 
-.pj-sheet  textarea{
+.sheet.beryllium  textarea{
     width:100%;
 }
 
@@ -289,7 +289,7 @@
 
 
 
-.pj-sheet .field{
+.sheet.beryllium .field{
     flex-wrap: wrap;
     flex: 1 0 100px;
     display:flex;
@@ -297,24 +297,24 @@
 }
 
 
-.pj-sheet .field > label{
+.sheet.beryllium .field > label{
     flex: 0 0 150px;
     align-content: center;
 }
 
 
-.pj-sheet .field > div{
+.sheet.beryllium .field > div{
     flex: 1 0 100px;
     align-content: center;
     color: var(--color-light-3);
     display: inline-block;
 }
 
-.pj-sheet .field > div ~  label {
+.sheet.beryllium .field > div ~  label {
     margin-left : 20px;
 }
 
-.pj-sheet .field-value{
+.sheet.beryllium .field-value{
     padding:1px 9px;
     color: var(--color-light-3);
     height: var(--input-height);

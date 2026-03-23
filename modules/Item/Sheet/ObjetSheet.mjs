@@ -1,8 +1,8 @@
 import * as system  from "../../_helpers.mjs";
 
-export class ObjetSheet extends foundry.applications.api.HandlebarsApplicationMixin(
-  foundry.applications.sheets.ItemSheetV2
-) {
+import { BaseItemSheet } from "./BaseItemSheet.mjs";
+
+export class ObjetSheet extends BaseItemSheet {
   static PARTS = {
     form: { 
       template: "systems/beryllium/templates/item/objet.hbs",
@@ -19,8 +19,8 @@ export class ObjetSheet extends foundry.applications.api.HandlebarsApplicationMi
 
     },
     position: {
-      width: 950,
-      height: 800,
+      width: 770,
+      height: 300,
     },
     window: {
       resizable: true,

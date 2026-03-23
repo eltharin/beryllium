@@ -378,13 +378,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   static async _onEditItem(event, target) {
     event.preventDefault();
     const item = this.document.items.get(target.dataset.itemid);
-    if (item) {
-      if(item.system.isDefault == true)
-      {
-        ui.notifications.error(`Vous ne pouvez pas supprimer ${item.name}, c'est un élément de base.`);
-        return;
-      }
-      
+    if (item) {      
       // Si la feuille est déjà rendue, juste la mettre au premier plan
       if (item.sheet.rendered) {
         item.sheet.bringToTop();

@@ -51,15 +51,13 @@
                 </div>
                 <div class="controls">
                   {{#if arme.system.special}}
-                    <a data-action="toggleSpecial" title="{{localize "beryllium.pjsheet.combat.arme.delete"}}"><i class="fas fa-trash"></i></a>
+                    <a data-action="toggleSpecial" title="{{localize "beryllium.pjsheet.combat.arme.delete"}}"><i class="fas fa-eye"></i></a>
                   {{/if}}
                 </div>
               </div>
               <div class="controls">
-                {{#if (eq type "default")}}
-                  <a data-action="editItem" data-type="arme" data-itemId="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.edit"}}"><i class="fas fa-edit"></i></a>
-                {{else}}
-                  <a data-action="editItem" data-type="arme" data-itemid="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.edit"}}"><i class="fas fa-edit"></i></a>
+                <a data-action="editItem" data-type="arme" data-itemId="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.edit"}}"><i class="fas fa-edit"></i></a>
+                {{#if (eq type "custom")}}
                   <a data-action="deleteItem" data-type="arme" data-itemid="{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.delete"}}"><i class="fas fa-trash"></i></a>
                 {{/if}}
               </div>
