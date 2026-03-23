@@ -431,26 +431,123 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   static async _onRepos(event, target) {
     const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dialog/repos.hbs");
 
-    const dialog = foundry.applications.api.DialogV2.input({
+    const dialog = await foundry.applications.api.DialogV2.input({
       content: html,
+      position: {
+       width: 550,
+       height: 600,
+      },
       window: {title: "Repos"},
       ok: {
           label: "Ron Pchi",
           default: true,
           icon: "fa-solid fa-floppy-disk",
-      },
-      submit: result => {
-        ChatMessage.create({
-          user: game.user.id,
-          speaker: ChatMessage.getSpeaker({ alias: this.actor.name }),
-          content: "veut faire dodo... mais il ne se passe rien car ce connard de dev n'a pas fait la fonctionnalité encore.",
-        });
       }
     });
+
+    if(!dialog) { return;}
+
+    let modifs = {
+      messageTitre: "",
+      messages: {},
+      updates: {},
+    };
+
+    if(dialog.typeRepos == "session") {
+      modifs = this.repos_session(this.document, modifs);
+    } else if(dialog.typeRepos == "court") {
+      modifs = this.repos_court(this.document, modifs);
+    } else if(dialog.typeRepos == "long") {
+      modifs = this.repos_long(this.document, modifs);
+    } else if(dialog.typeRepos == "scenario") {
+      modifs = this.repos_scenario(this.document, modifs);
+    }
+
+    
+    if(modifs.messageTitre !== "")  {
+
+      this.document.update(modifs.updates);
+
+      let messageContent = "<h3>" + modifs.messageTitre + "</h3>";
+      messageContent += "<div>" + game.i18n.format("beryllium.messages.repos.recup") + "</div>";
+      messageContent += Object.values(modifs.messages).map(e => "<div>" + e + "</div>").join("");
+
+      ChatMessage.create({
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ alias: this.document.name }),
+        content: messageContent,
+      });
+    }
+  }
+
+  repos_court(actor, modifs) {
+    //modifs = this.repos_combat(actor, modifs);
+
+    modifs.messageTitre = game.i18n.format("beryllium.messages.repos.court.message", {actor: actor.name});
+
+    modifs.updates["system.stress.value"] = 0;
+    modifs.messages["a1stress"] = game.i18n.format("beryllium.messages.repos.elements.stress", {nb: actor.system.stress.value});
+
+    modifs.updates["system.consequences.legere.values"] = [];
+    modifs.messages["z1consequenceslegeres"] = game.i18n.format("beryllium.messages.repos.elements.consequenceslegeres");
+    
+    modifs.updates["system.magie.fletrine.value"] = actor.system.magie.fletrine.value - 1;
+    modifs.messages["a2fletrine"] = game.i18n.format("beryllium.messages.repos.elements.fletrine", {nb: Math.min(1, actor.system.magie.fletrine.value)});
+    console.log(modifs);
+    return modifs;
+  }
+
+  repos_long(actor, modifs) {
+    modifs = this.repos_court(actor, modifs);
+    modifs.messageTitre = game.i18n.format("beryllium.messages.repos.long.message", {actor: actor.name});
+
+    modifs.updates["system.consequences.modere.values"] = [];
+    modifs.messages["z2consequencesmoderes"] = game.i18n.format("beryllium.messages.repos.elements.consequencesmoderes");
+
+    console.log(actor.system.oubli.value, actor.system.nbCasesOubliTotal)
+
+    modifs.updates["system.oubli.value"] =  actor.system.oubli.value +1;
+    modifs.messages["a3oubli"] = game.i18n.format("beryllium.messages.repos.elements.oubli", { nb: actor.system.oubli.value >= actor.system.nbCasesOubliTotal ? 0 : 1});
+
+    modifs.updates["system.magie.fletrine.value"] = actor.system.magie.fletrine.value - 5;
+    modifs.messages["a2fletrine"] = game.i18n.format("beryllium.messages.repos.elements.fletrine", { nb: Math.min(5, actor.system.magie.fletrine.value)});
+      
+    return modifs;
+  }
+
+  repos_session(actor, modifs) {
+
+    modifs.messageTitre = game.i18n.format("beryllium.messages.repos.session.message", {actor: actor.name});
+
+    actor.system.heritage.utilisationPrivilege.forEach((v, k) => {
+      modifs.updates["system.heritage.utilisationPrivilege." + k + ".value"] = 0;
+    });
+    modifs.messages["d1privileges"] = game.i18n.format("beryllium.messages.repos.elements.privileges");
+
+    return modifs;
+  }
+
+  repos_scenario(actor, modifs) {
+    modifs = this.repos_long(actor, modifs);
+    modifs.messageTitre = game.i18n.format("beryllium.messages.repos.scenario.message", {actor: actor.name});
+
+    modifs.updates["system.consequences.grave.values"] = [];
+    modifs.messages["z3consequencesgraves"] = game.i18n.format("beryllium.messages.repos.elements.consequencesgraves");
+
+    modifs.updates["system.magie.fletrine.value"] = 0;
+    modifs.messages["a2fletrine"] = game.i18n.format("beryllium.messages.repos.elements.fletrine", { nb: actor.system.magie.fletrine.value});
+
+    modifs.updates["system.oubli.value"] =  actor.system.nbCasesOubliTotal;
+    modifs.messages["a3oubli"] = game.i18n.format("beryllium.messages.repos.elements.oubli", { nb: actor.system.nbCasesOubliTotal - actor.system.oubli.value});
+
+    modifs.updates["system.echo.value"] =  actor.system.nbCasesEchoTotal;
+    modifs.messages["a3echo"] = game.i18n.format("beryllium.messages.repos.elements.echo", { nb: actor.system.nbCasesEchoTotal - actor.system.echo.value});
+
+    return modifs;
   }
 
   static async _onDepense(event, target) {
-
+    console.log(this, this.constructor.name);
     const dialog = await foundry.applications.api.DialogV2.input({
       content: await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dialog/depense.hbs"),
       window: {title: "Dépense"},

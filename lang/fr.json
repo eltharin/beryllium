@@ -362,6 +362,35 @@
             "echo": {
                 "errorVide": "Vous n'avez plus de points d'echo.",
                 "utilisationProuesse": "{actor} utilise la prouesse : {prouesse}"
+            },
+            "repos": {
+                "recup": "Récupération",
+                "court": {
+                    "titre": "Repos Court",
+                    "message": "{actor} fait un repos court."
+                },
+                "long": {
+                    "titre": "Repos Long",
+                    "message": "{actor} fait un repos long."
+                },
+                "session": {
+                    "titre": "Fin de session",
+                    "message": "{actor} fait un repos fin de session."
+                },
+                "scenario": {
+                    "titre": "Fin de Scénario",
+                    "message": "{actor} fait un repos fin de scénario."
+                },
+                "elements": {
+                    "stress": "{nb} pts de stress",
+                    "fletrine": "{nb} pts de fletrine",
+                    "oubli": "{nb} pts d'Oubli",
+                    "echo": "{nb} pts d'Echo",
+                    "consequenceslegeres": "Les Conséquences légères",
+                    "consequencesmoderes": "Les Conséquences modérées",
+                    "consequencesgraves": "Les Conséquences graves",
+                    "privileges": "L'utilisation des privilèges"
+                }
             }
         }
     }

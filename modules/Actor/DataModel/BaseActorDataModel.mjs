@@ -138,8 +138,6 @@ export class BaseActorDataModel extends system.Common.SystemDataModel {
             }
         }
 
-        console.log(this.prouesses);
-
         this._prepareDerivedData();
     }
 

@@ -389,3 +389,66 @@
     display:initial;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+/***********    AUTRE         **********/
+
+.window-content .dialog-form .dialog-content .repos-form > .repos {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:25px;
+}
+
+
+.window-content .dialog-form .dialog-content .repos-form > .repos > div > input[type="radio"],
+.window-content .dialog-form .dialog-content .repos-form > .repos > div > input[type="radio"]::after,
+.window-content .dialog-form .dialog-content .repos-form > .repos > div > input[type="radio"]::before,
+.window-content .dialog-form .dialog-content .repos-form > .repos > div > input[type="radio"]:checked,
+.window-content .dialog-form .dialog-content .repos-form > .repos > div > input[type="radio"]:checked::after,
+.window-content .dialog-form .dialog-content .repos-form > .repos > div > input[type="radio"]:checked::before
+{
+    display:none;
+    content:none;
+}
+
+.window-content .dialog-form .dialog-content .repos-form > .repos > div {
+    display:flex;
+    flex-direction: column;
+    flex: 0 0 200px;
+    border:5px solid transparent;
+    padding:10px;
+    font-family: "IM Fell English SC", serif;
+    font-size: 16px;
+}
+
+.window-content .dialog-form .dialog-content .repos-form > .repos > div:has(> input[type="radio"]:checked) {
+    border:5px solid #665e43;
+    border-radius: 10px;
+}
+
+.window-content .dialog-form .dialog-content  .repos-form > .repos > div > label {
+    text-align: center;
+}
+
+.window-content .dialog-form .dialog-content  .repos-form > .repos > div > label > img {
+    display: block;
+    margin: auto;
+    width: 160px;
+}
+
+.window-content .dialog-form .dialog-content  .repos-form > .repos > div > label.label {
+    background: url("../assets/pics/repos/bandeau.png") no-repeat center center;
+    width:200px;
+    height:55px;
+    line-height: 38px;
+}
