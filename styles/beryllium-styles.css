@@ -125,7 +125,7 @@
     margin-top: 1em;
 }
 
-.pj-sheet .sidebar .cases-container .controls{
+.sheet.beryllium  .cases-container .controls{
     display:flex;
     gap: 5px;
     margin-bottom: 0.2em;
@@ -159,10 +159,10 @@
 }
 
 
-.pj-sheet  .cases-container.echo .controls{
+.sheet.beryllium .cases-container.echo .controls{
     background-color: mediumpurple;
 }
-.pj-sheet  .cases-container.echo .values svg.active{
+.sheet.beryllium  .cases-container.echo .values svg.active{
     fill: mediumpurple;
 }
 
@@ -196,18 +196,18 @@
     background-color:darkolivegreen;
 }
 
-.pj-sheet .sidebar  .cases-container .controls > label{
+.sheet.beryllium   .cases-container .controls > label{
     flex-grow:1;
     text-align: center;
     font-size: 1.2em;
     line-height: 1.6em;
 }
-.pj-sheet .sidebar  .cases-container .controls > span{
+.sheet.beryllium   .cases-container .controls > span{
     flex-grow:0;
     flex-shrink: 0;
     width:28px;
 }
-.pj-sheet .sidebar  .cases-container .controls > span > button{
+.sheet.beryllium   .cases-container .controls > span > button{
     width:100%;
 }
 

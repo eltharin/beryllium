@@ -50,6 +50,11 @@
                 "nom": "Fragment"
             }
         },
+        "echomj": {
+            "label": "Echo MJ",
+            "ajout": "Ajouter 1",
+            "enleve": "Retirer 1"
+        },
         "pjsheet": {
             "action": {
                 "lock" : "Verrouiller la fiche",

@@ -84,5 +84,22 @@ Hooks.once("init", () => {
   registerHandleBarFunctions();
 
   system.DiceRoller.fct.registerMessageEventListener();
+
+  
+    Hooks.on("canvasInit", (canvas) => {
+      if(game.user.isGM) {
+        new system.EchoMj.EchoMjApplication(canvas.scene);
+      }
+    });
+
+      
+    Hooks.on("updateScene", (scene, changes, options) => {
+      if(game.user.isGM && changes.flags?.beryllium?.echoMj) {
+        if(scene.id in game.echoMj) {
+          game.echoMj[scene.id].updateRender(changes.flags?.beryllium?.echoMj);
+        }
+      }
+    });
+
 });
 
