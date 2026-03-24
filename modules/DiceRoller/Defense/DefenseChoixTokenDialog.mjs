@@ -1,5 +1,6 @@
 
 
+import * as system from "../../_helpers.mjs"
 
 export class DefenseChoixTokenDialog {
     static async create(options = {}) {
@@ -12,7 +13,7 @@ export class DefenseChoixTokenDialog {
 
         const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/defense/choixToken-dialog.hbs", data);
 
-        return await foundry.applications.api.DialogV2.input({
+        return await system.Common.Dialog.input({
             content: html,
             window: {title: "Choix de la cible"},
             ok: {

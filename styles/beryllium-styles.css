@@ -17,6 +17,27 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+.beryllium * ~ .clickable {
+    margin-left:10px;
+}
+
+.beryllium .clickable {
+    cursor: pointer;
+}
+
+.beryllium .clickable:hover {
+    background-color: #888;
+}
+
+
+.beryllium .clicdice {
+    cursor: url("../assets/pics/cursordice.png"), auto;
+}
+
+.beryllium .clicdice:hover {
+    background-color: #888;
+}
+
 
 .beryllium .multicol {
     display:flex;
@@ -270,22 +291,20 @@
     border-radius: 5px;
 }
 
-
-
 .pj-sheet .inventory-section .controls {
-    flex: 0 0 50px;
+    flex: 0 0 60px;
 }
 
-.pj-sheet .clickable {
+.pj-sheet .inventory-section .titres .item {
     cursor: pointer;
+    padding:3px;
 }
 
-.pj-sheet .clickable:hover {
-    background-color: #888;
+.pj-sheet .inventory-section .item {
+
+    padding:8px 3px;
+    margin-top:5px;
 }
-
-
-
 
 
 
@@ -296,6 +315,9 @@
     margin-top:15px;
 }
 
+.sheet.beryllium .fullline ~ .fullline{
+    margin-top:0.7em;
+}
 
 .sheet.beryllium .field > label{
     flex: 0 0 150px;
@@ -382,10 +404,10 @@
     align-items: center;
 }
 
-.pj-sheet .item.toggleable {
+.pj-sheet .toggleable {
     display:none;
 }
-.pj-sheet .item.toggleable.visible {
+.pj-sheet .toggleable.visible {
     display:initial;
 }
 

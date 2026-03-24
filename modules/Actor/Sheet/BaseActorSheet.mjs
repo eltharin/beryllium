@@ -379,7 +379,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     event.preventDefault();
     const item = this.document.items.get(target.dataset.itemid);
     if (item) {      
-      // Si la feuille est déjà rendue, juste la mettre au premier plan
       if (item.sheet.rendered) {
         item.sheet.bringToTop();
       } else {
@@ -407,7 +406,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       }
       else
       {
-        confirmed = await foundry.applications.api.DialogV2.confirm({
+        confirmed = await system.Common.Dialog.confirm({
           content: `<p>Êtes-vous sûr de vouloir supprimer ${item.name}?</p>`,
           rejectClose: false,
           modal: true
@@ -425,17 +424,17 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   static async _onRepos(event, target) {
     const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dialog/repos.hbs");
 
-    const dialog = await foundry.applications.api.DialogV2.input({
+    const dialog = await system.Common.Dialog.input({
       content: html,
       position: {
        width: 550,
-       height: 600,
+       height: 620,
       },
       window: {title: "Repos"},
       ok: {
-          label: "Ron Pchi",
+          label: game.i18n.format("beryllium.messages.repos.oklabel"),
           default: true,
-          icon: "fa-solid fa-floppy-disk",
+          icon: "fa-solid fa-bed",
       }
     });
 
@@ -538,7 +537,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   }
 
   static async _onDepense(event, target) {
-    const dialog = await foundry.applications.api.DialogV2.input({
+    const dialog = await system.Common.Dialog.input({
       content: await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dialog/depense.hbs"),
       window: {title: "Dépense"},
       ok: {
@@ -593,7 +592,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   static async _onManagePrivilege(event, target) {
     let uses = this.actor.system.heritage.utilisationPrivilege;
 
-    const dialog = await foundry.applications.api.DialogV2.input({
+    const dialog = await system.Common.Dialog.input({
       content: await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dialog/changeUsePrivilege.hbs", {use: uses[target.dataset.privilegeid]}),
       window: {title: game.i18n.format("beryllium.messages.managePrivilege.dialog.title")},
       ok: {

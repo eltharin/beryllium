@@ -35,16 +35,16 @@
     </div>
   </div>
 
+  <h2>
+    {{localize "beryllium.pjsheet.magie.sort.listLabel"}}
+    {{#if (not isVerrou) }}
+      <span title="{{localize "beryllium.pjsheet.magie.sort.ajout"}}"><a class="sort create" data-action="addItem" data-type="sort"><i class="fas fa-plus"></i></a></span>
+    {{/if}}
+  </h2>
   <div class="inventory-section">
-    <h3>{{localize "beryllium.pjsheet.magie.sort.listLabel"}}</h3>
-
-    <div class="sort create" data-action="addItem" data-type="sort">
-      <span><a><i class="fas fa-plus"></i> {{localize "beryllium.pjsheet.magie.sort.ajout"}}</a></span>
-    </div>
-
     {{#each (array "default" "custom") as |type| }}
       {{#if (eq type "default")}}
-        <div class="sort titres">
+        <div class="titres">
           <div class="item flexrow" >
             <div class="" >{{ localize "beryllium.pjsheet.combat.sort.titre" }}</div>
             <div class="infos flexrow">
@@ -68,35 +68,37 @@
 
       <div class="sort">
         {{#each (lookup ../sorts type) as |sort|}}
-          <div class="item flexrow" data-itemid="{{sort._id}}">
-            <div class="clickable" data-action="attaque" data-competence="magie" data-itemid="{{sort._id}}">{{sort.name}}</div>
-            <div class="infos flexrow">
-              <div>
-                  {{sort.system.level}}
-              </div>
-              <div>
-                  {{sort.system.portee}}
+          <div class="item" data-itemid="{{sort._id}}">
+            <div class="flexrow" data-itemid="{{sort._id}}">
+              <div class="clickable" data-action="attaque" data-competence="magie" data-itemid="{{sort._id}}">{{sort.name}}</div>
+              <div class="infos flexrow">
+                <div>
+                    {{sort.system.level}}
+                </div>
+                <div>
+                    {{sort.system.portee}}
+                </div>
+                <div class="controls">
+                  {{#if sort.system.effet}}
+                    <a data-action="toggleSpecial" title="{{localize "beryllium.pjsheet.combat.magie.effet"}}"><i class="fas fa-eye"></i></a>
+                  {{/if}}
+                </div>
               </div>
               <div class="controls">
-                {{#if sort.system.effet}}
-                  <a data-action="toggleSpecial" title="{{localize "beryllium.pjsheet.combat.magie.effet"}}"><i class="fas fa-eye"></i></a>
+                <a data-action="editItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.magie.sort.edit"}}"><i class="fas fa-edit"></i></a>
+                {{#if (eq type "custom")}}
+                  <a data-action="deleteItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.magie.sort.delete"}}"><i class="fas fa-trash"></i></a>
                 {{/if}}
               </div>
             </div>
-            <div class="controls">
-              <a data-action="editItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.magie.sort.edit"}}"><i class="fas fa-edit"></i></a>
-              {{#if (eq type "custom")}}
-                <a data-action="deleteItem" data-type="sort" data-itemId="{{sort._id}}" title="{{localize "beryllium.pjsheet.magie.sort.delete"}}"><i class="fas fa-trash"></i></a>
-              {{/if}}
-            </div>
-          </div>
-          {{#if sort.system.effet}}
-            <div class="item toggleable flexrow" data-itemid="{{sort._id}}">
-              <div class="infos">
-                {{sort.system.effet}}
+            {{#if sort.system.effet}}
+              <div class="toggleable flexrow" data-itemid="{{sort._id}}">
+                <div class="infos">
+                  {{sort.system.effet}}
+                </div>
               </div>
-            </div>
-          {{/if}}
+            {{/if}}
+          </div>
         {{/each}}
       </div>  
     {{/each}}

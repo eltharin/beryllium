@@ -33,7 +33,7 @@ export class EchoMjApplication extends foundry.applications.api.HandlebarsApplic
     let renderOptions = {force: true};
     if(userData?.position) {
         renderOptions.position = userData.position;
-        renderOptions.position.width = 200;
+        renderOptions.position.width = 230;
         renderOptions.position.height = 150;
     }
 
@@ -50,7 +50,7 @@ export class EchoMjApplication extends foundry.applications.api.HandlebarsApplic
         addEcho: this._onAddEcho,
     },
     position: {
-      width: 200,
+      width: 230,
       height: 80,
       left: 10,
       top:0,

@@ -1,5 +1,6 @@
 
 
+import * as system from "../../_helpers.mjs"
 
 export class InterferenceRollDialog {
     static async create(options = {}) {
@@ -26,7 +27,7 @@ export class InterferenceRollDialog {
 
         const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/interference/roll-dialog.hbs", data);
 
-        return await foundry.applications.api.DialogV2.input({
+        return await system.Common.Dialog.input({
             content: html,
             window: {title: game.i18n.format("beryllium.roll.common.rolldice")},
             ok: {

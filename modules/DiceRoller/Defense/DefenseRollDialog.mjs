@@ -1,5 +1,6 @@
 
 
+import * as system from "../../_helpers.mjs"
 
 export class DefenseRollDialog {
     static async create(options = {}) {
@@ -16,7 +17,7 @@ export class DefenseRollDialog {
 
         const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/defense/roll-dialog.hbs", data);
 
-        return await foundry.applications.api.DialogV2.input({
+        return await system.Common.Dialog.input({
             content: html,
             render: event => {
                 this.calculTotal(event.target, options.attaque.options.competence);

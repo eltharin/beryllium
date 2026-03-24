@@ -7,12 +7,12 @@
 
 
     <div class="inventory-section">
-      <h2>{{localize "beryllium.pjsheet.combat.arme.label"}}</h2>
-
-      <div class="arme create" data-action="addItem" data-type="arme">
-        <span><a><i class="fas fa-plus"></i> {{localize "beryllium.pjsheet.combat.arme.ajout"}}</a></span>
-      </div>
-
+      <h2>
+        {{localize "beryllium.pjsheet.combat.arme.label"}}
+        {{#if (not isVerrou) }}
+          <span title="{{localize "beryllium.pjsheet.combat.arme.ajout"}}"><a class="arme create" data-action="addItem" data-type="arme"><i class="fas fa-plus"></i></a></span>
+        {{/if}}
+      </h2>
 
       {{#each (array "default" "custom") as |type| }}
         {{#if (eq type "default")}}
@@ -75,11 +75,12 @@
     </div>
 
     <div class="inventory-section">
-      <h2>{{localize "beryllium.pjsheet.combat.armure.label"}}</h2>
-        <div class="armure create" data-action="addItem" data-type="armure">
-          <span><a><i class="fas fa-plus"></i> {{localize "beryllium.pjsheet.combat.armure.ajout"}}</a></span>
-        </div>
-
+      <h2>
+        {{localize "beryllium.pjsheet.combat.armure.label"}}
+        {{#if (not isVerrou) }}
+          <span title="{{localize "beryllium.pjsheet.combat.armure.ajout"}}"><a class="armure create" data-action="addItem" data-type="armure"><i class="fas fa-plus"></i></a></span>
+        {{/if}}
+      </h2>
         <div class="armure-list"> 
         {{#each armures as |armure|}}
             <div class="item flexrow" data-item-id="{{armure._id}}">

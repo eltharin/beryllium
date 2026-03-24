@@ -1,5 +1,5 @@
 
-
+import * as system from "../../_helpers.mjs"
 
 export class CompetenceRollDialog {
     static async create(options = {}) {
@@ -37,11 +37,11 @@ export class CompetenceRollDialog {
 
         const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/competence/roll-dialog.hbs", data);
 
-        return await foundry.applications.api.DialogV2.input({
+        return await system.Common.Dialog.input({
             content: html,
             window: {title: "lancer de dé"},
             ok: {
-                label: "Make Choice",
+                label: game.i18n.format("beryllium.roll.common.rolldice"),
                 default: true,
                 icon: "fa-solid fa-floppy-disk",
             }

@@ -370,6 +370,7 @@
             },
             "repos": {
                 "recup": "Récupération",
+                "oklabel": "Se reposer",
                 "court": {
                     "titre": "Repos Court",
                     "message": "{actor} fait un repos court."

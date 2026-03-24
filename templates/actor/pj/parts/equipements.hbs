@@ -5,23 +5,23 @@
 >
   <div class="pj-sheet-cat equipements">
   <div class="inventory-section">
-    <h2>{{localize "beryllium.pjsheet.objet.titre"}}</h2>
+    <div class="argent multicol">
+      <a data-action="depense" title="{{localize "beryllium.pjsheet.bourse.creerdepense"}}"><i class="fas fa-coins"></i></a>
+      <label>{{localize "beryllium.bourse.couronne.label"}}</label>
+      <input type="text" name="system.bourse.couronne" value="{{system.bourse.couronne}}" class="pj-sheet-input" placeholder=""/>
 
-        <div class="argent">
-        <a data-action="depense" title="{{localize "beryllium.pjsheet.bourse.creerdepense"}}"><i class="fas fa-coins"></i></a>
-            <label>{{localize "beryllium.bourse.couronne.label"}}</label>
-            <input type="text" name="system.bourse.couronne" value="{{system.bourse.couronne}}" class="pj-sheet-input" placeholder=""/>
-
-            <label>{{localize "beryllium.bourse.eclat.label"}}</label>
-            <input type="text" name="system.bourse.eclat" value="{{system.bourse.eclat}}" class="pj-sheet-input" placeholder=""/>
-            <label>{{localize "beryllium.bourse.fragment.label"}}</label>
-            <input type="text" name="system.bourse.fragment" value="{{system.bourse.fragment}}" class="pj-sheet-input" placeholder=""/>
+      <label>{{localize "beryllium.bourse.eclat.label"}}</label>
+      <input type="text" name="system.bourse.eclat" value="{{system.bourse.eclat}}" class="pj-sheet-input" placeholder=""/>
+      <label>{{localize "beryllium.bourse.fragment.label"}}</label>
+      <input type="text" name="system.bourse.fragment" value="{{system.bourse.fragment}}" class="pj-sheet-input" placeholder=""/>
     </div>
-    
-      <div class="objet create" data-action="addItem" data-type="objet">
-        <a><i class="fas fa-plus"></i> {{localize "beryllium.pjsheet.objet.ajout"}}</a>
-      </div>
 
+    <h2>
+      {{localize "beryllium.pjsheet.objet.titre"}}
+      {{#if (not isVerrou) }}
+        <span title="{{localize "beryllium.pjsheet.objet.ajout"}}"><a class="objet create" data-action="addItem" data-type="objet"><i class="fas fa-plus"></i></a></span>
+      {{/if}}
+    </h2>    
       <div class="objet-list"> 
       {{#each items as |armure|}}
           <div class="item flexrow" data-item-id="{{armure._id}}">

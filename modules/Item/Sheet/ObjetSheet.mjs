@@ -10,23 +10,10 @@ export class ObjetSheet extends BaseItemSheet {
   };
 
   static DEFAULT_OPTIONS = {
-    tag: 'form',
-    form: {
-      closeOnSubmit: false,
-      submitOnChange: true
-    },
-    actions: {
-
-    },
+    ...super.DEFAULT_OPTIONS,
     position: {
       width: 770,
       height: 300,
-    },
-    window: {
-      resizable: true,
-      controls: [
-
-      ]
     },
   }
 

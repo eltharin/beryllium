@@ -1,4 +1,5 @@
 
+import * as system from "../../_helpers.mjs"
 
 
 export class AttaqueRollDialog {
@@ -50,7 +51,7 @@ export class AttaqueRollDialog {
 
         const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/attaque/roll-dialog.hbs", data);
 
-        return await foundry.applications.api.DialogV2.input({
+        return await system.Common.Dialog.input({
             content: html,
             window: {title: "lancer de dé"},
             ok: {
