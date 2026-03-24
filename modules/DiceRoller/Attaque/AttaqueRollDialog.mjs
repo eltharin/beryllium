@@ -6,37 +6,9 @@ export class AttaqueRollDialog {
     static async create(options = {}) {
         let data = {
             isMagie: options.isMagie,
-            competences: {
-            },
-            options: {
-                difficulteDefaut: 4,
-                difficulte: {
-                    mediocre: {
-                        value: 0,
-                        isDefault: false
-                    },
-                    correct: {
-                        value: 2,
-                        isDefault: false
-                    },
-                    moyen: {
-                        value: 4,
-                        isDefault: true
-                    },
-                    bon: {
-                        value: 6,
-                        isDefault: false
-                    },
-                    excellent: {
-                        value: 8,
-                        isDefault: false
-                    },
-                    legendaire: {
-                        value: 10,
-                        isDefault: false
-                    }
-                }
-            }
+            item: options.item,
+            munitions: options.munitions,
+            needMunitions: options.needMunitions,
         };
 
         if(options.isMagie) {
@@ -53,11 +25,11 @@ export class AttaqueRollDialog {
 
         return await system.Common.Dialog.input({
             content: html,
-            window: {title: "lancer de dé"},
+            window: {title: game.i18n.format("beryllium.attaquedefense.attaque.btn")},
             ok: {
-                label: "Attaquer",
+                label: game.i18n.format("beryllium.attaquedefense.attaque.btn"),
                 default: true,
-                icon: "fa-solid fa-floppy-disk",
+                icon: "fa-solid fa-sword",
             }
         });
     }

@@ -8,6 +8,7 @@
 
     <div class="inventory-section">
       <h2>
+        <span title="{{localize "beryllium.common.toggle"}}"><a class="arme create" data-action="toggle" data-toggle="armeSection"><i class="fas fa-eye"></i></a></span>
         {{localize "beryllium.pjsheet.combat.arme.label"}}
         {{#if (not isVerrou) }}
           <span title="{{localize "beryllium.pjsheet.combat.arme.ajout"}}"><a class="arme create" data-action="addItem" data-type="arme"><i class="fas fa-plus"></i></a></span>
@@ -16,10 +17,13 @@
 
       {{#each (array "default" "custom") as |type| }}
         {{#if (eq type "default")}}
-          <div class="arme titres">
+          <div class="arme titres toggleable visible" data-toggle_section="armeSection">
             <div class="item flexrow" >
               <div class="" >{{ localize "beryllium.pjsheet.combat.arme.titre" }}</div>
               <div class="infos flexrow">
+                <div>
+                    {{ localize "beryllium.pjsheet.combat.arme.qte" }}
+                </div>
                 <div>
                     {{ localize "beryllium.pjsheet.combat.arme.portee" }}
                 </div>
@@ -38,11 +42,20 @@
         {{/if}}
 
 
-        <div class="arme">
+        <div class="arme toggleable visible" data-toggle_section="armeSection">
           {{#each (lookup ../armes type) as |arme|}}
             <div class="item flexrow" data-itemid="{{arme._id}}">
               <div class="clickable" data-action="attaque" data-competence="combat" data-itemid="{{arme._id}}">{{arme.name}}</div>
               <div class="infos flexrow">
+                <div>
+                    {{#if (eq arme.system.typeQte "jet")}}
+                      {{arme.system.quantiteConso.value}}/{{arme.system.quantiteConso.max}}
+                    {{else}}
+                      {{#if (eq arme.system.typeQte "munition")}}
+                        {{arme.system.typeMunition}}
+                      {{/if}}
+                    {{/if}}
+                </div>
                 <div>
                     {{arme.system.portee}}
                 </div>
@@ -51,7 +64,7 @@
                 </div>
                 <div class="controls">
                   {{#if arme.system.special}}
-                    <a data-action="toggleSpecial" title="{{localize "beryllium.pjsheet.combat.arme.delete"}}"><i class="fas fa-eye"></i></a>
+                    <a data-action="toggle"  data-toggle="armespecial_{{arme._id}}" title="{{localize "beryllium.pjsheet.combat.arme.delete"}}"><i class="fas fa-eye"></i></a>
                   {{/if}}
                 </div>
               </div>
@@ -63,7 +76,7 @@
               </div>
             </div>
             {{#if arme.system.special}}
-              <div class="item toggleable flexrow" data-itemid="{{arme._id}}">
+              <div class="item toggleable flexrow" data-toggle_section="armespecial_{{arme._id}}">
                 <div class="infos">
                   {{arme.system.special}}
                 </div>
@@ -76,13 +89,97 @@
 
     <div class="inventory-section">
       <h2>
+        <span title="{{localize "beryllium.common.toggle"}}"><a class="arme create" data-action="toggle" data-toggle="munitionSection"><i class="fas fa-eye"></i></a></span>
+        {{localize "beryllium.pjsheet.combat.munition.label"}}
+        {{#if (not isVerrou) }}
+          <span title="{{localize "beryllium.pjsheet.combat.munition.ajout"}}"><a class="munition create" data-action="addItem" data-type="munition"><i class="fas fa-plus"></i></a></span>
+        {{/if}}
+      </h2>
+        <div class="munition-list toggleable visible" data-toggle_section="munitionSection"> 
+          <div class="item flexrow" >
+            <div class="" >{{ localize "beryllium.pjsheet.combat.munition.titre" }} ({{ localize "beryllium.pjsheet.combat.munition.typemunition" }})</div>
+            <div class="infos flexrow">
+              <div>
+                  {{ localize "beryllium.pjsheet.combat.arme.qte" }}
+              </div>
+              <div>
+                  {{ localize "beryllium.pjsheet.combat.arme.degat" }}
+              </div>
+              <div class="controls">
+                {{ localize "beryllium.pjsheet.combat.arme.voirspecial" }}
+              </div>
+            </div>
+            <div class="controls">
+              {{ localize "beryllium.pjsheet.combat.arme.actions" }}
+            </div>
+          </div>
+          {{#each munitions as |munition|}}
+            <div class="item flexrow" data-item-id="{{munition._id}}">
+              <div >{{munition.name}} ({{munition.system.typeMunition}})</div>
+              <div class="infos flexrow">
+                <div>
+                  {{munition.system.quantiteConso.value}}/{{munition.system.quantiteConso.max}}
+                </div>
+                <div>
+                    {{munition.system.degat}}
+                </div>
+                <div class="controls">
+                  {{#if munition.system.special}}
+                    <a data-action="toggle"  data-toggle="munitionspecial_{{munition._id}}" title="{{localize "beryllium.pjsheet.combat.munition.delete"}}"><i class="fas fa-eye"></i></a>
+                  {{/if}}
+                </div>
+              </div>
+              <div class="controls">
+                {{#if munition.system.isDefaut}}
+                <a data-action="desequipeArmure" data-type="munition" data-itemid="{{munition._id}}" title="{{localize "beryllium.pjsheet.combat.munition.desequipe"}}"><i class="fas fa-minus"></i></a>
+                {{else}}
+                <a data-action="equipeArmure" data-type="munition" data-itemid="{{munition._id}}" title="{{localize "beryllium.pjsheet.combat.munition.equipe"}}"><i class="fas fa-plus"></i></a>
+                {{/if}}
+                <a data-action="editItem" data-type="munition" data-itemid="{{munition._id}}" title="{{localize "beryllium.pjsheet.combat.munition.edit"}}"><i class="fas fa-edit"></i></a>
+                <a data-action="deleteItem" data-type="munition" data-itemid="{{munition._id}}" title="{{localize "beryllium.pjsheet.combat.munition.delete"}}"><i class="fas fa-trash"></i></a>
+              </div>
+            </div>
+            {{#if munition.system.special}}
+            <div class="item toggleable flexrow" data-toggle_section="munitionspecial_{{munition._id}}">
+              <div class="infos">
+                {{munition.system.special}}
+              </div>
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>  
+    </div>
+
+    <div class="inventory-section">
+      <h2>
+        <span title="{{localize "beryllium.common.toggle"}}"><a class="arme create" data-action="toggle" data-toggle="armureSection"><i class="fas fa-eye"></i></a></span>
         {{localize "beryllium.pjsheet.combat.armure.label"}}
         {{#if (not isVerrou) }}
           <span title="{{localize "beryllium.pjsheet.combat.armure.ajout"}}"><a class="armure create" data-action="addItem" data-type="armure"><i class="fas fa-plus"></i></a></span>
         {{/if}}
       </h2>
-        <div class="armure-list"> 
-        {{#each armures as |armure|}}
+        <div class="armure-list toggleable visible" data-toggle_section="armureSection"> 
+          <div class="item flexrow" >
+            <div class="" >{{ localize "beryllium.pjsheet.combat.armure.titre" }}</div>
+            <div class="infos flexrow">
+              <div>
+                  {{ localize "beryllium.pjsheet.combat.arme.qte" }}
+              </div>
+              <div>
+                  {{ localize "beryllium.pjsheet.combat.arme.portee" }}
+              </div>
+              <div>
+                  {{ localize "beryllium.pjsheet.combat.arme.degat" }}
+              </div>
+              <div class="controls">
+                {{ localize "beryllium.pjsheet.combat.arme.voirspecial" }}
+              </div>
+            </div>
+            <div class="controls">
+              {{ localize "beryllium.pjsheet.combat.arme.actions" }}
+            </div>
+          </div>
+          {{#each armures as |armure|}}
             <div class="item flexrow" data-item-id="{{armure._id}}">
               <div >{{armure.name}}</div>
               <div class="controls">
@@ -98,6 +195,5 @@
         {{/each}}
       </div>  
     </div>
-
   </div>
 </section>

@@ -75,6 +75,12 @@
     flex : 0 0 40%;
 }
 
+/******             TOUTE FICHE                    *****/
+
+.beryllium h2 > span > a > i {
+    font-size:1.6rem;
+}
+
 /******              TOP BAR                       *****/
 .pj-sheet > .content > .top > .pj-sheet-competences{
     font-family: "IM Fell English SC", serif;
@@ -296,7 +302,7 @@
 }
 
 .pj-sheet .inventory-section .titres .item {
-    cursor: pointer;
+
     padding:3px;
 }
 

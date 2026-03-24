@@ -1,14 +1,16 @@
 {
     "TYPES": {
         "Actor": {
-        "pj": "Joueur",
-        "pnj": "Personnage Non-Joueur"
+            "pj": "Joueur",
+            "pnjmajeur": "Personnage Non-Joueur Majeur",
+            "pnj": "Personnage Non-Joueur"
         },
         "Item": {
-        "arme": "Arme",
-        "armure": "Armure",
-        "sort": "Sort",
-        "objet": "Objet"
+            "arme": "Arme",
+            "munition": "Munition",
+            "armure": "Armure",
+            "sort": "Sort",
+            "objet": "Objet"
         }
     },
     "beryllium": {
@@ -22,6 +24,10 @@
             "influence": "Influence",
             "technique": "Technique",
             "volonte": "Volonté"
+        },
+        "common": {
+            "qte": "Quantité",
+            "toggle": "Voir / Masquer"
         },
         "label": {
             "niv": "Niv"
@@ -171,14 +177,27 @@
                     "label": "Liste des armes",
                     "ajout": "Ajouter une arme",
                     "titre": "Nom de l'arme",
+                    "qte": "Qté",
                     "portee": "Portée",
                     "degat": "Dégat",
                     "voirspecial": "Spécial",
-                    "actions": "Actions"
+                    "actions": "Actions",
+                    "edit": "Modifier l'arme",
+                    "delete": "Supprimer l'arme'"
+                },
+                "munition": {
+                    "label": "Liste des munitions",
+                    "typemunition": "Type de munition",
+                    "titre": "Nom de la munition",
+                    "ajout": "Ajouter une munition",
+                    "edit": "Modifier la munition",
+                    "delete": "Supprimer la munition"
                 },
                 "armure": {
                     "label": "Liste des armures",
-                    "ajout": "Ajouter une armure"
+                    "ajout": "Ajouter une armure",
+                    "edit": "Modifier l'armure",
+                    "delete": "Supprimer l'armure'"
                 },
                 "sort": {
                     "titre": "Nom du sort",
@@ -206,7 +225,21 @@
                 "categorie": "Catégorie",
                 "degat": "Dégat",
                 "portee": "Portée",
-                "special": "Spécial"
+                "special": "Spécial",
+                "type": {
+                    "label": "Type d'arme",
+                    "melee": "Arme de mélée",
+                    "jet": "Arme de jet",
+                    "munition": "Arme à munitions"
+                },
+                "quantiteConso": {
+                    "value": "Qté portée",
+                    "max": "Qté Max"
+                },
+                "typemunition": {
+                    "label": "Type de munitions",
+                    "aucun": "Aucun"
+                }
             },
             "armure": {
                 "type": "Type",
@@ -306,6 +339,7 @@
         },
         "attaquedefense": {
             "attaque": {
+                "btn": "Attaquer",
                 "caracatt": "Caractéristique de défense",
                 "carac": "Attaque avec ",
                 "defendrebtn": "Se Défendre",
@@ -316,7 +350,11 @@
                 "item": {
                     "arme": "Attaque avec l'arme : {item}",
                     "magie": "Attaque avec le sort : {item}"
-                }
+                },
+                "notarget" : "Il n'y a pas de cible sélectionnée.",
+                "qteless" : "La quantité ne peux pas etre négative.",
+                "qtemore" : "Vous n'avez pas assez de cet item.",
+                "itemRetires": "{nb} {item}(s) retiré(s)"
             },
             "defense": {
                 "choixtoken": "Choisissez le Token à défendre",

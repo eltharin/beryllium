@@ -3,10 +3,10 @@ import * as system  from "../../_helpers.mjs";
 import { BaseItemSheet } from "./BaseItemSheet.mjs";
 
 
-export class ArmeSheet extends BaseItemSheet {
+export class MunitionSheet extends BaseItemSheet {
   static PARTS = {
     form: { 
-      template: "systems/beryllium/templates/item/arme.hbs",
+      template: "systems/beryllium/templates/item/munition.hbs",
     },
   };
 
@@ -14,7 +14,7 @@ export class ArmeSheet extends BaseItemSheet {
     ...super.DEFAULT_OPTIONS,
     position: {
       width: 770,
-      height: 460,
+      height: 400,
     },
   }
 
@@ -23,6 +23,7 @@ export class ArmeSheet extends BaseItemSheet {
     const context = await super._prepareContext(options)
     context.isVerrou = !this.document.testUserPermission(game.user, "canUpdate") || this.document.system.isDefault;
     context.listestypemunition = game.settings.get("beryllium", "typeMunition");
+
     return context
   }
 
@@ -32,11 +33,6 @@ export class ArmeSheet extends BaseItemSheet {
     const submitData = foundry.utils.expandObject(formData.object);
 
     foundry.utils.setProperty(data, "system.prixmoyen", system.Common.Argent.convertBtoA(submitData.system.prix));
-
-    /*
-    if(submitData.system.quantiteConso.value > submitData.system.quantiteConso.max) {
-      foundry.utils.setProperty(data, "system.quantiteConso.value", submitData.system.quantiteConso.max);
-    }*/
 
     return data ; 
   }

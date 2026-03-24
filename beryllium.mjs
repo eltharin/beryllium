@@ -7,11 +7,13 @@ import { ActorPjDataModel } from "./modules/Actor/DataModel/ActorPjDataModel.mjs
 import { ActorPnjDataModel } from "./modules/Actor/DataModel/ActorPnjDataModel.mjs";
 
 import { ArmeSheet } from "./modules/Item/Sheet/ArmeSheet.mjs";
+import { MunitionSheet } from "./modules/Item/Sheet/MunitionSheet.mjs";
 import { ArmureSheet } from "./modules/Item/Sheet/ArmureSheet.mjs";
 import { SortSheet } from "./modules/Item/Sheet/SortSheet.mjs";
 import { ObjetSheet } from "./modules/Item/Sheet/ObjetSheet.mjs";
 
 import { ArmeDataModel } from "./modules/Item/DataModel/ArmeDataModel.mjs";
+import { MunitionDataModel } from "./modules/Item/DataModel/MunitionDataModel.mjs";
 import { ArmureDataModel } from "./modules/Item/DataModel/ArmureDataModel.mjs";
 import { SortDataModel } from "./modules/Item/DataModel/SortDataModel.mjs";
 import { ObjetDataModel } from "./modules/Item/DataModel/ObjetDataModel.mjs";
@@ -33,6 +35,7 @@ Hooks.once("init", () => {
   
   CONFIG.Item.dataModels = {
     arme: ArmeDataModel,
+    munition: MunitionDataModel,
     armure: ArmureDataModel,
     sort: SortDataModel,
     objet: ObjetDataModel,
@@ -58,6 +61,11 @@ Hooks.once("init", () => {
     makeDefault: true,
     label: "Feuille d'arme"
   });
+  foundry.documents.collections.Items.registerSheet("beryllium", MunitionSheet, {
+    types: ["munition"],
+    makeDefault: true,
+    label: "Feuille de munitions"
+  });
   foundry.documents.collections.Items.registerSheet("beryllium", ArmureSheet, {
     types: ["armure"],
     makeDefault: true,
@@ -75,6 +83,7 @@ Hooks.once("init", () => {
   });
 
   system.DiceRoller.fct.registerDiceRolls();
+  system.Settings.fct.registerSettings();
 
 
   CONFIG.Dice.terms[DeBeryllium.DENOMINATION] = DeBeryllium;

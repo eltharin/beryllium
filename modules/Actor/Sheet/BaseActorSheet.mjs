@@ -31,6 +31,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     },
     actions: {
       skillRoll: this._onSkillRoll,
+      toggle: this._onToggle,
       addRemove: this._onAddRemove,
       showArtwork: this.#showArtwork,
       addItem: this._onAddItem,
@@ -49,7 +50,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       jetSortieSurchauffe: this._onJetSortieSurchauffe,
       deOubli: this._onDeOubli,
       utilisationProuesse: this._onUtilisationProuesse,
-      toggleSpecial: this._onToggleSpecial,
       addAspect: this._onAddAspect,
       deleteAspect: this._onDeleteAspect,
     },
@@ -181,19 +181,28 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       }
     });
 
-    context.items = this.document.items.filter(i => i.type === "objet");
-    context.armes = {
-      default : this.document.items.filter(i => i.type === "arme" && i.system.isDefault == true),
-      custom : this.document.items.filter(i => i.type === "arme" && i.system.isDefault == false),
-    }
-    context.armures = this.document.items.filter(i => i.type === "armure");
-    context.sorts = {
-      default : this.document.items.filter(i => i.type === "sort" && i.system.isDefault == true),
-      custom : this.document.items.filter(i => i.type === "sort" && i.system.isDefault == false),
+    let allItems = this.document.items.documentsByType;
+
+    const triCustomDefault = function(array) {
+      return {
+        default : array.filter(i => i.system.isDefault == true),
+        custom : array.filter(i => i.system.isDefault == false),
+      }
     };
+
+    context.armes = triCustomDefault(allItems.arme || []);
+    delete allItems.arme;
+    context.munitions = allItems.munition || [];
+    delete allItems.munition;
+    context.armures = allItems.armure || [];
+    delete allItems.armure;
+    context.sorts = triCustomDefault(allItems.sort || []);
+    delete allItems.sort;
+    
     context.sorts.default.sort((a,b) => a.system.level > b.system.level ? 1 : -1);
     context.sorts.custom.sort((a,b) => a.system.level > b.system.level ? 1 : -1);
 
+    context.items = Object.values(allItems).reduce((a, b ) => [...a, ...b], []);
 
 
     return context
@@ -251,21 +260,64 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     const type = target.dataset.competence == "magie" ? "magie" : "arme";
 
     if([...game.user.targets].length == 0) {
-        return ui.notifications.error(`Il n'y a pas de cible sélectionnée.`);
+        return ui.notifications.error(game.i18n.format("beryllium.attaquedefense.attaque.notarget"));
     }
 
     const itemObj = actor.items.get(item);
-    const modificateurs = await system.DiceRoller.AttaqueRollDialog.create({isMagie: (competence == "magie"), competences: actor.system.competences, item: itemObj, type: type});
+    const needMunitions = (itemObj.type == "arme" && (itemObj.system.typeMunition||"") != "");
+
+    const modificateurs = await system.DiceRoller.AttaqueRollDialog.create({
+      isMagie: (competence == "magie"), 
+      competences: actor.system.competences, 
+      item: itemObj, 
+      type: type, 
+      needMunitions: needMunitions,
+      munitions: needMunitions ? actor.items.filter(i => i.type == "munition" && i.system.typeMunition == itemObj.system.typeMunition) : null,
+    });
+
     if (modificateurs == null) { return; }
     
-    const myRoll = new system.DiceRoller.AttaqueRoll("4db",{}, {
-        competence: competence,
-        item: {
+    if(itemObj.type == "arme" && itemObj.system.typeQte == "jet") {
+      if(modificateurs.quantite < 0)
+      {
+        return ui.notifications.error(game.i18n.format("beryllium.attaquedefense.attaque.qteless"));
+      }
+      if(modificateurs.quantite > itemObj.system.quantiteConso.value)
+      {
+        return ui.notifications.error(game.i18n.format("beryllium.attaquedefense.attaque.qtemore"));
+      }
+    }
+
+    let myItem = {
           id: itemObj.id,
           name: itemObj.name,
           type: type,
           degats: itemObj.system.degat,
-        },
+        };
+
+    let munition = null;
+    if(needMunitions) {
+      munition = actor.items.get(modificateurs.munition);
+
+      myItem.name += "(" + munition.name + ")";
+      
+      myItem.degats += munition.system.degat;
+
+
+      if(modificateurs.quantite < 0) {
+        return ui.notifications.error(game.i18n.format("beryllium.attaquedefense.attaque.qteless"));
+      }
+      
+      if(modificateurs.quantite > munition.system.quantiteConso.value)
+      {
+        return ui.notifications.error(game.i18n.format("beryllium.attaquedefense.attaque.qtemore"));
+      }
+    }
+
+
+    const myRoll = new system.DiceRoller.AttaqueRoll("4db",{}, {
+        competence: competence,
+        item: myItem,
         actorCompetence: actor.system.competences[modificateurs.competence], 
         modificateurs: modificateurs, 
         from: actor,
@@ -276,9 +328,25 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
         }, {}),
     });
 
-    myRoll.toMessage({
+    await myRoll.toMessage({
         speaker: ChatMessage.getSpeaker({ alias: actor.name + " ( " + game.user.name + " )"}),
     });
+
+    if(itemObj.type == "arme" && itemObj.system.typeQte == "jet" && modificateurs.quantite > 0) {
+      itemObj.update({"system.quantiteConso.value": itemObj.system.quantiteConso.value - modificateurs.quantite});
+      ChatMessage.create({
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ alias: this.document.name }),
+        content: game.i18n.format("beryllium.attaquedefense.attaque.itemRetires", {item: itemObj.name, nb: modificateurs.quantite}),
+      });
+    } else if(needMunitions && modificateurs.quantite > 0) {
+      munition.update({"system.quantiteConso.value": munition.system.quantiteConso.value - modificateurs.quantite});
+      ChatMessage.create({
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ alias: this.document.name }),
+        content: game.i18n.format("beryllium.attaquedefense.attaque.itemRetires", {item: munition.name, nb: modificateurs.quantite}),
+      });
+    }
   }
   
   static async _onSkillRoll(event, target){
@@ -304,6 +372,11 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
     });
 
+  }
+
+  static async _onToggle(event, target) {
+    this.element.querySelectorAll("[data-toggle_section='" + target.dataset.toggle + "']").forEach(e => e.classList.toggle("visible"));
+    //--TODO: ajouter changement icone
   }
 
   _manageTab() {
@@ -338,7 +411,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       case "Item": 
         const item = fromUuidSync(data.uuid);
         
-        if(item.type == "arme" || item.type == "armure" || item.type == "sort" || item.type == "objet")
+        if(item.type == "arme" || item.type == "armure" || item.type == "sort" || item.type == "objet" || item.type == "munition")
         {
           super._onDrop(event);
 
@@ -676,10 +749,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       speaker: ChatMessage.getSpeaker({ alias: this.actor.name }),
       content: game.i18n.format("beryllium.messages.echo.utilisationProuesse", {actor: this.actor.name, prouesse: prouesse.nom}),
     });
-  }
-
-  static async _onToggleSpecial(event, target) {
-    this.element.querySelector(".toggleable[data-itemid='" + target.closest(".item").dataset.itemid + "']").classList.toggle("visible");
   }
 
   static async _onAddAspect(event, target) {

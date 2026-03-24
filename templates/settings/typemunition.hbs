@@ -1,0 +1,10 @@
+<div class="string-list">
+  <ul>
+    {{#each list}}
+      <li>
+        <input type="text" name="item.{{@index}}" value="{{this}}">
+      </li>
+    {{/each}}
+    <input type="text" name="item.{{list.length}}" value="">
+  </ul>
+</div>

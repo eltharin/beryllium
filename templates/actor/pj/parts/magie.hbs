@@ -81,7 +81,7 @@
                 </div>
                 <div class="controls">
                   {{#if sort.system.effet}}
-                    <a data-action="toggleSpecial" title="{{localize "beryllium.pjsheet.combat.magie.effet"}}"><i class="fas fa-eye"></i></a>
+                    <a data-action="toggle" data-toggle="sortspecial_{{sort._id}}" title="{{localize "beryllium.pjsheet.combat.magie.effet"}}"><i class="fas fa-eye"></i></a>
                   {{/if}}
                 </div>
               </div>
@@ -93,7 +93,7 @@
               </div>
             </div>
             {{#if sort.system.effet}}
-              <div class="toggleable flexrow" data-itemid="{{sort._id}}">
+              <div class="toggleable flexrow" data-toggle_section="sortspecial_{{sort._id}}">
                 <div class="infos">
                   {{sort.system.effet}}
                 </div>

@@ -7,6 +7,25 @@
             <input type="number" name="modificateur" value="0" step="1" />
         </div>
 
+        {{#if (eq item.type "arme") }}
+            {{#if needMunitions }}
+            <div class="flexrow-beryllium roll-threshold">
+                <label>{{localize 'beryllium.roll.attaque.choixmunition'}}</label>
+                <select name="munition">
+                    {{#each munitions as |munition|}}
+                        <option value="{{munition.id}}" data-modificateur="0">{{munition.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            {{/if}}
+            {{#if (or needMunitions (eq item.system.typeQte "jet")) }}
+            <div class="flexrow-beryllium roll-threshold">
+                <label>{{localize 'beryllium.common.qte'}}</label>
+                <input type="number" name="quantite" value="1"/>
+            </div>
+            {{/if}}
+        {{/if}}
+
         <div class="flexrow-beryllium roll-threshold">
             <label>{{localize "Caractéristique d'attaque"}}</label>
             <select name="competence">
