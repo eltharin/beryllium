@@ -124,5 +124,10 @@ Hooks.once("init", () => {
       }
     });
 
+    Hooks.on("renderChatMessageHTML", (message, html) => {
+      if (message.isRoll) html.classList.add("beryllium-chat-roll");
+      else html.classList.add("beryllium-chat-text");
+    });
+
 });
 

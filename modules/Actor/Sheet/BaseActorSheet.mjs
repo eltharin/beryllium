@@ -31,6 +31,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       closeOnSubmit: false,
       submitOnChange: true
     },
+    classes: ["beryllium-sheet", "beryllium-sheet-pj"],
     actions: {
       skillRoll: this._onSkillRoll,
       toggle: this._onToggle,

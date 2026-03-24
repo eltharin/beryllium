@@ -12,6 +12,7 @@ export class BaseItemSheet extends foundry.applications.api.HandlebarsApplicatio
       closeOnSubmit: false,
       submitOnChange: true
     },
+    classes: ["beryllium-sheet"],
     actions: {
 
     },

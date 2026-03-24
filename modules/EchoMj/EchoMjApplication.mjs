@@ -55,7 +55,7 @@ export class EchoMjApplication extends foundry.applications.api.HandlebarsApplic
       left: 10,
       top:0,
     },
-    classes: ["sheet", "beryllium"],
+    classes: ["beryllium-sheet", "sheet", "beryllium"],
     window: {
       resizable: false,
       controls: [

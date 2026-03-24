@@ -17,6 +17,19 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+.beryllium-sheet {
+    font-family: "IM Fell English SC", serif;
+    font-size: 16px;    
+}
+
+.beryllium-sheet input,.beryllium-sheet textarea,.beryllium-sheet *{
+    --input-background-color: #4b5139;
+}
+
+.beryllium-sheet.dialog .dialog-content {
+    font-size:16px;
+}
+
 .beryllium * ~ .clickable {
     margin-left:10px;
 }
@@ -83,8 +96,6 @@
 
 /******              TOP BAR                       *****/
 .pj-sheet > .content > .top > .pj-sheet-competences{
-    font-family: "IM Fell English SC", serif;
-    font-size: 16px;
     display:flex;
 
     width: 33%;
@@ -307,8 +318,10 @@
 }
 
 .pj-sheet .inventory-section .item {
-
+    border: 1px solid white;
+    border-radius:5px;
     padding:8px 3px;
+    background:linear-gradient(to bottom right, #49371b, #ae6946);;
     margin-top:5px;
 }
 
@@ -413,9 +426,24 @@
 }
 
 
+#echoMj.beryllium-sheet header.window-header {
+    height:10px;
+    flex:0 0 10px;
+    padding:0;
+}
+
+#echoMj.beryllium-sheet header.window-header .header-control {
+    display:none;
+}
 
 
 
+.beryllium-chat-text{
+    background: blue;
+}
+.beryllium-chat-roll{
+    background: red;
+}
 
 
 
@@ -455,7 +483,7 @@
 }
 
 .window-content .dialog-form .dialog-content .repos-form > .repos > div:has(> input[type="radio"]:checked) {
-    border:5px solid #665e43;
+    border:5px solid #ceab37;
     border-radius: 10px;
 }
 
@@ -474,4 +502,97 @@
     width:200px;
     height:55px;
     line-height: 38px;
+}
+
+
+
+
+/**********    THEME      *********/
+
+.beryllium-sheet {
+    background: url("../assets/pics/sheet/cadre/background.png") 10px 5px / calc(100% - 20px) calc(100% - 10px) no-repeat;    
+    border-radius: inherit;
+    border: none;
+    box-shadow: none;
+    padding:10px;
+    font-family: "IM Fell English SC", serif;
+    font-size: 16px;
+}
+
+.beryllium-sheet:before {
+    content:"";
+    position:absolute;
+
+    background:
+        /* Coin haut gauche */
+        url('../assets/pics/sheet/cadre/corner-top-left.png') top left / 40px 40px no-repeat,
+        /* Coin haut droit */
+        url('../assets/pics/sheet/cadre/corner-top-right.png') top right / 40px 40px no-repeat,
+        /* Coin bas gauche */
+        url('../assets/pics/sheet/cadre/corner-bottom-left.png') bottom left / 40px 40px no-repeat,
+        /* Coin bas droit */
+        url('../assets/pics/sheet/cadre/corner-bottom-right.png') bottom right / 40px 40px no-repeat,
+
+        /* Bord haut */
+        url('../assets/pics/sheet/cadre/edge-top.png') top center / calc(100% - 80px) 40px repeat-x,
+        /* Bord bas */
+        url('../assets/pics/sheet/cadre/edge-bottom.png') bottom center / calc(100% - 80px) 40px repeat-x,
+
+        /* Bord gauche */
+        url('../assets/pics/sheet/cadre/edge-left.png') center left / 40px calc(100% - 80px) repeat-y,
+        /* Bord droit */
+        url('../assets/pics/sheet/cadre/edge-right.png') center right / 40px calc(100% - 80px) repeat-y;
+
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0;
+}
+
+.beryllium-sheet > .window-header{
+    padding: 15px 15px 20px 15px;
+}
+
+.beryllium-sheet > .window-content{
+    backdrop-filter: blur(5px);
+}
+
+
+.beryllium-sheet nav.sheet-tabs{
+    background: 
+        url('../assets/pics/sheet/onglets/row.png') bottom 0px center / 10px 20px repeat-x;  
+    border-bottom:none;
+}
+
+.beryllium-sheet nav.sheet-tabs a{
+    padding-bottom:10px;   
+}
+
+.beryllium-sheet nav.sheet-tabs .active {
+    background: 
+        url('../assets/pics/sheet/onglets/selected.png') bottom 0px center / 50px 20px no-repeat;
+}
+
+.beryllium-sheet h2 {
+    font-family: "IM Fell English SC", serif;
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+    height: 40px;
+    line-height:50px;
+}
+.beryllium-sheet h2:before {
+    background: url("../assets/pics/bord3.png") no-repeat;
+    width: 150px;
+    content: "";
+    float: left;
+    height: 40px;
+}
+
+.beryllium-sheet h2:after {
+    background: url("../assets/pics/bord3d.png") no-repeat right;
+    content: "";
+    width: 150px;
+    float: right;
+    height: 40px;
 }
