@@ -308,11 +308,19 @@
 
 
 
-.sheet.beryllium .field{
+.sheet.beryllium .multifields, .sheet.beryllium .field{
     flex-wrap: wrap;
     flex: 1 0 100px;
     display:flex;
     margin-top:15px;
+}
+
+.sheet.beryllium .multifields > .field{
+    margin-top:0px;
+}
+
+.sheet.beryllium .multifields > .field ~ *{
+    margin-left:20px;
 }
 
 .sheet.beryllium .fullline ~ .fullline{
@@ -342,19 +350,6 @@
     height: var(--input-height);
     line-height: var(--input-height);
     --display:inline-block;
-}
-
-
-
-.pj-sheet .pj-sheet-cat.fields-container.magie .multicol-fields{
-    display:flex;
-    flex-wrap:wrap;
-}
-
-
-.pj-sheet .pj-sheet-cat.fields-container.magie .multicol-fields > *  {
-    min-width:300px;
-    flex-basis:300px;
 }
 
 
