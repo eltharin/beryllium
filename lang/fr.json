@@ -11,6 +11,9 @@
             "armure": "Armure",
             "sort": "Sort",
             "objet": "Objet"
+        },
+        "ActiveEffect": {
+            "effet": "Effet"
         }
     },
     "beryllium": {
@@ -60,6 +63,17 @@
             "label": "Echo MJ",
             "ajout": "Ajouter 1",
             "enleve": "Retirer 1"
+        },
+        "sheets": {
+            "common": {
+                "nom" : "Nom"
+            },
+            "pj": {},
+            "item": {},
+            "effet": {
+                "effet" : "Effet",
+                "condition": "Condition"
+            }
         },
         "pjsheet": {
             "action": {
@@ -435,6 +449,23 @@
                     "consequencesgraves": "Les Conséquences graves",
                     "privileges": "L'utilisation des privilèges"
                 }
+            }
+        },
+        "effets": {
+            "titres": {
+                "categorie" : "Catégorie",
+                "item" : "Element",
+                "nom": "Nom de l'effet",
+                "effet": "Modificateur",
+                "condition": "Condition"
+            },
+            "cat" : {
+                "aspects" : "Aspects temporaires",
+                "culture" : "Culture",
+                "consequences" : "Conséquences",
+                "armes" : "Armess",
+                "armures" : "Armures",
+                "objets" : "Objets"
             }
         }
     }

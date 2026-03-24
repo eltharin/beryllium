@@ -1,0 +1,28 @@
+<div>
+    <h2>Effets applicables à {{ actor.name }}</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>{{localize "beryllium.effets.titres.categorie" }}</th>
+                <th>{{localize "beryllium.effets.titres.item" }}</th>
+                <th>{{localize "beryllium.effets.titres.nom" }}</th>
+                <th>{{localize "beryllium.effets.titres.effet" }}</th>
+                <th>{{localize "beryllium.effets.titres.condition" }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each (array "actor" "culture" "consequences" "armes" "armures" "objets") as |cat| }}
+                {{#each (lookup ../effets cat) as |effet| }}
+                    <tr>
+                        <td>{{effet.cat}}</td>
+                        <td>{{effet.item}}</td>
+                        <td>{{effet.effet.name}}</td>
+                        <td>{{effet.effet.system.effet}}</td>
+                        <td>{{effet.effet.system.condition}}</td>
+                    </tr>
+                {{/each}}
+            {{/each}}
+        </tbody>
+    </table>    
+</div>

@@ -23,7 +23,7 @@ class NaharCulture extends Culture{
         {titre: "Protocoles de Sécurisation ", description: "Dépenser 1 Point d'Écho pour annuler une Surcharge"}
     ];
     faiblesses = [{description: "Malaise physique (malus temporaire de -1) après exposition prolongée à de fortes manifestations magiques"}];
-    specialisations = [{titre: "Ingénierie", base: "technique", bonus: "+1 Technologie naharienne"}];
+    specialisations = [{titre: "Ingénierie", base: "technique", bonus: "+1 Technologie naharienne", isEffet:true}];
 }
 
 class ArckeneaCulture extends Culture{
@@ -32,7 +32,7 @@ class ArckeneaCulture extends Culture{
     modificateurMagie = 0;
     privileges = [{titre: "Liens du Sang", description: "Appeler un membre du clan ou entrer en fureur protectrice pour un allié"}];
     faiblesses = [{description: "Doit relever les défis directs à son honneur ou accepter un aspect temporaire \"Honneur entaché\""}];
-    specialisations = [{titre: "Traditions martiales", base: "combat", bonus: "+1 duels formels, défense du clan"}];
+    specialisations = [{titre: "Traditions martiales", base: "combat", bonus: "+1 duels formels, défense du clan", isEffet:true}];
 }
 class BreribForroseCulture extends Culture{
     _id = "breribForrose";

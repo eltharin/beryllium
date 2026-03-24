@@ -13,11 +13,6 @@ export class BaseActorDataModel extends system.Common.SystemDataModel {
                 probleme: new foundry.data.fields.StringField({}),
                 lien: new foundry.data.fields.StringField({}),
                 methode: new foundry.data.fields.StringField({}),
-                temporaires : new foundry.data.fields.ArrayField(
-                    new foundry.data.fields.SchemaField({
-                        nom: new foundry.data.fields.StringField({}),
-                    })
-                ),
             }),
             competences: new foundry.data.fields.SchemaField({
                 physique: new foundry.data.fields.SchemaField({

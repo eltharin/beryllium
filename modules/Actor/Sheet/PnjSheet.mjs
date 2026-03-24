@@ -16,6 +16,8 @@ export class PnjSheet extends BaseActorSheet{
         'systems/beryllium/templates/actor/pj/parts/equipements.hbs',
         'systems/beryllium/templates/actor/pj/parts/notes.hbs',
         'systems/beryllium/templates/actor/pj/parts/max.hbs',
+
+        "systems/beryllium/templates/shared/effet/listEffets.hbs",
       ] 
     },
   };

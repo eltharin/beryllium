@@ -36,7 +36,8 @@ export function registerFunctions() {
         }
     });
 
-    Handlebars.registerHelper("array", function(args) {
-        return ["default", "custom"];
+    Handlebars.registerHelper("array", function(...args) {
+        args.pop();
+        return args;
     });
 }

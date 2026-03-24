@@ -12,7 +12,8 @@ export class DefenseRollDialog {
                 discretion: "Volonté (" + options.token.actor.system.competences["volonte"].value + ")",
                 magie: "Magie (" + options.token.actor.system.competences["magie"].value + ")",
             },
-            armures: options.token.actor.items.filter(i => (i.type === "armure" && i.system.isEquipe == true))
+            armures: options.token.actor.items.filter(i => (i.type === "armure" && i.system.isEquipe == true)),
+            actor: token.actor,
         };
 
         const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/defense/roll-dialog.hbs", data);

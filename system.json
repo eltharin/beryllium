@@ -37,6 +37,9 @@
       "munition": {},
       "armure": {},
       "sort": {}
+    },
+    "ActiveEffect": {
+      "effet": {}
     }
   },
   "socket": false,

@@ -18,6 +18,10 @@ import { ArmureDataModel } from "./modules/Item/DataModel/ArmureDataModel.mjs";
 import { SortDataModel } from "./modules/Item/DataModel/SortDataModel.mjs";
 import { ObjetDataModel } from "./modules/Item/DataModel/ObjetDataModel.mjs";
 
+
+import { EffetSheet } from "./modules/Effet/Sheet/EffetSheet.mjs";
+import { EffetDataModel } from "./modules/Effet/DataModel/EffetDataModel.mjs";
+
 import { DeBeryllium } from "./modules/Dice/DeBeryllium.mjs";
 import { DeInterference } from "./modules/Dice/DeInterference.mjs";
 
@@ -39,6 +43,10 @@ Hooks.once("init", () => {
     armure: ArmureDataModel,
     sort: SortDataModel,
     objet: ObjetDataModel,
+  };
+  
+  CONFIG.ActiveEffect.dataModels = {
+    effet: EffetDataModel,
   };
 
   foundry.documents.collections.Actors.registerSheet("beryllium", PjSheet, {
@@ -80,6 +88,12 @@ Hooks.once("init", () => {
     types: ["objet"],
     makeDefault: true,
     label: "Feuille d'objet"
+  });
+  
+  foundry.applications.apps.DocumentSheetConfig.registerSheet(ActiveEffect, "beryllium", EffetSheet, {
+    label: "Effet",
+    types: ["effet"],
+    makeDefault: true
   });
 
   system.DiceRoller.fct.registerDiceRolls();

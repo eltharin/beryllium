@@ -19,6 +19,8 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
         'systems/beryllium/templates/actor/pj/parts/equipements.hbs',
         'systems/beryllium/templates/actor/pj/parts/notes.hbs',
         'systems/beryllium/templates/actor/pj/parts/max.hbs',
+
+        "systems/beryllium/templates/shared/effet/listEffets.hbs",
       ] 
     },
   };
@@ -50,8 +52,10 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       jetSortieSurchauffe: this._onJetSortieSurchauffe,
       deOubli: this._onDeOubli,
       utilisationProuesse: this._onUtilisationProuesse,
-      addAspect: this._onAddAspect,
-      deleteAspect: this._onDeleteAspect,
+      addEffet: this._onAddEffet,
+      editEffet: this._onEditEffet,
+      deleteEffet: this._onDeleteEffet,
+      showAllEffets: this.onShowAllEffets
     },
     position: {
       width: 950,
@@ -189,6 +193,11 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
         custom : array.filter(i => i.system.isDefault == false),
       }
     };
+
+    context.effets = this.document.effects;
+
+    context.aspects = allItems.aspect || [];
+    delete allItems.aspect;
 
     context.armes = triCustomDefault(allItems.arme || []);
     delete allItems.arme;
@@ -411,7 +420,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       case "Item": 
         const item = fromUuidSync(data.uuid);
         
-        if(item.type == "arme" || item.type == "armure" || item.type == "sort" || item.type == "objet" || item.type == "munition")
+        if(item.type == "arme" || item.type == "armure" || item.type == "sort" || item.type == "objet" || item.type == "munition" || item.type == "aspect")
         {
           super._onDrop(event);
 
@@ -751,13 +760,67 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     });
   }
 
-  static async _onAddAspect(event, target) {
-    await this.actor.update({"system.aspects.temporaires" : [...this.actor.system.aspects.temporaires, {nom:""}]});
+  static async _onAddEffet(event, target) {
+    event.preventDefault();
+    
+    const effetData = {
+      name: "Effet",
+      type: "effet",
+      system: {}
+    };
+    
+    // Créer l'item sans render automatique
+    const created = await this.document.createEmbeddedDocuments("ActiveEffect", [effetData], { render: true });
+    if (created && created[0]) {
+      created[0].sheet.render(true, { force: true });
+    }
+    
+    return created;
   }
+  
+  static async _onEditEffet(event, target) {
+    event.preventDefault();
+    const effet = this.document.effects.get(target.dataset.effet);
+    if (effet) {      
+      if (effet.sheet.rendered) {
+        effet.sheet.bringToTop();
+      } else {
+        effet.sheet.render(true, { force: true });
+      }
+    }
+  }
+  
+  static async _onDeleteEffet(event, target) {
+    event.preventDefault();
+    const effet = this.document.effects.get(target.dataset.effet);
 
-  static async _onDeleteAspect(event, target) {
-    let aspects = this.actor.system.aspects.temporaires;
-    aspects.splice(target.dataset.itemid, 1);
-    await this.actor.update({"system.aspects.temporaires" : aspects});
+    if (effet) {
+      
+      let confirmed = false;
+
+      if(event.ctrlKey && event.shiftKey)
+      {
+        confirmed = true;
+      }
+      else
+      {
+        confirmed = await system.Common.Dialog.confirm({
+          content: `<p>Êtes-vous sûr de vouloir supprimer ${effet.name}?</p>`,
+          rejectClose: false,
+          modal: true
+        });
+      }
+
+      if (confirmed) {
+
+        await effet.delete({ render: true });
+        ui.notifications.info(`${effet.name} supprimé(e)`);
+      }
+    }
+  }  
+
+  static async onShowAllEffets(event, target) {
+    system.Actor.getActorEffets(this.document);
   }
+  
 }

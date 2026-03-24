@@ -1,0 +1,19 @@
+<div class="pj-sheet-cat fields-container aspects">
+    <h2>
+    <span>{{localize "beryllium.pjsheet.aspects.temporaires.label"}}</span>
+    {{#if (not isVerrou) }}
+        <span class="clickable" data-action="addEffet" title="{{localize "beryllium.pjsheet.aspects.temporaires.ajout"}}"><a><i class="fas fa-plus"></i></a></span>
+    {{/if}}
+    </h2>
+    {{#each effets as |effet| }}
+        <div class="field">
+            <div class="clickable" >{{effet.name}}</div>
+            <div>{{effet.system.effet}}</div>
+            <div>{{effet.system.condition}}</div>
+            <div class="controls">
+                <a data-action="editEffet" data-effet="{{effet.id}}" title="{{localize "beryllium.pjsheet.combat.armure.edit"}}"><i class="fas fa-edit"></i></a>
+                <a data-action="deleteEffet" data-effet="{{effet.id}}" title="{{localize "beryllium.pjsheet.combat.armure.delete"}}"><i class="fas fa-trash"></i></a>
+            </div>
+        </div>
+    {{/each}}
+</div>

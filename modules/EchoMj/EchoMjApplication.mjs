@@ -51,7 +51,7 @@ export class EchoMjApplication extends foundry.applications.api.HandlebarsApplic
     },
     position: {
       width: 230,
-      height: 80,
+      height: 150,
       left: 10,
       top:0,
     },
