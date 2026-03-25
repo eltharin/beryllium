@@ -96,16 +96,7 @@ export class EchoMjApplication extends foundry.applications.api.HandlebarsApplic
   }
 
   async close(options = {}) {
-    if (!options.force) {
-        const confirmed = await Dialog.confirm({
-        title: "Confirmer",
-        content: "<p>Voulez-vous vraiment fermer ?</p>"
-        });
-
-        if (!confirmed) return; // On arrête ici → fermeture annulée
-    }
-
-    return super.close(options);
+    return; //interdiction de fermer la fenetre
   }
 
   async _prepareContext(options) {
