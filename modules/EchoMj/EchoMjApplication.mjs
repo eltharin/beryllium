@@ -34,7 +34,7 @@ export class EchoMjApplication extends foundry.applications.api.HandlebarsApplic
     if(userData?.position) {
         renderOptions.position = userData.position;
         renderOptions.position.width = 230;
-        renderOptions.position.height = 150;
+        renderOptions.position.height = 200;
     }
 
     this.render(renderOptions);
@@ -51,11 +51,11 @@ export class EchoMjApplication extends foundry.applications.api.HandlebarsApplic
     },
     position: {
       width: 230,
-      height: 150,
+      height: 200,
       left: 10,
       top:0,
     },
-    classes: ["beryllium-sheet", "sheet", "beryllium"],
+    classes: ["beryllium-sheet", "sheet", "beryllium", "echoMj"],
     window: {
       resizable: false,
       controls: [

@@ -15,8 +15,8 @@ export class ArmureSheet extends BaseItemSheet {
   static DEFAULT_OPTIONS = {
     ...super.DEFAULT_OPTIONS,
     position: {
-      width: 770,
-      height: 550,
+      width: 790,
+      height: 680,
     },
     actions: {
       addEffet: this._onAddEffet,

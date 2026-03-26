@@ -129,25 +129,6 @@
     flex: 1 0 50%;
 }
 
-.pj-sheet > .content > .top > .pj-sheet-competences > .competence {
-    margin: 5px;
-    border: 1px solid lightgrey;
-    text-align: center;
-    flex: 1 0 30%;
-    flex-wrap: nowrap;
-}
-
-.pj-sheet > .content > .top > .pj-sheet-competences > .competence > label {
-    display:block;
-    text-align: center;
-    font-size: 1em;
-    flex: 1 0 33%;
-}
-
-.pj-sheet > .content > .top > .pj-sheet-competences > .competence > div{
-    flex: 0 0 50px;
-    font-size: 1.2em;
-}
 
 .pj-sheet > .content > .top .action{
     display:flex;
@@ -359,16 +340,6 @@
 }
 
 
-#echoMj.beryllium-sheet header.window-header {
-    height:10px;
-    flex:0 0 10px;
-    padding:0;
-}
-
-#echoMj.beryllium-sheet header.window-header .header-control {
-    display:none;
-}
-
 
 /*
 .beryllium-chat-text{
@@ -451,7 +422,7 @@
     font-family: "IM Fell English SC", serif;
     font-size: 16px;
 
-
+    
     --beryllium-color-vert-fonce: #586043;
     --beryllium-color-jaune: #f2b065;
     --beryllium-color-rouge: #ab483e;
@@ -460,6 +431,12 @@
     --beryllium-color-beige: #ffdaac;
     --beryllium-color-marron: #4b3e39;
     --beryllium-color-bleu: #829da5;
+
+    --beryllium-color-grey: var(--beryllium-color-vert-fonce);
+    --beryllium-color-stress : var(--beryllium-color-rouge);
+    --beryllium-color-fletrine : var(--beryllium-color-vert-clair);
+    --beryllium-color-echo : var(--beryllium-color-bleu);
+    --beryllium-color-oubli : var(--beryllium-color-rose);
 }
 
 .beryllium-sheet:before {
@@ -558,11 +535,8 @@
 }
 
 
-.beryllium-sheet .sidebar .cases-container{
-    /**/
-}
 
-.beryllium-sheet .sidebar  .cases-container .cases-controls {
+.beryllium-sheet .cases-container .cases-controls {
     display:flex;
     gap: 5px;
 
@@ -570,11 +544,11 @@
     position:relative;
 }
 
-.beryllium-sheet .sidebar  .cases-container .cases-controls > * {
+.beryllium-sheet  .cases-container .cases-controls > * {
   position: relative; /* sort du masque */
 }
 
-.beryllium-sheet .sidebar  .cases-container .cases-controls:before {
+.beryllium-sheet  .cases-container .cases-controls:before {
     content: "";
     margin-bottom: 0.2em;
     position:absolute;
@@ -593,38 +567,38 @@
     line-height:15px;
 }
 
-.beryllium-sheet .sidebar  .cases-container.stress {
-    --bg-color: var(--beryllium-color-rouge);
-    --cases-controls-bg-color: var(--beryllium-color-rouge);
-    --beryllium-color-case-active: var(--beryllium-color-rouge);
+.beryllium-sheet  .cases-container.stress {
+    --bg-color: var(--beryllium-color-stress);
+    --cases-controls-bg-color: var(--beryllium-color-stress);
+    --beryllium-color-case-active: var(--beryllium-color-stress);
 }
 
-.beryllium-sheet .sidebar  .cases-container.fletrine{
-    --bg-color: var(--beryllium-color-vert-clair);
-    --cases-controls-bg-color: var(--beryllium-color-vert-clair);
-    --beryllium-color-case-active: var(--beryllium-color-vert-clair);
+.beryllium-sheet  .cases-container.fletrine{
+    --bg-color: var(--beryllium-color-fletrine);
+    --cases-controls-bg-color: var(--beryllium-color-fletrine);
+    --beryllium-color-case-active: var(--beryllium-color-fletrine);
 }
 
-.beryllium-sheet .sidebar  .cases-container.echo{
-    --bg-color: var(--beryllium-color-bleu);
-    --cases-controls-bg-color: var(--beryllium-color-bleu);
-    --beryllium-color-case-active: var(--beryllium-color-bleu);
+.beryllium-sheet  .cases-container.echo{
+    --bg-color: var(--beryllium-color-echo);
+    --cases-controls-bg-color: var(--beryllium-color-echo);
+    --beryllium-color-case-active: var(--beryllium-color-echo);
 }
 
-.beryllium-sheet .sidebar  .cases-container.oubli{
-    --bg-color: var(--beryllium-color-rose);
-    --cases-controls-bg-color: var(--beryllium-color-rose);
-    --beryllium-color-case-active: var(--beryllium-color-rose);
+.beryllium-sheet  .cases-container.oubli{
+    --bg-color: var(--beryllium-color-oubli);
+    --cases-controls-bg-color: var(--beryllium-color-oubli);
+    --beryllium-color-case-active: var(--beryllium-color-oubli);
 }
 
-.beryllium-sheet .sidebar  .cases-container .cases-controls > label{
+.beryllium-sheet  .cases-container .cases-controls > label{
     flex-grow:1;
     text-align: center;
     font-size: 1.2em;
     line-height: 38px;
 }
 
-.beryllium-sheet .sidebar  .cases-container .cases-controls > span{
+.beryllium-sheet  .cases-container .cases-controls > span{
     flex-grow: 0;
     flex-shrink: 0;
     width: 20px;
@@ -637,13 +611,13 @@
     margin-right: 9px;
 }
 
-.beryllium-sheet .sidebar  .cases-container .cases-controls > span:hover{
+.beryllium-sheet  .cases-container .cases-controls > span:hover{
     -webkit-filter: invert(.9);
     filter: invert(.9);
 }
 
 
-.beryllium-sheet .sidebar  .cases-container .cases-controls > span span{
+.beryllium-sheet  .cases-container .cases-controls > span span{
     margin: 3px;
     height: 14px;
     width: 14px;
@@ -652,21 +626,21 @@
     background-repeat: no-repeat;
 }
 
-.beryllium-sheet .sidebar  .cases-container .cases-controls > span span.moins{
+.beryllium-sheet  .cases-container .cases-controls > span span.moins{
     background-image: url("../assets/pics/moins.svg");
 }
 
-.beryllium-sheet .sidebar  .cases-container .cases-controls > span span.plus{
+.beryllium-sheet  .cases-container .cases-controls > span span.plus{
     background-image: url("../assets/pics/plus.svg");
 }
 
-.beryllium-sheet .sidebar  .cases-container .etats {
+.beryllium-sheet  .cases-container .etats {
     display:flex;
     gap:10px;
     margin-bottom:10px;
 }
 
-.beryllium-sheet .sidebar  .cases-container .etats > label{
+.beryllium-sheet  .cases-container .etats > label{
     flex: 1 1 10px;
     padding : 5px 10px;
     background-image: url("../assets/pics/sheet/sidebar/bouton.svg");
@@ -677,41 +651,41 @@
     line-height:17px;
 }
 
-.beryllium-sheet .sidebar  .cases-container .etats > label.active {
+.beryllium-sheet .cases-container .etats > label.active {
     background-color:var(--cases-controls-bg-color);
 }
 
 
 
-.beryllium-sheet .sidebar  .cases-container .niveau {
+.beryllium-sheet .cases-container .niveau {
     padding:0 4px;
     display:flex;
 }
 
-.beryllium-sheet .sidebar  .cases-container .niveau > label {
+.beryllium-sheet .cases-container .niveau > label {
     flex-grow:1;
     margin: 1px 10px 5px 10px;
     padding: 0px 5px;
     border-radius:5px;
 }
 
-.beryllium-sheet .sidebar  .cases-container .niveau > label.fletrine_niveau_max {
+.beryllium-sheet .cases-container .niveau > label.fletrine_niveau_max {
     background-color:var(--cases-controls-bg-color);
 }
 
-.beryllium-sheet .sidebar  .cases-container .niveau > div {
+.beryllium-sheet .cases-container .niveau > div {
     flex:0 0 120px;
 }
 
-.beryllium-sheet .sidebar  .cases-container .niveau  .values {
+.beryllium-sheet .cases-container .niveau  .values {
     padding: 0;
 }
 
-.beryllium-sheet .sidebar  .cases-container .values {
+.beryllium-sheet .cases-container .values {
     padding: 0 13px
 }
 
-.beryllium-sheet .sidebar  .cases-container .values span{
+.beryllium-sheet .cases-container .values span{
     height:20px;
     width:20px;
     display:inline-block;
@@ -722,13 +696,94 @@
     background-repeat: no-repeat;
 }
 
-.beryllium-sheet .sidebar .cases-container .values span.active{
+.beryllium-sheet .cases-container .values span.active{
     background-image: url("../assets/pics/sheet/sidebar/case-on.svg");
     
 }
 
 
 
-.beryllium-sheet .sidebar .pj-sheet-competences .competences {
+.beryllium-sheet .content > .top .pj-sheet-competences .competence {
+    position:relative;
+    z-index: 0;
+    margin: 5px;
+    text-align: center;
+    flex: 1 0 30%;
+    flex-wrap: nowrap;
+}
 
+.beryllium-sheet .content > .top .pj-sheet-competences .competence:before {
+    content:"";
+    position:absolute;
+    height:1.6em;
+    width:100%;
+    border-radius:5px;
+    top:5px;
+    background-color: var(--beryllium-color-bleu);
+    z-index: -1;
+}
+
+.beryllium-sheet .content > .top .pj-sheet-competences .competence {
+    position:relative;
+    font-size:1.15em;
+    color: white;
+}
+
+.beryllium-sheet .content > .top .pj-sheet-competences .competence > label {
+    flex: 1 0 33%;
+    font-size: 1em;
+    text-align:left;
+    padding-left: 5px;
+}
+
+.beryllium-sheet .content > .top .pj-sheet-competences .competence > div {
+    flex: 0 0 50px;
+}
+
+.beryllium-sheet .content > .top .pj-sheet-competences .competence > div > span {
+    font-size:2.5em;
+    text-stroke: 1px var(--beryllium-color-grey);
+    -webkit-text-stroke: 1px var(--beryllium-color-grey);
+    color: var(--beryllium-color-jaune);
+}
+
+
+
+
+
+/***********    ECHO MJ          ********/
+
+
+.beryllium-sheet.echoMj:before {
+    content:"";
+    position:absolute;
+
+    background:
+        url('../assets/pics/sheet/cadre/bordure_haut_gauche.svg') top left / 50px 31px no-repeat,
+        url('../assets/pics/sheet/cadre/bordure_haut_droite.svg') top right / 50px 31px no-repeat,
+        url('../assets/pics/sheet/cadre/bordure_bas_gauche.svg') bottom left / 50px 31px no-repeat,
+        url('../assets/pics/sheet/cadre/bordure_bas_droite.svg') bottom right / 50px 31px no-repeat,
+        url('../assets/pics/sheet/cadre/bordure_haut.png') no-repeat top 0 left 37px /  calc(100% - 74px) 31px,
+        url('../assets/pics/sheet/cadre/bordure_bas.png') no-repeat bottom 0 left 37px /  calc(100% - 74px) 31px,
+        url('../assets/pics/sheet/cadre/bordure_gauche.png') no-repeat left 0 top 30px / 50px calc(100% - 60px),
+        url('../assets/pics/sheet/cadre/bordure_droite.png') no-repeat right 0 top 30px / 50px calc(100% - 60px)
+        ;
+
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0;
+    z-index:10;
+    pointer-events: none;
+}
+
+
+.beryllium-sheet.echoMj.beryllium-sheet header.window-header {
+    height:10px;
+    flex:0 0 10px;
+    padding:0;
+}
+
+.beryllium-sheet.echoMj.beryllium-sheet header.window-header .header-control {
+    display:none;
 }

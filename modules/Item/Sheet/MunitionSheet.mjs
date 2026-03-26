@@ -13,8 +13,8 @@ export class MunitionSheet extends BaseItemSheet {
   static DEFAULT_OPTIONS = {
     ...super.DEFAULT_OPTIONS,
     position: {
-      width: 770,
-      height: 400,
+      width: 790,
+      height: 420,
     },
   }
 
