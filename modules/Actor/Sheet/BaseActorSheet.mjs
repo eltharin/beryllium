@@ -186,7 +186,9 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       }
     });
 
-    let allItems = this.document.items.documentsByType;
+    
+    
+    let allItems = foundry.utils.deepClone(this.document.items.documentsByType);
 
     const triCustomDefault = function(array) {
       return {
