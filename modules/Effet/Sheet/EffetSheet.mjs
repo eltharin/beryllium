@@ -18,6 +18,7 @@ export class EffetSheet extends foundry.applications.api.HandlebarsApplicationMi
       closeOnSubmit: false,
       submitOnChange: true
     },
+    classes: ["beryllium-sheet"],
     actions: {
 
     },

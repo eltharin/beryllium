@@ -13,7 +13,7 @@ export class DefenseRollDialog {
                 magie: "Magie (" + options.token.actor.system.competences["magie"].value + ")",
             },
             armures: options.token.actor.items.filter(i => (i.type === "armure" && i.system.isEquipe == true)),
-            actor: token.actor,
+            actor: options.token.actor,
         };
 
         const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/defense/roll-dialog.hbs", data);
