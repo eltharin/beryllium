@@ -38,9 +38,7 @@
 
   <h2>
     {{localize "beryllium.pjsheet.magie.sort.listLabel"}}
-    {{#if (not isVerrou) }}
-      <span title="{{localize "beryllium.pjsheet.magie.sort.ajout"}}"><a class="sort create" data-action="addItem" data-type="sort"><i class="fas fa-plus"></i></a></span>
-    {{/if}}
+    <span title="{{localize "beryllium.pjsheet.magie.sort.ajout"}}"><a class="sort create" data-action="addItem" data-type="sort"><i class="fas fa-plus"></i></a></span>
   </h2>
   <div class="inventory-section">
     {{#each (array "default" "custom") as |type| }}

@@ -10,9 +10,7 @@
       <h2>
         <span title="{{localize "beryllium.common.toggle"}}"><a class="arme create" data-action="toggle" data-toggle="armeSection"><i class="fas fa-eye"></i></a></span>
         {{localize "beryllium.pjsheet.combat.arme.label"}}
-        {{#if (not isVerrou) }}
-          <span title="{{localize "beryllium.pjsheet.combat.arme.ajout"}}"><a class="arme create" data-action="addItem" data-type="arme"><i class="fas fa-plus"></i></a></span>
-        {{/if}}
+        <span title="{{localize "beryllium.pjsheet.combat.arme.ajout"}}"><a class="arme create" data-action="addItem" data-type="arme"><i class="fas fa-plus"></i></a></span>
       </h2>
 
       {{#each (array "default" "custom") as |type| }}
@@ -93,9 +91,7 @@
       <h2>
         <span title="{{localize "beryllium.common.toggle"}}"><a class="arme create" data-action="toggle" data-toggle="munitionSection"><i class="fas fa-eye"></i></a></span>
         {{localize "beryllium.pjsheet.combat.munition.label"}}
-        {{#if (not isVerrou) }}
-          <span title="{{localize "beryllium.pjsheet.combat.munition.ajout"}}"><a class="munition create" data-action="addItem" data-type="munition"><i class="fas fa-plus"></i></a></span>
-        {{/if}}
+        <span title="{{localize "beryllium.pjsheet.combat.munition.ajout"}}"><a class="munition create" data-action="addItem" data-type="munition"><i class="fas fa-plus"></i></a></span>
       </h2>
         <div class="munition-list toggleable visible" data-toggle_section="munitionSection"> 
           <div class="item flexrow" >
@@ -158,9 +154,7 @@
       <h2>
         <span title="{{localize "beryllium.common.toggle"}}"><a class="arme create" data-action="toggle" data-toggle="armureSection"><i class="fas fa-eye"></i></a></span>
         {{localize "beryllium.pjsheet.combat.armure.label"}}
-        {{#if (not isVerrou) }}
-          <span title="{{localize "beryllium.pjsheet.combat.armure.ajout"}}"><a class="armure create" data-action="addItem" data-type="armure"><i class="fas fa-plus"></i></a></span>
-        {{/if}}
+        <span title="{{localize "beryllium.pjsheet.combat.armure.ajout"}}"><a class="armure create" data-action="addItem" data-type="armure"><i class="fas fa-plus"></i></a></span>
       </h2>
         <div class="armure-list toggleable visible" data-toggle_section="armureSection"> 
           <div class="item flexrow" >

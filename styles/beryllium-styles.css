@@ -30,7 +30,7 @@
 
 
 .beryllium-sheet input,.beryllium-sheet textarea,.beryllium-sheet *{
-    --input-background-color: #4b5139;
+   --input-background-color: #4b5139;
 }
 
 .beryllium-sheet.dialog .dialog-content {
@@ -194,6 +194,7 @@
 .pj-sheet > .content > .main > .pages{
     overflow: auto;
     height:100%;
+    background: linear-gradient(var(--beryllium-color-jaune) -50%, var(--beryllium-color-background) 20%);
 }
 
 
@@ -470,6 +471,7 @@
     --beryllium-color-beige: #ffdaac;
     --beryllium-color-marron: #4b3e39;
     --beryllium-color-bleu: #829da5;
+    --beryllium-color-background : #091d16;
 
     --beryllium-color-grey: var(--beryllium-color-vert-fonce);
     --beryllium-color-stress : var(--beryllium-color-rouge);
@@ -565,7 +567,7 @@
 
 }
 .beryllium-sheet h2:before {
-    background: url("../assets/pics/sheet/titre_gauche.svg") no-repeat;
+    background: no-repeat url("../assets/pics/sheet/titre_gauche.svg") top left;
     width: 150px;
     content: "";
     float: left;
@@ -573,7 +575,7 @@
 }
 
 .beryllium-sheet h2:after {
-    background: url("../assets/pics/sheet/titre_droit.svg") no-repeat right;
+    background: no-repeat url("../assets/pics/sheet/titre_droit.svg") top right;
     content: "";
     width: 150px;
     float: right;
