@@ -227,7 +227,9 @@
             },
             "buttontitle": {
                 "interference" : "Lancer un jet d'interférence",
-                "repos": "Se reposer"
+                "repos": "Se reposer",
+                "oubli": "Lancer un jet de resistance à l'oubli",
+                "effets": "Afficher les effets applicables au personnage"
             }
         },
         "itemsheet": {

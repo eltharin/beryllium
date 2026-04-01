@@ -1,27 +1,29 @@
 
-<div>
+<div class="perso">
     <div class="field nom">
         <label>{{localize "beryllium.pjsheet.nom"}}</label>
         <div>{{ fieldOrInput "name" class="pj-sheet-input" value=document.name}}</div>
     </div>
-
-    <div class="field nom">
-        <label>{{localize "beryllium.pjsheet.xp"}}</label>
-        <div>{{ fieldOrInput "system.xp" class="pj-sheet-input" }}</div>
-    </div>
-
-    <div class="field action">
-        <div>
-            {{#if isVerrou }}
-                <a data-action="deverouillage" title="{{localize "beryllium.pjsheet.action.unlock"}}"><i class="fas fa-lock"></i></a>
-            {{else}}
-                <a data-action="verouillage" title="{{localize "beryllium.pjsheet.action.lock"}}"><i class="fas fa-unlock"></i></a>
-            {{/if}}
+<!-- prout -->
+    <div class="multifields">
+        <div class="field xp">
+            <label>{{localize "beryllium.pjsheet.xp"}}</label>
+            <div>{{ fieldOrInput "system.xp" class="pj-sheet-input" }}</div>
         </div>
-        <div><a data-action="repos" title="{{localize "beryllium.pjsheet.buttontitle.repos"}}"><i class="fas fa-tents"></i></a></div>
-        <div><a data-action="deInterference" class="clicdice" title="{{localize "beryllium.pjsheet.buttontitle.interference"}}"><i class="fas fa-gear"></i></a></div>
-        <div><a data-action="deOubli" class="clicdice" title="{{localize "beryllium.pjsheet.buttontitle.oubli"}}"><i class="fa-solid fa-brain-arrow-curved-right"></i></a></div>
-        <div><a data-action="showAllEffets" class="clicdice" title="{{localize "beryllium.pjsheet.buttontitle.effets"}}"><i class="fa-solid fa-person-rays"></i></a></div>
+
+        <div class="field action">
+            <div class="verrou">
+                {{#if isVerrou }}
+                    <a data-action="deverouillage" title="{{localize "beryllium.pjsheet.action.unlock"}}"><i class="fas fa-lock"></i></a>
+                {{else}}
+                    <a data-action="verouillage" title="{{localize "beryllium.pjsheet.action.lock"}}"><i class="fas fa-unlock"></i></a>
+                {{/if}}
+            </div>
+            <div><a data-action="repos" title="{{localize "beryllium.pjsheet.buttontitle.repos"}}"><img src="systems/beryllium/assets/pics/sheet/top/repos.svg"/></a></div>
+            <div><a data-action="deInterference" class="clicdice" title="{{localize "beryllium.pjsheet.buttontitle.interference"}}"><img src="systems/beryllium/assets/pics/sheet/top/interference.svg"/></a></div>
+            <div><a data-action="deOubli" class="clicdice" title="{{localize "beryllium.pjsheet.buttontitle.oubli"}}"><img src="systems/beryllium/assets/pics/sheet/top/oubli.svg"/></a></div>
+            <div><a data-action="showAllEffets" class="clickable" title="{{localize "beryllium.pjsheet.buttontitle.effets"}}"><img src="systems/beryllium/assets/pics/sheet/top/effets.svg"/></a></div>
+        </div>
     </div>
 </div>
 

@@ -59,7 +59,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       showAllEffets: this.onShowAllEffets
     },
     position: {
-      width: 950,
+      width: 1030,
       height: 800,
     },
     window: {
