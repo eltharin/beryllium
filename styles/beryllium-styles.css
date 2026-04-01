@@ -236,6 +236,12 @@
     margin-left:5px;
 }
 
+
+.beryllium-sheet .item-sheet {
+    padding:1rem;
+}
+
+
 .item-sheet > .multicol > .image {
     flex: 0 0 auto;
     max-width: 200px;
