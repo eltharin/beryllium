@@ -42,16 +42,7 @@ export class MessageActionResolver {
 
         const avaiableTargets = msgAtt.rolls[0].getAvaiableTokenTarget(game.user);
         
-        let token = null;
-
-        if(avaiableTargets.length > 1) {
-            const choixToken = await system.DiceRoller.DefenseChoixTokenDialog.create({scene: scene, avaiableTargets: avaiableTargets});
-            if (choixToken == null) { return; }
-            token = avaiableTargets.filter(t => t.id == choixToken.token)[0];
-        }
-        else {
-            token = avaiableTargets[0];
-        }
+        let token = avaiableTargets.filter(t => t.id == event.target.dataset.targetid)[0];
 
         if(token == null){
             ui.notifications.error(`Actor with name ${token.actor} not found.`);

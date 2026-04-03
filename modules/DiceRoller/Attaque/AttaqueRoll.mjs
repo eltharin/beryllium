@@ -23,12 +23,12 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
         ret.seuil = this.getSeuil();
 
         ret.scene = this.options.scene;
-        ret.targets = this.options.targets;
+        ret.targets = Object.values(this.options.targets).map(t => {t.canDefendre = (this.getPermission(t.id) && this.options.targets[t.id].result == null); return t;});
+
         ret.competenceLabel = this.options.competence;
         
         ret.item = this.options.item;
 
-        ret.canDefendre = this.canDefendre(game.user);
         return ret;
     }
 
@@ -68,7 +68,11 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
                 ;
     }
 
-    canDefendre(user){
-        return this.getAvaiableTokenTarget(user).length > 0;
+    getPermission(tokenId)
+    {
+        return game.scenes.get(this.options.scene).tokens
+                .filter(t => (t.id == tokenId && this.options.targets[t.id].result == null))
+                .filter(t => t.actor.testUserPermission(game.user, "OWNER"))
+                .length > 0;
     }
 }

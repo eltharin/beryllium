@@ -878,3 +878,10 @@
     display:none;
 }
 
+
+
+.dice-roll .targets .target {
+    display:flex;
+    align-items: baseline;
+    gap:10px;
+}
