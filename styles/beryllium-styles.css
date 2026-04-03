@@ -33,8 +33,10 @@
    --input-background-color: #4b5139;
 }
 
-.beryllium-sheet.dialog .dialog-content {
+.beryllium-sheet.dialog .window-content {
     font-size:16px;
+    margin:1rem;
+    margin-bottom:2rem;
 }
 
 .beryllium * ~ .clickable {
@@ -838,6 +840,9 @@
 
 /***********    ECHO MJ          ********/
 
+.beryllium-sheet.echoMj {
+    padding: 10px 5px;
+}
 
 .beryllium-sheet.echoMj:before {
     content:"";
