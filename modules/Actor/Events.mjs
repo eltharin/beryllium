@@ -6,8 +6,6 @@ class ActorUpdates
         const oldValue = foundry.utils.getProperty(changes, "flags.beryllium.updateedValues." + property);
         const newValue = foundry.utils.getProperty(actor, property);
 
-        console.log(oldValue, newValue);
-
         if(oldValue == newValue) return null;
 
         return {
@@ -74,7 +72,7 @@ export function register()
 {
     Hooks.on("preUpdateActor", (actor, changes, options, userId) => {
         let flags = {};
-        Object.entries(foundry.utils.flattenObject(changes)).forEach(([k,v]) => {console.log(v,k); foundry.utils.setProperty(flags,k,foundry.utils.getProperty(actor, k));});
+        Object.entries(foundry.utils.flattenObject(changes)).forEach(([k,v]) => {foundry.utils.setProperty(flags,k,foundry.utils.getProperty(actor, k));});
         foundry.utils.setProperty(changes, "flags.beryllium.updateedValues", flags);
     });
 

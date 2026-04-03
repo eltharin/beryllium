@@ -54,16 +54,14 @@ export async function perteOubli(event, message, target)
 
 export async function showTarget(event, message, target)
 {
-    console.log(event)
+
     if(event.type == "mouseenter")
     {
         const token =  await fromUuid(event.target.dataset.tokenuuid);
-        console.log("add")
         TokenHighlighter.addHighlight(token._object, PIXI);
     }
     else
     {
-        console.log("remove")
         TokenHighlighter.removeAllHighlights();
     }
 } 

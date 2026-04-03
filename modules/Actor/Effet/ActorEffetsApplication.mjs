@@ -69,7 +69,6 @@ export async function getActorEffets(actor)
     });
   }
 
-  console.log(effets);
 
   let confirmed = await system.Common.Dialog.input({
     content: await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dialog/showAllEffets.hbs", {

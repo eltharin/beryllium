@@ -5,7 +5,6 @@ export class TokenHighlighter {
 
     static addHighlight(token, options = {}) 
     {
-        console.log(token)
         if (token.children.find(c => c.name === 'speaker-highlight-ring')) return;
 
         const color = options.color ? parseInt(options.color.replace('#', ''), 16) : 0xFFD700;
