@@ -67,6 +67,7 @@ export class DefenseRoll extends system.DiceRoller.BaseRoll{
         ret.competenceLabel = this.options.competence;
 
         ret.isAttaqueOwner = true;
+        ret.tokenuuid = this.options.tokenuuid;
         
         ret.canAffect = game.scenes.get(this.options.scene)?.tokens.get(this.options.token).actor.testUserPermission(game.user, "OWNER") && !this.options.isAffected;
         ret.canUpdateAttaque = game.messages.get(this.options.attaque.id).testUserPermission(game.user, "update") && !this.options.isAttaqueUpdated;
@@ -126,7 +127,7 @@ export class DefenseRoll extends system.DiceRoller.BaseRoll{
         
         const reste = Math.max(0, actor.system.nbCasesStressTotal - actor.system.stress.value - this.getDegats());
 
-        ui.notifications.info(`${actor.name} prend ${this.getDegats()} pts de stress, il lui en reste ${reste}.`);
+//        ui.notifications.info(`${actor.name} prend ${this.getDegats()} pts de stress, il lui en reste ${reste}.`);
         this.options.isAffected = true;
         message.update({rolls: [this]});
     }

@@ -107,6 +107,7 @@ Hooks.once("init", () => {
   registerHandleBarFunctions();
 
   system.DiceRoller.fct.registerMessageEventListener();
+  system.Actor.Events.register();
 
   
     Hooks.on("canvasInit", (canvas) => {

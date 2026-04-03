@@ -20,9 +20,23 @@ export function registerMessageEventListener() {
                 MessageActionResolver.executeAction(action, event, message, data);
             });
         });
+        
+        html.querySelectorAll(".dice-roll [data-hover]").forEach(btn => {
+            btn.addEventListener("mouseenter", event => {
+                const action = event.currentTarget.dataset.hover;
+                MessageActionResolver.executeAction(action, event, message, data);
+            });
+            
+            btn.addEventListener("mouseout", event => {
+                const action = event.currentTarget.dataset.hover;
+                MessageActionResolver.executeAction(action, event, message, data);
+            });
+        });
     });
 
     MessageActionResolver.register("sortieSurchauffe", system.Actor.fct.sortieSurchauffe);
     MessageActionResolver.register("perteOubli", system.Actor.fct.perteOubli);
     MessageActionResolver.register("gainFragment", system.Actor.fct.gainFragment);
+
+    MessageActionResolver.register("showTarget", system.Actor.fct.showTarget);
 }

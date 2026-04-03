@@ -9,7 +9,7 @@
         <h4 class="dice-total">{{localize "beryllium.roll.common.total"}} : {{totalText}} = {{totalValue}}</h4>
         <h4>{{localize "beryllium.attaquedefense.attaque.cibles"}}</h4>
         {{#each targets as |target|}}
-        {{target.name}} : {{#if (eq target.result null)}}{{localize "beryllium.attaquedefense.attaque.resultat.attente"}}{{else}}{{target.result}}{{/if}}</br>
+        <div class="target" data-hover="showTarget" data-tokenUuid="{{target.uuid}}">{{target.name}} : {{#if (eq target.result null)}}{{localize "beryllium.attaquedefense.attaque.resultat.attente"}}{{else}}{{target.result}}{{/if}}</div>
         {{/each}}
         {{#if canDefendre}}
             <button data-action="defense">{{localize "beryllium.attaquedefense.attaque.defendrebtn"}}</button>

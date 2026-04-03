@@ -44,13 +44,7 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
 
     getResult()
     {
-        const resValue = this.getTotalValue() - this.getSeuil();
-
-        if(resValue >= 3) return "reussiteExceptionnelle";
-        else if(resValue > 0) return "reussite";
-        else if(resValue == 0) return "reussiteJustesse";
-        else if(resValue >= -2) return "echec";
-        else return "echecCritique";
+        return '';
     }
 
     getTotalParts()

@@ -220,6 +220,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     return context
   }
 
+
   checkDefaultItems(context)
   {
     const defaultSorts = this.document.items.filter(i => i.type === "sort" && i.system.isDefault == true)
@@ -335,7 +336,13 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
         from: actor,
         scene: game.scenes.current.id,
         targets: [...game.user.targets].reduce(function(r, t) {
-            r[t.id] = { id: t.document.id, actorId: t.document.actorId, name:t.document.delta.name || t.document.name, result: null};
+            r[t.id] = { 
+              id: t.document.id, 
+              uuid: t.document.uuid, 
+              actorId: t.document.actorId, 
+              name:t.document.delta.name || t.document.name, 
+              result: null,
+            };
             return r;
         }, {}),
     });
