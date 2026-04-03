@@ -12,7 +12,6 @@ export {AttaqueRollDialog} from "./Attaque/AttaqueRollDialog.mjs";
 export {AttaqueRoll} from "./Attaque/AttaqueRoll.mjs";
 
 export {DefenseRollDialog} from "./Defense/DefenseRollDialog.mjs";
-export {DefenseChoixTokenDialog} from "./Defense/DefenseChoixTokenDialog.mjs";
 export {DefenseRoll} from "./Defense/DefenseRoll.mjs";
 
 export {SurchauffeRoll} from "./Surchauffe/SurchauffeRoll.mjs";

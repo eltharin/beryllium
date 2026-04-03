@@ -9,6 +9,7 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
         if(this.options.actorMagie == undefined) {
             this.options.actorMagie = {
                 actor : this.options.from,
+                actorUuid: this.options.from.uuid,
                 isDissonnance : this.options.from.system.magie.isDissonnance,
                 isSurchauffe : this.options.from.system.magie.isSurchauffe,
             }
@@ -17,10 +18,6 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
 
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
-        ret.result = game.i18n.format("beryllium.rolldice.result." + this.getResult());
-        ret.totalText = this.getTotalText();
-        ret.totalValue = this.getTotalValue();
-        ret.seuil = this.getSeuil();
 
         ret.scene = this.options.scene;
         ret.targets = Object.values(this.options.targets).map(t => {t.canDefendre = (this.getPermission(t.id) && this.options.targets[t.id].result == null); return t;});

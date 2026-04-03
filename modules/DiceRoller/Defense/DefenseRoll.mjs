@@ -21,6 +21,7 @@ export class DefenseRoll extends system.DiceRoller.BaseRoll{
         if(this.options.actorMagie == undefined) {
             this.options.actorMagie = {
                 actor : this.options.actor,
+                actorUuid : this.options.actor.uuid,
                 isDissonnance : this.options.actor.system.magie.isDissonnance,
                 isSurchauffe : this.options.actor.system.magie.isSurchauffe,
             }
@@ -50,14 +51,7 @@ export class DefenseRoll extends system.DiceRoller.BaseRoll{
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
 
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
-        ret.result = game.i18n.format("beryllium.rolldice.result." + this.getResult());
-        /*ret.totalText = (this.options?.actorCompetence?.value || 0) + " + " + (this.options?.modificateurs?.modificateur || 0) + " + " + this.total;
-        ret.totalValue = this.getTotalValue();
-        */
-        ret.totalText = this.getTotalText();
-        ret.totalValue = this.getTotalValue();
 
-        ret.seuil = this.getSeuil();
         ret.oppose = this.options?.attaque.result;
         
         ret.hit = this.getHit();

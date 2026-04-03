@@ -22,9 +22,11 @@ export class DefenseRollDialog {
             content: html,
             render: event => {
                 this.calculTotal(event.target, options.attaque.options.competence);
+                this.showFletrine(event.target);
 
                 event.target.element.querySelector("form .changeCompetence").addEventListener("change", ev2 => {
                     this.calculTotal(event.target, options.attaque.options.competence);
+                    this.showFletrine(event.target);
                 }, {passive: true});
                 
                 event.target.element.querySelectorAll("form .changeArmure").forEach(e => e.addEventListener("change", ev2 => {
@@ -65,5 +67,12 @@ export class DefenseRollDialog {
         form.element.querySelector('.totalBonusDefense').textContent = totalBonusDefense;
             
         form.element.querySelector('.inputtotalReductionDegat').value = totalReductionDegat;
+    }
+
+    static showFletrine(form)
+    {
+        form.element.querySelectorAll(".coutFletrine").forEach(flet => {
+            flet.style.display = (form.element.querySelector("form .changeCompetence").value == "magie") ? "inherit" : "none";
+        });
     }
 }

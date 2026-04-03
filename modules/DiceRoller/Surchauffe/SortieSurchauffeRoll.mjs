@@ -16,10 +16,7 @@ export class SortieSurchauffeRoll extends system.DiceRoller.BaseRoll{
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
         ret.title =  game.i18n.format("beryllium.roll.title.sortieSurchauffe");
-        ret.result = game.i18n.format("beryllium.rolldice.result." + (this.getResultat() ? "reussite" : "echec"));
-        ret.totalText = this.getTotalText();
-        ret.totalValue = this.getTotalValue();
-        ret.seuil = this.getSeuil();
+
         ret.actions = this.getResultat() ? [
             {action: "sortieSurchauffe", label: game.i18n.format("beryllium.messages.surchauffe.valideSortie")}
         ] : [];
@@ -36,5 +33,10 @@ export class SortieSurchauffeRoll extends system.DiceRoller.BaseRoll{
 
     getSeuil() {
         return this.options.seuil;
+    }
+    
+    getResult()
+    {
+        return this.getResultat() ? "reussite" : "echec";
     }
 }

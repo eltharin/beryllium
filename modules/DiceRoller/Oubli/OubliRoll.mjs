@@ -20,10 +20,7 @@ export class OubliRoll extends system.DiceRoller.BaseRoll{
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
         ret.title = game.i18n.format("beryllium.roll.oubli.title", {carac: this.options.competence});
-        ret.result = game.i18n.format("beryllium.roll.oubli.result." + this.getResult());
-        ret.totalText = this.getTotalText();
-        ret.totalValue = this.getTotalValue();
-        ret.seuil = this.getSeuil();
+
         ret.actions = this.getActions();
         return ret;
     }

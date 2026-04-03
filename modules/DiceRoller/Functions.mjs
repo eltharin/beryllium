@@ -37,6 +37,7 @@ export function registerMessageEventListener() {
     MessageActionResolver.register("sortieSurchauffe", system.Actor.fct.sortieSurchauffe);
     MessageActionResolver.register("perteOubli", system.Actor.fct.perteOubli);
     MessageActionResolver.register("gainFragment", system.Actor.fct.gainFragment);
+    MessageActionResolver.register("affectFletrine", system.Actor.fct.affectFletrine);
 
     MessageActionResolver.register("showTarget", system.Actor.fct.showTarget);
 }

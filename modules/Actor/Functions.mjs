@@ -66,4 +66,19 @@ export async function showTarget(event, message, target)
     }
 } 
 
+export async function affectFletrine(event, message, target)
+{
+    let roll = message.rolls[0];
+    
+    const actor =  await fromUuid(roll.getActor().actorUuid);
+    const coutFletrine = actor.system.magie.fletrine.value + roll.options.coutFletrine;
+
+    actor.update({"system.magie.fletrine.value": coutFletrine});
+    
+    roll.options.coutFletrineOk = true;
+
+    message.update({rolls: [roll]});
+
+}
+
 

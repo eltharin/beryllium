@@ -66,6 +66,7 @@ export class MessageActionResolver {
                 tokenuuid: token.uuid,
                 actor: token.actor,
                 scene: scene.id,
+                coutFletrine: modificateurs.coutFletrine,
                 actorCompetence: token.actor.system.competences[modificateurs.competence], 
                 modificateurs: modificateurs, 
             });

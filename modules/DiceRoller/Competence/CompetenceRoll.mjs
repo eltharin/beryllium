@@ -10,6 +10,7 @@ export class CompetenceRoll extends system.DiceRoller.BaseRoll{
         if(this.options.actorMagie == undefined) {
             this.options.actorMagie = {
                 actor : this.options.actor.obj,
+                actorUuid: this.options.actor.obj.uuid,
                 isDissonnance : this.options.actor.obj.system.magie.isDissonnance,
                 isSurchauffe : this.options.actor.obj.system.magie.isSurchauffe,
             }
@@ -20,10 +21,7 @@ export class CompetenceRoll extends system.DiceRoller.BaseRoll{
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
         ret.title = game.i18n.format("beryllium.roll.title.carac", {carac: this.options.competence});
-        ret.result = game.i18n.format("beryllium.rolldice.result." + this.getResult());
-        ret.totalText = this.getTotalText();
-        ret.totalValue = this.getTotalValue();
-        ret.seuil = this.getSeuil();
+
         ret.actions = null;
         return ret;
     }

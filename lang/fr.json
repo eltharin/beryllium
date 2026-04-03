@@ -283,7 +283,10 @@
                 "rolldice": "Lancer de dé",
                 "difficulte": {
                     "label": "Difficulté : {val}"
-                }
+                },
+                "coutFletrine": "Coût en flétrine",
+                "fletrineUtilisee": "{nb} pt(s) de flétrine utilisé(s)",
+                "affectFletrine": "Affecter {nb} pt(s) de flétrine"
             },
             "title": {
                 "carac": "Jet de caractéristique : {carac}",

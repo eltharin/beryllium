@@ -1,0 +1,9 @@
+{{#if isMagie}}
+<div>
+    {{#if ok}}
+        {{ localize "beryllium.roll.common.fletrineUtilisee" nb=nb }}
+    {{else}}
+        <span><button data-action="affectFletrine" data-nbpoint="{{nb}}">{{ localize "beryllium.roll.common.affectFletrine" nb=nb }}</button></span>
+    {{/if}}
+</div>
+{{/if}}

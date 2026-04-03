@@ -5,18 +5,20 @@
         <div class="dice-formula">{{localize "beryllium.roll.common.total"}} : {{total}}</div>
         <h4 class="dice-total">{{localize "beryllium.roll.common.total"}} : {{totalText}} = {{totalValue}}</h4>
         {{#if hit}}
-        <h5>{{totalValue}} < {{oppose}} {{localize "beryllium.attaquedefense.defense.echec"}}</h5>
-        <div class="dice-formula">{{localize "beryllium.roll.common.resultat"}} : {{degatsFormula}} = {{degats}} (min:1)</div>
-        <h4 class="dice-total">{{localize "beryllium.attaquedefense.defense.perteStress" ptStress=degats }}</h4>
-        {{#if canAffect}}
-            <button data-action="affectDegat" data-hover="showTarget" data-tokenUuid="{{tokenuuid}}">{{localize "beryllium.attaquedefense.defense.affectDegat"}}</button>
-        {{/if}}
+            <h5>{{totalValue}} < {{oppose}} {{localize "beryllium.attaquedefense.defense.echec"}}</h5>
+            <div class="dice-formula">{{localize "beryllium.roll.common.resultat"}} : {{degatsFormula}} = {{degats}} (min:1)</div>
+            <h4 class="dice-total">{{localize "beryllium.attaquedefense.defense.perteStress" ptStress=degats }}</h4>
+            {{#if canAffect}}
+                <button data-action="affectDegat" data-hover="showTarget" data-tokenUuid="{{tokenuuid}}">{{localize "beryllium.attaquedefense.defense.affectDegat"}}</button>
+            {{/if}}
         
 
         {{else}}
         <h4 class="dice-total">{{totalValue}} >= {{oppose}} {{localize "beryllium.attaquedefense.defense.reussite"}}</h4>
         {{/if}}
 
+        {{{ fletrineTooltip }}}
+        
         {{#if canUpdateAttaque}}
             <button data-action="majAttaque">{{localize "beryllium.attaquedefense.defense.majAttaque"}}</button>
         {{/if}}  

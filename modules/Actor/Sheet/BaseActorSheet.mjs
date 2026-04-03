@@ -327,6 +327,12 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       }
     }
 
+    let coutFletrine = 0;
+    if(competence == "magie")
+    {
+      coutFletrine = modificateurs.coutFletrine;
+    }
+
 
     const myRoll = new system.DiceRoller.AttaqueRoll("4db",{}, {
         competence: competence,
@@ -334,6 +340,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
         actorCompetence: actor.system.competences[modificateurs.competence], 
         modificateurs: modificateurs, 
         from: actor,
+        coutFletrine: coutFletrine,
         scene: game.scenes.current.id,
         targets: [...game.user.targets].reduce(function(r, t) {
             r[t.id] = { 
@@ -374,13 +381,24 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     const actor = this.document;
     const competence =  target.dataset.competence;
 
-    const modificateurs = await system.DiceRoller.CompetenceRollDialog.create();
+    const modificateurs = await system.DiceRoller.CompetenceRollDialog.create({
+      isMagie: (competence == "magie"), 
+    });
     if (modificateurs == null) { return; }
+
+    
+    let coutFletrine = 0;
+    if(competence == "magie")
+    {
+      coutFletrine = modificateurs.coutFletrine;
+    }
+
 
     const myRoll = new system.DiceRoller.CompetenceRoll("4db",{}, {
         competence: competence, 
         actorCompetence: actor.system.competences[competence], 
         modificateurs: modificateurs,
+        coutFletrine: coutFletrine,
         actor: {
           competence: actor.system.competences[competence],
           obj: actor,

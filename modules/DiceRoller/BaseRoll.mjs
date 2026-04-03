@@ -1,6 +1,40 @@
 import * as system  from "../_helpers.mjs";
 
 export class BaseRoll extends Roll {
+    
+    constructor(formula="", data={}, options={}) {
+        super(formula, data, options);
+        
+        if(this.options.coutFletrine == undefined) {
+            this.options.coutFletrine = 0;            
+        }
+        
+        if(this.options.coutFletrineOk == undefined) {
+            this.options.coutFletrineOk = false;            
+        }
+    }
+
+    async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
+        let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
+        ret.result = game.i18n.format("beryllium.rolldice.result." + this.getResult());
+        ret.totalText = this.getTotalText();
+        ret.totalValue = this.getTotalValue();
+        ret.seuil = this.getSeuil();
+
+        ret.fletrineTooltip = await this.getFletrineTooltip();
+
+        return ret;
+    }
+    
+    async getFletrineTooltip() {
+        
+        return foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/affect_fletrine.hbs", {
+            isMagie: this.isCompetenceMagie(),
+            nb: this.options.coutFletrine, 
+            ok: this.options.coutFletrineOk
+        });
+    }
+
     isCompetenceMagie()
     {
         console.error("can't have resolve isCompetenceMAgie on " + this.constructor.name);

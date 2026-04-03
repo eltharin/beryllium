@@ -3,7 +3,9 @@ import * as system from "../../_helpers.mjs"
 
 export class CompetenceRollDialog {
     static async create(options = {}) {
+        
         let data = {
+            isMagie: options.isMagie,
             options: {
                 difficulteDefaut: 4,
                 difficulte: {
@@ -35,10 +37,8 @@ export class CompetenceRollDialog {
             }
         };
 
-        const html = await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/competence/roll-dialog.hbs", data);
-
         return await system.Common.Dialog.input({
-            content: html,
+            content: await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/competence/roll-dialog.hbs", data),
             window: {title: "lancer de dé"},
             ok: {
                 label: game.i18n.format("beryllium.roll.common.rolldice"),
