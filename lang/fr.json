@@ -208,6 +208,7 @@
                     "delete": "Supprimer la munition"
                 },
                 "armure": {
+                    "titre": "Nom de l'armure",
                     "label": "Liste des armures",
                     "ajout": "Ajouter une armure",
                     "edit": "Modifier l'armure",

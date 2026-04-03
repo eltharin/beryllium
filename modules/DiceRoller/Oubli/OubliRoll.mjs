@@ -46,6 +46,11 @@ export class OubliRoll extends system.DiceRoller.BaseRoll{
         else return "rejet";
     }
 
+    getResultText()
+    {
+        return game.i18n.format("beryllium.roll.oubli.result." + this.getResult());
+    }
+
     getTotalParts()
     {
         return [

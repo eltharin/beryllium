@@ -16,7 +16,7 @@ export class BaseRoll extends Roll {
 
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
-        ret.result = game.i18n.format("beryllium.rolldice.result." + this.getResult());
+        ret.result = game.i18n.format(this.getResultText());
         ret.totalText = this.getTotalText();
         ret.totalValue = this.getTotalValue();
         ret.seuil = this.getSeuil();
@@ -43,6 +43,11 @@ export class BaseRoll extends Roll {
     getActor()
     {
         console.error("can't have resolve getToken on " + this.constructor.name);
+    }
+
+    getResultText()
+    {
+        return game.i18n.format("beryllium.rolldice.result." + this.getResult());
     }
 
     static fromData(data) {
