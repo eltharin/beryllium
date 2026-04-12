@@ -25,7 +25,6 @@ export class ArmeSheet extends BaseItemSheet {
         { id: "effects", label:"beryllium.sheets.nav.effects"},
       ],
       initial: "main",
-      classes: ["sheet-tabs", "toto"],
     }
   };
 
