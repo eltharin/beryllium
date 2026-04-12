@@ -197,7 +197,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       }
     };
 
-    context.effets = this.document.effects;
+    context.effets = this.document.effects.filter(e => e.type != "base");
 
     context.aspects = allItems.aspect || [];
     delete allItems.aspect;

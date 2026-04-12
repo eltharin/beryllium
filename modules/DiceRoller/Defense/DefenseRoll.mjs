@@ -118,6 +118,11 @@ export class DefenseRoll extends system.DiceRoller.BaseRoll{
         const actor = game.scenes.get(this.options.scene)?.tokens.get(this.options.token).actor;
 
         actor.update({"system.stress.value": actor.system.stress.value + this.getDegats()});
+
+        if(actor.type != "pj" && actor.system.nbCasesStressTotal - actor.system.stress.value - this.getDegats() <= 0)
+        {
+            actor.toggleStatusEffect(CONFIG.specialStatusEffects.DEFEATED, { overlay: false, active: true }); 
+        }
         
         const reste = Math.max(0, actor.system.nbCasesStressTotal - actor.system.stress.value - this.getDegats());
 
