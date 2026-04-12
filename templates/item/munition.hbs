@@ -1,66 +1,72 @@
-<div class="sheet beryllium item-sheet">
-    <div class="multicol">
+<div class="sheet beryllium mysheet item-sheet">
+    <div class="sidebar">
         <div class="image">
             <img data-action="editImage" data-edit="img" src="{{document.img}}" alt="Photo de {{document.name}}" />
         </div>
-        <div>
+    </div>
+    <main>
+        <div class="top">
             <div >
                 <label>{{localize "beryllium.itemsheet.common.nom"}}</label>
                 <div>{{ fieldOrInput "name" class="pj-sheet-input" value=document.name }}</div>
             </div>
+        </div>
+        <div class="content">
+            <div class="tabscontainer">
 
-            <div>
-                <label>{{localize "beryllium.itemsheet.common.prix"}}</label>
-                <div class="multicol">
-                    <label>{{localize "beryllium.bourse.couronne.label"}}</label>
-                    <div>{{ fieldOrInput "system.prix.couronne" type="number" class="pj-sheet-input" }}</div>
-
-                    <label>{{localize "beryllium.bourse.eclat.label"}}</label>
-                    <div>{{ fieldOrInput "system.prix.eclat" type="number" class="pj-sheet-input" }}</div>
-
-                    <label>{{localize "beryllium.bourse.fragment.label"}}</label>
-                    <div>{{ fieldOrInput "system.prix.fragment" type="number" class="pj-sheet-input" }}</div>
-                </div>
-            </div>
-            
-            <div class="field">
-                <label>{{localize "beryllium.itemsheet.arme.typemunition.label"}}</label>
                 <div>
-                    {{#fieldOrInput "system.typeMunition" class="pj-sheet-input" value=system.typeMunition }}
-                    <select name="system.typeMunition">
-                      <option value="">{{localize "beryllium.itemsheet.arme.typemunition.aucun"}}</option>
-                        {{#each ../listestypemunition as |type| }}
-                            <option value="{{type}}" {{#if (eq type ../../system.typeMunition) }}selected{{/if}}>{{type}}</option>
-                        {{/each}}
-                    </select>
-                    {{/fieldOrInput}}
-                </div>
-            </div>
-                 
-            <div class="field">
-                <label>{{localize "beryllium.itemsheet.arme.degat"}}</label>
-                <div>{{ fieldOrInput "system.degat" class="pj-sheet-input" }}</div>
-            </div>
-            
-            <div class="field">
-                <label>{{localize "beryllium.itemsheet.arme.special"}}</label>
-                <div>{{ fieldOrInput "system.special" class="pj-sheet-input" }}</div>
-            </div>
+                    <label>{{localize "beryllium.itemsheet.common.prix"}}</label>
+                    <div class="multicol">
+                        <label>{{localize "beryllium.bourse.couronne.label"}}</label>
+                        <div>{{ fieldOrInput "system.prix.couronne" type="number" class="pj-sheet-input" }}</div>
 
-            <div class="multifields">
-                <div class="field">
-                    <label>{{localize "beryllium.itemsheet.arme.quantiteConso.value"}}</label>
-                    <div>
-                        {{fieldOrInput "system.quantiteConso.value" class="pj-sheet-input" }}
+                        <label>{{localize "beryllium.bourse.eclat.label"}}</label>
+                        <div>{{ fieldOrInput "system.prix.eclat" type="number" class="pj-sheet-input" }}</div>
+
+                        <label>{{localize "beryllium.bourse.fragment.label"}}</label>
+                        <div>{{ fieldOrInput "system.prix.fragment" type="number" class="pj-sheet-input" }}</div>
                     </div>
                 </div>
+                
                 <div class="field">
-                    <label>{{localize "beryllium.itemsheet.arme.quantiteConso.max"}}</label>
+                    <label>{{localize "beryllium.itemsheet.arme.typemunition.label"}}</label>
                     <div>
-                        {{fieldOrInput "system.quantiteConso.max" class="pj-sheet-input" }}
+                        {{#fieldOrInput "system.typeMunition" class="pj-sheet-input" value=system.typeMunition }}
+                        <select name="system.typeMunition">
+                        <option value="">{{localize "beryllium.itemsheet.arme.typemunition.aucun"}}</option>
+                            {{#each ../listestypemunition as |type| }}
+                                <option value="{{type}}" {{#if (eq type ../../system.typeMunition) }}selected{{/if}}>{{type}}</option>
+                            {{/each}}
+                        </select>
+                        {{/fieldOrInput}}
+                    </div>
+                </div>
+                    
+                <div class="field">
+                    <label>{{localize "beryllium.itemsheet.arme.degat"}}</label>
+                    <div>{{ fieldOrInput "system.degat" class="pj-sheet-input" }}</div>
+                </div>
+                
+                <div class="field">
+                    <label>{{localize "beryllium.itemsheet.arme.special"}}</label>
+                    <div>{{ fieldOrInput "system.special" class="pj-sheet-input" }}</div>
+                </div>
+
+                <div class="multifields">
+                    <div class="field">
+                        <label>{{localize "beryllium.itemsheet.arme.quantiteConso.value"}}</label>
+                        <div>
+                            {{fieldOrInput "system.quantiteConso.value" class="pj-sheet-input" }}
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>{{localize "beryllium.itemsheet.arme.quantiteConso.max"}}</label>
+                        <div>
+                            {{fieldOrInput "system.quantiteConso.max" class="pj-sheet-input" }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </div>

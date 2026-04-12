@@ -12,18 +12,8 @@
             </div>
         </div>
         <div class="content">
-            <div class="tabscontainer">
-                
-                <div >
-                    <label>{{localize "beryllium.itemsheet.sort.level"}}</label>
-                    <div>{{ fieldOrInput "system.level" type="number" class="pj-sheet-input" }}</div>
-                </div>
-                
-                <div >
-                    <label>{{localize "beryllium.itemsheet.sort.effet"}}</label>
-                    <div>{{ fieldOrInput "system.effet" class="pj-sheet-input" }}</div>
-                </div>
-            </div>
+            <div>{{{tabs.sheet.html}}}</div>
+            <div class="tabscontainer"></div>
         </div>
     </main>
 </div>

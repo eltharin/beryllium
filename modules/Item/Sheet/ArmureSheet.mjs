@@ -3,14 +3,34 @@ import * as system  from "../../_helpers.mjs";
 import { BaseItemSheet } from "./BaseItemSheet.mjs";
 
 export class ArmureSheet extends BaseItemSheet {
+
   static PARTS = {
     form: { 
-      template: "systems/beryllium/templates/item/armure.hbs",
-      templates: [
-        "systems/beryllium/templates/shared/effet/listEffets.hbs",
-      ] 
+      template: "systems/beryllium/templates/item/baseTemplate.hbs",
     },
+    main: {
+      template: "systems/beryllium/templates/item/armure.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+      scrollable: [''],
+    },
+    effects: {
+      template: "systems/beryllium/templates/shared/effet/listEffets.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+      scrollable: [''],
+    }
   };
+
+  static TABS = {
+    sheet: {
+      tabs: [
+        { id: "main", label:"beryllium.sheets.nav.main"},
+        { id: "effects", label:"beryllium.sheets.nav.effects"},
+      ],
+      initial: "main",
+      classes: ["sheet-tabs", "toto"],
+    }
+  };
+
 
   static DEFAULT_OPTIONS = {
     ...super.DEFAULT_OPTIONS,

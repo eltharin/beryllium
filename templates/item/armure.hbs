@@ -1,76 +1,67 @@
-<div class="sheet beryllium item-sheet">
-    <div class="multicol">
-        <div class="image">
-            <img data-action="editImage" data-edit="img" src="{{document.img}}" alt="Photo de {{document.name}}" />
-        </div>
-        <div>
-            <div >
-                <label>{{localize "beryllium.itemsheet.common.nom"}}</label>
-                <input type="text" name="name" value="{{document.name}}"/>
-            </div>
+<section class="sheet beryllium item-sheet">
 
-            {{#if document.actor}}
-            <div >
-                <label>{{localize "beryllium.itemsheet.armure.isequipe"}}</label>
-                <input type="checkbox" name="system.isEquipe" {{#if document.system.isEquipe }}checked="checked"{{/if}}/>
-            </div>
-            {{/if }}
-            <div>
-                <label>{{localize "beryllium.itemsheet.common.prix"}}</label>
-                <div class="multicol">
-                    <label>{{localize "beryllium.bourse.couronne.label"}}</label>
-                    <input type="text" name="system.prix.couronne" value="{{document.system.prix.couronne}}"/>
-
-                    <label>{{localize "beryllium.bourse.eclat.label"}}</label>
-                    <input type="text" name="system.prix.eclat" value="{{document.system.prix.eclat}}"/>
-
-                    <label>{{localize "beryllium.bourse.fragment.label"}}</label>
-                    <input type="text" name="system.prix.fragment" value="{{document.system.prix.fragment}}"/>
-                </div>
-            </div>
-            
-            <div >
-                <label>{{localize "beryllium.itemsheet.armure.type"}}</label>
-                <input type="text" name="system.type" value="{{document.system.type}}"/>
-            </div>
-
-            <div >
-                <label>{{localize "beryllium.itemsheet.armure.inconvenient"}}</label>
-                <input type="text" name="system.inconvenient" value="{{document.system.inconvenient}}"/>
-            </div>
-
-            <table class="norow">
-                <tbody>
-                    <tr>
-                        <th></th>
-                        <td>{{localize "beryllium.itemsheet.armure.bonusDefense"}}</td>
-                        <td>{{localize "beryllium.itemsheet.armure.reductionDegat"}}</td>
-                        </tr>
-                    <tr>
-                        <th>{{localize "beryllium.pjsheet.competences.combat"}}</th>
-                        <td>{{ fieldOrInput "system.bonusDefense.combat" type="number" class="pj-sheet-input" }}</td>
-                        <td>{{ fieldOrInput "system.reductionDegat.combat" type="number" class="pj-sheet-input" }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{localize "beryllium.pjsheet.competences.physique"}}</th>
-                        <td>{{ fieldOrInput "system.bonusDefense.physique" type="number" class="pj-sheet-input" }}</td>
-                        <td>{{ fieldOrInput "system.reductionDegat.physique" type="number" class="pj-sheet-input" }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{localize "beryllium.pjsheet.competences.magie"}}</th>
-                        <td>{{ fieldOrInput "system.bonusDefense.magie" type="number" class="pj-sheet-input" }}</td>
-                        <td>{{ fieldOrInput "system.reductionDegat.magie" type="number" class="pj-sheet-input" }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{localize "beryllium.pjsheet.competences.volonte"}}</th>
-                        <td>{{ fieldOrInput "system.bonusDefense.volonte" type="number" class="pj-sheet-input" }}</td>
-                        <td>{{ fieldOrInput "system.reductionDegat.volonte" type="number" class="pj-sheet-input" }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div >
+        <label>{{localize "beryllium.itemsheet.common.nom"}}</label>
+        <input type="text" name="name" value="{{document.name}}"/>
     </div>
 
-    {{> "systems/beryllium/templates/shared/effet/listEffets.hbs"}}
+    {{#if document.actor}}
+    <div >
+        <label>{{localize "beryllium.itemsheet.armure.isequipe"}}</label>
+        <input type="checkbox" name="system.isEquipe" {{#if document.system.isEquipe }}checked="checked"{{/if}}/>
+    </div>
+    {{/if }}
+    <div>
+        <label>{{localize "beryllium.itemsheet.common.prix"}}</label>
+        <div class="multicol">
+            <label>{{localize "beryllium.bourse.couronne.label"}}</label>
+            <input type="text" name="system.prix.couronne" value="{{document.system.prix.couronne}}"/>
+
+            <label>{{localize "beryllium.bourse.eclat.label"}}</label>
+            <input type="text" name="system.prix.eclat" value="{{document.system.prix.eclat}}"/>
+
+            <label>{{localize "beryllium.bourse.fragment.label"}}</label>
+            <input type="text" name="system.prix.fragment" value="{{document.system.prix.fragment}}"/>
+        </div>
+    </div>
     
-</div>
+    <div >
+        <label>{{localize "beryllium.itemsheet.armure.type"}}</label>
+        <input type="text" name="system.type" value="{{document.system.type}}"/>
+    </div>
+
+    <div >
+        <label>{{localize "beryllium.itemsheet.armure.inconvenient"}}</label>
+        <input type="text" name="system.inconvenient" value="{{document.system.inconvenient}}"/>
+    </div>
+
+    <table class="norow">
+        <tbody>
+            <tr>
+                <th></th>
+                <td>{{localize "beryllium.itemsheet.armure.bonusDefense"}}</td>
+                <td>{{localize "beryllium.itemsheet.armure.reductionDegat"}}</td>
+                </tr>
+            <tr>
+                <th>{{localize "beryllium.pjsheet.competences.combat"}}</th>
+                <td>{{ fieldOrInput "system.bonusDefense.combat" type="number" class="pj-sheet-input" }}</td>
+                <td>{{ fieldOrInput "system.reductionDegat.combat" type="number" class="pj-sheet-input" }}</td>
+            </tr>
+            <tr>
+                <th>{{localize "beryllium.pjsheet.competences.physique"}}</th>
+                <td>{{ fieldOrInput "system.bonusDefense.physique" type="number" class="pj-sheet-input" }}</td>
+                <td>{{ fieldOrInput "system.reductionDegat.physique" type="number" class="pj-sheet-input" }}</td>
+            </tr>
+            <tr>
+                <th>{{localize "beryllium.pjsheet.competences.magie"}}</th>
+                <td>{{ fieldOrInput "system.bonusDefense.magie" type="number" class="pj-sheet-input" }}</td>
+                <td>{{ fieldOrInput "system.reductionDegat.magie" type="number" class="pj-sheet-input" }}</td>
+            </tr>
+            <tr>
+                <th>{{localize "beryllium.pjsheet.competences.volonte"}}</th>
+                <td>{{ fieldOrInput "system.bonusDefense.volonte" type="number" class="pj-sheet-input" }}</td>
+                <td>{{ fieldOrInput "system.reductionDegat.volonte" type="number" class="pj-sheet-input" }}</td>
+            </tr>
+        </tbody>
+    </table>    
+</section>

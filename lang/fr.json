@@ -68,6 +68,10 @@
             "common": {
                 "nom" : "Nom"
             },
+            "nav":{
+                "main": "Fiche",
+                "effects": "Aspects"
+            },
             "pj": {},
             "item": {},
             "effet": {
