@@ -1,7 +1,8 @@
 import * as system  from "../../_helpers.mjs";
+import { BaseSheet } from "../../Models/Sheet/BaseSheet.mjs";
 
 
-export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicationMixin(
+export class BaseActorSheet extends BaseSheet (
   foundry.applications.sheets.ActorSheetV2
 ) {
   static PARTS = {
@@ -10,20 +11,75 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
       templates: [
         'systems/beryllium/templates/actor/pj/parts/topbar.hbs',
         'systems/beryllium/templates/actor/pj/parts/sidebar.hbs',
-        'systems/beryllium/templates/actor/pj/parts/aspects.hbs',
-        'systems/beryllium/templates/actor/pj/parts/magie.hbs',
-        'systems/beryllium/templates/actor/pj/parts/heritage.hbs',
-        'systems/beryllium/templates/actor/pj/parts/prouesses.hbs',
-        'systems/beryllium/templates/actor/pj/parts/consequences.hbs',
-        'systems/beryllium/templates/actor/pj/parts/combat.hbs',
-        'systems/beryllium/templates/actor/pj/parts/equipements.hbs',
-        'systems/beryllium/templates/actor/pj/parts/notes.hbs',
-        'systems/beryllium/templates/actor/pj/parts/max.hbs',
-
         "systems/beryllium/templates/shared/effet/listEffets.hbs",
       ] 
     },
+    
+    aspects: {
+      template: "systems/beryllium/templates/actor/pj/parts/aspects.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    magie: {
+      template: "systems/beryllium/templates/actor/pj/parts/magie.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    heritage: {
+      template: "systems/beryllium/templates/actor/pj/parts/heritage.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    prouesses: {
+      template: "systems/beryllium/templates/actor/pj/parts/prouesses.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    consequences: {
+      template: "systems/beryllium/templates/actor/pj/parts/consequences.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    combat: {
+      template: "systems/beryllium/templates/actor/pj/parts/combat.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    equipements: {
+      template: "systems/beryllium/templates/actor/pj/parts/equipements.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    notes: {
+      template: "systems/beryllium/templates/actor/pj/parts/notes.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    max: {
+      template: "systems/beryllium/templates/actor/pj/parts/max.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
   };
+
+  static TABS = {
+    sheet: {
+      tabs: [
+        { id: "aspects", label:"beryllium.pjsheet.tabs.aspects"},
+        { id: "magie", label:"beryllium.pjsheet.tabs.magie"},
+        { id: "heritage", label:"beryllium.pjsheet.tabs.heritage", condition: (actor) => this.hasHeritageTab(actor)},
+        { id: "prouesses", label:"beryllium.pjsheet.tabs.prouesses"},
+        { id: "consequences", label:"beryllium.pjsheet.tabs.consequences"},
+        { id: "combat", label:"beryllium.pjsheet.tabs.combat"},
+        { id: "equipements", label:"beryllium.pjsheet.tabs.equipements"},
+        { id: "notes", label:"beryllium.pjsheet.tabs.notes"},
+        { id: "max", label:"beryllium.pjsheet.tabs.max", condition: () => game.user.isGM,},
+      ],
+      initial: "aspects",
+    }
+  };
+
+  _getTabsConfig(group) {
+    const tabs = foundry.utils.deepClone(super._getTabsConfig(group))
+
+    // Modify tabs based on document properties
+    if (this.document.type === 'weapon') {
+      tabs.tabs.push({ id: 'combat', group: 'sheet', label: 'DCC.Combat' })
+    }
+
+    return tabs
+  }
 
   static DEFAULT_OPTIONS = {
     tag: 'form',
@@ -84,6 +140,7 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
   }
 
   static #showArtwork(event, target) {
+    console.log("showartwork")
     new foundry.applications.apps.ImagePopout({
       src: target.getAttribute("src"),
       uuid: this.actor.uuid,
@@ -99,6 +156,10 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     return this.isEditable && this.actor.system.isLocked;
   }
   
+  static hasHeritageTab(elem) {
+    return elem.document.type == "pj";
+  }
+
   static async verouillage() {
     await this.actor.update({"system.isLocked":true});
     this._updateFrame({window: {}});
@@ -129,8 +190,6 @@ export class BaseActorSheet extends foundry.applications.api.HandlebarsApplicati
     context.isGm = game.user.isGM;
     context.isPJ = this.constructor.name == "PjSheet";
     
-    context.tabs = this._prepareTabs("primary");
-
     context.system = this.actor.system  // Note: this.actor for ActorSheetV2
     context.flags = this.actor.flags     // or this.document for ApplicationV2
 
