@@ -5,7 +5,7 @@ import * as system from "../../_helpers.mjs";
 export class MunitionDataModel extends system.Common.SystemDataModel {
   constructor(data, options) {
     super(data, options);
-    options.parent.img = "systems/beryllium/assets/pics/munition.svg"
+    options.parent.img ??= "systems/beryllium/assets/pics/munition.svg"
   }
 
   static defineSchema() {
