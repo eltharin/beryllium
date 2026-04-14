@@ -318,9 +318,7 @@ export class BaseActorSheet extends BaseSheet (
       this.checkDefaultItems(context);
     }
     super._onRender(context, options);
-    //this._activateSkillRolls();
-
-    this._manageTab();
+    
   }
 
   static async _onAttaque(event, target){
@@ -474,29 +472,6 @@ export class BaseActorSheet extends BaseSheet (
     this.element.querySelectorAll("[data-toggle_section='" + target.dataset.toggle + "']").forEach(e => e.classList.toggle("visible"));
     //--TODO: ajouter changement icone
   }
-
-  _manageTab() {
-    const selectedTab = this.tabGroups.primary || "aspects";
-
-    this.element.querySelectorAll('.pj-sheet .tab').forEach(tab => {
-      if(tab.dataset.tab == selectedTab){
-        tab.classList.add("active");
-      }
-      else {
-        tab.classList.remove("active");
-      }
-    });
-
-    this.element.querySelectorAll('.pj-sheet .sheet-tabs > a').forEach(tab => {
-      if(tab.dataset.tab == selectedTab){
-        tab.classList.add("active");
-      }
-      else {
-        tab.classList.remove("active");
-      }
-    });
-  }
-
 
 
   async _onDrop(event) {
