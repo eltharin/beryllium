@@ -13,7 +13,7 @@ export class SortSheet extends BaseItemSheet {
     ...super.DEFAULT_OPTIONS,
     position: {
       width: 790,
-      height: 300,
+      height: 330,
     },
   }
 
