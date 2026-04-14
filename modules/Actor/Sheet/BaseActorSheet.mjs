@@ -70,17 +70,6 @@ export class BaseActorSheet extends BaseSheet (
     }
   };
 
-  _getTabsConfig(group) {
-    const tabs = foundry.utils.deepClone(super._getTabsConfig(group))
-
-    // Modify tabs based on document properties
-    if (this.document.type === 'weapon') {
-      tabs.tabs.push({ id: 'combat', group: 'sheet', label: 'DCC.Combat' })
-    }
-
-    return tabs
-  }
-
   static DEFAULT_OPTIONS = {
     tag: 'form',
     form: {
