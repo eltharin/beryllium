@@ -76,14 +76,29 @@ export function register()
         foundry.utils.setProperty(changes, "flags.beryllium.updateedValues", flags);
     });
 
+    Hooks.on("preCreateActiveEffect", (effect, changes, options, userId) => {
+        if(changes.name == "Mort" && !foundry.utils.getProperty(changes, "flags.beryllium.effetmort") ) {
+            effect.parent.createEmbeddedDocuments("ActiveEffect", [{
+                label: "Mort",
+                name: "Mort",
+                statuses:["dead"],
+                icon: "systems/beryllium/assets/croix_rouge.webp",
+                flags: { 
+                    core: { overlay: true } ,
+                    beryllium: {effetmort: true}
+                }
+            }]);
+        }
+    });
+
+
     Hooks.on("updateActor", (actor, changes, options, userId) => {
         ActorUpdates.onStress(actor, changes, options, userId);
         ActorUpdates.onFletrine(actor, changes, options, userId);
         ActorUpdates.onOubli(actor, changes, options, userId);
         ActorUpdates.onEcho(actor, changes, options, userId);
 
-      
-/*
+    /*
       
       // Trouver le token actif sur la scène
       const token = actor.getActiveTokens()[0];
