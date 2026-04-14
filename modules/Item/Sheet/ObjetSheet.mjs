@@ -1,8 +1,8 @@
 import * as system  from "../../_helpers.mjs";
 
-import { BaseItemSheet } from "./BaseItemSheet.mjs";
+import { BaseItemSheetWithEffects } from "./BaseItemSheetWithEffects.mjs";
 
-export class ObjetSheet extends BaseItemSheet {
+export class ObjetSheet extends BaseItemSheetWithEffects {
   static PARTS = {
     form: { 
       template: "systems/beryllium/templates/item/baseTemplate.hbs",
@@ -45,4 +45,5 @@ export class ObjetSheet extends BaseItemSheet {
 
     return data ; 
   }
+  
 }
