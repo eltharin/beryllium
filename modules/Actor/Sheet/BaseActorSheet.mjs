@@ -287,6 +287,10 @@ export class BaseActorSheet extends BaseSheet (
     {
       sortToAdd.push({type: "sort", name: game.i18n.format("beryllium.libelle.sortdefaut.majeur"), system: {level: 3, isDefault: true}});
     }
+    if(defaultSorts.filter(i => i.system.level == 4).length == 0)
+    {
+      sortToAdd.push({type: "sort", name: game.i18n.format("beryllium.libelle.sortdefaut.extreme"), system: {level: 4, isDefault: true}});
+    }
     
     if(defaultArme.length == 0)
     {

@@ -39,7 +39,8 @@
             "sortdefaut": {
                 "mineur" : "Sort mineur",
                 "majeur" : "Sort majeur",
-                "intermediaire" : "Sort intermédiaire"
+                "intermediaire" : "Sort intermédiaire",
+                "extreme" : "Sort extrême"
             },
             "armedefaut": {
                 "poing" : "Attaque à main nues"
@@ -222,6 +223,7 @@
                     "titre": "Nom du sort",
                     "portee": "Portée",
                     "niveau": "Niveau",
+                    "coutFletrine": "Coût en flétrine",
                     "voireffet": "Effet",
                     "actions": "Actions"
                 }
@@ -274,6 +276,7 @@
             },
             "sort": {
                 "level": "Niveau",
+                "coutFletrine": "Coût en flétrine",
                 "effet": "Effet"
             },
             "objet": {

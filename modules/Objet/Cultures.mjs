@@ -24,6 +24,16 @@ class NaharCulture extends Culture{
     ];
     faiblesses = [{description: "Malaise physique (malus temporaire de -1) après exposition prolongée à de fortes manifestations magiques"}];
     specialisations = [{titre: "Ingénierie", base: "technique", bonus: "+1 Technologie naharienne", isEffet:true}];
+    magie = {
+        seuil: 2,
+        malus: {
+            1: 0,
+            2: 1,
+            3: 1,
+            4: 1,
+        },
+        surchauffe: true,
+    };
 }
 
 class ArckeneaCulture extends Culture{
@@ -33,6 +43,16 @@ class ArckeneaCulture extends Culture{
     privileges = [{titre: "Liens du Sang", description: "Appeler un membre du clan ou entrer en fureur protectrice pour un allié"}];
     faiblesses = [{description: "Doit relever les défis directs à son honneur ou accepter un aspect temporaire \"Honneur entaché\""}];
     specialisations = [{titre: "Traditions martiales", base: "combat", bonus: "+1 duels formels, défense du clan", isEffet:true}];
+    magie = {
+        seuil: 3,
+        malus: {
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+        },
+        surchauffe: true,
+    };
 }
 class BreribForroseCulture extends Culture{
     _id = "breribForrose";
@@ -41,6 +61,16 @@ class BreribForroseCulture extends Culture{
     privileges = [{titre: "Rumeurs de Cour", description: "Obtenir une information utile via son réseau aristocratique"}];
     faiblesses = [{description: "Mépris instinctif pour les classes inférieures, causant des tensions dans les milieux populaires"}];
     specialisations = [{titre: "Étiquette politique", base: "influence", bonus: "noblesse et institutions"}];
+    magie = {
+        seuil: 3,
+        malus: {
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+        },
+        surchauffe: true,
+    };
 }
 
 class BreribValiaCulture extends Culture{
@@ -50,6 +80,16 @@ class BreribValiaCulture extends Culture{
     privileges = [{titre: "Œil de l'Artisan", description: "Identifier la fonction, l'origine ou la valeur exacte d'un objet"}];
     faiblesses = [{description: "Obsession compulsive pour l'amélioration des objets et environnements imparfaits"}];
     specialisations = [{titre: "Artisanat d'excellence", base: "technique", bonus: "créer, réparer, évaluer"}];
+    magie = {
+        seuil: 3,
+        malus: {
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+        },
+        surchauffe: true,
+    };
 }
 
 class BreribAlaocCulture extends Culture{
@@ -59,6 +99,16 @@ class BreribAlaocCulture extends Culture{
     privileges = [{titre: "Mémoire des Pierres", description: "Recevoir une impression intuitive d'un lieu ou objet ancien (le MJ donne un indice)"}];
     faiblesses = [{description: "Inconfort physique (-1) lorsque contraint d'agir contre les cycles naturels"}];
     specialisations = [{titre: "Savoirs anciens", base: "erudition", bonus: "ruines, mégalithes, traditions orales"}];
+    magie = {
+        seuil: 3,
+        malus: {
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+        },
+        surchauffe: true,
+    };
 }
 
 class BreribRuanonCulture extends Culture{
@@ -68,6 +118,16 @@ class BreribRuanonCulture extends Culture{
     privileges = [{titre: "Instinct du Prédateur", description: "Identifier la plus grande faiblesse d'un adversaire qu'il peut observer"}];
     faiblesses = [{description: "Tendance à résoudre les conflits par la force, même quand d'autres approches seraient préférables"}];
     specialisations = [{titre: "Tactique militaire", base: "combat", bonus: "coordination, manœuvres défensives"}];
+    magie = {
+        seuil: 3,
+        malus: {
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+        },
+        surchauffe: true,
+    };
 }
 
 class AzsharCulture extends Culture{
@@ -77,6 +137,16 @@ class AzsharCulture extends Culture{
     privileges = [{titre: "Canalisation du Cristal", description: "Ignorer une augmentation de Flétrine si elle dépasser le seuil de tolérance"}];
     faiblesses = [{description: "Attirance irrésistible vers les manifestations de magie corrompue ou artefacts anciens"}];
     specialisations = [{titre: "Canalisation cristalline", base: "magie", bonus: "artefacts cristallins, nécromancie"}];
+    magie = {
+        seuil: 2,
+        malus: {
+            1: 0,
+            2: 1,
+            3: 1,
+            4: 1,
+        },
+        surchauffe: true,
+    };
 }
 
 class OriginelsCulture extends Culture{
@@ -86,6 +156,16 @@ class OriginelsCulture extends Culture{
     privileges = [{titre: "Théorie Arcanique", description: "Poser une question au MJ sur un phénomène magique/historique → réponse fiable"}];
     faiblesses = [{description: "Difficulté à comprendre les motivations émotionnelles irrationnelles"}];
     specialisations = [{titre: "Théorie arcanique", base: "erudition", bonus: "comprendre et analyser la magie"}];
+    magie = {
+        seuil: 4,
+        malus: {
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+        },
+        surchauffe: false,
+    };
 }
 
 class SildariensCulture extends Culture{
@@ -95,6 +175,16 @@ class SildariensCulture extends Culture{
     privileges = [{titre: "Voie invisible", description: "Trouver un passage ou raccourci que personne ne connaît"}];
     faiblesses = [{description: "Mal à l'aise dans les environnements totalement contrôlés ou artificiels"}];
     specialisations = [{titre: "Harmonie élémentaire ", base: "volonte", bonus: "résistance aux perturbations mystiques"}];
+    magie = {
+        seuil: 4,
+        malus: {
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+        },
+        surchauffe: true,
+    };
 }
 
 class ArchipelCulture extends Culture{
@@ -104,6 +194,16 @@ class ArchipelCulture extends Culture{
     privileges = [{titre: "Guidance des Statues", description: "Toucher un objet ancien → vision fragmentaire de son passé"}];
     faiblesses = [{description: "Confusion temporaire lors de l'exposition à des technologies avancées ou phénomènes magiques"}];
     specialisations = [{titre: "Traditions orales", base: "erudition", bonus: "mythes, rituels, statues"}];
+    magie = {
+        seuil: 1,
+        malus: {
+            1: 1,
+            2: 2,
+            3: 2,
+            4: 2,
+        },
+        surchauffe: true,
+    };
 }
 
 class PortEsperanceCulture extends Culture{
@@ -113,6 +213,16 @@ class PortEsperanceCulture extends Culture{
     privileges = [{titre: "Réseau Commercial", description: "Connaître quelqu'un qui peut aider dans la situation actuelle"}];
     faiblesses = [{description: "Vulnérabilité aux situations exigeant des sacrifices personnels sans bénéfice tangible"}];
     specialisations = [{titre: "Commerce et négociation ", base: "influence", bonus: "transactions commerciales"}];
+    magie = {
+        seuil: 3,
+        malus: {
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+        },
+        surchauffe: true,
+    };
 }
 
 //privilege {title: "", description: ""}

@@ -1,6 +1,9 @@
+import { Cultures } from "../Objet/Cultures.mjs";
 import {TokenHighlighter}  from "./TokenHighlighter.mjs"
 
 export async function enterSurchauffe(actor) {
+    if(!Cultures.get(actor.system.culture)?.magie.surchauffe) {return;}
+    
     actor.update({"system.magie.isSurchauffe": true});
 
     ChatMessage.create({
