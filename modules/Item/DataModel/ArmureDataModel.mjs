@@ -1,10 +1,8 @@
 import * as system from "../../_helpers.mjs";
 
 export class ArmureDataModel extends system.Common.SystemDataModel {
-  constructor(data, options) {
-    super(data, options);
-    options.parent.img ??= "systems/beryllium/assets/pics/armure.svg"
-  }
+  
+  static DEFAULT_ICON  = "systems/beryllium/assets/pics/armure.svg";
 
   static defineSchema() {
     return {

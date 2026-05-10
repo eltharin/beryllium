@@ -3,10 +3,8 @@ import { Cultures } from "../../Objet/Cultures.mjs";
 
 
 export class SortDataModel extends system.Common.SystemDataModel {
-  constructor(data, options) {
-    super(data, options);
-    options.parent.img ??= "systems/beryllium/assets/pics/sort.svg"
-  }
+  
+  static DEFAULT_ICON  = "systems/beryllium/assets/pics/sort.svg";
 
   static defineSchema() {
     // All Actors have resources.
